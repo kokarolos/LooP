@@ -1,0 +1,15 @@
+C:\Users\Karolos\source\repos\Loop\Loop\Loop.Database\bin\Debug\Loop.Database.dll.config
+C:\Users\Karolos\source\repos\Loop\Loop\Loop.Database\bin\Debug\Loop.Database.dll
+C:\Users\Karolos\source\repos\Loop\Loop\Loop.Database\bin\Debug\Loop.Database.pdb
+C:\Users\Karolos\source\repos\Loop\Loop\Loop.Database\bin\Debug\EntityFramework.dll
+C:\Users\Karolos\source\repos\Loop\Loop\Loop.Database\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Karolos\source\repos\Loop\Loop\Loop.Database\bin\Debug\EntityFramework.xml
+C:\Users\Karolos\source\repos\Loop\Loop\Loop.Database\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Karolos\source\repos\Loop\Loop\Loop.Database\obj\Debug\Loop.Database.csprojAssemblyReference.cache
+C:\Users\Karolos\source\repos\Loop\Loop\Loop.Database\obj\Debug\Loop.Database.csproj.CoreCompileInputs.cache
+C:\Users\Karolos\source\repos\Loop\Loop\Loop.Database\obj\Debug\Loop.Database.csproj.CopyComplete
+C:\Users\Karolos\source\repos\Loop\Loop\Loop.Database\obj\Debug\Loop.Database.dll
+C:\Users\Karolos\source\repos\Loop\Loop\Loop.Database\obj\Debug\Loop.Database.pdb
+C:\Users\Karolos\source\repos\Loop\Loop\Loop.Database\bin\Debug\Loop.Entities.dll
+C:\Users\Karolos\source\repos\Loop\Loop\Loop.Database\bin\Debug\Loop.Entities.pdb
+C:\Users\Karolos\source\repos\Loop\Loop\Loop.Database\bin\Debug\Loop.Entities.dll.config
