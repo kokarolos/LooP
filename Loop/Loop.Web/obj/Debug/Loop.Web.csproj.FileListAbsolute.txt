@@ -111,3 +111,4 @@ C:\Users\Karolos\source\repos\Loop\Loop\Loop.Web\obj\Debug\Loop.Web.csproj.CoreC
 C:\Users\Karolos\source\repos\Loop\Loop\Loop.Web\obj\Debug\Loop.Web.csproj.CopyComplete
 C:\Users\Karolos\source\repos\Loop\Loop\Loop.Web\obj\Debug\Loop.Web.dll
 C:\Users\Karolos\source\repos\Loop\Loop\Loop.Web\obj\Debug\Loop.Web.pdb
+C:\Users\Karolos\source\repos\Loop\Loop\Loop.Web\obj\Debug\Loop.Web.csprojAssemblyReference.cache
