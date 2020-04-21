@@ -107,7 +107,6 @@ C:\Users\Karolos\source\repos\Loop\Loop\Loop.Web\bin\Microsoft.Owin.Security.Twi
 C:\Users\Karolos\source\repos\Loop\Loop\Loop.Web\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Karolos\source\repos\Loop\Loop\Loop.Web\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\Karolos\source\repos\Loop\Loop\Loop.Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Karolos\source\repos\Loop\Loop\Loop.Web\obj\Debug\Loop.Web.csprojAssemblyReference.cache
 C:\Users\Karolos\source\repos\Loop\Loop\Loop.Web\obj\Debug\Loop.Web.csproj.CoreCompileInputs.cache
 C:\Users\Karolos\source\repos\Loop\Loop\Loop.Web\obj\Debug\Loop.Web.csproj.CopyComplete
 C:\Users\Karolos\source\repos\Loop\Loop\Loop.Web\obj\Debug\Loop.Web.dll
