@@ -1,28 +1,20 @@
 ﻿using System.Data.Entity;
-using System.Security.Claims;
-using System.Threading.Tasks;
 using Loop.Entities;
-using Microsoft.AspNet.Identity;
+using Loop.Entities.Concrete;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace Loop.Web.Models
+namespace Loop.Database
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
-    public class ApplicationUser : IdentityUser
-    {
-        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
-        {
-            // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
-            var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
-            // Add custom user claims here
-            return userIdentity;
-        }
-    }
+  
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
 
-        //public virtual DbSet<User> Users { get; set; }
+        public DbSet<Post> Posts { get; set; }
+        public DbSet<Reply> Replies { get; set; }
+        public DbSet<Tag> Tags { get; set; }
+        public object ApplicationUsers { get; set; }
 
         public ApplicationDbContext()
             : base("Connection", throwIfV1Schema: false)
@@ -33,5 +25,6 @@ namespace Loop.Web.Models
         {
             return new ApplicationDbContext();
         }
+
     }
 }

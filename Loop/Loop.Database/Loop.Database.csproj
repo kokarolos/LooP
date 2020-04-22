@@ -62,6 +62,10 @@
     <Compile Include="Migrations\202004212119432_InitialMigration.designer.cs">
       <DependentUpon>202004212119432_InitialMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004221350212_moufa.cs" />
+    <Compile Include="Migrations\202004221350212_moufa.designer.cs">
+      <DependentUpon>202004221350212_moufa.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MyDatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -79,6 +83,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202004212119432_InitialMigration.resx">
       <DependentUpon>202004212119432_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004221350212_moufa.resx">
+      <DependentUpon>202004221350212_moufa.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

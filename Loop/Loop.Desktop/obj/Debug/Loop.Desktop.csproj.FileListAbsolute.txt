@@ -14,3 +14,9 @@ C:\Users\Παναγιώτης\source\repos\LooP\Loop\Loop.Desktop\bin\Debug\Micr
 C:\Users\Παναγιώτης\source\repos\LooP\Loop\Loop.Desktop\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
 C:\Users\Παναγιώτης\source\repos\LooP\Loop\Loop.Desktop\bin\Debug\Microsoft.AspNet.Identity.Core.xml
 C:\Users\Παναγιώτης\source\repos\LooP\Loop\Loop.Desktop\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Παναγιώτης\source\repos\LooP\Loop\Loop.Desktop\bin\Debug\Loop.Database.dll
+C:\Users\Παναγιώτης\source\repos\LooP\Loop\Loop.Desktop\bin\Debug\Loop.Entities.dll
+C:\Users\Παναγιώτης\source\repos\LooP\Loop\Loop.Desktop\bin\Debug\Loop.Database.pdb
+C:\Users\Παναγιώτης\source\repos\LooP\Loop\Loop.Desktop\bin\Debug\Loop.Database.dll.config
+C:\Users\Παναγιώτης\source\repos\LooP\Loop\Loop.Desktop\bin\Debug\Loop.Entities.pdb
+C:\Users\Παναγιώτης\source\repos\LooP\Loop\Loop.Desktop\bin\Debug\Loop.Entities.dll.config

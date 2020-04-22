@@ -19,3 +19,4 @@ C:\Users\Παναγιώτης\source\repos\LooP\Loop\Loop.Database\bin\Debug\Mic
 C:\Users\Παναγιώτης\source\repos\LooP\Loop\Loop.Database\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
 C:\Users\Παναγιώτης\source\repos\LooP\Loop\Loop.Database\bin\Debug\Microsoft.AspNet.Identity.Core.xml
 C:\Users\Παναγιώτης\source\repos\LooP\Loop\Loop.Database\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Παναγιώτης\source\repos\LooP\Loop\Loop.Database\obj\Debug\Loop.Database.Migrations.moufa.resources
