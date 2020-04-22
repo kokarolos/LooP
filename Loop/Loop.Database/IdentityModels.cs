@@ -1,6 +1,7 @@
 ﻿using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Loop.Entities;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -20,6 +21,9 @@ namespace Loop.Web.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+
+        //public virtual DbSet<User> Users { get; set; }
+
         public ApplicationDbContext()
             : base("Connection", throwIfV1Schema: false)
         {

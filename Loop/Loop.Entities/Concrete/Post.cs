@@ -11,6 +11,7 @@ namespace Loop.Entities
 
         public virtual ICollection<Tag> Tags { get; set; }
         public virtual ICollection<Reply> Replies { get; set; }
-        public virtual ICollection<User> Users { get; set; }
+        // public virtual ICollection<User> Users { get; set; }
+       //=> public virtual ApplicationUser ApplicationUser { get; set; }
     }
 }
