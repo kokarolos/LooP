@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
@@ -19,14 +20,18 @@ namespace Loop.Entities.Concrete
             return userIdentity;
         }
 
-        // TODO GENERATE PROPERTIES ! USER CONNECT WITH OTHER ENTITIES
+
+        [NotMapped]
+        public int Age
+        {
+            get { return DateTime.Now.Year - this.DateOfBirth.Year; }
+
+        }
 
 
-        public int Age { get; set; }
-
+        public DateTime DateOfBirth { get; set; }
         public virtual ICollection<Post> Posts { get; set; }
-
-
+        public virtual ICollection<Product> Products { get; set; }
 
     }
 }

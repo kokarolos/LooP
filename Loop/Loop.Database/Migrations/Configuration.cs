@@ -25,11 +25,12 @@
 
             Post p = new Post() { Text = "mlmml" };
             Post p2 = new Post() { Text = "newPost" };
-            ApplicationUser a1 = new ApplicationUser() { Age = 23, UserName = "Nick" };
+            ApplicationUser a1 = new ApplicationUser() { DateOfBirth= new DateTime(1993, 05,07), UserName = "Nick" };
+            ApplicationUser a2 = new ApplicationUser() { DateOfBirth= new DateTime(1993, 05,09), UserName = "Panos" };
 
             a1.Posts = new List<Post> { p,p2 };
             context.Posts.AddOrUpdate(x => x.Text, p, p2);
-            context.Users.AddOrUpdate(x => x.UserName, a1);
+            context.Users.AddOrUpdate(x => x.UserName, a1,a2);
             context.SaveChanges();
 
         }

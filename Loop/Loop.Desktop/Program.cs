@@ -28,7 +28,7 @@ namespace Loop.Desktop
 
                 foreach (var x in item.ApplicationUsers)
                 {
-                    Console.WriteLine(x.UserName);
+                    Console.WriteLine(/*x.UserName + "" +*/ x.Age);
 
                 }
             }
