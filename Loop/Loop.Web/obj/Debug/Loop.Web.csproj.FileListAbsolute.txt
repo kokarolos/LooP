@@ -112,3 +112,12 @@ C:\Users\Παναγιώτης\source\repos\LooP\Loop\Loop.Web\obj\Debug\Loop.Web
 C:\Users\Παναγιώτης\source\repos\LooP\Loop\Loop.Web\obj\Debug\Loop.Web.csproj.CopyComplete
 C:\Users\Παναγιώτης\source\repos\LooP\Loop\Loop.Web\obj\Debug\Loop.Web.dll
 C:\Users\Παναγιώτης\source\repos\LooP\Loop\Loop.Web\obj\Debug\Loop.Web.pdb
+C:\Users\Παναγιώτης\source\repos\LooP\Loop\Loop.Web\bin\Loop.Database.dll
+C:\Users\Παναγιώτης\source\repos\LooP\Loop\Loop.Web\bin\Loop.Entities.dll
+C:\Users\Παναγιώτης\source\repos\LooP\Loop\Loop.Web\bin\Loop.Services.dll
+C:\Users\Παναγιώτης\source\repos\LooP\Loop\Loop.Web\bin\Loop.Database.pdb
+C:\Users\Παναγιώτης\source\repos\LooP\Loop\Loop.Web\bin\Loop.Database.dll.config
+C:\Users\Παναγιώτης\source\repos\LooP\Loop\Loop.Web\bin\Loop.Entities.pdb
+C:\Users\Παναγιώτης\source\repos\LooP\Loop\Loop.Web\bin\Loop.Entities.dll.config
+C:\Users\Παναγιώτης\source\repos\LooP\Loop\Loop.Web\bin\Loop.Services.pdb
+C:\Users\Παναγιώτης\source\repos\LooP\Loop\Loop.Web\bin\Loop.Services.dll.config

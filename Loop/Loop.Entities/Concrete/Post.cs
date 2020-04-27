@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Loop.Entities.Concrete;
+using System.Collections.Generic;
+
 
 namespace Loop.Entities
 {
@@ -9,8 +11,12 @@ namespace Loop.Entities
         public int PostId { get; set; }
         public string Text { get; set; }
 
+
         public virtual ICollection<Tag> Tags { get; set; }
         public virtual ICollection<Reply> Replies { get; set; }
-        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<ApplicationUser> ApplicationUsers { get; set; }
+        public virtual ICollection<Attachment> Attachments { get; set; }
+
+
     }
 }

@@ -6,6 +6,8 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using Loop.Web.Models;
+using Loop.Database;
+using Loop.Entities.Concrete;
 
 namespace Loop.Web
 {
