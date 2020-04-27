@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using Loop.Entities.Intermediate;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
@@ -31,7 +32,8 @@ namespace Loop.Entities.Concrete
 
         public DateTime DateOfBirth { get; set; }
         public virtual ICollection<Post> Posts { get; set; }
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<UserProduct> UserProducts { get; set; }
+
 
     }
 }
