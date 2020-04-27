@@ -1,6 +1,7 @@
 ﻿using System.Data.Entity;
 using Loop.Entities;
 using Loop.Entities.Concrete;
+using Loop.Entities.Intermediate;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Loop.Database
@@ -14,6 +15,10 @@ namespace Loop.Database
         public DbSet<Post> Posts { get; set; }
         public DbSet<Reply> Replies { get; set; }
         public DbSet<Tag> Tags { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Tutorial> Tutorials { get; set; }
+        public DbSet<UserProduct> UserProducts { get; set; }
+        
         public object ApplicationUsers { get; set; }
 
         public ApplicationDbContext()
