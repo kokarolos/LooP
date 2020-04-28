@@ -2,6 +2,7 @@
 {
     using Loop.Entities;
     using Loop.Entities.Concrete;
+    using Loop.Entities.Intermediate;
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
@@ -18,21 +19,43 @@
 
         protected override void Seed(ApplicationDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            #region Seeding
+            Post p1 = new Post() { Text = "Post One" };
+            Post p2 = new Post() { Text = "Post Two" };
+            Post p3 = new Post() { Text = "Post Three" };
+            Post p4 = new Post() { Text = "Post Four" };
+            Post p5 = new Post() { Text = "Post Five" };
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method
-            //  to avoid creating duplicate seed data.
+            ApplicationUser a1 = new ApplicationUser() { DateOfBirth = new DateTime(1993, 05, 07), UserName = "Nick" };
+            ApplicationUser a2 = new ApplicationUser() { DateOfBirth = new DateTime(1993, 05, 09), UserName = "Panos" };
+            ApplicationUser a3 = new ApplicationUser() { DateOfBirth = new DateTime(1990, 06, 07), UserName = "Giannis" };
+            ApplicationUser a4 = new ApplicationUser() { DateOfBirth = new DateTime(1983, 06, 07), UserName = "Thanos" };
+            ApplicationUser a5 = new ApplicationUser() { DateOfBirth = new DateTime(1973, 05, 04), UserName = "Karolos" };
 
-            Post p = new Post() { Text = "mlmml" };
-            Post p2 = new Post() { Text = "newPost" };
-            ApplicationUser a1 = new ApplicationUser() { DateOfBirth= new DateTime(1993, 05,07), UserName = "Nick" };
-            ApplicationUser a2 = new ApplicationUser() { DateOfBirth= new DateTime(1993, 05,09), UserName = "Panos" };
+            Tutorial t1 = new Tutorial() { Title = "Tutorial One", Duration = 120 };
+            Tutorial t2 = new Tutorial() { Title = "Tutorial Two", Duration = 140 };
+            Tutorial t3 = new Tutorial() { Title = "Tutorial Three", Duration = 160 };
+            Tutorial t4 = new Tutorial() { Title = "Tutorial Four", Duration = 90 };
+            Tutorial t5 = new Tutorial() { Title = "Tutorial Five", Duration = 60 };
 
-            a1.Posts = new List<Post> { p,p2 };
-            context.Posts.AddOrUpdate(x => x.Text, p, p2);
-            context.Users.AddOrUpdate(x => x.UserName, a1,a2);
+            Book b1 = new Book() { Title = "Book One", Description = "Novel", Author = "Author One", Pages = 300 };
+            Book b2 = new Book() { Title = "Book Two", Description = "Novel", Author = "Author Two", Pages = 600 };
+            Book b3 = new Book() { Title = "Book Three", Description = "Novel", Author = "Author Three", Pages = 500 };
+            Book b4 = new Book() { Title = "Book Four", Description = "Novel", Author = "Author Four", Pages = 100 };
+            Book b5 = new Book() { Title = "Book Five", Description = "Novel", Author = "Author Five", Pages = 150 };
+
+            UserProduct up1 = new UserProduct() { ApplicationUser = a1, Product = b1, TransactionTime = new DateTime(2020, 1, 1), Price=100 };
+
+            a1.Posts = new List<Post> { p1, p2 };
+            a2.Posts = new List<Post> { p3, p4 };
+            a3.Posts = new List<Post> { p5 };
+
+            context.Posts.AddOrUpdate(x => x.Text, p1, p2, p2, p3, p4, p5);
+            context.Users.AddOrUpdate(x => x.UserName, a1, a2, a3, a4, a5);
+            context.Products.AddOrUpdate(x => x.Title, t1, t2, t3, t4, t5, b1, b2, b3, b4, b5);
+            context.UserProducts.AddOrUpdate(x => x.TransactionTime, up1);
             context.SaveChanges();
-
+            #endregion
         }
     }
 }
