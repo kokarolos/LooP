@@ -6,6 +6,10 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/css/main.min.css" rel="stylesheet" />
+    <link href="~/Content/css/style.css" rel="stylesheet" />
+    <link href="~/Content/css/color.css" rel="stylesheet" />
+    <link href="~/Content/css/responsive.css" rel="stylesheet" />
 
 </head>
 <body>
@@ -32,9 +36,9 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+        <div>
+            @Html.Partial("_Footer")
+        </div>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
