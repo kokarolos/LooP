@@ -17,6 +17,7 @@ namespace Loop.Database
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Tutorial> Tutorials { get; set; }
+        public DbSet<VideoFile> VideoFiles { get; set; }
         public DbSet<UserProduct> UserProducts { get; set; }
         
         public object ApplicationUsers { get; set; }

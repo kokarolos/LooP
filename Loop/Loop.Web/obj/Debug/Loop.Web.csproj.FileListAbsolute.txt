@@ -59,7 +59,6 @@ C:\Users\Παναγιώτης\source\repos\LooP\Loop\Loop.Web\bin\Microsoft.AspN
 C:\Users\Παναγιώτης\source\repos\LooP\Loop\Loop.Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\Παναγιώτης\source\repos\LooP\Loop\Loop.Web\bin\Microsoft.Owin.dll
 C:\Users\Παναγιώτης\source\repos\LooP\Loop\Loop.Web\bin\Microsoft.Owin.Host.SystemWeb.dll
-C:\Users\Παναγιώτης\source\repos\LooP\Loop\Loop.Web\bin\Microsoft.Owin.Security.Cookies.dll
 C:\Users\Παναγιώτης\source\repos\LooP\Loop\Loop.Web\bin\Microsoft.Owin.Security.dll
 C:\Users\Παναγιώτης\source\repos\LooP\Loop\Loop.Web\bin\Microsoft.Owin.Security.Facebook.dll
 C:\Users\Παναγιώτης\source\repos\LooP\Loop\Loop.Web\bin\Microsoft.Owin.Security.Google.dll
