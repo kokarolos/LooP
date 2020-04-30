@@ -57,11 +57,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GenericRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Loop.Database\Loop.Database.csproj">
+      <Project>{4D8EF4B2-3863-47B5-B15D-818ED88D4BE5}</Project>
+      <Name>Loop.Database</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Loop.Entities\Loop.Entities.csproj">
+      <Project>{6E4F1D0F-632E-45F9-A5F0-73EC98575799}</Project>
+      <Name>Loop.Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
