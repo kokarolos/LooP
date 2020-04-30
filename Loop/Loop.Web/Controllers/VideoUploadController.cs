@@ -11,7 +11,7 @@ using Loop.Entities;
 
 namespace Loop.Web.Controllers
 {
-    public class UploadController : Controller
+    public class VideoUploadController : Controller
     {
         // GET: Upload
         public ActionResult Index()

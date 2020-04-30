@@ -10,5 +10,7 @@ namespace Loop.Entities.Concrete
     {
         public int Duration { get; set; }
         public string Subject { get; set; }
+
+        public virtual VideoFile  VideoFile { get; set; }
     }
 }
