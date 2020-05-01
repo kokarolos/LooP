@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Loop.Web.Models
@@ -79,6 +80,13 @@ namespace Loop.Web.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        //For custom properties u must add the property in RegisterViewModel
+        
+        [Required]
+        [Display(Name ="Birthday")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        public DateTime DateOfBirth { get; set; }
     }
 
     public class ResetPasswordViewModel
