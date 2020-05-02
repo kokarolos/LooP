@@ -17,9 +17,14 @@ namespace Loop.Entities.Intermediate
 
         [Key, Column(Order = 2)]
         public int ProductId { get; set; }
+
+        [Required, Range(0, 1000000)]
+        [Display(Name = "Price")]
         public decimal Price { get; set; }
 
         // Check for time stamp | date time now
+        [Required]
+        [Display(Name = "Transaction Time")]
         public DateTime TransactionTime { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
         public virtual Product Product { get; set; }

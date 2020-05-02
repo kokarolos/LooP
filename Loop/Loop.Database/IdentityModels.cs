@@ -16,8 +16,8 @@ namespace Loop.Database
         public DbSet<Reply> Replies { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<Tutorial> Tutorials { get; set; }
         public DbSet<UserProduct> UserProducts { get; set; }
+        public DbSet<Attachment> Attachments { get; set; }
         public DbSet<ImageFile> ImageFiles { get; set; }
         public DbSet<VideoFile> VideoFiles { get; set; }
 

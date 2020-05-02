@@ -12,31 +12,20 @@ namespace Loop.Desktop
     {
         static void Main(string[] args)
         {
-
-
-
             ApplicationDbContext apcontext = new ApplicationDbContext();
 
-
             var posts = apcontext.Posts.ToList();
-
-            Console.WriteLine("Kalimera");
-
-            foreach (var item in posts)
+            foreach (var post in posts)
             {
-                Console.WriteLine(item.Text);
-
-                foreach (var x in item.ApplicationUsers)
+                Console.WriteLine(post.Title);
+                Console.WriteLine(post.Text);
+                foreach (var reply in post.Replies)
                 {
-                    Console.WriteLine(/*x.UserName + "" +*/ x.Age);
-
+                    Console.Write("\t");
+                    Console.WriteLine(reply.Text);
                 }
+                Console.WriteLine(new String('*', 50));
             }
-
-
-
-
-
         }
     }
 }
