@@ -44,13 +44,20 @@
             Book b4 = new Book() { Title = "Book Four", Description = "Novel", Author = "Author Four", Pages = 100 };
             Book b5 = new Book() { Title = "Book Five", Description = "Novel", Author = "Author Five", Pages = 150 };
 
-            UserProduct up1 = new UserProduct() { ApplicationUser = a1, Product = b1, TransactionTime = new DateTime(2020, 1, 1), Price=100 };
+            UserProduct up1 = new UserProduct() { ApplicationUser = a1, Product = b1, TransactionTime = new DateTime(2020, 1, 1), Price = 100 };
+
+            VideoFile v1 = new VideoFile() { Vname = "NightStalker", Vpath = "~/VideoFiles/NIGHTSTALKER - Sweet Knife (HD Official Music Video).mp4" };
+            ImageFile img1 = new ImageFile() { ImgName = "Schema", ImgPath = "~/ImageFiles/σχημα.PNG" };
+
 
             a1.Posts = new List<Post> { p1, p2 };
             a2.Posts = new List<Post> { p3, p4 };
             a3.Posts = new List<Post> { p5 };
 
+
             context.Posts.AddOrUpdate(x => x.Text, p1, p2, p2, p3, p4, p5);
+            context.VideoFiles.AddOrUpdate(x => x.Vname, v1);
+            context.ImageFiles.AddOrUpdate(x => x.ImgName, img1);
             context.Users.AddOrUpdate(x => x.UserName, a1, a2, a3, a4, a5);
             context.Products.AddOrUpdate(x => x.Title, t1, t2, t3, t4, t5, b1, b2, b3, b4, b5);
             context.UserProducts.AddOrUpdate(x => x.TransactionTime, up1);
