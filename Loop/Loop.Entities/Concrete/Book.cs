@@ -10,5 +10,7 @@ namespace Loop.Entities.Concrete
     {
         public int Pages { get; set; }
         public string Author { get; set; }
+
+        public virtual ImageFile  ImageFile { get; set; }
     }
 }

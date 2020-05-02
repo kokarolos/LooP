@@ -63,10 +63,12 @@
     <Compile Include="Concrete\Post.cs" />
     <Compile Include="Concrete\Product.cs" />
     <Compile Include="Concrete\Tutorial.cs" />
+    <Compile Include="ImageFile.cs" />
     <Compile Include="Intermediate\UserProduct.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Concrete\Reply.cs" />
     <Compile Include="Concrete\Tag.cs" />
+    <Compile Include="VideoFile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
