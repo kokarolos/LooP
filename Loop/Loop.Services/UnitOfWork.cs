@@ -1,68 +1,31 @@
 ﻿using Loop.Database;
-using Loop.Entities;
-using Loop.Entities.Concrete;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Loop.Services.Interfaces.Repositories;
+using Loop.Services.Repositories;
+using Loop.Services.Repositories_interface;
 
 namespace Loop.Services
 {
-    public class UnitOfWork : IDisposable
+    public class UnitOfWork : IUnitOfWork
     {
-        private ApplicationDbContext context = new ApplicationDbContext();
-        private GenericRepository<Post> _postRepository;
-        private GenericRepository<Product> _productRepository;
+        private readonly ApplicationDbContext _context;
+        public IPostRepository Posts { get; private set; }
+        public IProductRepository Products { get; private set; }
 
-        public GenericRepository<Post> PostRepository
+        public UnitOfWork(ApplicationDbContext context)
         {
-            get
-            {
-                if (_postRepository == null)
-                {
-                    _postRepository = new GenericRepository<Post>(context);
-                }
-                return _postRepository;
-            }
-        }
-
-        public GenericRepository<Product> ProductRepository
-        {
-            get
-            {
-
-                if (_productRepository == null)
-                {
-                    _productRepository = new GenericRepository<Product>(context);
-                }
-                return _productRepository;
-            }
+            _context = context;
+            Posts = new PostRepository(_context);
+            Products = new ProductRepository(_context);
         }
 
         public void Save()
         {
-            context.SaveChanges();
-        }
-
-        private bool disposed = false;
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!disposed)
-            {
-                if (disposing)
-                {
-                    context.Dispose();
-                }
-            }
-            disposed = true;
+             _context.SaveChanges();
         }
 
         public void Dispose()
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
+            _context.Dispose();
         }
     }
 }

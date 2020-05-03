@@ -14,19 +14,19 @@ namespace Loop.Web.Controllers
 {
     public class ProductsController : Controller
     {
-        private UnitOfWork db = new UnitOfWork();
+        private UnitOfWork db = new UnitOfWork(new ApplicationDbContext());
 
         // GET: Products
         public ViewResult Index()
         {
-            var products = db.ProductRepository.Get();
+            var products = db.Products.GetAll();
             return View(products.ToList());
         }
 
         // GET: Products/Details/5
         public ActionResult Details(int? id)
         {
-            Product product = db.ProductRepository.GetByID(id);
+            Product product = db.Products.GetById(id);
             return View(product);
         }
 
@@ -45,7 +45,7 @@ namespace Loop.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.ProductRepository.Insert(product);
+                db.Products.Insert(product);
                 db.Save();
                 return RedirectToAction("Index");
             }
@@ -61,7 +61,7 @@ namespace Loop.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.ProductRepository.GetByID(id);
+            Product product = db.Products.GetById(id);
             if (product == null)
             {
                 return HttpNotFound();
@@ -78,7 +78,7 @@ namespace Loop.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.ProductRepository.Update(product);
+                db.Products.Update(product);
                 db.Save();
                 return RedirectToAction("Index");
             }
@@ -92,7 +92,7 @@ namespace Loop.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.ProductRepository.GetByID(id);
+            Product product = db.Products.GetById(id);
             if (product == null)
             {
                 return HttpNotFound();
@@ -105,8 +105,8 @@ namespace Loop.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Product product = db.ProductRepository.GetByID(id);
-            db.ProductRepository.Delete(product);
+            Product product = db.Products.GetById(id);
+            db.Products.Remove(product);
             db.Save();
             return RedirectToAction("Index");
         }

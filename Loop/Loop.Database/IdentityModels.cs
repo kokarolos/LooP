@@ -27,6 +27,7 @@ namespace Loop.Database
         public ApplicationDbContext()
             : base("Connection", throwIfV1Schema: false)
         {
+            //this.Configuration.LazyLoadingEnabled = false;
         }
 
         public static ApplicationDbContext Create()
