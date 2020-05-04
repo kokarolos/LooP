@@ -1,0 +1,22 @@
+﻿@model Loop.Web.Models.ExternalLoginListViewModel
+@using Microsoft.Owin.Security
+    <link href="~/Content/css/style.css" rel="stylesheet" />
+    <link href="~/Content/css/main.min.css" rel="stylesheet" />
+@{
+    var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
+
+
+    using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = Model.ReturnUrl }))
+    {
+        @Html.AntiForgeryToken()
+        <div id="socialLoginList">
+            @foreach (AuthenticationDescription p in loginProviders)
+            {
+
+
+                <a  class="with-smedia google" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">@p.AuthenticationType</a>
+            }
+        </div>
+    }
+}
+}

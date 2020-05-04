@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Loop.Entities.VideoFile>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>VideoFiles Upload</h2>
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container">
+        @using (Html.BeginForm("Index", "VideoUpload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="form-group">
+                <label>Upload Video Files</label>
+                <div class="input-group">
+                    @Html.TextBox("videofile", "", new { type = "file" })<br />
+                    <input type="submit" value="Upload Video Files" />
+                </div>
+            </div>
+        }
+
+        @foreach (var item in Model)
+        {
+
+            <div class="col-sm-4 col-md-4">
+                <div class="title" style="width:250px;"> @item.Vname </div>
+                <hr />
+                <div class="video-frame">
+                    <video style="width:250px; height:150px" controls>
+                        <source src="@Url.Content(@item.Vpath)" type="video/mp4" />
+                    </video>
+                </div>
+            </div>
+
+
+        }
+    </div>
+
+</body>
+</html>
