@@ -47,14 +47,14 @@
                                     @Html.PasswordFor(m => m.Password, new { @class = "textbox", placeholder = "Type your Password" })
                                     <input type="submit" class="we-form " value="Login" />
 
-                                    @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
 
                                     <a class="with-smedia facebook" href="#" title="" data-ripple="">Login with facebook</a>
                                     @*<a class="with-smedia twitter" href="#" title="" data-ripple="">Login with twitter</a>
-                                    <a class="with-smedia google" href="#" title="" data-ripple="">Login with Google</a>
-                                    <a class="with-smedia microsoft" href="#" title="" data-ripple="">Login with Microsoft</a>*@
+                                        <a class="with-smedia google" href="#" title="" data-ripple="">Login with Google</a>
+                                        <a class="with-smedia microsoft" href="#" title="" data-ripple="">Login with Microsoft</a>*@
                                 </div>
                             }
+                            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
                         </div>
                     </div>
                 </div>

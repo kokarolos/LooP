@@ -5,7 +5,6 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
-using Loop.Web.Models;
 using Loop.Database;
 using Loop.Entities.Concrete;
 
@@ -57,14 +56,14 @@ namespace Loop.Web
             //   consumerSecret: "");
 
             app.UseFacebookAuthentication(
-            appId: "1888189044645631",
-            appSecret: "0e7afa5d95cd9f9b2852b16ee37b026b");
+            appId: "2692363427558740",
+            appSecret: "3138119aa2ba7b9017c142edc65ad71f");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "376315388223-irp9crjmufi7vi91jp37vcp4spq5tsts.apps.googleusercontent.com",
+                ClientSecret = "w_G6hBKPA31M8e5nZM7Nth-E"
+            });
         }
     }
 }

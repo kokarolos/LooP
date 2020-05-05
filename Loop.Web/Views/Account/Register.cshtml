@@ -37,29 +37,29 @@
                             </div>
                             @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form" }))
                             {
-                        <div class="we-form">
+                                <div class="we-form">
 
-                            @Html.AntiForgeryToken()
-                            @Html.ValidationSummary("", new { @class = "text-danger " })
-                            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                            @Html.TextBoxFor(m => m.Email, new { @class = "textbox", placeholder = "Type your Email" })
-                            @Html.LabelFor(m => m.DateOfBirth, new { @class = "col-md-2 control-label" })
-                            @Html.TextBoxFor(m => m.DateOfBirth, new { @class = "textbox", placeholder = "Type your Birthday" })
-                            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                            @Html.PasswordFor(m => m.Password, new { @class = "textbox", placeholder = "Type your Password" })
-                            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "textbox", placeholder = "Confirm your Password" })
+                                    @Html.AntiForgeryToken()
+                                    @Html.ValidationSummary("", new { @class = "text-danger " })
+                                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "textbox", placeholder = "Type your Email" })
+                                    @Html.LabelFor(m => m.DateOfBirth, new { @class = "col-md-2 control-label" })
+                                    @Html.TextBoxFor(m => m.DateOfBirth, new { @class = "textbox", placeholder = "Type your Birthday" })
+                                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                                    @Html.PasswordFor(m => m.Password, new { @class = "textbox", placeholder = "Type your Password" })
+                                    @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+                                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "textbox", placeholder = "Confirm your Password" })
 
-                            <input type="submit" class="we-form " value="Register" />
+                                    <input type="submit" class="we-form " value="Register" />
 
-                            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-                            <a class="with-smedia facebook" href="#" title="" data-ripple="">Register with facebook</a>
-                            <a class="with-smedia twitter" href="#" title="" data-ripple="">Register with twitter</a>
-                            <a class="with-smedia google" href="#" title="" data-ripple="">Register with Google</a>
-                            <a class="with-smedia microsoft" href="#" title="" data-ripple="">Register with Microsoft</a>
-                            <span>already have an account? <a class="we-account underline" href="#" title="">Sign in</a></span>
-                        </div>
+                                    <a class="with-smedia facebook" href="#" title="" data-ripple="">Register with facebook</a>
+                                    <a class="with-smedia twitter" href="#" title="" data-ripple="">Register with twitter</a>
+                                    <a class="with-smedia google" href="#" title="" data-ripple="">Register with Google</a>
+                                    <a class="with-smedia microsoft" href="#" title="" data-ripple="">Register with Microsoft</a>
+                                    <span>already have an account? <a class="we-account underline" href="#" title="">Sign in</a></span>
+                                </div>
                             }
+                                    @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
                         </div>
                     </div>
                 </div>
@@ -68,13 +68,12 @@
     </section>
 </div>
 <script src="~/Scripts/Custom/main.min.js"></script>
- <script src="~/Scripts/Custom/script.js"></script>
+<script src="~/Scripts/Custom/script.js"></script>
 
- <div class="col-md-4">
-     <section id="socialLoginForm">
-
-     </section>
- </div>
+<div class="col-md-4">
+    <section id="socialLoginForm">
+    </section>
+</div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
