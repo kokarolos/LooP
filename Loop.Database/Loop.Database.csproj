@@ -59,7 +59,6 @@
   <ItemGroup>
     <Compile Include="IdentityModels.cs" />
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="MyDatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
