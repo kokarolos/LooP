@@ -1,7 +1,8 @@
 ﻿@model Loop.Web.Models.ExternalLoginListViewModel
 @using Microsoft.Owin.Security
-    <link href="~/Content/css/style.css" rel="stylesheet" />
-    <link href="~/Content/css/main.min.css" rel="stylesheet" />
+
+<link href="~/Content/css/style.css" rel="stylesheet" />
+<link href="~/Content/css/main.min.css" rel="stylesheet" />
 @{
     var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
 
@@ -9,14 +10,30 @@
     using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = Model.ReturnUrl }))
     {
         @Html.AntiForgeryToken()
-        <div id="socialLoginList">
-            @foreach (AuthenticationDescription p in loginProviders)
-            {
-
-
-                <a  class="with-smedia google" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">@p.AuthenticationType</a>
-            }
-        </div>
+<div id="socialLoginList">
+    @foreach (AuthenticationDescription p in loginProviders)
+    {
+        switch (@p.AuthenticationType)
+        {
+            case "Facebook":
+                <button type="submit" class="btn btn-xsm facebook" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType"><i class="fa fa-facebook"></i></button>
+                break;
+            case "Twitter":
+                <button type="submit" class="btn btn-xsm twitter" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType"><i class="fa fa-twitter"></i></button>
+                break;
+            case "Google":
+                <button type="submit" class="btn btn-xsm googleplus" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType"><i class="fa fa-google-plus"></i></button>
+                break;
+            case "Microsoft":
+                <button type="submit" class="btn btn-xsm microsoft" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType"><i class="fa fa-windows"></i></button>
+                break;
+            default:
+                <button type="submit" class="btn btn-xsm" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType">@p.AuthenticationType.ToString()</button>
+                break;
+        }
+    }
+</div>
     }
 }
-}
+
+
