@@ -9,7 +9,7 @@ namespace Loop.Web.Controllers
 {
     public class ProductsController : Controller
     {
-        private UnitOfWork db = new UnitOfWork(new ApplicationDbContext());
+        private readonly UnitOfWork db = new UnitOfWork(new ApplicationDbContext());
 
         // GET: Products
         public ViewResult Index()

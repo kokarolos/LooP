@@ -9,7 +9,7 @@ namespace Loop.Web.Controllers
 {
     public class ApplicationUsersController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private  ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: ApplicationUsers
         public ActionResult Index()

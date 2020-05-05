@@ -1,5 +1,6 @@
 ﻿@using Loop.Web.Models;
 @model LoginViewModel
+
 @{
     Layout = null;
     ViewBag.Title = "Log in";
@@ -49,9 +50,9 @@
 
 
                                     @*<a class="with-smedia facebook" href="#" title="" data-ripple="">Login with facebook</a>
-                                      <a class="with-smedia twitter" href="#" title="" data-ripple="">Login with twitter</a>
-                                      <a class="with-smedia google" href="#" title="" data-ripple="">Login with Google</a>
-                                      <a class="with-smedia microsoft" href="#" title="" data-ripple="">Login with Microsoft</a>*@
+                                        <a class="with-smedia twitter" href="#" title="" data-ripple="">Login with twitter</a>
+                                        <a class="with-smedia google" href="#" title="" data-ripple="">Login with Google</a>
+                                        <a class="with-smedia microsoft" href="#" title="" data-ripple="">Login with Microsoft</a>*@
                                 </div>
                             }
                             @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
@@ -62,10 +63,11 @@
         </div>
     </section>
 </div>
+
 <script src="~/Scripts/Custom/main.min.js"></script>
 <script src="~/Scripts/Custom/script.js"></script>
+@section scripts {
 
-
-@section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
 }

@@ -8,6 +8,9 @@ namespace Loop.Web
     {
         public void Configuration(IAppBuilder app)
         {
+            //if i exclude ConfigureAuth website will play but it will be full buggy
+
+            app.MapSignalR();
             ConfigureAuth(app);
         }
     }
