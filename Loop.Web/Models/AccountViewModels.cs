@@ -9,6 +9,11 @@ namespace Loop.Web.Models
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
+        [Required]
+        [Display(Name = "Birthday")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        public DateTime DateOfBirth { get; set; }
     }
 
     public class ExternalLoginListViewModel

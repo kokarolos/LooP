@@ -5,9 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Loop.Entities.Concrete
@@ -31,7 +29,7 @@ namespace Loop.Entities.Concrete
         public string LastName { get; set; }
 
         [Display(Name = "Date of Birth")]
-        public DateTime DateOfBirth { get; set; }
+        public DateTime? DateOfBirth { get; set; }
 
         [Display(Name = "Image")]
         public string ImageUrl { get; set; }
@@ -40,7 +38,18 @@ namespace Loop.Entities.Concrete
         [NotMapped]
         public int Age
         {
-            get { return DateTime.Now.Year - this.DateOfBirth.Year; }
+            get
+            {
+                if(!DateOfBirth.HasValue)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return DateTime.Now.Year - DateOfBirth.Value.Year;
+                }
+                
+            }
 
         }
 
@@ -48,7 +57,5 @@ namespace Loop.Entities.Concrete
         public virtual ICollection<Post> Posts { get; set; }
         public virtual ICollection<Reply> Replies { get; set; }
         public virtual ICollection<UserProduct> UserProducts { get; set; }
-
-
     }
 }
