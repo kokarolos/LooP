@@ -6,36 +6,29 @@
 
 <h2>Details</h2>
 
-<div>
-    <h4>Post</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Text)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Text)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DateTime)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DateTime)
-        </dd>
-
-    </dl>
+<div class="col-9">
+    <table class="table table-dark ">
+        <thead>
+            <tr>
+                <td>@Html.Display("Title")</td>
+                <td>@Html.Display("Text")</td>
+                <td>@Html.DisplayName("Tags")</td>
+                <td>@Html.Display("DateTime")</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var reply in Model.Replies)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(x => reply.Text)</td>
+                    <td>@Html.DisplayFor(x => reply.DateTime)</td>
+                    <td>@Html.DisplayFor(x => reply.ApplicationUser.UserName)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.PostId }) |
     @Html.ActionLink("Back to List", "Index")
