@@ -4,30 +4,92 @@
     ViewBag.Title = "Details";
 }
 
-<div class="col-9">
-    <table class="table table-dark ">
-        <thead>
-            <tr>
-                <td>@Html.Display("Title")</td>
-                <td>@Html.Display("Text")</td>
-                <td>@Html.DisplayName("Tags")</td>
-                <td>@Html.Display("DateTime")</td>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var reply in Model.Replies)
-            {
-                <tr>
-                    <td>@Html.DisplayFor(x => reply.Text)</td>
-                    <td>@Html.DisplayFor(x => reply.DateTime)</td>
-                    <td>@Html.DisplayFor(x => reply.ApplicationUser.UserName)</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>
+<div class="container">
+    <div class="row merged20">
+        <div class="col-lg-9">
+            <div class="forum-warper">
+                <div class="central-meta">
+                    <div class="title-block">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="align-left">
+                                    <h5>Forum open topic</h5>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="row merged20">
+                                    <div class="col-lg-7 col-md-7 col-sm-7">
+                                        <form method="post">
+                                            <input type="text" placeholder="Search...">
+                                            <button type="submit"><i class="fa fa-search"></i></button>
+                                        </form>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <div class="select-options">
+                                            <select class="select">
+                                                <option>Sort by</option>
+                                                <option>See All</option>
+                                                <option>Newest</option>
+                                                <option>oldest</option>
+                                                <option>A to Z</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-1 col-md-1 col-sm-1">
+                                        <div class="option-list">
+                                            <i class="fa fa-ellipsis-v"></i>
+                                            <ul>
+                                                <li class="active"><i class="fa fa-check"></i><a title="" href="#">Show Public</a></li>
+                                                <li><a title="" href="#">Show only Friends</a></li>
+                                                <li><a title="" href="#">Hide all Posts</a></li>
+                                                <li><a title="" href="#">Mute Notifications</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- title block -->
+            </div>
+            <div class="central-meta">
+                <div class="forum-open">
+                    <h5 class=""><i class="fa fa-star"></i> Asset for creating a beautiful website</h5>
+                    <table class="table table-responsive">
+                        <thead>
+                            <tr>
+                                <th>@Html.Display("Title")</th>
+                                <th>@Html.Display("Text")</th>
+                                <th>@Html.Display("DateTime")</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var reply in Model.Replies)
+                            {
+                                <tr>
+                                    <td class="topic-data">
+                                        <img src="~/Content/images/resources/forum-author1.png" alt="User's Avatar" />
+                                        <span>@reply.ApplicationUser.UserName</span>
+                                        <em>Participant</em>
+                                    </td>
+                                    <td class="date-n-reply">
+                                        <span>@reply.DateTime</span>
+                                        <a href="#" title="">Reply</a>
+                                    </td>
 
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.PostId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+                                    <td class="topic-detail">
+                                        <p>@reply.Text</p>
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "Edit", new { id = reply.ReplyId }) |
+                                        @Html.ActionLink("Delete", "Delete", new { id = reply.ReplyId })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

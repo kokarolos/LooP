@@ -75,6 +75,10 @@
       <Project>{6E4F1D0F-632E-45F9-A5F0-73EC98575799}</Project>
       <Name>Loop.Entities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Loop.Services\Loop.Services.csproj">
+      <Project>{AF54FC27-A0F1-458E-AEAC-9E729BDA9F79}</Project>
+      <Name>Loop.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
