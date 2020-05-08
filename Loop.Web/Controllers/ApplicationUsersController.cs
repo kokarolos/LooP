@@ -24,7 +24,7 @@ namespace Loop.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ApplicationUser applicationUser = db.Users.Find(id);
+            var applicationUser = db.Users.Find(id);
             if (applicationUser == null)
             {
                 return HttpNotFound();
@@ -62,7 +62,7 @@ namespace Loop.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ApplicationUser applicationUser = db.Users.Find(id);
+            var applicationUser = db.Users.Find(id);
             if (applicationUser == null)
             {
                 return HttpNotFound();
@@ -93,7 +93,7 @@ namespace Loop.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ApplicationUser applicationUser = db.Users.Find(id);
+            var applicationUser = db.Users.Find(id);
             if (applicationUser == null)
             {
                 return HttpNotFound();
@@ -106,7 +106,7 @@ namespace Loop.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            ApplicationUser applicationUser = db.Users.Find(id);
+            var applicationUser = db.Users.Find(id);
             db.Users.Remove(applicationUser);
             db.SaveChanges();
             return RedirectToAction("Index");
