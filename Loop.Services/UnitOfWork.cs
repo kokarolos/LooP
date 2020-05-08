@@ -10,12 +10,17 @@ namespace Loop.Services
         private readonly ApplicationDbContext _context;
         public IPostRepository Posts { get; private set; }
         public IProductRepository Products { get; private set; }
+        public IApplicationUserRepository Users { get; private set; }
+        public IUserProductRepository UserProduct { get; private set; }
+
 
         public UnitOfWork(ApplicationDbContext context)
         {
             _context = context;
             Posts = new PostRepository(_context);
             Products = new ProductRepository(_context);
+            Users = new ApplicationUserRepository(_context);
+            UserProduct = new UserProductRepository(_context);
         }
 
         public void Save()

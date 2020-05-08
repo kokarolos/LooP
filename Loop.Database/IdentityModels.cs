@@ -9,7 +9,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 namespace Loop.Database
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext
     {
         public DbSet<Post> Posts { get; set; }
         public DbSet<Reply> Replies { get; set; }
@@ -19,23 +19,28 @@ namespace Loop.Database
         public DbSet<Attachment> Attachments { get; set; }
         public DbSet<ImageFile> ImageFiles { get; set; }
         public DbSet<VideoFile> VideoFiles { get; set; }
-
-
-        public object ApplicationUsers { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
         public ApplicationDbContext()
-            : base("Connection", throwIfV1Schema: false)
+            : base("Connection" /*,throwIfV1Schema: false*/)
         {
             //this.Configuration.LazyLoadingEnabled = false;
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Product>()
+                        .Map<Tutorial>(m => m.Requires("ProductType").HasValue("Tutorial"))
+                        .Map<Book>(m => m.Requires("ProductType").HasValue("B"));
         }
 
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
-        
-        //Catching seeding errors Method
 
+        //Catching seeding errors Method
         public override int SaveChanges()
         {
             try
