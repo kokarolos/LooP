@@ -1,4 +1,5 @@
 ﻿using Loop.Database;
+using Loop.Services;
 using System;
 using System.Linq;
 
@@ -9,7 +10,6 @@ namespace Loop.Desktop
         static void Main(string[] args)
         {
             ApplicationDbContext apcontext = new ApplicationDbContext();
-
             var posts = apcontext.Posts.ToList();
             foreach (var post in posts)
             {
@@ -22,6 +22,7 @@ namespace Loop.Desktop
                 }
                 Console.WriteLine(new String('*', 50));
             }
+
         }
     }
 }

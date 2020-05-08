@@ -18,7 +18,6 @@ namespace Loop.Entities.Intermediate
         [Display(Name = "Price")]
         public decimal Price { get; set; }
 
-        // Check for time stamp | date time now
         [Required]
         [Display(Name = "Transaction Time")]
         public DateTime TransactionTime { get; set; }

@@ -4,42 +4,102 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Text)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateTime)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Text)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateTime)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PostId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PostId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PostId })
-        </td>
-    </tr>
-}
+@*TODO: Create User Role (ex. Developer, Guest , Admin,Moderator)*@
+@*TODO: Replay href*@
 
-</table>
+<div class="container">
+    <div class="row merged20">
+        <div class="col-lg-9">
+            <div class="forum-warper">
+                <div class="central-meta">
+                    <div class="title-block">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="align-left">
+                                    <h5>Forum open topic</h5>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="row merged20">
+                                    <div class="col-lg-7 col-md-7 col-sm-7">
+                                        <form method="post">
+                                            <input type="text" placeholder="Search...">
+                                            <button type="submit"><i class="fa fa-search"></i></button>
+                                        </form>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <div class="select-options">
+                                            <select class="select">
+                                                <option>Sort by</option>
+                                                <option>See All</option>
+                                                <option>Newest</option>
+                                                <option>oldest</option>
+                                                <option>A to Z</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-1 col-md-1 col-sm-1">
+                                        <div class="option-list">
+                                            <i class="fa fa-ellipsis-v"></i>
+                                            <ul>
+                                                <li class="active"><i class="fa fa-check"></i><a title="" href="#">Show Public</a></li>
+                                                <li><a title="" href="#">Show only Friends</a></li>
+                                                <li><a title="" href="#">Hide all Posts</a></li>
+                                                <li><a title="" href="#">Mute Notifications</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- title block -->
+            </div>
+            <div class="central-meta">
+                <div class="forum-open">
+                    <h5 class=""><i class="fa fa-star"></i> Asset for creating a beautiful website</h5>
+                    <table class="table table-responsive">
+                        <thead>
+                            <tr>
+                                <th>@Html.DisplayName("Author")</th>
+                                <th>@Html.DisplayName("Post Date")</th>
+                                <th>@Html.DisplayName("Posts")</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var post in Model)
+                            {
+                                <tr>
+                                    <td class="topic-data">
+                                        <img src="~/Content/images/resources/forum-author1.png" alt="User's Avatar" />
+                                        <span>@post.ApplicationUser.UserName</span>
+                                        <em>Participant</em>
+                                    </td>
+                                    <td class="date-n-reply">
+                                        <span>@post.DateTime</span>
+                                        <a href="#" title="">Reply</a>
+                                    </td>
+                                    <td class="topic-detail">
+                                        <p>@Html.ActionLink(post.Title, "Details", new { id = post.PostId })</p>
+
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "Edit", new { id = post.PostId }) |
+                                        @Html.ActionLink("Delete", "Delete", new { id = post.PostId })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/Custom/main.min.js"></script>
+<script src="~/Scripts/Custom/script.js"></script>

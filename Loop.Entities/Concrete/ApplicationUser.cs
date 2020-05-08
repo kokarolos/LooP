@@ -34,10 +34,8 @@ namespace Loop.Entities.Concrete
         [Display(Name = "Image")]
         public string ImageUrl { get; set; }
 
-        [Display(Name = "Location")]
-        public Location Location { get; set; }
-
-
+        //[Display(Name = "Location")]
+        //public virtual Location Location { get; set; }
 
         [NotMapped]
         public int Age
@@ -56,7 +54,6 @@ namespace Loop.Entities.Concrete
             }
 
         }
-
 
         public virtual ICollection<Post> Posts { get; set; }
         public virtual ICollection<Reply> Replies { get; set; }
