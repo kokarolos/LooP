@@ -34,6 +34,10 @@ namespace Loop.Entities.Concrete
         [Display(Name = "Image")]
         public string ImageUrl { get; set; }
 
+        [Display(Name = "Location")]
+        public Location Location { get; set; }
+
+
 
         [NotMapped]
         public int Age

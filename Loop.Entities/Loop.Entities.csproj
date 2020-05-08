@@ -60,6 +60,7 @@
     <Compile Include="Concrete\ApplicationUser.cs" />
     <Compile Include="Concrete\Attachment.cs" />
     <Compile Include="Concrete\Book.cs" />
+    <Compile Include="Concrete\Location.cs" />
     <Compile Include="Concrete\Post.cs" />
     <Compile Include="Concrete\Product.cs" />
     <Compile Include="Concrete\Tutorial.cs" />
