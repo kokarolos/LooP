@@ -49,7 +49,27 @@
             ApplicationUser a17 = new ApplicationUser() { FirstName = "Ioannis", LastName = "Dimitriou", DateOfBirth = new DateTime(1994, 02, 17), UserName = "IoDim17!" };
             ApplicationUser a18 = new ApplicationUser() { FirstName = "Thanos", LastName = "Petrou", DateOfBirth = new DateTime(1996, 02, 12), UserName = "ThanosPetrou12!" };
             ApplicationUser a19 = new ApplicationUser() { FirstName = "Panos", LastName = "Ioannou", DateOfBirth = new DateTime(1994, 02, 16), UserName = "PanIoannou16!" };
-            ApplicationUser a20 = new ApplicationUser() { FirstName = "Nikos", LastName = "Giannakopoulos", DateOfBirth = new DateTime(1994, 02, 16), UserName = "Giann16!" };
+            ApplicationUser a20 = new ApplicationUser() { FirstName = "Nikos", LastName = "Giannakopoulos", DateOfBirth = new DateTime(1994, 02, 16), UserName = "Giann16!" };         
+            ApplicationUser a21 = new ApplicationUser() { FirstName = "Tom", LastName = "Spacer", DateOfBirth = new DateTime(1979, 01, 25), UserName = "Tom@5023" };
+            ApplicationUser a22 = new ApplicationUser() { FirstName = "Fanis", LastName = "Labropoulos", DateOfBirth = new DateTime(2005, 02, 27), UserName = "f_lab123" };
+            ApplicationUser a23 = new ApplicationUser() { FirstName = "John", LastName = "Doe", DateOfBirth = new DateTime(1994, 12, 01), UserName = "JohnDoe93" };
+            ApplicationUser a24 = new ApplicationUser() { FirstName = "Mary", LastName = "Doe", DateOfBirth = new DateTime(1961, 08, 28), UserName = "DoeFam" };
+            ApplicationUser a25 = new ApplicationUser() { FirstName = "Ean", LastName = "Velez", DateOfBirth = new DateTime(1998, 02, 16), UserName = "Scorpion" };
+            ApplicationUser a26 = new ApplicationUser() { FirstName = "Brooks", LastName = "Sims", DateOfBirth = new DateTime(1952, 12, 16), UserName = "TheBig" };
+            ApplicationUser a27 = new ApplicationUser() { FirstName = "Ashton", LastName = "Wells", DateOfBirth = new DateTime(1985, 11, 07), UserName = "BeWellMyFriend" };
+            ApplicationUser a28 = new ApplicationUser() { FirstName = "Jaslene", LastName = "Mann", DateOfBirth = new DateTime(1966, 06, 02), UserName = "AljcaX" };
+            ApplicationUser a29 = new ApplicationUser() { FirstName = "Daisy", LastName = "Barton", DateOfBirth = new DateTime(1978, 03, 06), UserName = "xXxRIPxXX" };
+            ApplicationUser a30 = new ApplicationUser() { FirstName = "Walker", LastName = "Mahoney", DateOfBirth = new DateTime(1994, 02, 16), UserName = "TheCop" };    
+            ApplicationUser a31 = new ApplicationUser() { FirstName = "Ximena", LastName = "Alexander", DateOfBirth = new DateTime(1995, 12, 21), UserName = "Heman" };
+            ApplicationUser a32 = new ApplicationUser() { FirstName = "Frida", LastName = "Murillo", DateOfBirth = new DateTime(1968, 04, 20), UserName = "nusdaaSW" };
+            ApplicationUser a33 = new ApplicationUser() { FirstName = "Quincy", LastName = "Parrish", DateOfBirth = new DateTime(1998, 11, 15), UserName = "QuincyQuincy" };
+            ApplicationUser a34 = new ApplicationUser() { FirstName = "Alan", LastName = "Hester", DateOfBirth = new DateTime(1991, 03, 18), UserName = "HesterF" };
+            ApplicationUser a35 = new ApplicationUser() { FirstName = "Marilyn", LastName = "Johns", DateOfBirth = new DateTime(1985, 05, 16), UserName = "MarJJ24" };
+            ApplicationUser a36 = new ApplicationUser() { FirstName = "Luciano", LastName = "Chung", DateOfBirth = new DateTime(1987, 03, 19), UserName = "ChungMan!" };
+            ApplicationUser a37 = new ApplicationUser() { FirstName = "Ruslan", LastName = "Koval", DateOfBirth = new DateTime(1999, 12, 27), UserName = "TheRusGuy" };
+            ApplicationUser a38 = new ApplicationUser() { FirstName = "Sof", LastName = "Petrou", DateOfBirth = new DateTime(2000, 01, 1), UserName = "TheMilenium" };
+            ApplicationUser a39 = new ApplicationUser() { FirstName = "Lebron", LastName = "James", DateOfBirth = new DateTime(1974, 09, 14), UserName = "KingJames" };
+            ApplicationUser a40 = new ApplicationUser() { FirstName = "Nikos", LastName = "Kotsabasis", DateOfBirth = new DateTime(1999, 05, 26), UserName = "TheHunter23" };
 
             // *** ~~~ ~~~ ~~~ *** Tags *** ~~~ ~~~ ~~~ ***
 
@@ -61,6 +81,18 @@
             Tag tg6 = new Tag() { Title = "HTML", Description = "Hyper text markup language\'s main application is constructing web sites." };
             Tag tg7 = new Tag() { Title = "Python", Description = "Easier language to learn. Usefull at statistics" };
             Tag tg8 = new Tag() { Title = "Java", Description = "Very Usefull OOP Language." };
+            Tag tg9 = new Tag() { Title = "Asp.net", Description = "Web Framework,created by Microsoft" };
+            Tag tg10 = new Tag() { Title = "Haskell", Description = "General purpose purely functional programming language." };
+            Tag tg11 = new Tag() { Title = "Kotlin", Description = "Kotlin is designed to interoperate fully with Java, and the JVM version" };
+            Tag tg12 = new Tag() { Title = "F#", Description = "F# is most often used as a cross-platform." };
+            Tag tg13 = new Tag() { Title = "TypeScript", Description = "TypeScript extends JavaScript by adding types to the language." };
+            Tag tg14 = new Tag() { Title = "Jython", Description = "Jython is a Java implementation of Python that combines expressive power." };
+            Tag tg15 = new Tag() { Title = "Ruby", Description = "Ruby is an interpreted, high-level, general-purpose programming language." };
+            Tag tg16 = new Tag() { Title = "PHP", Description = "General-purpose scripting language that is especially suited to web development." };
+            Tag tg17 = new Tag() { Title = "Vue", Description = "Very Usefull OOP Language." };
+            Tag tg18 = new Tag() { Title = "Ember", Description = "battle-tested JavaScript framework for building modern web applications." };
+            Tag tg19 = new Tag() { Title = "React", Description = "Js lib,React makes it painless to create interactive UIs." };
+            Tag tg20 = new Tag() { Title = "Angular", Description = "Angular is an app design framework for creating efficient and sophisticated single-page apps." };
 
             //// *** ~~~ ~~~ ~~~ *** Posts *** ~~~ ~~~ ~~~ ***
             //Post p1 = new Post() { Title = "Printing a string", Text = "I want to print a string multiple times at the console using C#", DateTime = new DateTime(2019, 06, 18, 7, 0, 0) };
@@ -329,10 +361,17 @@
             Book b5 = new Book() { BookAuthor = "Alice Booker", Title = "Basic Cryptography", Description = "An introduction to basic principles of cryptography", Publisher = "Hidden Books", Pages = 150, DateTime = new DateTime(2012, 02, 29) };
             Book b6 = new Book() { BookAuthor = "David Thomas", Title = "The Pragmatic Programmer", Description = "Whether you’re new to the field or an experienced practitioner, you’ll come away with fresh insights each and every time. ", Publisher = "David Thomas", Pages = 352, DateTime = new DateTime(2019, 07, 30) };
             Book b7 = new Book() { BookAuthor = "Robert C.Uncle Bob Martin", Title = "Clean Code", Description = "Even bad code can function. But if code isn’t clean, it can bring a development organization to its knees.", Publisher = "Prentice Hall", Pages = 464, DateTime = new DateTime(2008, 08, 01) };
-            Book b8 = new Book() { BookAuthor = "Dr.Erich Gamma", Title = "Design Patterns", Description = "Capturing a wealth of experience about the design of object-oriented software, four top-notch designers present a catalog of simple and succinct solutions to commonly occurring design problems.", Publisher = "Addison-Wesley ", Pages = 416, DateTime = new DateTime(1994, 10, 30) };
-            Book b9 = new Book() { BookAuthor = "Eric Freeman", Title = "Head First Design Patterns", Description = "Design Patterns", Publisher = " O'Reilly Media", Pages = 694, DateTime = new DateTime(2004, 10, 01) };
-            Book b10 = new Book() { BookAuthor = "Jon Bentley", Title = "Programming Pearls", Description = "An introduction to basic principles of cryptography", Publisher = "Addison-Wesley", Pages = 258, DateTime = new DateTime(2016, 04, 21) };
-
+            Book b8 = new Book() { BookAuthor = "Dr.Erich Gamma", Title = "Design Patterns", Description = "Capturing a wealth of experience about the design of object-oriented software, four top-notch designers present a catalog of simple and succinct solutions to commonly occurring design problems.", Publisher = "Addison-Wesley", Pages = 416, DateTime = new DateTime(1994, 10, 30) };
+            Book b9 = new Book() { BookAuthor = "Eric Freeman", Title = "Head First Design Patterns", Description = "Design Patterns", Publisher = "O'Reilly Media", Pages = 694, DateTime = new DateTime(2004, 10, 01) };
+            Book b10 = new Book() { BookAuthor = "Kernighan and Dennis Ritchie", Title = "The C Programming Language ", Description = "The book was central to the development and popularization of the C programming language and is still widely read and used today.", Publisher = "Prentice Hall", Pages = 558, DateTime = new DateTime(1978, 02, 25) };
+            Book b11 = new Book() { BookAuthor = "Refactoring", Title = "Refactoring", Description = "The guide to how to transform code with safe and rapid process", Publisher = "Kent Beck", Pages = 458, DateTime = new DateTime(2018, 01, 10) };
+            Book b12 = new Book() { BookAuthor = "Marijn Haverbeke", Title = "Eloquent JavaScript", Description = "This is a book about JavaScript, programming, and the wonders of the digital", Publisher = "Adam Stunley", Pages = 921, DateTime = new DateTime(2010, 02, 05) };
+            Book b13 = new Book() { BookAuthor = "Joshua Bloch", Title = "Effective Java", Description = "The Definitive Guide to Java Platform Best Practices–Updated for Java 7, 8, and 9", Publisher = "Payton", Pages = 558, DateTime = new DateTime(2012, 01, 01) };
+            Book b14 = new Book() { BookAuthor = "Al Sweigart", Title = "Automate the Boring Stuff with Python", Description = "Learn how to become a master of using Python", Publisher = "Al Sweigart", Pages = 158, DateTime = new DateTime(2015, 06, 14) };
+            Book b15 = new Book() { BookAuthor = "John Sonmez", Title = "Soft Skills: The software developer's life manual", Description = "Offering techniques and practices for a more satisfying life as a professional software developer", Publisher = "Manning Publications", Pages = 908, DateTime = new DateTime(2015, 01, 16) };
+            Book b16 = new Book() { BookAuthor = "Michael Feathers", Title = "Working Effectively with Legacy Code", Description = "An introduction to basic principles of cryptography", Publisher = "Prentice Hall", Pages = 102, DateTime = new DateTime(2004, 11, 01) };
+            Book b17 = new Book() { BookAuthor = "Martin Fowler", Title = "Domain Driven Design", Description = "This is one of those anti-patterns that's been around for quite a long time.", Publisher = "April", Pages = 1621, DateTime = new DateTime(2000, 10, 11) };
+         
             // *** ~~~ ~~~ ~~~ *** Tutorials *** ~~~ ~~~ ~~~ ***
 
             Tutorial tu1 = new Tutorial() { TutorialAuthor = "Dr. Hans Stroke", Title = "Learn C++", Description = "An all around approach to the C++ programming language.", Duration = TimeSpan.FromMinutes(120), DateTime = new DateTime(2004, 06, 02) };
@@ -340,16 +379,53 @@
             Tutorial tu3 = new Tutorial() { TutorialAuthor = "Mary Green", Title = "Beginner\'s C#", Description = "An introduction to the C#, including variables, classes and methods.", Duration = TimeSpan.FromMinutes(110), DateTime = new DateTime(2013, 01, 12) };
             Tutorial tu4 = new Tutorial() { TutorialAuthor = "Steven Orange", Title = "Absolute C Tutorial", Description = "This is a tutorial of C programming, with emphasis on low level techniques.", Duration = TimeSpan.FromMinutes(90), DateTime = new DateTime(2009, 07, 17) };
             Tutorial tu5 = new Tutorial() { TutorialAuthor = "Bill Windows", Title = "Python for Beginners", Description = "Learn Python, an exceptional choice for introduction to programming.", Duration = TimeSpan.FromMinutes(60), DateTime = new DateTime(2015, 03, 01) };
+            Tutorial tu6 = new Tutorial() { TutorialAuthor = "John Doe", Title = "JavaScript Essentials", Description = "Learn the Javascript essentials for web development or any type of programming.", Duration = TimeSpan.FromMinutes(160), DateTime = new DateTime(2018, 01, 01) };
+            Tutorial tu7 = new Tutorial() { TutorialAuthor = "Sahid Masour", Title = "HTML5 and CSS3 Fundamentals", Description = "Web Development for Dummies.", Duration = TimeSpan.FromMinutes(190), DateTime = new DateTime(2012, 12, 12) };
+            Tutorial tu8 = new Tutorial() { TutorialAuthor = "Sahid Aftar", Title = "Python Advanced", Description = "How to master Python language", Duration = TimeSpan.FromMinutes(460), DateTime = new DateTime(2018, 03, 01) };
+            Tutorial tu9 = new Tutorial() { TutorialAuthor = "KudvenKat", Title = "C# in nutshell", Description = "Become creative with C# language", Duration = TimeSpan.FromMinutes(260), DateTime = new DateTime(2019, 01, 21) };
+            Tutorial tu10 = new Tutorial() { TutorialAuthor = "Mosh Hamedani", Title = "C# Basic For Beginners", Description = "Master C# fundamentals in 6 hours - The most popular course with 50,000+ students, packed with tips and exercises!", Duration = TimeSpan.FromMinutes(560), DateTime = new DateTime(2016, 02, 25) };
+            Tutorial tu11 = new Tutorial() { TutorialAuthor = "Mosh Hamedani", Title = "C# Intermediate: Classes", Description = "An in-depth, step-by-step guide to classes, interfaces and object-oriented programming (OOP) with C#", Duration = TimeSpan.FromMinutes(660), DateTime = new DateTime(2017, 09, 11) };
+            Tutorial tu12 = new Tutorial() { TutorialAuthor = "Yohann Taieb", Title = "Unity Game Development", Description = "Introductionto Game Development with Unity", Duration = TimeSpan.FromMinutes(660), DateTime = new DateTime(2017, 10, 13) };
+            Tutorial tu13 = new Tutorial() { TutorialAuthor = "Van Dev", Title = "Unity Productivity in-depth", Description = "Optimise and Increase Game Performance in Unity3D.", Duration = TimeSpan.FromMinutes(160), DateTime = new DateTime(2020, 01, 19) };
+            Tutorial tu14 = new Tutorial() { TutorialAuthor = "Sadam Ajtir", Title = "Unity Game Development - Build a Basketball Game", Description = "Get started with Unity and game development.", Duration = TimeSpan.FromMinutes(260), DateTime = new DateTime(2018, 11, 20) };
+            Tutorial tu15 = new Tutorial() { TutorialAuthor = "KudvenKat", Title = "From noob to Developer", Description = "Video Series to increase your coding skills.", Duration = TimeSpan.FromMinutes(960), DateTime = new DateTime(2012, 06, 07) };
+            Tutorial tu16 = new Tutorial() { TutorialAuthor = "Tim Corey", Title = "How to learn C#", Description = ".Net Framework hard training", Duration = TimeSpan.FromMinutes(460), DateTime = new DateTime(2017, 09, 16) };
+            Tutorial tu17 = new Tutorial() { TutorialAuthor = "Ivan Lourenco Gomes", Title = "Learn to Code in Python 3", Description = "Python3 programming made easy with exercises, challenges and lots of real life examples. Learn to code today!.", Duration = TimeSpan.FromMinutes(760), DateTime = new DateTime(2020, 05, 29) };
 
             // *** ~~~ ~~~ ~~~ *** UserProducts (Per UserID) *** ~~~ ~~~ ~~~ ***
 
-            UserProduct up1 = new UserProduct() { ApplicationUser_Id = a1.Id, TransactionTime = new DateTime(2020, 1, 1), Price = 10m };
+            UserProduct up1 = new UserProduct() { ApplicationUser_Id = a1.Id, TransactionTime = new DateTime(2020, 11, 1), Price = 10m };
             UserProduct up2 = new UserProduct() { ApplicationUser_Id = a2.Id, TransactionTime = new DateTime(2019, 11, 14), Price = 9.95m };
             UserProduct up3 = new UserProduct() { ApplicationUser_Id = a2.Id, TransactionTime = new DateTime(2019, 12, 3), Price = 14.95m };
             UserProduct up4 = new UserProduct() { ApplicationUser_Id = a3.Id, TransactionTime = new DateTime(2019, 12, 5), Price = 14.45m };
             UserProduct up5 = new UserProduct() { ApplicationUser_Id = a4.Id, TransactionTime = new DateTime(2019, 12, 9), Price = 14.95m };
             UserProduct up6 = new UserProduct() { ApplicationUser_Id = a4.Id, TransactionTime = new DateTime(2019, 12, 10), Price = 19.9m };
-            UserProduct up7 = new UserProduct() { ApplicationUser_Id = a4.Id, TransactionTime = new DateTime(2019, 12, 11), Price = 5.95m };
+            UserProduct up7 = new UserProduct() { ApplicationUser_Id = a5.Id, TransactionTime = new DateTime(2019, 12, 11), Price = 5.95m };
+            UserProduct up8 = new UserProduct() { ApplicationUser_Id = a6.Id, TransactionTime = new DateTime(2020, 1, 1), Price = 10m };
+            UserProduct up9 = new UserProduct() { ApplicationUser_Id = a7.Id, TransactionTime = new DateTime(2019, 11, 15), Price = 9.95m };
+            UserProduct up10 = new UserProduct() { ApplicationUser_Id = a8.Id, TransactionTime = new DateTime(2019, 12, 3), Price = 14.95m };
+            UserProduct up11 = new UserProduct() { ApplicationUser_Id = a9.Id, TransactionTime = new DateTime(2020, 1, 2), Price = 10m };
+            UserProduct up12 = new UserProduct() { ApplicationUser_Id = a10.Id, TransactionTime = new DateTime(2020, 11, 14), Price = 9.95m };
+            UserProduct up13 = new UserProduct() { ApplicationUser_Id = a11.Id, TransactionTime = new DateTime(2019, 12, 13), Price = 14.95m };
+            UserProduct up14 = new UserProduct() { ApplicationUser_Id = a12.Id, TransactionTime = new DateTime(2019, 12, 15), Price = 14.45m };
+            UserProduct up15 = new UserProduct() { ApplicationUser_Id = a13.Id, TransactionTime = new DateTime(2019, 12, 19), Price = 14.95m };
+            UserProduct up16 = new UserProduct() { ApplicationUser_Id = a14.Id, TransactionTime = new DateTime(2019, 12, 20), Price = 19.9m };
+            UserProduct up17 = new UserProduct() { ApplicationUser_Id = a15.Id, TransactionTime = new DateTime(2019, 12, 21), Price = 5.95m };
+            UserProduct up18 = new UserProduct() { ApplicationUser_Id = a16.Id, TransactionTime = new DateTime(2020, 05, 25), Price = 15m };
+            UserProduct up19 = new UserProduct() { ApplicationUser_Id = a16.Id, TransactionTime = new DateTime(2020, 05, 22), Price = 19.95m };
+            UserProduct up20 = new UserProduct() { ApplicationUser_Id = a17.Id, TransactionTime = new DateTime(2020, 05, 26), Price = 141.95m };
+            UserProduct up21 = new UserProduct() { ApplicationUser_Id = a18.Id, TransactionTime = new DateTime(2020, 05, 27), Price = 10.23m };
+            UserProduct up22 = new UserProduct() { ApplicationUser_Id = a19.Id, TransactionTime = new DateTime(2020, 05, 28), Price = 0.95m };
+            UserProduct up23 = new UserProduct() { ApplicationUser_Id = a20.Id, TransactionTime = new DateTime(2020, 05, 29), Price = 5.95m };
+            UserProduct up24 = new UserProduct() { ApplicationUser_Id = a21.Id, TransactionTime = new DateTime(2020, 05, 11), Price = 19.45m };
+            UserProduct up25 = new UserProduct() { ApplicationUser_Id = a22.Id, TransactionTime = new DateTime(2020, 05, 12), Price = 12.91m };
+            UserProduct up26 = new UserProduct() { ApplicationUser_Id = a23.Id, TransactionTime = new DateTime(2020, 05, 15), Price = 19.92m };
+            UserProduct up27 = new UserProduct() { ApplicationUser_Id = a24.Id, TransactionTime = new DateTime(2020, 05, 05), Price = 2.35m };
+            UserProduct up28 = new UserProduct() { ApplicationUser_Id = a25.Id, TransactionTime = new DateTime(2020, 05, 06), Price = 10.59m };
+            UserProduct up29 = new UserProduct() { ApplicationUser_Id = a26.Id, TransactionTime = new DateTime(2020, 05, 07), Price = 100.95m };
+            UserProduct up30 = new UserProduct() { ApplicationUser_Id = a27.Id, TransactionTime = new DateTime(2020, 05, 08), Price = 11.95m };
+
+
 
             // *** ~~~ ~~~ ~~~ *** UserProducts Per Product *** ~~~ ~~~ ~~~ ***
             b1.UserProducts = new List<UserProduct> { up1 };
@@ -358,6 +434,30 @@
             tu1.UserProducts = new List<UserProduct> { up2 };
             tu5.UserProducts = new List<UserProduct> { up7 };
 
+            b5.UserProducts = new List<UserProduct> { up8,up9 };
+            b6.UserProducts = new List<UserProduct> { up11, up12,up8 };
+            b7.UserProducts = new List<UserProduct> { up13, up3, up7 };
+            b8.UserProducts = new List<UserProduct> { up12, up5, up4 };
+            b9.UserProducts = new List<UserProduct> { up5 };
+
+            b10.UserProducts = new List<UserProduct> { up10,up30 };
+            b11.UserProducts = new List<UserProduct> { up21, up17,up16 };
+            b12.UserProducts = new List<UserProduct> { up23, up18, up17 };
+            b13.UserProducts = new List<UserProduct> { up22, up19, up19,up20 };
+            b14.UserProducts = new List<UserProduct> { up5,up21,up24,up27,up23 };
+
+            tu3.UserProducts = new List<UserProduct> { up21, up17,up16 };
+            tu1.UserProducts = new List<UserProduct> { up20,up30, up12, up9, up2, up1 };
+            tu4.UserProducts = new List<UserProduct> { up13, up18, up15 };
+            tu7.UserProducts = new List<UserProduct> { up15, up21, up24, up27, up23 };
+            tu8.UserProducts = new List<UserProduct> { up12, up9, up2,up1,up4 };
+
+            tu12.UserProducts = new List<UserProduct> { up10,up30,up29,up28 };
+            tu14.UserProducts = new List<UserProduct> { up21, up17,up16, up14, up12 };
+            tu15.UserProducts = new List<UserProduct> { up23, up18, up28, up15, up17 };
+            tu16.UserProducts = new List<UserProduct> { up22, up19, up5,up29, up19, up16 };
+            tu17.UserProducts = new List<UserProduct> { up5, up21, up6, up7, up9, up10, up18 };
+
             // *** ~~~ ~~~ ~~~ *** Video Files *** ~~~ ~~~ ~~~ ***
             VideoFile v1 = new VideoFile() { Vname = "NightStalker", Vpath = "~/VideoFiles/NIGHTSTALKER - Sweet Knife (HD Official Music Video).mp4" };
 
@@ -365,9 +465,12 @@
             ImageFile img1 = new ImageFile() { ImgName = "Schema", ImgPath = "~/ImageFiles/σχημα.PNG" };
 
 
-            context.Users.AddOrUpdate(x => x.UserName, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20);
-            context.Tags.AddOrUpdate(x => x.Title, tg1, tg2, tg3, tg4, tg5, tg6, tg7, tg8);
-            context.Posts.AddOrUpdate(x => x.Text, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20, p21, p22, p23, p24, p25, p26, p27, p28,p29,p30, p31, p32, p33, p34, p35, p36, p37, p38, p39, p40,p41,p42,p43,p44,p45);
+            context.Users.AddOrUpdate(x => x.UserName, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10,
+                a11, a12, a13, a14, a15, a16, a17, a18, a19, a20,a21,
+                a22, a23, a24, a25, a26, a27, a28, a29, a30);
+            context.Tags.AddOrUpdate(x => x.Title, tg1, tg2, tg3, tg4, tg5, tg6, tg7, tg8,tg9,tg10,tg11,tg12,tg13,tg14,tg15,tg16,tg17,tg18,tg19,tg20);
+            context.Posts.AddOrUpdate(x => x.Text, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20,
+                p21, p22, p23, p24, p25, p26, p27, p28,p29,p30, p31, p32, p33, p34, p35, p36, p37, p38, p39, p40,p41,p42,p43,p44,p45);
             context.Replies.AddOrUpdate(x => x.Text, r1_1, r1_2,
             r2_1, r2_2, r2_3,
             r3_1, r3_2, r3_3,
@@ -414,8 +517,13 @@
             r44_1, r44_2, r44_3,
             r45_1, r45_2, r45_3
             );
-            context.Products.AddOrUpdate(x => x.Title, tu1, tu2, tu3, tu4, tu5, b1, b2, b3, b4, b5, b6, b7, b8, b9, b10);
-            context.UserProducts.AddOrUpdate(x => x.TransactionTime, up1, up2);
+            context.Products.AddOrUpdate(x => x.Title, tu1, tu2, tu3, tu4, tu5,tu6,tu7,tu8,tu9,tu10,tu11,tu12,tu13,tu14,tu15,tu16,tu17,
+                b1, b2, b3, b4, b5, b6, b7, b8, b9, b10,b11,b12,b13,b14,b15,b16,b17);
+            context.UserProducts.AddOrUpdate(x => x.TransactionTime, up1, up2
+            //    up3,up4,up5,up6,up5,up7,up8,up9,up10,
+            //    up11, up12, up13, up14, up15, up16, up17, up18, up19, up20, up21,
+            //    up21, up22, up23, up24, up25, up26, up27, up28, up29, up30
+                );
             context.VideoFiles.AddOrUpdate(x => x.Vname, v1);
             context.ImageFiles.AddOrUpdate(x => x.ImgName, img1);
             context.SaveChanges();
