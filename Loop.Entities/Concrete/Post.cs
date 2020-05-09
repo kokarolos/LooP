@@ -24,7 +24,7 @@ namespace Loop.Entities
         public virtual ICollection<Tag> Tags { get; set; }
         public virtual ICollection<Reply> Replies { get; set; }
 
-        public string ApplicationUserId { get; set; }
+        [Required]
         public virtual ApplicationUser ApplicationUser { get; set; }
         public virtual ICollection<Attachment> Attachments { get; set; }
 

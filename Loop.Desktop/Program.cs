@@ -24,18 +24,16 @@ namespace Loop.Desktop
             //    Console.WriteLine(new String('*', 50));
             //}
 
-
-
             //Printing User and his products
-            UnitOfWork db = new UnitOfWork(new ApplicationDbContext());
-            var users = db.Users.GetAll();
-            var userProducts = db.UserProduct.GetAll();
-            var products = db.Products.GetAll();
+            //UnitOfWork db = new UnitOfWork(new ApplicationDbContext());
+            //var users = db.Users.GetAll();
+            //var userProducts = db.UserProduct.GetAll();
+            //var products = db.Products.GetAll();
 
-            //Get books by user
-            IQueryable<Book> books = (from book in products.OfType<Book>()
-                                      join user in userProducts on book.ProductId equals user.ProductId
-                                      select book).AsQueryable();
+            ////Get books by user
+            //IQueryable<Book> books = (from book in products.OfType<Book>()
+            //                          join user in userProducts on book.ProductId equals user.ProductId
+            //                          select book).AsQueryable();
 
             //foreach (var user in users)
             //{
@@ -57,10 +55,6 @@ namespace Loop.Desktop
             //        }
             //    }
             //}
-
-
-
-
             //foreach (var item in books)
             //{
             //    Console.WriteLine($"{item.ProductId} {item.Title}");

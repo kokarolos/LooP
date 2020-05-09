@@ -6,7 +6,7 @@
     using System;
     using System.Collections.Generic;
     using System.Data.Entity.Migrations;
-
+    using Twilio.Types;
 
     internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
     {
@@ -392,71 +392,40 @@
             Tutorial tu16 = new Tutorial() { TutorialAuthor = "Tim Corey", Title = "How to learn C#", Description = ".Net Framework hard training", Duration = TimeSpan.FromMinutes(460), DateTime = new DateTime(2017, 09, 16) };
             Tutorial tu17 = new Tutorial() { TutorialAuthor = "Ivan Lourenco Gomes", Title = "Learn to Code in Python 3", Description = "Python3 programming made easy with exercises, challenges and lots of real life examples. Learn to code today!.", Duration = TimeSpan.FromMinutes(760), DateTime = new DateTime(2020, 05, 29) };
 
-            // *** ~~~ ~~~ ~~~ *** UserProducts (Per UserID) *** ~~~ ~~~ ~~~ ***
 
-            UserProduct up1 = new UserProduct() { ApplicationUserId = a1.Id, TransactionTime = new DateTime(2020, 11, 1), Price = 10m };
-            UserProduct up2 = new UserProduct() { ApplicationUserId = a2.Id, TransactionTime = new DateTime(2019, 11, 14), Price = 9.95m };
-            UserProduct up3 = new UserProduct() { ApplicationUserId = a2.Id, TransactionTime = new DateTime(2019, 12, 3), Price = 14.95m };
-            UserProduct up4 = new UserProduct() { ApplicationUserId = a3.Id, TransactionTime = new DateTime(2019, 12, 5), Price = 14.45m };
-            UserProduct up5 = new UserProduct() { ApplicationUserId = a4.Id, TransactionTime = new DateTime(2019, 12, 9), Price = 14.95m };
-            UserProduct up6 = new UserProduct() { ApplicationUserId = a4.Id, TransactionTime = new DateTime(2019, 12, 10), Price = 19.9m };
-            UserProduct up7 = new UserProduct() { ApplicationUserId = a5.Id, TransactionTime = new DateTime(2019, 12, 11), Price = 5.95m };
-            UserProduct up8 = new UserProduct() { ApplicationUserId = a6.Id, TransactionTime = new DateTime(2020, 1, 1), Price = 10m };
-            UserProduct up9 = new UserProduct() { ApplicationUserId = a7.Id, TransactionTime = new DateTime(2019, 11, 15), Price = 9.95m };
-            UserProduct up10 = new UserProduct() { ApplicationUserId = a8.Id, TransactionTime = new DateTime(2019, 12, 3), Price = 14.95m };
-            UserProduct up11 = new UserProduct() { ApplicationUserId = a9.Id, TransactionTime = new DateTime(2020, 1, 2), Price = 10m };
-            UserProduct up12 = new UserProduct() { ApplicationUserId = a10.Id, TransactionTime = new DateTime(2020, 11, 14), Price = 9.95m };
-            UserProduct up13 = new UserProduct() { ApplicationUserId = a11.Id, TransactionTime = new DateTime(2019, 12, 13), Price = 14.95m };
-            UserProduct up14 = new UserProduct() { ApplicationUserId = a12.Id, TransactionTime = new DateTime(2019, 12, 15), Price = 14.45m };
-            UserProduct up15 = new UserProduct() { ApplicationUserId = a13.Id, TransactionTime = new DateTime(2019, 12, 19), Price = 14.95m };
-            UserProduct up16 = new UserProduct() { ApplicationUserId = a14.Id, TransactionTime = new DateTime(2019, 12, 20), Price = 19.9m };
-            UserProduct up17 = new UserProduct() { ApplicationUserId = a15.Id, TransactionTime = new DateTime(2019, 12, 21), Price = 5.95m };
-            UserProduct up18 = new UserProduct() { ApplicationUserId = a16.Id, TransactionTime = new DateTime(2020, 05, 25), Price = 15m };
-            UserProduct up19 = new UserProduct() { ApplicationUserId = a16.Id, TransactionTime = new DateTime(2020, 05, 22), Price = 19.95m };
-            UserProduct up20 = new UserProduct() { ApplicationUserId = a17.Id, TransactionTime = new DateTime(2020, 05, 26), Price = 141.95m };
-            UserProduct up21 = new UserProduct() { ApplicationUserId = a18.Id, TransactionTime = new DateTime(2020, 05, 27), Price = 10.23m };
-            UserProduct up22 = new UserProduct() { ApplicationUserId = a19.Id, TransactionTime = new DateTime(2020, 05, 28), Price = 0.95m };
-            UserProduct up23 = new UserProduct() { ApplicationUserId = a20.Id, TransactionTime = new DateTime(2020, 05, 29), Price = 5.95m };
-            UserProduct up24 = new UserProduct() { ApplicationUserId = a21.Id, TransactionTime = new DateTime(2020, 05, 11), Price = 19.45m };
-            UserProduct up25 = new UserProduct() { ApplicationUserId = a22.Id, TransactionTime = new DateTime(2020, 05, 12), Price = 12.91m };
-            UserProduct up26 = new UserProduct() { ApplicationUserId = a23.Id, TransactionTime = new DateTime(2020, 05, 15), Price = 19.92m };
-            UserProduct up27 = new UserProduct() { ApplicationUserId = a24.Id, TransactionTime = new DateTime(2020, 05, 05), Price = 2.35m };
-            UserProduct up28 = new UserProduct() { ApplicationUserId = a25.Id, TransactionTime = new DateTime(2020, 05, 06), Price = 10.59m };
-            UserProduct up29 = new UserProduct() { ApplicationUserId = a26.Id, TransactionTime = new DateTime(2020, 05, 07), Price = 100.95m };
-            UserProduct up30 = new UserProduct() { ApplicationUserId = a27.Id, TransactionTime = new DateTime(2020, 05, 08), Price = 11.95m };
+            // *** ~~~ ~~~ ~~~ *** Customer's Orders *** ~~~ ~~~ ~~~ ***
 
+            //
 
+            var o1 = new Order() { OrderDate=new DateTime(2020,1, 1,12,02,03) };
+            var op1 = new OrderProduct() { Price = 15.12m, Product = tu1, Dummy=1, Order = o1, Quantity = 2 };
+            var op2 = new OrderProduct() { Price = 15.62m,  Product = b1, Dummy = 2, Order = o1, Quantity = 6 };
+            a1.Orders = new List<Order> { o1 };
 
-            // *** ~~~ ~~~ ~~~ *** UserProducts Per Product *** ~~~ ~~~ ~~~ ***
-            b1.UserProducts = new List<UserProduct> { up1 };
-            b2.UserProducts = new List<UserProduct> { up3, up4, up5 };
-            b3.UserProducts = new List<UserProduct> { up6 };
-            tu1.UserProducts = new List<UserProduct> { up2 };
-            tu5.UserProducts = new List<UserProduct> { up7 };
+            var o2 = new Order() { OrderDate = new DateTime(2020, 1, 1, 12, 12, 03)};
+            var op3 = new OrderProduct() { Price = 12.32m, Product = b1, Dummy = 3, Order = o2, Quantity = 1 };
+            var op4 = new OrderProduct() { Price = 17.22m, Product = tu3, Dummy = 4, Order= o2, Quantity = 3 };
 
-            b5.UserProducts = new List<UserProduct> { up8, up9 };
-            b6.UserProducts = new List<UserProduct> { up11, up12, up8 };
-            b7.UserProducts = new List<UserProduct> { up13, up3, up7 };
-            b8.UserProducts = new List<UserProduct> { up12, up5, up4 };
-            b9.UserProducts = new List<UserProduct> { up5 };
+            var o3 = new Order() { OrderDate = new DateTime(2020, 1, 2, 12, 02, 03) };
+            var op5 = new OrderProduct() { Price = 12.32m, Product = b1, Dummy = 5, Order = o3, Quantity = 1 };
+            var op6 = new OrderProduct() { Price = 17.22m, Product = tu3, Dummy = 6, Order= o3, Quantity = 1 };
+            a2.Orders = new List<Order> { o2,o3 };
 
-            b10.UserProducts = new List<UserProduct> { up10, up30 };
-            b11.UserProducts = new List<UserProduct> { up21, up17, up16 };
-            b12.UserProducts = new List<UserProduct> { up23, up18, up17 };
-            b13.UserProducts = new List<UserProduct> { up22, up19, up19, up20 };
-            b14.UserProducts = new List<UserProduct> { up5, up21, up24, up27, up23 };
+            var o4 = new Order() { OrderDate = new DateTime(2020, 1, 3, 12, 02, 03) };
+            var op7 = new OrderProduct() { Price = 12.32m, Product = b1, Dummy = 7, Order = o4 ,Quantity=3 };
+            var op10 = new OrderProduct() { Price = 17.22m, Product = tu16, Dummy = 10, Order= o4, Quantity = 1 };
+            a3.Orders = new List<Order> { o4 };
 
-            tu3.UserProducts = new List<UserProduct> { up21, up17, up16 };
-            tu1.UserProducts = new List<UserProduct> { up20, up30, up12, up9, up2, up1 };
-            tu4.UserProducts = new List<UserProduct> { up13, up18, up15 };
-            tu7.UserProducts = new List<UserProduct> { up15, up21, up24, up27, up23 };
-            tu8.UserProducts = new List<UserProduct> { up12, up9, up2, up1, up4 };
+            var o5 = new Order() { OrderDate = new DateTime(2020, 1, 4, 12, 02, 03) };
+            var op11 = new OrderProduct() { Price = 12.32m, Product = b6, Dummy = 11, Order = o5, Quantity = 1 };
+            var op12 = new OrderProduct() { Price = 17.22m, Product = tu6, Dummy = 12, Order= o5, Quantity = 1 };
+            a4.Orders = new List<Order> { o5 };
 
-            tu12.UserProducts = new List<UserProduct> { up10, up30, up29, up28 };
-            tu14.UserProducts = new List<UserProduct> { up21, up17, up16, up14, up12 };
-            tu15.UserProducts = new List<UserProduct> { up23, up18, up28, up15, up17 };
-            tu16.UserProducts = new List<UserProduct> { up22, up19, up5, up29, up19, up16 };
-            tu17.UserProducts = new List<UserProduct> { up5, up21, up6, up7, up9, up10, up18 };
+            var o6 = new Order() { OrderDate = new DateTime(2020, 1, 5, 12, 02, 03) };
+            var op13 = new OrderProduct() { Price = 12.32m, Product = b17, Dummy = 13, Order = o6, Quantity = 1 };
+            var op14 = new OrderProduct() { Price = 17.22m, Product = tu17, Dummy = 14, Order= o6, Quantity = 1 };
+            a5.Orders = new List<Order> { o6 };
+
 
             // *** ~~~ ~~~ ~~~ *** Video Files *** ~~~ ~~~ ~~~ ***
             VideoFile v1 = new VideoFile() { Vname = "NightStalker", Vpath = "~/VideoFiles/NIGHTSTALKER - Sweet Knife (HD Official Music Video).mp4" };
@@ -519,10 +488,9 @@
             );
             context.Products.AddOrUpdate(x => x.Title, tu1, tu2, tu3, tu4, tu5,tu6,tu7,tu8,tu9,tu10,tu11,tu12,tu13,tu14,tu15,tu16,tu17,
                 b1, b2, b3, b4, b5, b6, b7, b8, b9, b10,b11,b12,b13,b14,b15,b16,b17);
-            context.UserProducts.AddOrUpdate(x => x.TransactionTime, up1, up2,
-                up3, up4, up5, up6, up5, up7, up8, up9, up10,
-                up11, up12, up13, up14, up15, up16, up17, up18, up19, up20, up21,
-                up21, up22, up23, up24, up25, up26, up27, up28, up29, up30
+            context.Orders.AddOrUpdate(x => x.OrderDate, o1,o2,o3,o4,o5,o6);
+            context.OrderProducts.AddOrUpdate(x => x.Dummy,op1,op2,op5,op6,op7,op10,
+                op11, op12, op13, op14
                 );
             context.VideoFiles.AddOrUpdate(x => x.Vname, v1);
             context.ImageFiles.AddOrUpdate(x => x.ImgName, img1);

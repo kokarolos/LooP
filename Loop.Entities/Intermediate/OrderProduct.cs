@@ -1,15 +1,14 @@
 ﻿using Loop.Entities.Concrete;
-using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Loop.Entities.Intermediate
 {
-    public class UserProduct
+    public class OrderProduct
     {
 
         [Key, Column(Order = 1)]
-        public string ApplicationUserId { get; set; }
+        public int OrderId { get; set; }
 
         [Key, Column(Order = 2)]
         public int ProductId { get; set; }
@@ -18,11 +17,12 @@ namespace Loop.Entities.Intermediate
         [Display(Name = "Price")]
         public decimal Price { get; set; }
 
-        [Required]
-        [Display(Name = "Transaction Time")]
-        public DateTime TransactionTime { get; set; }
+        [Required,Range(0,100)]
+        public int Quantity { get; set; }
+        public int Dummy { get; set; }
 
-        public virtual ApplicationUser ApplicationUser { get; set; }
+
+        public virtual Order Order { get; set; }
         public virtual Product Product { get; set; }
     }
 }

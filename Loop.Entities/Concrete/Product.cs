@@ -21,6 +21,6 @@ namespace Loop.Entities.Concrete
         [Display(Name = "Date and Time of Production")]
         public DateTime DateTime { get; set; }
 
-        public virtual ICollection<UserProduct> UserProducts { get; set; }
+        public virtual ICollection<OrderProduct> OrderProducts { get; set; }
     }
 }
