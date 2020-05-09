@@ -32,7 +32,7 @@ namespace Loop.Database
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Product>()
                         .Map<Tutorial>(m => m.Requires("ProductType").HasValue("Tutorial"))
-                        .Map<Book>(m => m.Requires("ProductType").HasValue("B"));
+                        .Map<Book>(m => m.Requires("ProductType").HasValue("Book"));
         }
 
         public static ApplicationDbContext Create()

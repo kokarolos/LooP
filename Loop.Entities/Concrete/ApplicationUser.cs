@@ -31,8 +31,8 @@ namespace Loop.Entities.Concrete
         [Display(Name = "Date of Birth")]
         public DateTime? DateOfBirth { get; set; }
 
-        [Display(Name = "Image")]
-        public string ImageUrl { get; set; }
+        [Display(Name = "Avatar")]
+        public string AvatarPath { get; set; }
 
         //[Display(Name = "Location")]
         //public virtual Location Location { get; set; }

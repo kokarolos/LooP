@@ -18,9 +18,9 @@ namespace Loop.Entities
         [Display(Name = "Date and Time of Replying")]
         public DateTime DateTime { get; set; }
 
-        public int? PostId { get; set; }
-
+        public string ApplicationUserId { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
+
         public virtual Post Post { get; set; }
         public virtual ICollection<Attachment> Attachments { get; set; }
     }

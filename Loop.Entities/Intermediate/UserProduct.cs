@@ -7,9 +7,9 @@ namespace Loop.Entities.Intermediate
 {
     public class UserProduct
     {
-        // ApplicationUser_Id begins with zero | not mapped
+
         [Key, Column(Order = 1)]
-        public string ApplicationUser_Id { get; set; }
+        public string ApplicationUserId { get; set; }
 
         [Key, Column(Order = 2)]
         public int ProductId { get; set; }
@@ -21,6 +21,7 @@ namespace Loop.Entities.Intermediate
         [Required]
         [Display(Name = "Transaction Time")]
         public DateTime TransactionTime { get; set; }
+
         public virtual ApplicationUser ApplicationUser { get; set; }
         public virtual Product Product { get; set; }
     }

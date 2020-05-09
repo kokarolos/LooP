@@ -37,26 +37,26 @@ namespace Loop.Desktop
                                       join user in userProducts on book.ProductId equals user.ProductId
                                       select book).AsQueryable();
 
-            foreach (var user in users)
-            {
-                foreach (var item in userProducts)
-                {
-                    if (user.Id == item.ApplicationUser_Id)
-                    {
-                        Console.WriteLine($"{user.UserName}");
-                        foreach (var book in books)
-                        {
-                            //Just For test, EF includes some proxy numbers like -> Book_1290312903912903F
-                            //debugg it for more answers
-                            if(book.GetType().Name == item.Product.GetType().Name)
-                            {
-                                Console.WriteLine($"{book.Title}");
-                            }
-                        }
-                        //Console.WriteLine($"{user.UserName} purchased {item.Product.GetType().Name} with title {item.Product.Title} with price {item.Price}");
-                    }
-                }
-            }
+            //foreach (var user in users)
+            //{
+            //    foreach (var item in userProducts)
+            //    {
+            //        if (user.Id == item.ApplicationUser_Id)
+            //        {
+            //            Console.WriteLine($"{user.UserName}");
+            //            foreach (var book in books)
+            //            {
+            //                //Just For test, EF includes some proxy numbers like -> Book_1290312903912903F
+            //                //debugg it for more answers
+            //                if(book.GetType().Name == item.Product.GetType().Name)
+            //                {
+            //                    Console.WriteLine($"{book.Title}");
+            //                }
+            //            }
+            //            //Console.WriteLine($"{user.UserName} purchased {item.Product.GetType().Name} with title {item.Product.Title} with price {item.Price}");
+            //        }
+            //    }
+            //}
 
 
 
