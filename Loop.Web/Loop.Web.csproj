@@ -1159,7 +1159,6 @@
     <Content Include="Views\Tutorial\UploadVideo.cshtml" />
     <Content Include="Views\Home\Chat.cshtml" />
     <Content Include="Views\Shared\_NavigationBar.cshtml" />
-    <Content Include="Views\Shared\_MainMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
