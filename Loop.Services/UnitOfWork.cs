@@ -11,7 +11,8 @@ namespace Loop.Services
         public IPostRepository Posts { get; private set; }
         public IProductRepository Products { get; private set; }
         public IApplicationUserRepository Users { get; private set; }
-        public IUserProductRepository UserProduct { get; private set; }
+        public IOrderRepository Orders { get; private set; }
+        public IOrderProductRepository OrderProducts { get; private set; }
 
 
         public UnitOfWork(ApplicationDbContext context)
@@ -20,7 +21,8 @@ namespace Loop.Services
             Posts = new PostRepository(_context);
             Products = new ProductRepository(_context);
             Users = new ApplicationUserRepository(_context);
-            UserProduct = new UserProductRepository(_context);
+            Orders = new OrderRepository(_context);
+            OrderProducts = new OrderProductRepository(_context);
         }
 
         public void Save()

@@ -1,10 +1,10 @@
-﻿using System.Data.Entity;
-using System.Data.Entity.Validation;
-using System.Text;
-using Loop.Entities;
+﻿using Loop.Entities;
 using Loop.Entities.Concrete;
 using Loop.Entities.Intermediate;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity;
+using System.Data.Entity.Validation;
+using System.Text;
 
 namespace Loop.Database
 {
@@ -14,8 +14,9 @@ namespace Loop.Database
         public DbSet<Post> Posts { get; set; }
         public DbSet<Reply> Replies { get; set; }
         public DbSet<Tag> Tags { get; set; }
+        public DbSet<Order> Orders { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<UserProduct> UserProducts { get; set; }
+        public DbSet<OrderProduct> OrderProducts { get; set; }
         public DbSet<Attachment> Attachments { get; set; }
         public DbSet<ImageFile> ImageFiles { get; set; }
         public DbSet<VideoFile> VideoFiles { get; set; }
@@ -32,7 +33,7 @@ namespace Loop.Database
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Product>()
                         .Map<Tutorial>(m => m.Requires("ProductType").HasValue("Tutorial"))
-                        .Map<Book>(m => m.Requires("ProductType").HasValue("B"));
+                        .Map<Book>(m => m.Requires("ProductType").HasValue("Book"));
         }
 
         public static ApplicationDbContext Create()

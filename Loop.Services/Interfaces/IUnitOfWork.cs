@@ -9,7 +9,8 @@ namespace Loop.Services
         IPostRepository Posts { get; }
         IProductRepository Products { get; }
         IApplicationUserRepository Users { get; }
-        IUserProductRepository UserProduct { get; }
+        IOrderRepository Orders { get; }
+        IOrderProductRepository OrderProducts { get; }
 
         void Save();
     }

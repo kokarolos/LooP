@@ -1,9 +1,10 @@
-﻿using Loop.Entities.Intermediate;
+﻿using Loop.Entities.Concrete;
 using Loop.Services.Repositories_interface;
+
 
 namespace Loop.Services.Interfaces.Repositories
 {
-    public interface IUserProductRepository : IRepository<UserProduct>
+    public interface IOrderRepository : IRepository<Order>
     {
 
     }

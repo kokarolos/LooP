@@ -20,6 +20,7 @@ namespace Loop.Entities.Concrete
             return userIdentity;
         }
 
+
         [MinLength(2), MaxLength(60)]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
@@ -31,8 +32,8 @@ namespace Loop.Entities.Concrete
         [Display(Name = "Date of Birth")]
         public DateTime? DateOfBirth { get; set; }
 
-        [Display(Name = "Image")]
-        public string ImageUrl { get; set; }
+        [Display(Name = "Avatar")]
+        public string AvatarPath { get; set; }
 
         //[Display(Name = "Location")]
         //public virtual Location Location { get; set; }
@@ -57,6 +58,6 @@ namespace Loop.Entities.Concrete
 
         public virtual ICollection<Post> Posts { get; set; }
         public virtual ICollection<Reply> Replies { get; set; }
-        public virtual ICollection<UserProduct> UserProducts { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

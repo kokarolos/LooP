@@ -61,11 +61,12 @@
     <Compile Include="Concrete\Attachment.cs" />
     <Compile Include="Concrete\Book.cs" />
     <Compile Include="Concrete\Location.cs" />
+    <Compile Include="Concrete\Order.cs" />
     <Compile Include="Concrete\Post.cs" />
     <Compile Include="Concrete\Product.cs" />
     <Compile Include="Concrete\Tutorial.cs" />
     <Compile Include="ImageFile.cs" />
-    <Compile Include="Intermediate\UserProduct.cs" />
+    <Compile Include="Intermediate\OrderProduct.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Concrete\Reply.cs" />
     <Compile Include="Concrete\Tag.cs" />
