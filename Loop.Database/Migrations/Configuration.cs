@@ -515,6 +515,7 @@
 
             // *** ~~~ ~~~ ~~~ *** Image Files *** ~~~ ~~~ ~~~ ***
             ImageFile img1 = new ImageFile() { ImgName = "Schema", ImgPath = "~/ImageFiles/σχημα.PNG" };
+            a1.Avatar = img1;
 
 
             context.Users.AddOrUpdate(x => x.UserName, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10,

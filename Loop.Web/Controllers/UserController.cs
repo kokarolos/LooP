@@ -1,30 +1,29 @@
-﻿using System.Data.Entity;
-using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Web.Mvc;
 using Loop.Database;
 using Loop.Entities.Concrete;
+using Loop.Services;
 
 namespace Loop.Web.Controllers
 {
-    public class ApplicationUsersController : Controller
+    public class UserController : Controller
     {
-        private  ApplicationDbContext db = new ApplicationDbContext();
+        private readonly UnitOfWork db = new UnitOfWork(new ApplicationDbContext());
 
-        // GET: ApplicationUsers
+        // GET: User
         public ActionResult Index()
         {
-            return View(db.Users.ToList());
+            return View(db.Users.GetAll());
         }
 
-        // GET: ApplicationUsers/Details/5
+        // GET: User/Details/5
         public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var applicationUser = db.Users.Find(id);
+            var applicationUser = db.Users.GetUserById(id);
             if (applicationUser == null)
             {
                 return HttpNotFound();
@@ -32,37 +31,37 @@ namespace Loop.Web.Controllers
             return View(applicationUser);
         }
 
-        // GET: ApplicationUsers/Create
+        // GET: User/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: ApplicationUsers/Create
+        // POST: User/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Age,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] ApplicationUser applicationUser)
+        public ActionResult Create([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,FirstName,LastName,DateOfBirth")] ApplicationUser applicationUser)
         {
             if (ModelState.IsValid)
             {
-                db.Users.Add(applicationUser);
-                db.SaveChanges();
+                db.Users.Insert(applicationUser);
+                db.Save();
                 return RedirectToAction("Index");
             }
 
             return View(applicationUser);
         }
 
-        // GET: ApplicationUsers/Edit/5
+        // GET: User/Edit/5
         public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var applicationUser = db.Users.Find(id);
+            ApplicationUser applicationUser = db.Users.GetUserById(id);
             if (applicationUser == null)
             {
                 return HttpNotFound();
@@ -70,30 +69,30 @@ namespace Loop.Web.Controllers
             return View(applicationUser);
         }
 
-        // POST: ApplicationUsers/Edit/5
+        // POST: User/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Age,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] ApplicationUser applicationUser)
+        public ActionResult Edit([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,FirstName,LastName,DateOfBirth")] ApplicationUser applicationUser)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(applicationUser).State = EntityState.Modified;
-                db.SaveChanges();
+                db.Users.Update(applicationUser);
+                db.Save();
                 return RedirectToAction("Index");
             }
             return View(applicationUser);
         }
 
-        // GET: ApplicationUsers/Delete/5
+        // GET: User/Delete/5
         public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var applicationUser = db.Users.Find(id);
+            ApplicationUser applicationUser = db.Users.GetUserById(id);
             if (applicationUser == null)
             {
                 return HttpNotFound();
@@ -101,14 +100,14 @@ namespace Loop.Web.Controllers
             return View(applicationUser);
         }
 
-        // POST: ApplicationUsers/Delete/5
+        // POST: User/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            var applicationUser = db.Users.Find(id);
+            ApplicationUser applicationUser = db.Users.GetUserById(id);
             db.Users.Remove(applicationUser);
-            db.SaveChanges();
+            db.Save();
             return RedirectToAction("Index");
         }
 
