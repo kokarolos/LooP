@@ -1,0 +1,32 @@
+﻿@model Loop.Web.Models.SetAvatarViewModel
+@{
+    ViewBag.Title = "Change Avatar";
+}
+
+<h2>@ViewBag.Title.</h2>
+<p class="text-info">
+    Change Avatar
+</p>
+
+@using (Html.BeginForm("SetAvatar", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+{
+    <h4>Avatar</h4>
+    <hr />
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.UserPhoto, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            <input type="file" name="UserPhoto" id="fileUpload" accept=".png,.jpg,.jpeg,.gif,.tif" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Change Avatar" class="btn btn-default" />
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
