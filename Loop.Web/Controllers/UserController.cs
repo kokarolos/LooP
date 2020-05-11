@@ -1,8 +1,14 @@
-﻿using System.Net;
+﻿using System;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Web;
 using System.Web.Mvc;
 using Loop.Database;
 using Loop.Entities.Concrete;
 using Loop.Services;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace Loop.Web.Controllers
 {
@@ -14,6 +20,8 @@ namespace Loop.Web.Controllers
         public ActionResult Index()
         {
             return View(db.Users.GetAll());
+
+
         }
 
         // GET: User/Details/5
@@ -76,14 +84,30 @@ namespace Loop.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,FirstName,LastName,DateOfBirth")] ApplicationUser applicationUser)
         {
+
+
+            // To convert the user uploaded Photo as Byte Array before save to DB    
+            byte[] imageData = null;
+            if (Request.Files.Count > 0)
+            {
+                HttpPostedFileBase poImgFile = Request.Files["UserPhoto"];
+
+                using (var binary = new BinaryReader(poImgFile.InputStream))
+                {
+                    imageData = binary.ReadBytes(poImgFile.ContentLength);
+                }
+            }
             if (ModelState.IsValid)
             {
+                applicationUser.UserPhoto = imageData;
                 db.Users.Update(applicationUser);
                 db.Save();
                 return RedirectToAction("Index");
             }
             return View(applicationUser);
         }
+
+
 
         // GET: User/Delete/5
         public ActionResult Delete(string id)
@@ -109,6 +133,48 @@ namespace Loop.Web.Controllers
             db.Users.Remove(applicationUser);
             db.Save();
             return RedirectToAction("Index");
+        }
+
+        [NonAction]
+        public FileContentResult UserPhotos()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                string userId = User.Identity.GetUserId();
+
+                if (userId == null)
+                {
+                    string fileName = HttpContext.Server.MapPath(@"~/ImageFiles/σχημα.PNG");
+
+                    byte[] imageData = null;
+                    FileInfo fileInfo = new FileInfo(fileName);
+                    long imageFileLength = fileInfo.Length;
+                    FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                    BinaryReader br = new BinaryReader(fs);
+                    imageData = br.ReadBytes((int)imageFileLength);
+
+                    return File(imageData, "image/png");
+
+                }
+                // to get the user details to load user Image    
+                var bdUsers = HttpContext.GetOwinContext().Get<ApplicationDbContext>();
+                var userImage = bdUsers.Users.Where(x => x.Id == userId).FirstOrDefault() as ApplicationUser;
+
+                return new FileContentResult(userImage.UserPhoto,"image/jpeg");
+            }
+            else
+            {
+                string fileName = HttpContext.Server.MapPath(@"~/ImageFiles/σχημα.PNG");
+
+                byte[] imageData = null;
+                FileInfo fileInfo = new FileInfo(fileName);
+                long imageFileLength = fileInfo.Length;
+                FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                BinaryReader br = new BinaryReader(fs);
+                imageData = br.ReadBytes((int)imageFileLength);
+                return File(imageData, "image/png");
+
+            }
         }
 
         protected override void Dispose(bool disposing)
