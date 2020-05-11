@@ -97,6 +97,7 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -969,7 +970,17 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="ImageFiles\σχημα.PNG" />
+    <Content Include="Images\Avatars\man1.png" />
+    <Content Include="Images\Avatars\manb.png" />
+    <Content Include="Images\Avatars\old_man.png" />
+    <Content Include="Images\Avatars\Old_woman.png" />
+    <Content Include="Images\Avatars\woman1.png" />
+    <Content Include="Images\Avatars\womanb.png" />
+    <Content Include="Images\Avatars\young_boy.png" />
+    <Content Include="Images\Avatars\young_girl.png" />
+    <Content Include="Images\Avatars\young_girl2.png" />
+    <Content Include="Images\looptrace.png" />
+    <Content Include="Images\noImg.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />

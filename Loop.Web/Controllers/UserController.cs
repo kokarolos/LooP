@@ -5,6 +5,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Loop.Database;
+using Loop.Entities;
 using Loop.Entities.Concrete;
 using Loop.Services;
 using Microsoft.AspNet.Identity;
@@ -20,7 +21,6 @@ namespace Loop.Web.Controllers
         public ActionResult Index()
         {
             return View(db.Users.GetAll());
-
 
         }
 
@@ -90,7 +90,7 @@ namespace Loop.Web.Controllers
             byte[] imageData = null;
             if (Request.Files.Count > 0)
             {
-                HttpPostedFileBase poImgFile = Request.Files["UserPhoto"];
+                HttpPostedFileBase poImgFile = Request.Files[0];
 
                 using (var binary = new BinaryReader(poImgFile.InputStream))
                 {
@@ -135,36 +135,14 @@ namespace Loop.Web.Controllers
             return RedirectToAction("Index");
         }
 
-        [NonAction]
-        public FileContentResult UserPhotos()
+
+        public FileContentResult UserPhotos(string id)
         {
-            if (User.Identity.IsAuthenticated)
+            var user = db.Users.GetUserById(id);
+            if ((user.UserPhoto is null))
             {
-                string userId = User.Identity.GetUserId();
 
-                if (userId == null)
-                {
-                    string fileName = HttpContext.Server.MapPath(@"~/ImageFiles/σχημα.PNG");
-
-                    byte[] imageData = null;
-                    FileInfo fileInfo = new FileInfo(fileName);
-                    long imageFileLength = fileInfo.Length;
-                    FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
-                    BinaryReader br = new BinaryReader(fs);
-                    imageData = br.ReadBytes((int)imageFileLength);
-
-                    return File(imageData, "image/png");
-
-                }
-                // to get the user details to load user Image    
-                var bdUsers = HttpContext.GetOwinContext().Get<ApplicationDbContext>();
-                var userImage = bdUsers.Users.Where(x => x.Id == userId).FirstOrDefault() as ApplicationUser;
-
-                return new FileContentResult(userImage.UserPhoto,"image/jpeg");
-            }
-            else
-            {
-                string fileName = HttpContext.Server.MapPath(@"~/ImageFiles/σχημα.PNG");
+                string fileName = HttpContext.Server.MapPath(@"~/Images/noImg.png");
 
                 byte[] imageData = null;
                 FileInfo fileInfo = new FileInfo(fileName);
@@ -172,9 +150,14 @@ namespace Loop.Web.Controllers
                 FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
                 BinaryReader br = new BinaryReader(fs);
                 imageData = br.ReadBytes((int)imageFileLength);
-                return File(imageData, "image/png");
 
+                return File(imageData, "image/png");
             }
+            else
+            {
+                return null;
+            }
+          
         }
 
         protected override void Dispose(bool disposing)
