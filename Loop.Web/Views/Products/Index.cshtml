@@ -1,47 +1,123 @@
 ﻿@model IEnumerable<Loop.Entities.Concrete.Product>
 
 @{
-    Layout = null;
+    ViewBag.Title = "Index";
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th></th>
-        </tr>
-    
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.ProductId }) |
-                @Html.ActionLink("Details", "Details", new { id=item.ProductId }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.ProductId })
-            </td>
-        </tr>
-    }
-    
-    </table>
-</body>
-</html>
+@Html.ActionLink("Create New", "Create", null, new { @class = "btn-danger" })
+
+
+<div class="se-pre-con"></div>
+<div class="theme-layout">
+    <br />
+    <br />
+
+    <div class="container">
+        <div class="row merged20">
+            <div class="col-lg-12">
+                <div class="forum-warper">
+                    <div class="central-meta">
+                        <div class="title-block">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="align-left">
+                                        <h5>Forum open topic</h5>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="row merged20">
+                                        <div class="col-lg-7 col-md-7 col-sm-7">
+                                            <form method="post">
+                                                <input type="text" placeholder="Search...">
+                                                <button type="submit"><i class="fa fa-search"></i></button>
+                                            </form>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4">
+                                            <div class="select-options">
+                                                <select class="select">
+                                                    <option>Sort by</option>
+                                                    <option>See All</option>
+                                                    <option>Newest</option>
+                                                    <option>oldest</option>
+                                                    <option>A to Z</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-1 col-md-1 col-sm-1">
+                                            <div class="option-list">
+                                                <i class="fa fa-ellipsis-v"></i>
+                                                <ul>
+                                                    <li class="active"><i class="fa fa-check"></i><a title="" href="#">Show Public</a></li>
+                                                    <li><a title="" href="#">Hide all Products</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- title block -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section>
+        <div class="gap2 gray-bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="row merged20" id="page-contents">
+                            <div class="col-lg-12">
+
+                                <div class="load-more">
+                                    @foreach (var product in Model)
+                                    {
+                                        <div class="central-meta item">
+                                            <div class="classic-post">
+                                                <figure>
+                                                    <img src="https://image.slidesharecdn.com/c-150513072348-lva1-app6892/95/c-tutorial-1-638.jpg?cb=1431501877" style="width:150px; height:150px" alt="">
+                                                </figure>
+                                                <div class="classic-pst-meta">
+                                                    <div class="more">
+                                                        <div class="more-post-optns">
+                                                            <i class="ti-more-alt"></i>
+                                                            <ul>
+                                                                <li><i class="fa fa-pencil-square-o"></i>Edit Product</li>
+                                                                <li><i class="fa fa-trash-o"></i>Delete Product</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <h4><i class="fa fa-check-circle" title="verified"></i> <a href="#" title="">@product.Title</a></h4>
+                                                    <div style="width:600px"><p>@Html.ActionLink(product.Description, "Details", new { id = product.ProductId })</p></div>
+                                                    @*na doume an tha xreiastei*@
+                                                    <span class="prise">Price</span>
+                                                    @*na vgaloume to idos tou product*@
+                                                    <span>Product Type</span>
+                                                    <div class="location-area">
+                                                        <a href="#" class="main-btn" title="">Add to Cart</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+
+                                </div>
+                            </div><!-- centerl meta -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- content -->
+
+
+</div>
+
+<script src="js/main.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI"></script>
+<script src="js/locationpicker.jquery.js"></script>
+<script src="js/map-init.js"></script>
+<script src="js/script.js"></script>
