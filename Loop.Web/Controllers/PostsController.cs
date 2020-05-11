@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Web.Mvc;
 using Loop.Database;
 using Loop.Entities;
@@ -46,6 +47,7 @@ namespace Loop.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+               
                 db.Posts.Insert(post);
                 db.Save();
                 return RedirectToAction("Index");
