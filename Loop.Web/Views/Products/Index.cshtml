@@ -91,10 +91,14 @@
                                                     </div>
                                                     <h4><i class="fa fa-check-circle" title="verified"></i> <a href="#" title="">@product.Title</a></h4>
                                                     <div style="width:600px"><p>@Html.ActionLink(product.Description, "Details", new { id = product.ProductId })</p></div>
-                                                    @*na doume an tha xreiastei*@
-                                                    <span class="prise">Price</span>
+                                                    @*na doume an tha xreiastei   Book*@
+                                                    @{
+
+                                                        var str = product.GetType().Name.Split('_');
+
+                                                     }
+                                                    <span>Product Type : @str[0]</span>
                                                     @*na vgaloume to idos tou product*@
-                                                    <span>Product Type</span>
                                                     <div class="location-area">
                                                         <a href="#" class="main-btn" title="">Add to Cart</a>
                                                     </div>
