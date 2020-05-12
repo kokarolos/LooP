@@ -1,0 +1,35 @@
+﻿
+<aside id="sidebar_secondary" class="tabbed_sidebar ng-scope chat_sidebar">
+
+    <div class="popup-head">
+        <div class="popup-head-left pull-left">
+            <!--Header of Live Chat -->
+        </div>
+        <div class="popup-head-right pull-right">
+            <button data-widget="remove" id="removeClass" class="chat-header-button pull-right" type="button">
+                <i class="ti-close"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="chat_box_wrapper chat_box_small chat_box_active"
+         style="opacity: 1; display: block; transform: translateX(0px);">
+        <div id="chat" class="chat_box touchscroll chat_box_colors_a">
+
+        </div>
+    </div>
+
+    <div class="chat_submit_box">
+        <div class="uk-input-group">
+            <div class="gurdeep-chat-box">
+                <form id="form">
+                    <div class="text-area">
+                        <input type="hidden" id="displayname" />
+                        <input type="text" placeholder="Type a message" id="message" name="submit_message" @*class="md-input"*@>
+                        <button type="submit" id="sendmessage" class="fa fa-paper-plane-o"></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</aside>

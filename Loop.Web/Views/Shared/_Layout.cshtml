@@ -19,13 +19,27 @@
         @Html.Partial("_NavigationBar")
         @RenderBody()
         <hr />
+        <div class="row">
+            <div class="col text-center">
+                <div>
+                    <a href="#" class="open-btn" id="addClass">
+                        <i class="fa fa-whatsapp" aria-hidden="true"></i> Join Chat
+                    </a>
+                </div>
+            </div>
+        </div>
         <div>
             @Html.Partial("_Footer")
+            @Html.Partial("_Chat")
         </div>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/signalr")
+    <script src="~/Scripts/jquery.signalR-2.4.1.js"></script>
+    @Scripts.Render("/signalr/hubs")
+    <script src="~/Scripts/Custom/Chat.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>
