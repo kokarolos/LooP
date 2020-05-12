@@ -234,6 +234,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\cover2.jpg" />
     <Content Include="Content\cover3.jpg" />
+    <Content Include="Content\css\Chat.css" />
     <Content Include="Content\css\color.css" />
     <Content Include="Content\css\IndexStyle.css" />
     <Content Include="Content\css\main.min.css" />
@@ -987,6 +988,7 @@
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Custom\Chat.js" />
     <Content Include="Scripts\Custom\main.min.js" />
     <Content Include="Scripts\Custom\script.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
@@ -1177,6 +1179,7 @@
     <Content Include="Views\User\Details.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\Shared\_Chat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
