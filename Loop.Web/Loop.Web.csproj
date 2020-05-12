@@ -232,6 +232,8 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\cover2.jpg" />
+    <Content Include="Content\cover3.jpg" />
     <Content Include="Content\css\color.css" />
     <Content Include="Content\css\IndexStyle.css" />
     <Content Include="Content\css\main.min.css" />
@@ -965,8 +967,8 @@
     <Content Include="Content\images\themify.png" />
     <Content Include="Content\images\wiki.png" />
     <Content Include="Content\images\windows.png" />
-    <Content Include="Content\logoLo.png" />
-    <Content Include="Content\OAYTIV0.jpg" />
+    <Content Include="Content\LoopFooter.png" />
+    <Content Include="Content\loopLogo.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
