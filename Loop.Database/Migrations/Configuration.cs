@@ -3,9 +3,12 @@
     using Loop.Entities;
     using Loop.Entities.Concrete;
     using Loop.Entities.Intermediate;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using System;
     using System.Collections.Generic;
     using System.Data.Entity.Migrations;
+    using System.Linq;
     using Twilio.Types;
 
     internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
@@ -28,8 +31,101 @@
             Location loc4 = new Location() { Latitude = 35.50667m, Longitude = 27.21009m };
             Location loc5 = new Location() { Latitude = 37.94477m, Longitude = 23.64358m };
 
-            // *** ~~~ ~~~ ~~~ *** Users *** ~~~ ~~~ ~~~ *** 
+            // *** ~~~ ~~~ ~~~ *** Roles  *** ~~~ ~~~ ~~~ *** 
 
+            if (!context.Roles.Any(r => r.Name == "Admin"))
+            {
+                var store = new RoleStore<IdentityRole>(context);
+                var manager = new RoleManager<IdentityRole>(store);
+                var role = new IdentityRole { Name = "Admin" };
+
+                manager.Create(role);
+              
+            }
+            if (!context.Roles.Any(r => r.Name == "User"))
+            {
+                var store = new RoleStore<IdentityRole>(context);
+                var manager = new RoleManager<IdentityRole>(store);
+                var role = new IdentityRole { Name = "User" };
+                manager.Create(role);
+            }
+
+
+            // *** ~~~ ~~~ ~~~ *** Admins  *** ~~~ ~~~ ~~~ *** 
+
+            if (!context.Users.Any(user => user.UserName == "admin1@gmail.com"))
+            {
+                var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+                var passwordHash = new PasswordHasher();
+
+                var user = new ApplicationUser
+                {
+                    UserName = "admin1@gmail.com",
+                    Email = "admin1@gmail.com",
+                    DateOfBirth = new DateTime(1994, 1, 1),
+                    PasswordHash = passwordHash.HashPassword("Admin123!"),
+                    FirstName = "Karolos",
+                    LastName = "Koniewicz"
+                };
+                userManager.Create(user);
+                userManager.AddToRole(user.Id, "Admin");
+            }
+
+            if (!context.Users.Any(user => user.UserName == "admin2@gmail.com"))
+            {
+                var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+                var passwordHash = new PasswordHasher();
+
+                var user = new ApplicationUser
+                {
+                    UserName = "Rizai",
+                    Email = "admin2@gmail.com",
+                    DateOfBirth = new DateTime(1994, 1, 1),
+                    PasswordHash = passwordHash.HashPassword("Admin123!"),
+                    FirstName = "Panos",
+                    LastName = "Rizos"
+                };
+                userManager.Create(user);
+                userManager.AddToRole(user.Id, "Admin");
+            }
+
+            if (!context.Users.Any(user => user.UserName == "admin3@gmail.com"))
+            {
+                var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+                var passwordHash = new PasswordHasher();
+
+                var user = new ApplicationUser
+                {
+                    UserName = "KatrakisMan",
+                    Email = "admin3@gmail.com",
+                    DateOfBirth = new DateTime(1994, 1, 1),
+                    PasswordHash = passwordHash.HashPassword("Admin123!"),
+                    FirstName = "Thanos",
+                    LastName = "Katrakis"
+                };
+                userManager.Create(user);
+                userManager.AddToRole(user.Id, "Admin");
+            }
+
+            if (!context.Users.Any(user => user.UserName == "admin4@gmail.com"))
+            {
+                var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+                var passwordHash = new PasswordHasher();
+
+                var user = new ApplicationUser
+                {
+                    UserName = "ManthosIoannis",
+                    Email = "admin4@gmail.com",
+                    DateOfBirth = new DateTime(1994, 1, 1),
+                    PasswordHash = passwordHash.HashPassword("Admin123!"),
+                    FirstName = "Ioannis",
+                    LastName = "Manos"
+                };
+                userManager.Create(user);
+                userManager.AddToRole(user.Id, "Admin");
+            }
+
+            // *** ~~~ ~~~ ~~~ *** Users *** ~~~ ~~~ ~~~ *** 
             ApplicationUser a1 = new ApplicationUser() { FirstName = "Maria", LastName = "Kalimeri", DateOfBirth = new DateTime(1993, 05, 27), UserName = "mkalimeri93!"};
             ApplicationUser a2 = new ApplicationUser() { FirstName = "Nikolaos", LastName = "Koromilakis", DateOfBirth = new DateTime(1980, 09, 18), UserName = "nkoromilakis80!"};
             ApplicationUser a3 = new ApplicationUser() { FirstName = "Konstantinos", LastName = "Peponakis", DateOfBirth = new DateTime(2001, 07, 23), UserName = "kpeponakis01!"};

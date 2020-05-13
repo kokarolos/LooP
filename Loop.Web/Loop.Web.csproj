@@ -982,6 +982,7 @@
     <Content Include="Images\Avatars\young_boy.png" />
     <Content Include="Images\Avatars\young_girl.png" />
     <Content Include="Images\Avatars\young_girl2.png" />
+    <Content Include="Images\chatbot.png" />
     <Content Include="Images\looptrace.png" />
     <Content Include="Images\noImg.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
