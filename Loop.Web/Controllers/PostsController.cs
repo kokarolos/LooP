@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using Loop.Database;
@@ -35,20 +37,31 @@ namespace Loop.Web.Controllers
         // GET: Posts/Create
         public ActionResult Create()
         {
+            ViewBag.SelectedTagsIds = db.Tags.GetAll().Select(x => new SelectListItem()
+            {
+                Value = x.TagId.ToString(),
+                Text = x.Title
+            });
+
+          
+
             return View();
         }
+
+
+        // edwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
 
         // POST: Posts/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PostId,Title,Text,DateTime")] Post post)
+        public ActionResult Create([Bind(Include = "PostId,Title,Text,DateTime,ApplicationUserId")] Post post, IEnumerable<int> SelectedTagsIds)
         {
             if (ModelState.IsValid)
             {
                
-                db.Posts.Insert(post);
+                db.Posts.Insert(post,SelectedTagsIds);
                 db.Save();
                 return RedirectToAction("Index");
             }

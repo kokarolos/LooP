@@ -11,6 +11,7 @@ namespace Loop.Services
         IApplicationUserRepository Users { get; }
         IOrderRepository Orders { get; }
         IOrderProductRepository OrderProducts { get; }
+        ITagRepository Tags { get; }
 
         void Save();
     }
