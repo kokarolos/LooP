@@ -9,8 +9,6 @@
     using System.Collections.Generic;
     using System.Data.Entity.Migrations;
     using System.Linq;
-    using Twilio.Types;
-
     internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
     {
         public Configuration()
@@ -60,7 +58,7 @@
 
                 var user = new ApplicationUser
                 {
-                    UserName = "admin1@gmail.com",
+                    UserName = "karolos",
                     Email = "admin1@gmail.com",
                     DateOfBirth = new DateTime(1994, 1, 1),
                     PasswordHash = passwordHash.HashPassword("Admin123!"),
