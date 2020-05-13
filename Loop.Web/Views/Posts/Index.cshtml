@@ -65,7 +65,7 @@
                                         {
                                             <tr>
                                                 <td class="topic-data">
-                                                    @if (post.ApplicationUser.UserPhoto != null)
+                                                    @*@if (post.ApplicationUser.UserPhoto != null)
                                                     {
                                                         string imageBase64 = Convert.ToBase64String(post.ApplicationUser.UserPhoto);
                                                         string imageSrc = string.Format("data:image/png;base64,{0}", imageBase64);
@@ -74,9 +74,9 @@
                                                     else
                                                     {
                                                         <img src="@Url.Action("UserPhotos", "User",new { id = post.ApplicationUser.Id } )" />
-                                                    }
+                                                    }*@
 
-                                                    <span>@post.ApplicationUser.UserName</span>
+                                                    @*<span>@post.ApplicationUser.UserName</span>*@
                                                     <em>@post.DateTime</em>
                                                 </td>
                                                 <td class="date-n-reply">

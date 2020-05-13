@@ -51,18 +51,12 @@ namespace Loop.Web.Controllers
 
         // edwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
 
-
-
-
-
-
-
         // POST: Posts/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PostId,Title,Text,DateTime")] Post post, IEnumerable<int> SelectedTagsIds)
+        public ActionResult Create([Bind(Include = "PostId,Title,Text,DateTime,ApplicationUserId")] Post post, IEnumerable<int> SelectedTagsIds)
         {
             if (ModelState.IsValid)
             {
