@@ -4,14 +4,62 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
 
-@using (Html.BeginForm()) 
+@*<section>
+        <div class="gap gray-bg">
+            <div class="container">
+                <div class="row merged20">
+                    <div class="col-md-9">
+                        <div class="forum-warper">
+                            <div class="forum-form">
+                                <div class="central-meta">
+                                    <form method="post" class="c-form">
+                                        <div>
+                                            @Html.LabelFor(model => model.Tags)
+                                            <input type="text" placeholder="Category">
+                                        </div>
+                                        <div>
+                                            @Html.LabelFor(model => model.Title)
+                                            <input type="text" placeholder="Sub Category">
+                                        </div>
+                                        <div>
+                                            @Html.LabelFor(model => model.Text)
+                                            <textarea rows="8" placeholder="write someting"></textarea>
+                                        </div>
+                                        <div>
+                                            @Html.LabelFor(model => model.DateTime)
+                                            <input type="datetime" placeholder="Date ">
+                                        </div>
+
+                                        <div>
+                                            @Html.ActionLink("Back to List", "Index")
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-md-offset-2 col-md-10">
+                                                <input type="submit" value="Create" class="btn btn-default" />
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <button class="main-btn" type="submit" data-ripple="">Post Topic</button>
+                                            <button class="main-btn3" type="submit" data-ripple="">Cancel</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>*@
+
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>Post</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -38,14 +86,42 @@
             </div>
         </div>
 
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ApplicationUser, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.DropDownListFor(model => model.ApplicationUser, new SelectList(Model.ApplicationUser.FirstName, "Id", "Name"), "- Please Select -")*@
+                @Html.EditorFor(model => model.DateTime, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DateTime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        @*HERE WE NEED TAGS*@
+
+        <div class="form-group">
+            <div class="col-md">
+                @Html.Label("Add Tags")
+                @Html.ListBox("SelectedTagsIds", null, new { @class = "col-md form-control" });
+            </div>
+        </div>
+
+
+
+
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
-    </div>
-}
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
+
+    </div>
+
+}

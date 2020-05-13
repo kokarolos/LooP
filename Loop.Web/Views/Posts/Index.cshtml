@@ -1,5 +1,5 @@
-﻿@model IEnumerable<Loop.Entities.Concrete.Product>
-
+﻿@model IEnumerable<Loop.Entities.Post>
+@using Loop.Entities;
 @{
     ViewBag.Title = "Index";
 }
@@ -10,138 +10,171 @@
 
 <div class="se-pre-con"></div>
 <div class="theme-layout">
-    <br />
-    <br />
-
-    <div class="container">
-        <div class="row merged20">
-            <div class="col-lg-12">
-                <div class="forum-warper">
-                    <div class="central-meta">
-                        <div class="title-block">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="align-left">
-                                        <h5>Forum open topic</h5>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="row merged20">
-                                        <div class="col-lg-7 col-md-7 col-sm-7">
-                                            <form method="post">
-                                                <input type="text" placeholder="Search...">
-                                                <button type="submit"><i class="fa fa-search"></i></button>
-                                            </form>
-                                        </div>
-                                        <div class="col-lg-4 col-md-4 col-sm-4">
-                                            <div class="select-options">
-                                                <select class="select">
-                                                    <option>Sort by</option>
-                                                    <option>See All</option>
-                                                    <option>Newest</option>
-                                                    <option>oldest</option>
-                                                    <option>A to Z</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-1 col-md-1 col-sm-1">
-                                            <div class="option-list">
-                                                <i class="fa fa-ellipsis-v"></i>
-                                                <ul>
-                                                    <li class="active"><i class="fa fa-check"></i><a title="" href="#">Show Public</a></li>
-                                                    <li><a title="" href="#">Show only Friends</a></li>
-                                                    <li><a title="" href="#">Hide all Posts</a></li>
-                                                    <li><a title="" href="#">Mute Notifications</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- title block -->
-                </div>
-            </div>
-        </div>
-    </div>
-
     <section>
-        <div class="gap2 gray-bg">
+        <div class="gap gray-bg">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="row merged20" id="page-contents">
-                            <div class="col-lg-12">
-
-                                <div class="load-more">
-                                    @foreach (var product in Model)
-                                    {
-                                        <div class="central-meta item">
-                                            <div class="classic-post">
-                                                <figure>
-                                                    <img src="https://image.slidesharecdn.com/c-150513072348-lva1-app6892/95/c-tutorial-1-638.jpg?cb=1431501877" style="width:150px; height:150px" alt="">
-                                                    <span class="yellow">Featured</span>
-                                                </figure>
-                                                <div class="classic-pst-meta">
-                                                    <div class="more">
-                                                        <div class="more-post-optns">
-                                                            <i class="ti-more-alt"></i>
-                                                            <ul>
-                                                                <li><i class="fa fa-pencil-square-o"></i>Edit Post</li>
-                                                                <li><i class="fa fa-trash-o"></i>Delete Post</li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <h4><i class="fa fa-check-circle" title="verified"></i> <a href="#" title="">@product.Title</a></h4>
-                                                    <div style="width:600px"><p>@Html.ActionLink(product.Description, "Details", new { id = product.ProductId })</p></div>
-                                                    <span class="prise">$3000</span>
-                                                    <div class="location-area">
-                                                        <a href="#" class="main-btn" title="">Add to Cart</a>
+                <div class="row merged20">
+                    <div class="col-lg-9">
+                        <div class="forum-warper">
+                            <div class="central-meta">
+                                <div class="title-block">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="align-left">
+                                                <h5>Forum open topic</h5>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="row merged20">
+                                                <div class="col-lg-7 col-md-7 col-sm-7">
+                                                    <form method="post">
+                                                        <input type="text" placeholder="Search...">
+                                                        <button type="submit"><i class="fa fa-search"></i></button>
+                                                    </form>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 col-sm-4">
+                                                    <div class="select-options">
+                                                        <select class="select">
+                                                            <option>Sort by</option>
+                                                            <option>See All</option>
+                                                            <option>Newest</option>
+                                                            <option>oldest</option>
+                                                            <option>A to Z</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    }
-
+                                    </div>
                                 </div>
-                            </div><!-- centerl meta -->
+                            </div><!-- title block -->
+                        </div>
+                        <div class="central-meta">
+                            <div class="forum-open">
+                                <h5 class=""><i class="fa fa-star"></i> Asset for creating a beautiful website</h5>
+                                <table class="table table-responsive">
+                                    <thead>
+                                        <tr>
+                                            <th>Author</th>
+                                            <th>Post Title</th>
+                                            <th>Posts</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var post in Model)
+                                        {
+                                            <tr>
+                                                <td class="topic-data">
+                                                    @if (post.ApplicationUser.UserPhoto != null)
+                                                    {
+                                                        string imageBase64 = Convert.ToBase64String(post.ApplicationUser.UserPhoto);
+                                                        string imageSrc = string.Format("data:image/png;base64,{0}", imageBase64);
+                                                        <img src="@imageSrc" width="100" height="100" style="border-radius : 50%;" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <img src="@Url.Action("UserPhotos", "User",new { id = post.ApplicationUser.Id } )" />
+                                                    }
 
+                                                    <span>@post.ApplicationUser.UserName</span>
+                                                    <em>@post.DateTime</em>
+                                                </td>
+                                                <td class="date-n-reply">
+                                                    <span>@post.Title</span>
+                                                    <a href="#" title="">Reply</a>
+                                                </td>
+                                                <td class="topic-detail">
+                                                    <p>@post.Text</p>
+                                                </td>
+                                                <td>
+                                                    <div class="option-list">
+                                                        <i class="fa fa-ellipsis-v"></i>
+                                                        <ul>
+                                                            <li><a title="" href="#">Edit</a></li>
+                                                            <li><a title="" href="#">Delete</a></li>
+                                                            <li><a title="" href="#">Details</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
+                    @*<div class="col-lg-3">
+                            <aside class="sidebar static">
+                                <div class="widget">
+                                    <div class="singin">
+                                        <h4 class="widget-title">Login</h4>
+                                        <form method="post">
+                                            <input type="text" placeholder="User Name">
+                                            <input type="password" placeholder="Password">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" checked="checked"><i class="check-box"></i>
+                                                    <span>Remember Me</span>
+                                                </label>
+                                            </div>
+                                            <button type="submit">Log In</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="widget">
+                                    <h4 class="widget-title">Forum Statistics</h4>
+                                    <ul class="forum-static">
+                                        <li>
+                                            <a href="" title="">Forums</a>
+                                            <span>13</span>
+                                        </li>
+                                        <li>
+                                            <a href="" title="">Registered Users</a>
+                                            <span>50</span>
+                                        </li>
+                                        <li>
+                                            <a href="" title="">Topics</a>
+                                            <span>14</span>
+                                        </li>
+                                        <li>
+                                            <a href="" title="">Replies</a>
+                                            <span>32</span>
+                                        </li>
+                                        <li>
+                                            <a href="" title="">Topic Tags</a>
+                                            <span>50</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="widget">
+                                    <h4 class="widget-title">Recent Topics</h4>
+                                    <ul class="recent-topics">
+                                        <li>
+                                            <a href="" title="">The new Goddess of War trailer was launched at E3!</a>
+                                            <span>2 hours, 16 minutes ago</span>
+                                            <i>The Community</i>
+                                        </li>
+                                        <li>
+                                            <a href="" title="">The new Goddess of War trailer was launched at E3!</a>
+                                            <span>2 hours, 16 minutes ago</span>
+                                            <i>The Community</i>
+                                        </li>
+                                        <li>
+                                            <a href="" title="">The new Goddess of War trailer was launched at E3!</a>
+                                            <span>2 hours, 16 minutes ago</span>
+                                            <i>The Community</i>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </aside>
+                        </div>*@
                 </div>
             </div>
         </div>
-    </section><!-- content -->
-
-
+    </section>
 </div>
 
+
 <script src="js/main.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI"></script>
-<script src="js/locationpicker.jquery.js"></script>
-<script src="js/map-init.js"></script>
 <script src="js/script.js"></script>
-<script>
-    jQuery(document).ready(function ($) {
-
-        $('#us3').locationpicker({
-            location: {
-                latitude: -8.681013,
-                longitude: 115.23506410000005
-            },
-            radius: 0,
-            inputBinding: {
-                latitudeInput: $('#us3-lat'),
-                longitudeInput: $('#us3-lon'),
-                radiusInput: $('#us3-radius'),
-                locationNameInput: $('#us3-address')
-            },
-            enableAutocomplete: true,
-            onchanged: function (currentLocation, radius, isMarkerDropped) {
-                // Uncomment line below to show alert on each Location Changed event
-                //alert("Location changed. New location (" + currentLocation.latitude + ", " + currentLocation.longitude + ")");
-            }
-        });
-
-    });
-</script>
