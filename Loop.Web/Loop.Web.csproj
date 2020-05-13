@@ -988,7 +988,6 @@
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\Custom\Chat.js" />
     <Content Include="Scripts\Custom\main.min.js" />
     <Content Include="Scripts\Custom\script.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
