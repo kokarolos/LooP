@@ -982,13 +982,13 @@
     <Content Include="Images\Avatars\young_boy.png" />
     <Content Include="Images\Avatars\young_girl.png" />
     <Content Include="Images\Avatars\young_girl2.png" />
+    <Content Include="Images\chatbot.png" />
     <Content Include="Images\looptrace.png" />
     <Content Include="Images\noImg.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\Custom\Chat.js" />
     <Content Include="Scripts\Custom\main.min.js" />
     <Content Include="Scripts\Custom\script.js" />
     <Content Include="Scripts\esm\popper-utils.js" />

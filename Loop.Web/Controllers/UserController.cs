@@ -142,7 +142,7 @@ namespace Loop.Web.Controllers
             if ((user.UserPhoto is null))
             {
 
-                string fileName = HttpContext.Server.MapPath(@"~/Images/noImg.png");
+                string fileName = HttpContext.Server.MapPath(@"~/Images/chatbot.png");
 
                 byte[] imageData = null;
                 FileInfo fileInfo = new FileInfo(fileName);

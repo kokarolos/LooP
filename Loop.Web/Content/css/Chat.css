@@ -120,6 +120,12 @@ a:focus {
     background-color: #273746;
 }
 
+.chat-btn {
+    position: fixed;
+    bottom: 0px;
+    right: 5px;
+}
+
 aside {
     background-attachment: fixed;
     background-clip: border-box;
@@ -135,7 +141,6 @@ aside {
     right: 5px;
     position: fixed;
     width: 300px;
-    font-family: 'Open Sans', sans-serif;
     -webkit-box-shadow: 10px 6px 38px -19px rgba(0,0,0,0.95);
     -moz-box-shadow: 10px 6px 38px -19px rgba(0,0,0,0.95);
     box-shadow: 10px 6px 38px -19px rgba(0,0,0,0.95);
@@ -211,12 +216,14 @@ img {
 }
 
 .open-btn {
+
+    background-color:#273746;
     border: 2px solid #273746;
     border-radius: 32px;
-    color: #273746 !important;
+    color: white !important;
     display: inline-block;
-    margin: 10px 0 0;
-    padding: 9px 16px;
+    margin: 5px 0 0;
+    padding: 5px 10px;
     text-decoration: none !important;
     text-transform: uppercase;
 }
@@ -356,4 +363,17 @@ img {
     position: relative;
     display: inline-block;
     width: 250px;
+}
+form button {
+    border: medium none;
+    border-radius: 30px;
+    color: #fff;
+    float:none;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 10px 10px;
+}
+#message{
+    height:55px;
+    width:212px;
 }
