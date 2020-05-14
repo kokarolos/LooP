@@ -149,11 +149,8 @@ namespace Loop.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                //TODO : Create RegisterViewModel with our custom Properties,
-                //After adding DateOfBirth property to ApplicationUser we can now create user.
-
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email , DateOfBirth = model.DateOfBirth};
-                var result = await UserManager.CreateAsync(user, model.Password); //Edw spaei to result 
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email};
+                var result = await UserManager.CreateAsync(user, model.Password); 
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);

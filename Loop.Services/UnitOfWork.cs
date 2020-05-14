@@ -2,6 +2,7 @@
 using Loop.Services.Interfaces.Repositories;
 using Loop.Services.Repositories;
 using Loop.Services.Repositories_interface;
+using System.Threading.Tasks;
 
 namespace Loop.Services
 {
@@ -35,6 +36,12 @@ namespace Loop.Services
         public void Dispose()
         {
             _context.Dispose();
+        }
+
+        //Async Save to DB
+        public async Task SaveAsync()
+        {
+            await _context.SaveChangesAsync();
         }
     }
 }

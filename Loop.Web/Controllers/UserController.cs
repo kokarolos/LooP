@@ -1,21 +1,39 @@
 ﻿using System;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.IO;
-using System.Linq;
 using System.Net;
+using System.Text;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Loop.Database;
-using Loop.Entities;
 using Loop.Entities.Concrete;
 using Loop.Services;
+using Loop.Web.Models;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 
 namespace Loop.Web.Controllers
 {
+    //[Authorize(Roles = "Admin")]
     public class UserController : Controller
     {
+        private ApplicationUserManager _userManager;
         private readonly UnitOfWork db = new UnitOfWork(new ApplicationDbContext());
+
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
 
         // GET: User
         public ActionResult Index()
@@ -39,9 +57,12 @@ namespace Loop.Web.Controllers
             return View(applicationUser);
         }
 
+
         // GET: User/Create
         public ActionResult Create()
         {
+            //    ViewBag.Name = new SelectList(db.Where(u => !u.Name.Contains("Admin"))
+            //                           .ToList(), "Name", "Name");
             return View();
         }
 
@@ -50,16 +71,22 @@ namespace Loop.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,FirstName,LastName,DateOfBirth")] ApplicationUser applicationUser)
+        public async Task<ActionResult> Create(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
-                db.Users.Insert(applicationUser);
-                db.Save();
-                return RedirectToAction("Index");
+                var user = CreateUser(model);
+                var result = await UserManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                        //user = UserManager.FindByEmail(user.Email);
+                        db.Users.Insert(user);
+                        return RedirectToAction("Index");
+                }
             }
 
-            return View(applicationUser);
+            //If not succeded redirect to form
+            return View(model);
         }
 
         // GET: User/Edit/5
@@ -84,7 +111,6 @@ namespace Loop.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,FirstName,LastName,DateOfBirth")] ApplicationUser applicationUser)
         {
-
 
             // To convert the user uploaded Photo as Byte Array before save to DB    
             byte[] imageData = null;
@@ -143,7 +169,6 @@ namespace Loop.Web.Controllers
             {
 
                 string fileName = HttpContext.Server.MapPath(@"~/Images/chatbot.png");
-
                 byte[] imageData = null;
                 FileInfo fileInfo = new FileInfo(fileName);
                 long imageFileLength = fileInfo.Length;
@@ -157,7 +182,23 @@ namespace Loop.Web.Controllers
             {
                 return null;
             }
-          
+
+        }
+
+        //Responsive for creating new User from RegisterViewModel
+        private ApplicationUser CreateUser(RegisterViewModel model)
+        {
+            var user = new ApplicationUser()
+            {
+                UserName = model.UserName,
+                Email = model.Email,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                PhoneNumber = model.PhoneNumber,
+                DateOfBirth = model.DateOfBirth,
+                //UserPhoto = model.UserPhoto
+            };
+            return user;
         }
 
         protected override void Dispose(bool disposing)
