@@ -59,7 +59,7 @@ namespace Loop.Web.Controllers
             return View(applicationUser);
         }
 
-
+        // gt dn kserw ti kalei poio
         // GET: User/Create
         public ActionResult Create()
         {
@@ -83,10 +83,20 @@ namespace Loop.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(RegisterViewModel model, string SelectedRolesId)
         {
+            byte[] imageData = null;
+            if (Request.Files.Count > 0)
+            {
+                HttpPostedFileBase poImgFile = Request.Files[0];
+                using (var binary = new BinaryReader(poImgFile.InputStream))
+                {
+                    imageData = binary.ReadBytes(poImgFile.ContentLength);
+                }
+            }
 
             if (ModelState.IsValid)
             {
                 var user = CreateUser(model);
+                user.UserPhoto = imageData;
                 var result = await UserManager.CreateAsync(user, model.Password);
 
                 //TODO:REFACTOR THIS SHIT
@@ -99,11 +109,11 @@ namespace Loop.Web.Controllers
 
                     var role = roles.SingleOrDefault(x => x.Id == SelectedRolesId).Name;
                     UserManager.AddToRole(user.Id, role);
-                    //user = UserManager.FindByEmail(user.Email);
                     db.Users.Insert(user);
-                    return RedirectToAction("Index");
                 }
+
                 db.Save();
+                return RedirectToAction("Index");
             }
 
             //If not succeded redirect to form
@@ -209,7 +219,6 @@ namespace Loop.Web.Controllers
         //Responsive for creating new User from RegisterViewModel
         private ApplicationUser CreateUser(RegisterViewModel model)
         {
-            //Need to pass Role to user
             var user = new ApplicationUser()
             {
                 UserName = model.UserName,
@@ -217,8 +226,7 @@ namespace Loop.Web.Controllers
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 PhoneNumber = model.PhoneNumber,
-                DateOfBirth = model.DateOfBirth,
-                //UserPhoto = model.UserPhoto
+                DateOfBirth = model.DateOfBirth
             };
             return user;
         }

@@ -113,8 +113,9 @@ namespace Loop.Web.Models
         public string PhoneNumber { get; set; }
 
         [Display(Name = "UserPhoto")]
-        public byte[] UserPhoto { get; set; }
+        public HttpPostedFileBase UserPhoto { get; set; }
         
+        //kai kala les n ftaiei auto alla prin valw tn photo efteiaxna kanonika user me roles twra p bhke to avatar @@
         public string RolesId { get;set; }
 
     }

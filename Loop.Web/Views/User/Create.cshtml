@@ -30,13 +30,8 @@
         </div>
     </div>
 
-    @*//TODO: FIX THIS SHIT*@
-    @*<div class="form-group">
-            @Html.LabelFor(m => m.UserPhoto)
-            <div class="col-md-10">
-                <input type="file" name="UserPhoto" id="fileUpload" accept=".png,.jpg,.jpeg,.gif,.tif" />
-            </div>
-        </div>*@
+
+
 
     <div class="form-group">
         @Html.LabelFor(model => model.Password)
@@ -86,6 +81,15 @@
         </div>
     </div>
 
+    <div class="form-group">
+        @Html.LabelFor(m => m.UserPhoto)
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.UserPhoto, new { type = "file"})
+            @*<input type="file" name="UserPhoto" value="Upload Image" accept=".png,.jpg,.jpeg,.gif,.tif" />*@
+        </div>
+    </div> 
+
+
     @Html.HiddenFor(x => x.RolesId)
     @Html.DropDownList("SelectedRolesId")
 
@@ -101,3 +105,4 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+paw g tsi :/
