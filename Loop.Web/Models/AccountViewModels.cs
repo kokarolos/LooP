@@ -114,6 +114,9 @@ namespace Loop.Web.Models
 
         [Display(Name = "UserPhoto")]
         public byte[] UserPhoto { get; set; }
+        
+        public string RolesId { get;set; }
+
     }
 
     public class ResetPasswordViewModel

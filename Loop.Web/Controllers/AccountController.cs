@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Loop.Web.Models;
 using Loop.Entities.Concrete;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Loop.Web.Controllers
 {
@@ -147,6 +148,7 @@ namespace Loop.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
+
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email};

@@ -9,6 +9,8 @@
     using System.Collections.Generic;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using System.Security.Cryptography.X509Certificates;
+
     internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
     {
         public Configuration()
@@ -63,7 +65,7 @@
                     DateOfBirth = new DateTime(1994, 1, 1),
                     PasswordHash = passwordHash.HashPassword("Admin123!"),
                     FirstName = "Karolos",
-                    LastName = "Koniewicz"
+                    LastName = "Koniewicz",
                 };
                 userManager.Create(user);
                 userManager.AddToRole(user.Id, "Admin");
@@ -81,7 +83,7 @@
                     DateOfBirth = new DateTime(1994, 1, 1),
                     PasswordHash = passwordHash.HashPassword("Admin123!"),
                     FirstName = "Panos",
-                    LastName = "Rizos"
+                    LastName = "Rizos",
                 };
                 userManager.Create(user);
                 userManager.AddToRole(user.Id, "Admin");
@@ -99,7 +101,7 @@
                     DateOfBirth = new DateTime(1994, 1, 1),
                     PasswordHash = passwordHash.HashPassword("Admin123!"),
                     FirstName = "Thanos",
-                    LastName = "Katrakis"
+                    LastName = "Katrakis",
                 };
                 userManager.Create(user);
                 userManager.AddToRole(user.Id, "Admin");
@@ -117,7 +119,8 @@
                     DateOfBirth = new DateTime(1994, 1, 1),
                     PasswordHash = passwordHash.HashPassword("Admin123!"),
                     FirstName = "Ioannis",
-                    LastName = "Manos"
+                    LastName = "Manos",
+                   
                 };
                 userManager.Create(user);
                 userManager.AddToRole(user.Id, "Admin");

@@ -7,5 +7,7 @@ namespace Loop.Services.Interfaces.Repositories
     {
         //User's Id is string so I created method that takes id as string
         ApplicationUser GetUserById(string id);
+
+
     }
 }

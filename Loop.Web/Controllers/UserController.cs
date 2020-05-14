@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
@@ -61,8 +63,16 @@ namespace Loop.Web.Controllers
         // GET: User/Create
         public ActionResult Create()
         {
-            //    ViewBag.Name = new SelectList(db.Where(u => !u.Name.Contains("Admin"))
-            //                           .ToList(), "Name", "Name");
+            var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
+            var roleMngr = new RoleManager<IdentityRole>(roleStore);
+            var roles = roleMngr.Roles.ToList();
+
+            ViewBag.SelectedRolesId = roles
+                                      .Select(x => new SelectListItem()
+                                      {
+                                          Value = x.Id,
+                                          Text = x.Name
+                                      });
             return View();
         }
 
@@ -71,17 +81,27 @@ namespace Loop.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(RegisterViewModel model)
+        public async Task<ActionResult> Create(RegisterViewModel model, string SelectedRolesId)
         {
+
             if (ModelState.IsValid)
             {
                 var user = CreateUser(model);
                 var result = await UserManager.CreateAsync(user, model.Password);
+
+                //TODO:REFACTOR THIS SHIT
+
                 if (result.Succeeded)
                 {
-                        //user = UserManager.FindByEmail(user.Email);
-                        db.Users.Insert(user);
-                        return RedirectToAction("Index");
+                    var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
+                    var roleMngr = new RoleManager<IdentityRole>(roleStore);
+                    var roles = roleMngr.Roles.ToList();
+
+                    var role = roles.SingleOrDefault(x => x.Id == SelectedRolesId).Name;
+                    UserManager.AddToRole(user.Id, role);
+                    //user = UserManager.FindByEmail(user.Email);
+                    db.Users.Insert(user);
+                    return RedirectToAction("Index");
                 }
                 db.Save();
             }
@@ -189,6 +209,7 @@ namespace Loop.Web.Controllers
         //Responsive for creating new User from RegisterViewModel
         private ApplicationUser CreateUser(RegisterViewModel model)
         {
+            //Need to pass Role to user
             var user = new ApplicationUser()
             {
                 UserName = model.UserName,

@@ -60,5 +60,6 @@ namespace Loop.Entities.Concrete
         public virtual ICollection<Post> Posts { get; set; }
         public virtual ICollection<Reply> Replies { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
+
     }
 }
