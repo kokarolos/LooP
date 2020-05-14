@@ -38,10 +38,5 @@ namespace Loop.Services
             _context.Dispose();
         }
 
-        //Async Save to DB
-        public async Task SaveAsync()
-        {
-            await _context.SaveChangesAsync();
-        }
     }
 }

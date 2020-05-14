@@ -83,6 +83,7 @@ namespace Loop.Web.Controllers
                         db.Users.Insert(user);
                         return RedirectToAction("Index");
                 }
+                db.Save();
             }
 
             //If not succeded redirect to form
