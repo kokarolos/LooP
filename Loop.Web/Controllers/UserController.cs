@@ -13,6 +13,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using System.Collections.Generic;
+using Microsoft.Ajax.Utilities;
 
 namespace Loop.Web.Controllers
 {
@@ -95,14 +96,14 @@ namespace Loop.Web.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 //TODO:REFACTOR THIS SHIT
 
-                if(result.Succeeded)
+                if (result.Succeeded)
                 {
                     var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
                     var roleMngr = new RoleManager<IdentityRole>(roleStore);
                     var roles = roleMngr.Roles.ToList();
 
                     var role = roles.SingleOrDefault(x => x.Id == SelectedRolesId).Name;
-                    var img = new Image() { User = user, Data = imageSize, ImgName = filename, ImgPath = "~/Content/Avatars/"+filename };
+                    var img = new Image() { User = user, Data = imageSize, ImgName = filename, ImgPath = "~/Content/Avatars/" + filename };
                     user.Images = new List<Image>() { img };
                     UserManager.AddToRole(user.Id, role);
                     db.Users.Insert(user);
@@ -134,27 +135,21 @@ namespace Loop.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,FirstName,LastName,DateOfBirth")] ApplicationUser applicationUser)
+        public ActionResult Edit(RegisterViewModel model, HttpPostedFileBase file, string SelectedRolesId)
         {
 
-            // To convert the user uploaded Photo as Byte Array before save to DB    
-            byte[] imageData = null;
-            if (Request.Files.Count > 0)
-            {
-                HttpPostedFileBase poImgFile = Request.Files[0];
-
-                using (var binary = new BinaryReader(poImgFile.InputStream))
-                {
-                    imageData = binary.ReadBytes(poImgFile.ContentLength);
-                }
-            }
             if (ModelState.IsValid)
             {
-                db.Users.Update(applicationUser);
-                db.Save();
-                return RedirectToAction("Index");
+                return View(model);
             }
-            return View(applicationUser);
+            var store = new UserStore<ApplicationUser>(new ApplicationDbContext());
+            var manager = new UserManager<ApplicationUser>(store);
+            var user = manager.FindByEmail(model.Email);
+            var currentUser = EditUser(user, model);
+            
+           
+            TempData["msg"] = "Profile Changes Saved !";
+            return RedirectToAction("ListUser");
         }
 
 
@@ -198,6 +193,16 @@ namespace Loop.Web.Controllers
                 DateOfBirth = model.DateOfBirth,
             };
             return user;
+        }   
+        //Responsive for Editing incoming User from RegisterViewModel
+        private ApplicationUser EditUser(ApplicationUser user,RegisterViewModel model)
+        {
+            currentUser.FirstName = model.FirstName;
+            currentUser.LastName = model.LastName;
+            currentUser.Mobile = model.Mobile;
+            currentUser.Address = model.Address;
+            currentUser.City = model.City;
+            currentUser.EmailConfirmed = model.EmailConfirmed;
         }
 
         protected override void Dispose(bool disposing)

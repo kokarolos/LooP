@@ -71,6 +71,8 @@ namespace Loop.Web.Models
 
     public class RegisterViewModel
     {
+        public string ApplicationUserId { get; set; }
+
         [Display(Name = "Role")]
         public string UserRole { get; set; }
 
