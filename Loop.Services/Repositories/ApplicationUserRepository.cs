@@ -26,7 +26,7 @@ namespace Loop.Services.Repositories
         }
         public override IEnumerable<ApplicationUser> GetAll()
         {
-            return Database.ApplicationUsers.Include(x => x.Image).AsEnumerable();
+            return Database.ApplicationUsers.Include(x => x.Images).AsEnumerable();
         }
     }
 }

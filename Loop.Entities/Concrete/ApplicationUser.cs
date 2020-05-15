@@ -54,8 +54,7 @@ namespace Loop.Entities.Concrete
 
         [Display(Name = "UserPhoto")]
 
-        //public int? ImageId { get; set; }
-        public virtual Image Image { get; set; }
+        public ICollection<Image> Images { get; set; }
         public virtual ICollection<Post> Posts { get; set; }
         public virtual ICollection<Reply> Replies { get; set; }
         public virtual ICollection<Order> Orders { get; set; }

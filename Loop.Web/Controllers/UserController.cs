@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using System.Linq;
-using System.Data.Entity;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web;
@@ -13,6 +12,7 @@ using Loop.Web.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
+using System.Collections.Generic;
 
 namespace Loop.Web.Controllers
 {
@@ -78,40 +78,35 @@ namespace Loop.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(RegisterViewModel model, string SelectedRolesId)
+        public async Task<ActionResult> Create(RegisterViewModel model, HttpPostedFileBase file, string SelectedRolesId)
         {
-
-            Image img = new Image();
             if (ModelState.IsValid)
             {
-                if (Request.Files.Count > 0)
-                {
-                    HttpPostedFileBase fileImg = Request.Files[0];
-                    var filename = Path.GetFileName(fileImg.FileName);
-                    var path = Path.Combine(Server.MapPath("/Images/"), filename);
-                    byte[] imageSize = new byte[fileImg.ContentLength];
-                    fileImg.InputStream.Read(imageSize, 0, fileImg.ContentLength);
-                    img.ImgPath = path;
-                    img.ImgName = fileImg.FileName.Split('\\').Last();
-                    img.Data = imageSize;
-                }
-                model.Avatar = img;
+                var filename = Path.GetFileName(file.FileName);
+                var path = Path.Combine(Server.MapPath("~/Content/Avatars/" + filename));
+                file.SaveAs(path);
+
+                byte[] imageSize = new byte[file.ContentLength];
+                file.InputStream.Read(imageSize, 0, file.ContentLength);
 
                 var user = CreateUser(model);
                 var result = await UserManager.CreateAsync(user, model.Password);
-
                 //TODO:REFACTOR THIS SHIT
 
-                if (result.Succeeded)
+                if(result.Succeeded)
                 {
                     var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
                     var roleMngr = new RoleManager<IdentityRole>(roleStore);
                     var roles = roleMngr.Roles.ToList();
 
                     var role = roles.SingleOrDefault(x => x.Id == SelectedRolesId).Name;
+                    var img = new Image() { User = user, Data = imageSize, ImgName = filename, ImgPath = "~/Content/Avatars/"+filename };
+                    user.Images = new List<Image>() { img };
                     UserManager.AddToRole(user.Id, role);
                     db.Users.Insert(user);
                 }
+
+
                 return RedirectToAction("Index");
             }
 
@@ -202,7 +197,7 @@ namespace Loop.Web.Controllers
                 LastName = model.LastName,
                 PhoneNumber = model.PhoneNumber,
                 DateOfBirth = model.DateOfBirth,
-                Image = model.Avatar
+
             };
             return user;
         }

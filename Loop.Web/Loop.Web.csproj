@@ -210,12 +210,10 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ImageUploadController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
-    <Compile Include="Controllers\VideoUploadController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -973,18 +971,18 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Images\Avatars\man1.png" />
-    <Content Include="Images\Avatars\manb.png" />
-    <Content Include="Images\Avatars\old_man.png" />
-    <Content Include="Images\Avatars\Old_woman.png" />
-    <Content Include="Images\Avatars\woman1.png" />
-    <Content Include="Images\Avatars\womanb.png" />
-    <Content Include="Images\Avatars\young_boy.png" />
-    <Content Include="Images\Avatars\young_girl.png" />
-    <Content Include="Images\Avatars\young_girl2.png" />
-    <Content Include="Images\chatbot.png" />
-    <Content Include="Images\looptrace.png" />
-    <Content Include="Images\noImg.png" />
+    <Content Include="Content\Avatars\Static\man1.png" />
+    <Content Include="Content\Avatars\Static\manb.png" />
+    <Content Include="Content\Avatars\Static\old_man.png" />
+    <Content Include="Content\Avatars\Static\Old_woman.png" />
+    <Content Include="Content\Avatars\Static\woman1.png" />
+    <Content Include="Content\Avatars\Static\womanb.png" />
+    <Content Include="Content\Avatars\Static\young_boy.png" />
+    <Content Include="Content\Avatars\Static\young_girl.png" />
+    <Content Include="Content\Avatars\Static\young_girl2.png" />
+    <Content Include="Content\Avatars\chatbot.png" />
+    <Content Include="Content\Avatars\looptrace.png" />
+    <Content Include="Content\Avatars\noImg.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -1158,8 +1156,6 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Shared\_Footer.cshtml" />
-    <Content Include="Views\VideoUpload\Index.cshtml" />
-    <Content Include="Views\ImageUpload\Index.cshtml" />
     <Content Include="Views\Posts\Create.cshtml" />
     <Content Include="Views\Posts\Delete.cshtml" />
     <Content Include="Views\Posts\Details.cshtml" />

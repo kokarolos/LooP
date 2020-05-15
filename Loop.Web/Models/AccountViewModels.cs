@@ -113,7 +113,7 @@ namespace Loop.Web.Models
         public string PhoneNumber { get; set; }
 
         [Display(Name = "UserPhoto")]
-        public Image Avatar { get; set; }
+        public List<Image> Avatars { get; set; }
         
         public string RolesId { get;set; }
 

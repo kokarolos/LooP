@@ -21,6 +21,5 @@ namespace Loop.Entities
         [Required]
         public virtual ApplicationUser ApplicationUser { get; set; }
         public virtual Post Post { get; set; }
-        public virtual ICollection<Attachment> Attachments { get; set; }
     }
 }

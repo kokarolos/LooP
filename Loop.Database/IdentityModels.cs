@@ -15,9 +15,7 @@ namespace Loop.Database
         public DbSet<Order> Orders { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<OrderProduct> OrderProducts { get; set; }
-        public DbSet<Attachment> Attachments { get; set; }
         public DbSet<Image> Images { get; set; }
-        //public DbSet<VideoFile> VideoFiles { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
         public ApplicationDbContext()
@@ -32,12 +30,6 @@ namespace Loop.Database
             modelBuilder.Entity<Product>()
                         .Map<Tutorial>(m => m.Requires("ProductType").HasValue("Tutorial"))
                         .Map<Book>(m => m.Requires("ProductType").HasValue("Book"));
-            modelBuilder.Entity<ApplicationUser>()
-                            .HasOptional(u => u.Image)
-                            .WithOptionalDependent()
-                            .Map(m => m.MapKey("ImageId"))
-                            .WillCascadeOnDelete(false);
-
         }
 
         public static ApplicationDbContext Create()

@@ -12,7 +12,5 @@ namespace Loop.Entities.Concrete
         [Display(Name = "Duration")]
         public TimeSpan Duration { get; set; }
 
-
-        public virtual VideoFile  VideoFile { get; set; }
     }
 }
