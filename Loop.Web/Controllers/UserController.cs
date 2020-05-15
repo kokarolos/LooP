@@ -1,26 +1,44 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Loop.Database;
 using Loop.Entities;
 using Loop.Entities.Concrete;
 using Loop.Services;
+using Loop.Web.Models;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
+using System.Collections.Generic;
 
 namespace Loop.Web.Controllers
 {
+    //[Authorize(Roles = "Admin")]
     public class UserController : Controller
     {
+        private ApplicationUserManager _userManager;
         private readonly UnitOfWork db = new UnitOfWork(new ApplicationDbContext());
+
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
 
         // GET: User
         public ActionResult Index()
         {
-            return View(db.Users.GetAll());
+            var users = db.Users.GetAll().ToList();
+            return View(users);
 
         }
 
@@ -42,6 +60,16 @@ namespace Loop.Web.Controllers
         // GET: User/Create
         public ActionResult Create()
         {
+            var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
+            var roleMngr = new RoleManager<IdentityRole>(roleStore);
+            var roles = roleMngr.Roles.ToList();
+
+            ViewBag.SelectedRolesId = roles
+                                      .Select(x => new SelectListItem()
+                                      {
+                                          Value = x.Id,
+                                          Text = x.Name
+                                      });
             return View();
         }
 
@@ -50,16 +78,40 @@ namespace Loop.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,FirstName,LastName,DateOfBirth")] ApplicationUser applicationUser)
+        public async Task<ActionResult> Create(RegisterViewModel model, HttpPostedFileBase file, string SelectedRolesId)
         {
+            //TODO:Spaghetti cleanex
+
             if (ModelState.IsValid)
             {
-                db.Users.Insert(applicationUser);
-                db.Save();
+                var filename = Path.GetFileName(file.FileName);
+                var path = Path.Combine(Server.MapPath("~/Content/Avatars/" + filename));
+                file.SaveAs(path);
+
+                byte[] imageSize = new byte[file.ContentLength];
+                file.InputStream.Read(imageSize, 0, file.ContentLength);
+
+                var user = CreateUser(model);
+                var result = await UserManager.CreateAsync(user, model.Password);
+                //TODO:REFACTOR THIS SHIT
+
+                if(result.Succeeded)
+                {
+                    var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
+                    var roleMngr = new RoleManager<IdentityRole>(roleStore);
+                    var roles = roleMngr.Roles.ToList();
+
+                    var role = roles.SingleOrDefault(x => x.Id == SelectedRolesId).Name;
+                    var img = new Image() { User = user, Data = imageSize, ImgName = filename, ImgPath = "~/Content/Avatars/"+filename };
+                    user.Images = new List<Image>() { img };
+                    UserManager.AddToRole(user.Id, role);
+                    db.Users.Insert(user);
+                }
                 return RedirectToAction("Index");
             }
-
-            return View(applicationUser);
+            db.Save();
+            //If not succeded redirect to form
+            return View(model);
         }
 
         // GET: User/Edit/5
@@ -85,7 +137,6 @@ namespace Loop.Web.Controllers
         public ActionResult Edit([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,FirstName,LastName,DateOfBirth")] ApplicationUser applicationUser)
         {
 
-
             // To convert the user uploaded Photo as Byte Array before save to DB    
             byte[] imageData = null;
             if (Request.Files.Count > 0)
@@ -99,7 +150,6 @@ namespace Loop.Web.Controllers
             }
             if (ModelState.IsValid)
             {
-                applicationUser.UserPhoto = imageData;
                 db.Users.Update(applicationUser);
                 db.Save();
                 return RedirectToAction("Index");
@@ -135,29 +185,19 @@ namespace Loop.Web.Controllers
             return RedirectToAction("Index");
         }
 
-
-        public FileContentResult UserPhotos(string id)
+        //Responsive for creating new User from RegisterViewModel
+        private ApplicationUser CreateUser(RegisterViewModel model)
         {
-            var user = db.Users.GetUserById(id);
-            if ((user.UserPhoto is null))
+            var user = new ApplicationUser()
             {
-
-                string fileName = HttpContext.Server.MapPath(@"~/Images/chatbot.png");
-
-                byte[] imageData = null;
-                FileInfo fileInfo = new FileInfo(fileName);
-                long imageFileLength = fileInfo.Length;
-                FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
-                BinaryReader br = new BinaryReader(fs);
-                imageData = br.ReadBytes((int)imageFileLength);
-
-                return File(imageData, "image/png");
-            }
-            else
-            {
-                return null;
-            }
-          
+                UserName = model.UserName,
+                Email = model.Email,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                PhoneNumber = model.PhoneNumber,
+                DateOfBirth = model.DateOfBirth,
+            };
+            return user;
         }
 
         protected override void Dispose(bool disposing)

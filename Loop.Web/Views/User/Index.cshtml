@@ -58,7 +58,7 @@
                         <thead>
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.UserPhoto)
+                                    @Html.DisplayNameFor(model => model.Images)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.Email)
@@ -109,24 +109,24 @@
                             {
                                 <tr>
                                     <td class="topic-data">
-                                        @if (user.UserPhoto != null)
+                                        @if (user.Images.Count > 0)
                                         {
-                                            string imageBase64 = Convert.ToBase64String(user.UserPhoto);
-                                            string imageSrc = string.Format("data:image/png;base64,{0}", imageBase64);
-                                            <img src="@imageSrc" width="100" height="100" style="border-radius : 50%;" />
+                                            foreach (var item in user.Images)
+                                            {
+                                                <img src="@Url.Content(item.ImgPath) " width="100" height="100" />
+                                            }
                                         }
                                         else
                                         {
-                                            <img src="@Url.Action("UserPhotos", "User",new { id = user.Id } )" />
+                                            <img src="@Url.Content("~/Content/Avatars/chatbot.png")" width="100" height="100" />
                                         }
-                                        <span>@user.UserName</span>
-                                        @*TODO: Here will be displayed user Role*@
+
                                         <em>Participant</em>
                                     </td>
                                     <td>
                                         @user.Email
                                     </td>
-                                    
+
                                     <td class="topic-detail">
                                     </td>
                                     <td>

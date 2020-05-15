@@ -9,6 +9,8 @@
     using System.Collections.Generic;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using System.Security.Cryptography.X509Certificates;
+
     internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
     {
         public Configuration()
@@ -63,7 +65,7 @@
                     DateOfBirth = new DateTime(1994, 1, 1),
                     PasswordHash = passwordHash.HashPassword("Admin123!"),
                     FirstName = "Karolos",
-                    LastName = "Koniewicz"
+                    LastName = "Koniewicz",
                 };
                 userManager.Create(user);
                 userManager.AddToRole(user.Id, "Admin");
@@ -81,7 +83,7 @@
                     DateOfBirth = new DateTime(1994, 1, 1),
                     PasswordHash = passwordHash.HashPassword("Admin123!"),
                     FirstName = "Panos",
-                    LastName = "Rizos"
+                    LastName = "Rizos",
                 };
                 userManager.Create(user);
                 userManager.AddToRole(user.Id, "Admin");
@@ -99,7 +101,7 @@
                     DateOfBirth = new DateTime(1994, 1, 1),
                     PasswordHash = passwordHash.HashPassword("Admin123!"),
                     FirstName = "Thanos",
-                    LastName = "Katrakis"
+                    LastName = "Katrakis",
                 };
                 userManager.Create(user);
                 userManager.AddToRole(user.Id, "Admin");
@@ -117,7 +119,8 @@
                     DateOfBirth = new DateTime(1994, 1, 1),
                     PasswordHash = passwordHash.HashPassword("Admin123!"),
                     FirstName = "Ioannis",
-                    LastName = "Manos"
+                    LastName = "Manos",
+                   
                 };
                 userManager.Create(user);
                 userManager.AddToRole(user.Id, "Admin");
@@ -604,13 +607,6 @@
             a18.Orders = new List<Order> { o20 };
 
 
-            // *** ~~~ ~~~ ~~~ *** Video Files *** ~~~ ~~~ ~~~ ***
-            VideoFile v1 = new VideoFile() { Vname = "NightStalker", Vpath = "~/VideoFiles/NIGHTSTALKER - Sweet Knife (HD Official Music Video).mp4" };
-
-            // *** ~~~ ~~~ ~~~ *** Image Files *** ~~~ ~~~ ~~~ ***
-            ImageFile img1 = new ImageFile() { ImgName = "Schema", ImgPath = "~/ImageFiles/σχημα.PNG" };
-
-
             context.Users.AddOrUpdate(x => x.UserName, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10,
                 a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21,
                 a22, a23, a24, a25, a26, a27, a28, a29, a30);
@@ -675,8 +671,6 @@
                 op41, op42, op43, op44, op45, op46, op47, op48, op49, op50,
                 op51, op52, op53, op54, op55, op56, op57
                 );
-            context.VideoFiles.AddOrUpdate(x => x.Vname, v1);
-            context.ImageFiles.AddOrUpdate(x => x.ImgName, img1);
             context.SaveChanges();
 
             #endregion

@@ -1,6 +1,10 @@
-﻿using Loop.Database;
+﻿using System.Linq;
+using System.Data.Entity;
+using Loop.Database;
 using Loop.Entities.Concrete;
 using Loop.Services.Interfaces.Repositories;
+using System.Collections.Generic;
+
 
 namespace Loop.Services.Repositories
 {
@@ -19,6 +23,10 @@ namespace Loop.Services.Repositories
         public ApplicationUser GetUserById(string id)
         {
             return Database.ApplicationUsers.Find(id);
+        }
+        public override IEnumerable<ApplicationUser> GetAll()
+        {
+            return Database.ApplicationUsers.Include(x => x.Images).AsEnumerable();
         }
     }
 }

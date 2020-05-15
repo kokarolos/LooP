@@ -1,6 +1,5 @@
 ﻿using Loop.Entities.Concrete;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Loop.Entities
@@ -21,6 +20,5 @@ namespace Loop.Entities
         [Required]
         public virtual ApplicationUser ApplicationUser { get; set; }
         public virtual Post Post { get; set; }
-        public virtual ICollection<Attachment> Attachments { get; set; }
     }
 }

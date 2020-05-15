@@ -53,12 +53,11 @@ namespace Loop.Entities.Concrete
         }
 
         [Display(Name = "UserPhoto")]
-        public byte[] UserPhoto { get; set; }
 
-
-        //public virtual ImageFile Avatar { get; set; }
+        public ICollection<Image> Images { get; set; }
         public virtual ICollection<Post> Posts { get; set; }
         public virtual ICollection<Reply> Replies { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
+
     }
 }
