@@ -239,6 +239,7 @@
     <Content Include="Content\css\main.min.css" />
     <Content Include="Content\css\responsive.css" />
     <Content Include="Content\css\style.css" />
+    <Content Include="Content\css\customStylesheet.css" />
     <Content Include="Content\css\weather-icon.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\themify.svg" />

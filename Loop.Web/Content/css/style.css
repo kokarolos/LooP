@@ -7021,25 +7021,25 @@ a.addnewforum {
 	height: 100vh;
 }
 .we-login-register {
-    background: rgba(250,99,66,.99);
+    background: #273746;
     float: left;
     padding: 40px 55px 50px;
     position: relative;
     text-align: center;
     width: 100%;
-	color:#fff;
+    color: #fff;
 }
-.we-login-register::before {
-    border-color: rgba(250,99,66,.99) transparent transparent;
-    border-style: solid;
-    border-width: 40px 175px 0;
-    bottom: -39px;
-    content: "";
-    height: 0;
-    left: 0;
-    position: absolute;
-    width: 0;
-}
+    .we-login-register::before {
+        border-color: #273746 transparent transparent;
+        border-style: solid;
+        border-width: 40px 175px 0;
+        bottom: -39px;
+        content: "";
+        height: 0;
+        left: 0;
+        position: absolute;
+        width: 0;
+    }
 
 .register .we-form {
     margin-bottom: 25px;

@@ -1,0 +1,15 @@
+﻿.about-main {
+    padding-top: 10%;
+}
+
+.about-p {
+    font-size: 1.2em;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #999;
+    line-height: 2.5;
+}
+
+.index-main-header {
+    font-size: 2em;
+}
