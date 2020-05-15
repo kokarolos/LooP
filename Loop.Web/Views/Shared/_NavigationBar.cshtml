@@ -11,24 +11,26 @@
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
                     <li class="drop-down">
-                        <a href="">Menu</a>
+                        <a href="/Home/Index">Menu</a>
                         <ul>
                             <li><a href="#">Jobs</a></li>
                             <li class="drop-down">
-                                <a href="#">Products</a>
-                                <ul>
+                                <a href="/Products/Index">Products</a>
+                                @* MAYBE DELETE !!!
+                                    <ul>
                                     <li><a href="#">Book Tutorials</a></li>
                                     <li><a href="#">Videos Tutorials</a></li>
-                                </ul>
+                                </ul>*@
                             </li>
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">Forum</a></li>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Contact</a></li>
+                            <li><a href="/Home/About">About</a></li>
+                            <li><a href="/Post/Index">Forum</a></li>
+                            <li><a href="/Home/Index">Home</a></li>
+                            @* NOT SURE IF NEEDED !!!!
+                                <li><a href="">Contact</a></li>*@
                         </ul>
                     </li>
-                    <li class="get-started"><a href="#">Log in</a></li>
-                    <li class="get-started"><a href="#">Sign up</a></li>
+                    <li class="get-started"><a href="/Account/Login">Log in</a></li>
+                    <li class="get-started"><a href="/Account/Register">Sign up</a></li>
                 </ul>
 
             </nav><!-- .nav-menu -->
