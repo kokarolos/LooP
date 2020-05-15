@@ -15,7 +15,7 @@ namespace Loop.Web.Controllers
         // GET: Upload
         public ActionResult Index()
         {
-            List<ImageFile> imageList = new List<ImageFile>();
+            List<Image> imageList = new List<Image>();
             string mainconn = ConfigurationManager.ConnectionStrings["Connection"].ConnectionString;
             SqlConnection sqlconn = new SqlConnection(mainconn);
             string sqlquery = "select * from [dbo].[ImageFiles]";
@@ -24,7 +24,7 @@ namespace Loop.Web.Controllers
             SqlDataReader sdr = sqlcomm.ExecuteReader();
             while (sdr.Read())
             {
-                ImageFile im = new ImageFile();
+                Image im = new Image();
                 im.ImgName = sdr["ImgName"].ToString();
                 im.ImgPath = sdr["ImgPath"].ToString();
                 imageList.Add(im);

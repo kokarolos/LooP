@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity.Infrastructure;
-using System.Data.Entity.Validation;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
+using System.Data.Entity;
 using System.Net;
-using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Loop.Database;
+using Loop.Entities;
 using Loop.Entities.Concrete;
 using Loop.Services;
 using Loop.Web.Models;
@@ -40,7 +37,8 @@ namespace Loop.Web.Controllers
         // GET: User
         public ActionResult Index()
         {
-            return View(db.Users.GetAll());
+            var users = db.Users.GetAll().ToList();
+            return View(users);
 
         }
 
@@ -59,7 +57,6 @@ namespace Loop.Web.Controllers
             return View(applicationUser);
         }
 
-        // gt dn kserw ti kalei poio
         // GET: User/Create
         public ActionResult Create()
         {
@@ -83,20 +80,24 @@ namespace Loop.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(RegisterViewModel model, string SelectedRolesId)
         {
-            byte[] imageData = null;
-            if (Request.Files.Count > 0)
-            {
-                HttpPostedFileBase poImgFile = Request.Files[0];
-                using (var binary = new BinaryReader(poImgFile.InputStream))
-                {
-                    imageData = binary.ReadBytes(poImgFile.ContentLength);
-                }
-            }
 
+            Image img = new Image();
             if (ModelState.IsValid)
             {
+                if (Request.Files.Count > 0)
+                {
+                    HttpPostedFileBase fileImg = Request.Files[0];
+                    var filename = Path.GetFileName(fileImg.FileName);
+                    var path = Path.Combine(Server.MapPath("/Images/"), filename);
+                    byte[] imageSize = new byte[fileImg.ContentLength];
+                    fileImg.InputStream.Read(imageSize, 0, fileImg.ContentLength);
+                    img.ImgPath = path;
+                    img.ImgName = fileImg.FileName.Split('\\').Last();
+                    img.Data = imageSize;
+                }
+                model.Avatar = img;
+
                 var user = CreateUser(model);
-                user.UserPhoto = imageData;
                 var result = await UserManager.CreateAsync(user, model.Password);
 
                 //TODO:REFACTOR THIS SHIT
@@ -111,11 +112,10 @@ namespace Loop.Web.Controllers
                     UserManager.AddToRole(user.Id, role);
                     db.Users.Insert(user);
                 }
-
-                db.Save();
                 return RedirectToAction("Index");
             }
 
+            db.Save();
             //If not succeded redirect to form
             return View(model);
         }
@@ -156,7 +156,6 @@ namespace Loop.Web.Controllers
             }
             if (ModelState.IsValid)
             {
-                applicationUser.UserPhoto = imageData;
                 db.Users.Update(applicationUser);
                 db.Save();
                 return RedirectToAction("Index");
@@ -192,30 +191,6 @@ namespace Loop.Web.Controllers
             return RedirectToAction("Index");
         }
 
-
-        public FileContentResult UserPhotos(string id)
-        {
-            var user = db.Users.GetUserById(id);
-            if ((user.UserPhoto is null))
-            {
-
-                string fileName = HttpContext.Server.MapPath(@"~/Images/chatbot.png");
-                byte[] imageData = null;
-                FileInfo fileInfo = new FileInfo(fileName);
-                long imageFileLength = fileInfo.Length;
-                FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
-                BinaryReader br = new BinaryReader(fs);
-                imageData = br.ReadBytes((int)imageFileLength);
-
-                return File(imageData, "image/png");
-            }
-            else
-            {
-                return null;
-            }
-
-        }
-
         //Responsive for creating new User from RegisterViewModel
         private ApplicationUser CreateUser(RegisterViewModel model)
         {
@@ -226,7 +201,8 @@ namespace Loop.Web.Controllers
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 PhoneNumber = model.PhoneNumber,
-                DateOfBirth = model.DateOfBirth
+                DateOfBirth = model.DateOfBirth,
+                Image = model.Avatar
             };
             return user;
         }

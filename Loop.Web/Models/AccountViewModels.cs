@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Web;
+using Loop.Entities;
 
 namespace Loop.Web.Models
 {
@@ -113,9 +113,8 @@ namespace Loop.Web.Models
         public string PhoneNumber { get; set; }
 
         [Display(Name = "UserPhoto")]
-        public HttpPostedFileBase UserPhoto { get; set; }
+        public Image Avatar { get; set; }
         
-        //kai kala les n ftaiei auto alla prin valw tn photo efteiaxna kanonika user me roles twra p bhke to avatar @@
         public string RolesId { get;set; }
 
     }

@@ -30,9 +30,6 @@
         </div>
     </div>
 
-
-
-
     <div class="form-group">
         @Html.LabelFor(model => model.Password)
         <div class="col-md-10">
@@ -82,10 +79,10 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(m => m.UserPhoto)
+        @Html.LabelFor(m => m.Avatar.ImgPath)
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.UserPhoto, new { type = "file"})
-            @*<input type="file" name="UserPhoto" value="Upload Image" accept=".png,.jpg,.jpeg,.gif,.tif" />*@
+            @*@Html.TextBoxFor(m => m.UserPhoto, new { type = "file"})*@
+            <input type="file" name="file" value="Upload Image" accept=".png,.jpg,.jpeg,.gif,.tif" />
         </div>
     </div> 
 
@@ -105,4 +102,3 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-paw g tsi :/

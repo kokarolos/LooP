@@ -58,7 +58,7 @@
                         <thead>
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.UserPhoto)
+                                    @Html.DisplayNameFor(model => model.Image)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.Email)
@@ -109,24 +109,14 @@
                             {
                                 <tr>
                                     <td class="topic-data">
-                                        @if (user.UserPhoto != null)
-                                        {
-                                            string imageBase64 = Convert.ToBase64String(user.UserPhoto);
-                                            string imageSrc = string.Format("data:image/png;base64,{0}", imageBase64);
-                                            <img src="@imageSrc" width="100" height="100" style="border-radius : 50%;" />
-                                        }
-                                        else
-                                        {
-                                            <img src="@Url.Action("UserPhotos", "User",new { id = user.Id } )" />
-                                        }
                                         <span>@user.UserName</span>
-                                        @*TODO: Here will be displayed user Role*@
+                                        @user.Image.ImgName
                                         <em>Participant</em>
                                     </td>
                                     <td>
                                         @user.Email
                                     </td>
-                                    
+
                                     <td class="topic-detail">
                                     </td>
                                     <td>

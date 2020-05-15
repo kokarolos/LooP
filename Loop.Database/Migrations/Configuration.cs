@@ -611,7 +611,7 @@
             VideoFile v1 = new VideoFile() { Vname = "NightStalker", Vpath = "~/VideoFiles/NIGHTSTALKER - Sweet Knife (HD Official Music Video).mp4" };
 
             // *** ~~~ ~~~ ~~~ *** Image Files *** ~~~ ~~~ ~~~ ***
-            ImageFile img1 = new ImageFile() { ImgName = "Schema", ImgPath = "~/ImageFiles/σχημα.PNG" };
+            Image img1 = new Image() { ImgName = "Schema", ImgPath = "~/Images/σχημα.PNG" };
 
 
             context.Users.AddOrUpdate(x => x.UserName, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10,
@@ -678,8 +678,8 @@
                 op41, op42, op43, op44, op45, op46, op47, op48, op49, op50,
                 op51, op52, op53, op54, op55, op56, op57
                 );
-            context.VideoFiles.AddOrUpdate(x => x.Vname, v1);
-            context.ImageFiles.AddOrUpdate(x => x.ImgName, img1);
+            //context.VideoFiles.AddOrUpdate(x => x.Vname, v1);
+            context.Images.AddOrUpdate(x => x.ImgName, img1);
             context.SaveChanges();
 
             #endregion

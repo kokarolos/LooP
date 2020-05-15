@@ -65,7 +65,7 @@
     <Compile Include="Concrete\Post.cs" />
     <Compile Include="Concrete\Product.cs" />
     <Compile Include="Concrete\Tutorial.cs" />
-    <Compile Include="ImageFile.cs" />
+    <Compile Include="Image.cs" />
     <Compile Include="Intermediate\OrderProduct.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Concrete\Reply.cs" />
