@@ -1,6 +1,5 @@
 ﻿using Loop.Entities.Concrete;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Loop.Entities

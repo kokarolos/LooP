@@ -80,6 +80,8 @@ namespace Loop.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(RegisterViewModel model, HttpPostedFileBase file, string SelectedRolesId)
         {
+            //TODO:Spaghetti cleanex
+
             if (ModelState.IsValid)
             {
                 var filename = Path.GetFileName(file.FileName);
@@ -105,11 +107,8 @@ namespace Loop.Web.Controllers
                     UserManager.AddToRole(user.Id, role);
                     db.Users.Insert(user);
                 }
-
-
                 return RedirectToAction("Index");
             }
-
             db.Save();
             //If not succeded redirect to form
             return View(model);
@@ -197,7 +196,6 @@ namespace Loop.Web.Controllers
                 LastName = model.LastName,
                 PhoneNumber = model.PhoneNumber,
                 DateOfBirth = model.DateOfBirth,
-
             };
             return user;
         }

@@ -109,21 +109,16 @@
                             {
                                 <tr>
                                     <td class="topic-data">
-                                        @if (user.Images != null)
+                                        @if (user.Images.Count > 0)
                                         {
                                             foreach (var item in user.Images)
                                             {
                                                 <img src="@Url.Content(item.ImgPath) " width="100" height="100" />
                                             }
-                                            //if (user.Images.Any(image=>image.ImgName.Length > 0))
-                                            //{
-                                            //    <div>
-                                            //        <div>
-                                            //            @user.Images.First(x=>x.ImgPath)
-                                            //            @*<img class="img-fluid" src="~/File?id=@Model.FileUploads.First(f => f.FileType == FileType.Avatar).ID" alt="avatar" width="185" height="185" />*@
-                                            //        </div>
-                                            //    </div>
-                                            //}
+                                        }
+                                        else
+                                        {
+                                            <img src="@Url.Content("~/Content/Avatars/chatbot.png")" width="100" height="100" />
                                         }
 
                                         <em>Participant</em>
