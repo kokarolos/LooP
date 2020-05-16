@@ -135,7 +135,7 @@ namespace Loop.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(RegisterViewModel model, HttpPostedFileBase file, string SelectedRolesId)
+        public async Task<ActionResult> Edit(RegisterViewModel model, HttpPostedFileBase file, string SelectedRolesId)
         {
 
             if (ModelState.IsValid)
@@ -146,8 +146,10 @@ namespace Loop.Web.Controllers
             var manager = new UserManager<ApplicationUser>(store);
             var user = manager.FindByEmail(model.Email);
             var currentUser = EditUser(user, model);
-            
-           
+
+            var result = await UserManager.CreateAsync(user, model.Password);
+
+
             TempData["msg"] = "Profile Changes Saved !";
             return RedirectToAction("ListUser");
         }
@@ -193,16 +195,14 @@ namespace Loop.Web.Controllers
                 DateOfBirth = model.DateOfBirth,
             };
             return user;
-        }   
+        }
         //Responsive for Editing incoming User from RegisterViewModel
-        private ApplicationUser EditUser(ApplicationUser user,RegisterViewModel model)
+        private ApplicationUser EditUser(ApplicationUser user, RegisterViewModel model)
         {
-            currentUser.FirstName = model.FirstName;
-            currentUser.LastName = model.LastName;
-            currentUser.Mobile = model.Mobile;
-            currentUser.Address = model.Address;
-            currentUser.City = model.City;
-            currentUser.EmailConfirmed = model.EmailConfirmed;
+            user.FirstName = model.FirstName;
+            user.LastName = model.LastName;
+            user.Email = model.Email;
+            return user;
         }
 
         protected override void Dispose(bool disposing)
