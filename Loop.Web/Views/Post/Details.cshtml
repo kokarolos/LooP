@@ -5,46 +5,40 @@
 }
 
 <h2>Details</h2>
+<div class="central-meta">
+    <div class="forum-open">
+        <h5 class=""><i class="fa fa-star"></i> Asset for creating a beautiful website</h5>
+        <table class="table table-responsive">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayFor(m => m.ApplicationUser.UserName)</th>
+                    <th>@Html.DisplayFor(m=>m.Text)</th>
+                    <th>@Html.DisplayFor(m=>m.DateTime)</th>
+                </tr>
+         
+            </thead>
+            <tbody>
+                @foreach (var reply in Model.Replies)
+                {
+                    <tr>
+                        <td class="topic-data">
+                            <img src="~/Content/images/resources/forum-author1.png" alt="User's Avatar" />
+                            <span>@reply.ApplicationUser.UserName</span>
+                            <em>Participant</em>
+                        </td>
+                        <td class="date-n-reply">
+                            <span>@reply.DateTime</span>
+                        </td>
 
-<div>
-    <h4>Post</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ApplicationUser.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ApplicationUser.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Text)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Text)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DateTime)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DateTime)
-        </dd>
-
-    </dl>
+                        <td class="topic-detail">
+                            <p>@reply.Text</p>
+                        </td>
+                        <td>
+                            @Html.ActionLink("Delete", "Delete", new { id = reply.ReplyId })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.PostId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

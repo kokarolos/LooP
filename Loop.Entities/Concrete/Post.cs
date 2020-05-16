@@ -16,10 +16,9 @@ namespace Loop.Entities
         [Required, MinLength(10), MaxLength(5000)]
         [Display(Name = "Main Content")]
         public string Text { get; set; }
-
         [Required]
         [Display(Name = "Date and Time of Posting")]
-        public DateTime DateTime { get; set; }
+        public DateTime DateTime { get; set; } 
 
         public virtual ICollection<Tag> Tags { get; set; }
         public virtual ICollection<Reply> Replies { get; set; }
@@ -27,7 +26,6 @@ namespace Loop.Entities
         public string ApplicationUserId { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
 
-
-
+       
     }
 }

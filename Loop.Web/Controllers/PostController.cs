@@ -47,6 +47,14 @@ namespace Loop.Web.Controllers
             //Get UserId and store it to ViewBag
             var userId = User.Identity.GetUserId();
             ViewBag.ApplicationUserId = userId;
+
+            //here we make a Viewbag for Tags
+            ViewBag.SelectedTagsIds = db.Tags.GetAll().Select(x => new SelectListItem()
+            {
+                Value = x.TagId.ToString(),
+                Text = x.Title
+            });
+
             return View();
         }
 
@@ -55,19 +63,21 @@ namespace Loop.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PostId,Title,Text,DateTime,ApplicationUserId")] Post post)
+        public ActionResult Create([Bind(Include = "PostId,Title,Text,DateTime,ApplicationUserId")] Post post, IEnumerable<int> SelectedTagsIds)
         {
             if (ModelState.IsValid)
             {
                 post.ApplicationUserId = User.Identity.GetUserId();
-                db.Posts.Insert(post);
+                db.Posts.Insert(post, SelectedTagsIds);
                 db.Save();
                 return RedirectToAction("Index");
             }
 
-            //ViewBag.ApplicationUserId = new SelectList(db.Users, "Id", "Email", post.ApplicationUserId);
             return View(post);
         }
+
+        // EDWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+
 
         // GET: Post/Edit/5
         public ActionResult Edit(int? id)
@@ -84,7 +94,12 @@ namespace Loop.Web.Controllers
             {
                 return HttpNotFound();
             }
-            //ViewBag.ApplicationUserId = new SelectList(db.Users, "Id", "Email", post.ApplicationUserId);
+
+            ViewBag.SelectedTagsIds = db.Tags.GetAll().Select(x => new SelectListItem()
+            {
+                Value = x.TagId.ToString(),
+                Text = x.Title
+            });
             return View(post);
         }
 
@@ -93,15 +108,15 @@ namespace Loop.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PostId,Title,Text,DateTime,ApplicationUserId")] Post post)
+        public ActionResult Edit([Bind(Include = "PostId,Title,Text,DateTime,ApplicationUserId")] Post post, IEnumerable<int> SelectedTagsIds)
         {
             if (ModelState.IsValid)
             {
-                db.Posts.Update(post);
+                post.ApplicationUserId = User.Identity.GetUserId();
+                db.Posts.Update(post, SelectedTagsIds);
                 db.Save();
                 return RedirectToAction("Index");
             }
-            //ViewBag.ApplicationUserId = new SelectList(db.Users, "Id", "Email", post.ApplicationUserId);
             return View(post);
         }
 
