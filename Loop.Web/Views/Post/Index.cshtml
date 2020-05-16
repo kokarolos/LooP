@@ -3,52 +3,128 @@
 @{
     ViewBag.Title = "Index";
 }
-
 <h2>Index</h2>
 
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ApplicationUser.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Text)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateTime)
-        </th>
-        <th></th>
-    </tr>
+<div class="theme-layout">
+    <section>
+        <div class="gap gray-bg">
+            <div class="container">
+                <div class="row merged20">
+                    <div class="col-lg-12">
+                        <div class="central-meta">
+                            <div class="forum-open">
+                                <h5 class=""><i class="fa fa-star"></i> Asset for creating a beautiful website</h5>
+                                <table class="table table-responsive">
+                                    <thead>
+                                        <tr>
+                                            <th>Author</th>
+                                            <th>Post Title</th>
+                                            <th>Posts</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
 
-    @foreach (var item in Model)
-    {
+
+                                        @foreach (var post in Model)
+                                        {
+                                            <tr>
+                                                <td class="topic-data">
+                                                    @if (!(post.ApplicationUserId is null))
+                                                    {
+                                                        <span>@post.ApplicationUser.UserName</span>
+                                                    }
+                                                    <em>@post.DateTime</em>
+                                                </td>
+                                                <td class="date-n-reply">
+                                                    <span>@post.Title</span>
+                                                    <a href="#" title="">Reply</a>
+                                                </td>
+                                                <td class="topic-detail">
+                                                    <p>@post.Text</p>
+                                                </td>
+                                                @foreach (var item in post.Tags)
+                                                {
+                                                    <td class="topic-detail">
+                                                        <p>@item.Title</p>
+                                                    </td>
+                                                }
+
+                                                <td>
+                                                    <div class="option-list">
+                                                        <i class="fa fa-ellipsis-v"></i>
+                                                        <ul>
+                                                            <li><i class="fa fa-pencil-square-o"></i>@Html.ActionLink("Edit", "Edit", new { id = post.PostId }, new { onclick = "return confirm('Are you sure you wish to edit this product?');" })</li>
+                                                            <li><i class="fa fa-trash-o"></i>@Html.ActionLink("Delete", "Delete", new { id = post.PostId }, new { onclick = "return confirm('Are you sure you wish to delete this product?');" }) </li>
+                                                            <li><i class="fa fa-trash-o"></i>@Html.ActionLink("Details", "Details", new { id = post.PostId }, new { onclick = "return confirm('Are you sure you wish to delete this product?');" }) </li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<ul>
+</ul>
+
+@*<table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ApplicationUser.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Text)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateTime)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.PostId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.PostId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.PostId })
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationUser.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Text)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateTime)
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplicationUser.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Text)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateTime)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.PostId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.PostId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.PostId })
+                </td>
+            </tr>
+        }
+
+    </table>*@
