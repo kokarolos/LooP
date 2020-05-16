@@ -1,5 +1,4 @@
-﻿using Loop.Entities.Intermediate;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
@@ -57,6 +56,8 @@ namespace Loop.Entities.Concrete
         public ICollection<Image> Images { get; set; }
         public virtual ICollection<Post> Posts { get; set; }
         public virtual ICollection<Reply> Replies { get; set; }
+
+      
         public virtual ICollection<Order> Orders { get; set; }
 
     }

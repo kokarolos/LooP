@@ -59,7 +59,7 @@ namespace Loop.Services.Repositories
             Context.Set<TEntity>().AddRange(entities);
         }
 
-        public void Remove(TEntity entity)
+        public virtual void Remove(TEntity entity)
         {
             Context.Set<TEntity>().Remove(entity);
         }
@@ -69,7 +69,7 @@ namespace Loop.Services.Repositories
         }
         public void Update(TEntity entity)
         {
-            Context.Entry(entity).State = EntityState.Modified; 
+            Context.Entry(entity).State = EntityState.Modified;
         }
     }
 }

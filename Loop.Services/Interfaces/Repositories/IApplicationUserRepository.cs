@@ -1,6 +1,7 @@
-﻿using Loop.Entities.Concrete;
+﻿using Loop.Entities;
+using Loop.Entities.Concrete;
 using Loop.Services.Repositories_interface;
-using System.Collections.Generic;
+
 
 namespace Loop.Services.Interfaces.Repositories
 {
@@ -8,6 +9,7 @@ namespace Loop.Services.Interfaces.Repositories
     {
         //User's Id is string so I created method that takes id as string
         ApplicationUser GetUserById(string id);
+        void UpdateUserWithImage(ApplicationUser user, Image image);
 
     }
 }
