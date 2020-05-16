@@ -143,12 +143,6 @@ namespace Loop.Web.Controllers
                                          Text = x.Name
                                      });
 
-            ViewBag.SelectedImageId = db.Images.GetAll()
-                                         .Select(image => new SelectListItem()
-                                         {
-                                             Value = image.ImageId.ToString(),
-                                             Text = image.ImgPath
-                                         });
 
             return View(applicationUser);
         }
@@ -162,20 +156,13 @@ namespace Loop.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-
+                //TODO: REFACTOR THIS SHIT V2
                 var filename = Path.GetFileName(file.FileName);
                 var path = Path.Combine(Server.MapPath("~/Content/Avatars/" + filename));
                 file.SaveAs(path);
 
                 byte[] imageSize = new byte[file.ContentLength];
                 file.InputStream.Read(imageSize, 0, file.ContentLength);
-
-                //if(applicationUser.Images.Count > 0)
-                //{
-                //    applicationUser.Images.Clear();
-                //}
-
-
                 var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
                 var roleMngr = new RoleManager<IdentityRole>(roleStore);
                 var roles = roleMngr.Roles.ToList();
@@ -184,7 +171,7 @@ namespace Loop.Web.Controllers
                 UserManager.RemoveFromRoles(applicationUser.Id, "Admin", "User");
                 UserManager.AddToRole(applicationUser.Id, role);
                 var img = new Image() { User = applicationUser, Data = imageSize, ImgName = filename, ImgPath = "~/Content/Avatars/" + filename };
-                db.Users.UpdateUserWithImage(applicationUser,img);
+                db.Users.UpdateUserWithImage(applicationUser, img);
                 db.Save();
                 return RedirectToAction("Index");
             }
@@ -216,8 +203,10 @@ namespace Loop.Web.Controllers
             ApplicationUser applicationUser = db.Users.GetUserById(id);
             db.Users.Remove(applicationUser);
             db.Save();
+
             return RedirectToAction("Index");
         }
+
 
         //Responsive for creating new User from RegisterViewModel
         private ApplicationUser CreateUser(RegisterViewModel model)

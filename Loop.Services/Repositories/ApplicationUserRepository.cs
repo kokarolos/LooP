@@ -4,7 +4,6 @@ using Loop.Database;
 using Loop.Entities.Concrete;
 using Loop.Services.Interfaces.Repositories;
 using System.Collections.Generic;
-using System.Data.Entity.Core.Common.CommandTrees;
 using Loop.Entities;
 
 namespace Loop.Services.Repositories
@@ -27,16 +26,29 @@ namespace Loop.Services.Repositories
         }
         public override IEnumerable<ApplicationUser> GetAll()
         {
-            return Database.ApplicationUsers.Include(x => x.Images).AsEnumerable();
+            return Database.ApplicationUsers.Include(x => x.Images)
+                                            .Include(x=>x.Orders)
+                                            .Include(x=>x.Posts)
+                                            .Include(x=>x.Replies)
+                                            .AsEnumerable();
         }
      
-        public void UpdateUserWithImage(ApplicationUser entity,Image image)
+        public void UpdateUserWithImage(ApplicationUser applicationUser, Image image)
         {
-            Database.ApplicationUsers.Attach(entity);
-            Database.Entry(entity).Collection("Images").Load();
-            entity.Images.Clear();
-            entity.Images = new List<Image>() { image };
+            Database.ApplicationUsers.Attach(applicationUser);
+            Database.Entry(applicationUser).Collection("Images").Load();
+            applicationUser.Images.Clear();
+            applicationUser.Images = new List<Image>() { image };
+        }
 
+        public override void Remove(ApplicationUser applicationUser)
+        {
+            var q = Database.ApplicationUsers.Include(x => x.Images)
+                                             .Include(x => x.Orders)
+                                             .Include(x => x.Posts)
+                                             .Include(x => x.Replies).FirstOrDefault(x => x.Id == applicationUser.Id);
+
+            Database.ApplicationUsers.Remove(applicationUser);
         }
     }
 }
