@@ -1,11 +1,6 @@
 ﻿using Loop.Database;
 using Loop.Entities.Concrete;
 using Loop.Services.Interfaces.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Loop.Services.Repositories
 {
