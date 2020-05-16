@@ -143,6 +143,13 @@ namespace Loop.Web.Controllers
                                          Text = x.Name
                                      });
 
+            ViewBag.SelectedImageId = db.Images.GetAll()
+                                         .Select(image => new SelectListItem()
+                                         {
+                                             Value = image.ImageId.ToString(),
+                                             Text = image.ImgPath
+                                         });
+
             return View(applicationUser);
         }
 
@@ -177,8 +184,7 @@ namespace Loop.Web.Controllers
                 UserManager.RemoveFromRoles(applicationUser.Id, "Admin", "User");
                 UserManager.AddToRole(applicationUser.Id, role);
                 var img = new Image() { User = applicationUser, Data = imageSize, ImgName = filename, ImgPath = "~/Content/Avatars/" + filename };
-                applicationUser.Images = new List<Image>() { img };
-                db.Users.Update(applicationUser);
+                db.Users.UpdateUserWithImage(applicationUser,img);
                 db.Save();
                 return RedirectToAction("Index");
             }
