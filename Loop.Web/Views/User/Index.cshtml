@@ -1,4 +1,6 @@
 ﻿@model IEnumerable<Loop.Entities.Concrete.ApplicationUser>
+
+
 @{
     ViewBag.Title = "Index";
 }
@@ -121,7 +123,19 @@
                                             <img src="@Url.Content("~/Content/Avatars/chatbot.png")" width="100" height="100" />
                                         }
 
-                                        <em>Participant</em>
+
+                                        @if (user.Roles.Count > 0)
+                                        {
+                                            if(user.Roles.First().RoleId == "87051edf-9529-4664-a617-387d09a2fdd6")
+                                            {
+                                                <em>Admin</em>
+                                            }
+                                            else
+                                            {
+                                                <em>User</em>
+                                            }
+                                        }
+
                                     </td>
                                     <td>
                                         @user.Email

@@ -13,7 +13,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using System.Collections.Generic;
-using Microsoft.Ajax.Utilities;
+using Twilio.Rest.Autopilot.V1.Assistant;
 
 namespace Loop.Web.Controllers
 {
@@ -36,6 +36,9 @@ namespace Loop.Web.Controllers
         }
 
         // GET: User
+
+        //TODO: 4 users per row 
+        //Details on btn click of user icon
         public ActionResult Index()
         {
             var users = db.Users.GetAll().ToList();
@@ -55,6 +58,7 @@ namespace Loop.Web.Controllers
             {
                 return HttpNotFound();
             }
+
             return View(applicationUser);
         }
 
@@ -65,7 +69,7 @@ namespace Loop.Web.Controllers
             var roleMngr = new RoleManager<IdentityRole>(roleStore);
             var roles = roleMngr.Roles.ToList();
 
-            ViewBag.SelectedRolesId = roles
+            ViewBag.SelectedRoleId = roles
                                       .Select(x => new SelectListItem()
                                       {
                                           Value = x.Id,
@@ -79,7 +83,7 @@ namespace Loop.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(RegisterViewModel model, HttpPostedFileBase file, string SelectedRolesId)
+        public async Task<ActionResult> Create(RegisterViewModel model, HttpPostedFileBase file, string SelectedRoleId)
         {
             //TODO:Spaghetti cleanex
 
@@ -92,8 +96,8 @@ namespace Loop.Web.Controllers
                 byte[] imageSize = new byte[file.ContentLength];
                 file.InputStream.Read(imageSize, 0, file.ContentLength);
 
-                var user = CreateUser(model);
-                var result = await UserManager.CreateAsync(user, model.Password);
+                var applicationUser = CreateUser(model);
+                var result = await UserManager.CreateAsync(applicationUser, model.Password);
                 //TODO:REFACTOR THIS SHIT
 
                 if (result.Succeeded)
@@ -102,11 +106,11 @@ namespace Loop.Web.Controllers
                     var roleMngr = new RoleManager<IdentityRole>(roleStore);
                     var roles = roleMngr.Roles.ToList();
 
-                    var role = roles.SingleOrDefault(x => x.Id == SelectedRolesId).Name;
-                    var img = new Image() { User = user, Data = imageSize, ImgName = filename, ImgPath = "~/Content/Avatars/" + filename };
-                    user.Images = new List<Image>() { img };
-                    UserManager.AddToRole(user.Id, role);
-                    db.Users.Insert(user);
+                    var role = roles.SingleOrDefault(x => x.Id == SelectedRoleId).Name;
+                    var img = new Image() { User = applicationUser, Data = imageSize, ImgName = filename, ImgPath = "~/Content/Avatars/" + filename };
+                    applicationUser.Images = new List<Image>() { img };
+                    UserManager.AddToRole(applicationUser.Id, role);
+                    db.Users.Insert(applicationUser);
                 }
                 return RedirectToAction("Index");
             }
@@ -127,6 +131,18 @@ namespace Loop.Web.Controllers
             {
                 return HttpNotFound();
             }
+
+            var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
+            var roleMngr = new RoleManager<IdentityRole>(roleStore);
+            var roles = roleMngr.Roles.ToList();
+
+            ViewBag.SelectedRoleId = roles
+                                     .Select(x => new SelectListItem()
+                                     {
+                                         Value = x.Id,
+                                         Text = x.Name
+                                     });
+
             return View(applicationUser);
         }
 
@@ -135,23 +151,38 @@ namespace Loop.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(RegisterViewModel model, HttpPostedFileBase file, string SelectedRolesId)
+        public ActionResult Edit(ApplicationUser applicationUser, HttpPostedFileBase file, string SelectedRoleId)
         {
-
             if (ModelState.IsValid)
             {
-                return View(model);
+
+                var filename = Path.GetFileName(file.FileName);
+                var path = Path.Combine(Server.MapPath("~/Content/Avatars/" + filename));
+                file.SaveAs(path);
+
+                byte[] imageSize = new byte[file.ContentLength];
+                file.InputStream.Read(imageSize, 0, file.ContentLength);
+
+                //if(applicationUser.Images.Count > 0)
+                //{
+                //    applicationUser.Images.Clear();
+                //}
+
+
+                var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
+                var roleMngr = new RoleManager<IdentityRole>(roleStore);
+                var roles = roleMngr.Roles.ToList();
+
+                var role = roles.SingleOrDefault(x => x.Id == SelectedRoleId).Name;
+                UserManager.RemoveFromRoles(applicationUser.Id, "Admin", "User");
+                UserManager.AddToRole(applicationUser.Id, role);
+                var img = new Image() { User = applicationUser, Data = imageSize, ImgName = filename, ImgPath = "~/Content/Avatars/" + filename };
+                applicationUser.Images = new List<Image>() { img };
+                db.Users.Update(applicationUser);
+                db.Save();
+                return RedirectToAction("Index");
             }
-            var store = new UserStore<ApplicationUser>(new ApplicationDbContext());
-            var manager = new UserManager<ApplicationUser>(store);
-            var user = manager.FindByEmail(model.Email);
-            var currentUser = EditUser(user, model);
-
-            var result = await UserManager.CreateAsync(user, model.Password);
-
-
-            TempData["msg"] = "Profile Changes Saved !";
-            return RedirectToAction("ListUser");
+            return View(applicationUser);
         }
 
 
@@ -196,14 +227,7 @@ namespace Loop.Web.Controllers
             };
             return user;
         }
-        //Responsive for Editing incoming User from RegisterViewModel
-        private ApplicationUser EditUser(ApplicationUser user, RegisterViewModel model)
-        {
-            user.FirstName = model.FirstName;
-            user.LastName = model.LastName;
-            user.Email = model.Email;
-            return user;
-        }
+
 
         protected override void Dispose(bool disposing)
         {
