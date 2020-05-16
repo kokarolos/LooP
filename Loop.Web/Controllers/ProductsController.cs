@@ -1,9 +1,11 @@
 ﻿using System.Linq;
 using System.Net;
+using System.Security.Cryptography.X509Certificates;
 using System.Web.Mvc;
 using Loop.Database;
 using Loop.Entities.Concrete;
 using Loop.Services;
+using Twilio.Rest.Api.V2010.Account.Usage.Record;
 
 namespace Loop.Web.Controllers
 {
@@ -28,6 +30,13 @@ namespace Loop.Web.Controllers
         // GET: Products/Create
         public ActionResult Create()
         {
+            ViewBag.SelectedProduct = db.Products.GetAll()
+                                                          .GroupBy(y=> y.GetType().Name)
+                                                          .Select( x=> new SelectListItem() 
+                                                          { 
+                                                            Value = x.Key.Split('_')[0],
+                                                            Text = x.Key.Split('_')[0]
+                                                          });
             return View();
         }
 
@@ -36,10 +45,18 @@ namespace Loop.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductId,Title,Description")] Product product)
+        public ActionResult Create([Bind(Include = "ProductId,Title,Description")] Product product,string SelectedProduct)
         {
             if (ModelState.IsValid)
             {
+                if (SelectedProduct == "Book")
+                {
+                    //new book
+                }
+                else
+                {
+                    //new tut
+                }
                 db.Products.Insert(product);
                 db.Save();
                 return RedirectToAction("Index");
