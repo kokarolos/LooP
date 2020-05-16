@@ -19,7 +19,7 @@ namespace Loop.Entities.Concrete
 
         [Required]
         [Display(Name = "Date and Time of Production")]
-        public DateTime DateTime { get; set; }
+        public DateTime? ProductionDate { get; set; }
 
         public virtual ICollection<OrderProduct> OrderProducts { get; set; }
     }

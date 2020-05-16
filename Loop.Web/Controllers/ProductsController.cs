@@ -1,10 +1,12 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Net;
 using System.Security.Cryptography.X509Certificates;
 using System.Web.Mvc;
 using Loop.Database;
 using Loop.Entities.Concrete;
 using Loop.Services;
+using Loop.Web.Models;
 using Twilio.Rest.Api.V2010.Account.Usage.Record;
 
 namespace Loop.Web.Controllers
@@ -31,39 +33,66 @@ namespace Loop.Web.Controllers
         public ActionResult Create()
         {
             ViewBag.SelectedProduct = db.Products.GetAll()
-                                                          .GroupBy(y=> y.GetType().Name)
-                                                          .Select( x=> new SelectListItem() 
-                                                          { 
-                                                            Value = x.Key.Split('_')[0],
-                                                            Text = x.Key.Split('_')[0]
+                                                          .GroupBy(y => y.GetType().Name)
+                                                          .Select(x => new SelectListItem()
+                                                          {
+                                                              Value = x.Key.Split('_')[0],
+                                                              Text = x.Key.Split('_')[0]
                                                           });
-            return View();
+
+            return View("Select");
         }
+
 
         // POST: Products/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductId,Title,Description")] Product product,string SelectedProduct)
+        public ActionResult Create(ProductViewModel model, string SelectedProduct)
         {
-            if (ModelState.IsValid)
+            if (SelectedProduct == "Book")
             {
-                if (SelectedProduct == "Book")
-                {
-                    //new book
-                }
-                else
-                {
-                    //new tut
-                }
-                db.Products.Insert(product);
-                db.Save();
-                return RedirectToAction("Index");
+                return View("Book");
             }
+            if (SelectedProduct == "Tutorial")
+            {
+                return View("Tutorial");
+            }
+            if (model.Pages < 0)
+            {
+                Product tutorial = new Tutorial()
+                {
+                    Description = model.Description,
+                    ProductionDate = model.ProductionDate,
+                    Title = model.Title,
+                    Duration = model.Duration.GetValueOrDefault(),
+                    TutorialAuthor = model.TutorialAuthor
+                };
+                db.Products.Insert(tutorial);
+                db.Save();
 
-            return View(product);
+            }
+            else
+            {
+                Book book = new Book
+                {
+                    BookAuthor = model.BookAuthor,
+                    Description = model.Description,
+                    Publisher = model.Publisher,
+                    Pages = model.Pages,
+                    ProductionDate = model.ProductionDate,
+                    Title = model.Title,
+                    //ImageFile 
+                };
+                db.Products.Insert(book);
+                db.Save();
+            }
+          
+
+            return RedirectToAction("Index");
         }
+
 
         // GET: Products/Edit/5
         [HandleError]
