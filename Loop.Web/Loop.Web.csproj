@@ -219,6 +219,7 @@
     </Compile>
     <Compile Include="LiveChat\hubs\ChatHub.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\IndexStatisticViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,13 +1,20 @@
-﻿using System.Web.Mvc;
+﻿using Loop.Services;
+using System.Web.Mvc;
+using Loop.Database;
+using Loop.Web.Models;
+using System.Linq;
 
 namespace Loop.Web.Controllers
 {
     [HandleError]
     public class HomeController : Controller
     {
+        private readonly UnitOfWork db = new UnitOfWork(new ApplicationDbContext());
+
         public ActionResult Index()
         {
-            return View();
+            var model = GetStatistics();
+            return View(model);
         }
 
         public ActionResult About()
@@ -26,6 +33,17 @@ namespace Loop.Web.Controllers
         public ActionResult Chat()
         {
             return View();
+        }
+
+        [NonAction]
+        private IndexStatisticViewModel GetStatistics()
+        {
+            var model = new IndexStatisticViewModel();
+            model.UsersCount = db.Users.GetAll().Count();
+            model.PostsCount = db.Posts.GetAll().Count();
+            model.ProductsCount = db.Products.GetAll().Count();
+            model.OrdersCount = db.Orders.GetAll().Count();
+            return model;
         }
     }
 }
