@@ -18,7 +18,7 @@ namespace Loop.Entities
         public string Text { get; set; }
         [Required]
         [Display(Name = "Date and Time of Posting")]
-        public DateTime DateTime { get; set; } 
+        public DateTime PostDate { get; set; } 
 
         public virtual ICollection<Tag> Tags { get; set; }
         public virtual ICollection<Reply> Replies { get; set; }

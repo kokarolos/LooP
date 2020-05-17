@@ -15,7 +15,7 @@ namespace Loop.Entities
 
         [Required]
         [Display(Name = "Date and Time of Replying")]
-        public DateTime DateTime { get; set; }
+        public DateTime PostDate { get; set; }
 
         [Required]
         public virtual ApplicationUser ApplicationUser { get; set; }

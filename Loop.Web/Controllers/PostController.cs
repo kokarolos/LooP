@@ -76,8 +76,6 @@ namespace Loop.Web.Controllers
             return View(post);
         }
 
-        // EDWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
-
 
         // GET: Post/Edit/5
         public ActionResult Edit(int? id)

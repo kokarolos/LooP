@@ -35,8 +35,8 @@
   
     <div class="form-group">
         <div class="col-md-10">
-            @Html.HiddenFor(model => model.DateTime,new { @Value = DateTime.Now })
-            @Html.ValidationMessageFor(model => model.DateTime, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.PostDate,new { @Value = DateTime.Now })
+            @Html.ValidationMessageFor(model => model.PostDate, "", new { @class = "text-danger" })
         </div>
     </div>
 
