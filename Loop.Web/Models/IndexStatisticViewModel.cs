@@ -1,6 +1,6 @@
 ﻿using Loop.Entities;
+using Loop.Entities.Concrete;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Loop.Web.Models
 {
@@ -11,6 +11,8 @@ namespace Loop.Web.Models
         public int ProductsCount { get; set; }
         public int OrdersCount { get; set; }
         public IEnumerable<Post> RecentPosts { get; set; }
+        public IEnumerable<Product> RecentProducts { get; set; }
+        public IEnumerable<Post> RecentReplies { get; set; }
 
     }
 }
