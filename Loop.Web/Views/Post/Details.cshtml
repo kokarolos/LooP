@@ -13,7 +13,7 @@
                 <tr>
                     <th>@Html.DisplayFor(m => m.ApplicationUser.UserName)</th>
                     <th>@Html.DisplayFor(m=>m.Text)</th>
-                    <th>@Html.DisplayFor(m=>m.DateTime)</th>
+                    <th>@Html.DisplayFor(m=>m.PostDate)</th>
                 </tr>
          
             </thead>
@@ -27,7 +27,7 @@
                             <em>Participant</em>
                         </td>
                         <td class="date-n-reply">
-                            <span>@reply.DateTime</span>
+                            <span>@reply.PostDate</span>
                         </td>
 
                         <td class="topic-detail">

@@ -14,6 +14,7 @@ namespace Loop.Entities
         [Required, MinLength(10), MaxLength(300)]
         [Display(Name = "Description")]
         public string Description { get; set; }
+        public string ImageUrl { get; set; }
         public virtual ICollection<Post> Posts { get; set; }
     }
 }

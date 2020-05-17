@@ -1,4 +1,4 @@
-﻿@model Loop.Web.Models.IndexStatisticViewModel 
+﻿@model Loop.Web.Models.IndexStatisticViewModel
 @{
     ViewBag.Title = "Home Page";
 }
@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Bethany Bootstrap Template - Index</title>
+    <title>Looop</title>
     <meta content="" name="descriptison">
     <meta content="" name="keywords">
 
@@ -30,23 +30,23 @@
 
 
     @*<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Content/css/Index/icofont.min.css" rel="stylesheet" />
-    <link href="~/Content/css/Index/boxicons.min.css" rel="stylesheet" />
-    <link href="~/Content/css/Index/remixicon.css" rel="stylesheet" />
-    <link href="~/Content/css/Index/venobox.css" rel="stylesheet" />
-    <link href="~/Content/css/Index/owl.carousel.min.css" rel="stylesheet" />
-    <link href="~/Content/css/Index/aos.css" rel="stylesheet" />*@
+        <link href="~/Content/css/Index/icofont.min.css" rel="stylesheet" />
+        <link href="~/Content/css/Index/boxicons.min.css" rel="stylesheet" />
+        <link href="~/Content/css/Index/remixicon.css" rel="stylesheet" />
+        <link href="~/Content/css/Index/venobox.css" rel="stylesheet" />
+        <link href="~/Content/css/Index/owl.carousel.min.css" rel="stylesheet" />
+        <link href="~/Content/css/Index/aos.css" rel="stylesheet" />*@
 
-     @*Template Main CSS File*@ 
+    @*Template Main CSS File*@
     @*<link href="~/Content/css/Index/style.css" rel="stylesheet" />*@
-@*<link href="~/Content/css/IndexStyle.css" rel="stylesheet" />*@
+    @*<link href="~/Content/css/IndexStyle.css" rel="stylesheet" />*@
 </head>
 
 <body>
     <!-- ======= Hero Section ======= -->
     <section id="hero" class="d-flex align-items-center">
         <div class="container text-center position-relative" data-aos="fade-in" data-aos-delay="200">
-            <h2 class="index-main-header">WELLCOME TO LOOP</h2>
+            <h2 class="index-main-header">WELCOME TO LOOP</h2>
             <a href="#" class="btn-get-started scrollto">Get Started</a>
         </div>
     </section><!-- End Hero -->
@@ -119,35 +119,48 @@
         </section><!-- End About Section -->
         <!-- ======= Counts Section ======= -->
         <section id="counts" class="counts">
-        <div class="container">
+            <div class="container">
 
-            <div class="row counters">
+                <div class="row counters">
 
-                <div class="col-lg-3 col-6 text-center">
-                    <span data-toggle="counter-up">@Model.PostsCount</span>
-                    <p>Posts</p>
+                    <div class="col-lg-3 col-6 text-center">
+                        <span data-toggle="counter-up">@Model.PostsCount</span>
+                        <p>Posts</p>
+                    </div>
+
+                    <div class="col-lg-3 col-6 text-center">
+                        <span data-toggle="counter-up">@Model.UsersCount</span>
+                        <p>Users</p>
+                    </div>
+
+                    <div class="col-lg-3 col-6 text-center">
+                        <span data-toggle="counter-up">@Model.ProductsCount</span>
+                        <p>Products</p>
+                    </div>
+
+                    <div class="col-lg-3 col-6 text-center">
+                        <span data-toggle="counter-up">@Model.OrdersCount</span>
+                        <p>Orders</p>
+                    </div>
+
+
                 </div>
-
-                <div class="col-lg-3 col-6 text-center">
-                    <span data-toggle="counter-up">@Model.UsersCount</span>
-                    <p>Users</p>
-                </div>
-
-                <div class="col-lg-3 col-6 text-center">
-                    <span data-toggle="counter-up">@Model.ProductsCount</span>
-                    <p>Products</p>
-                </div>
-
-                <div class="col-lg-3 col-6 text-center">
-                    <span data-toggle="counter-up">@Model.OrdersCount</span>
-                    <p>Orders</p>
-                </div>
-
 
             </div>
+        </section>
 
-        </div>
-    </section>
+
+        @foreach (var post in Model.RecentPosts)
+        {
+            <p>@post.Title</p>
+        }
+
+
+
+
+
+
+
         <!-- End Counts Section -->
         <!-- ======= Services Section ======= -->
         <section id="services" class="services section-bg">
@@ -200,33 +213,33 @@
 
             </div>
         </section><!-- End Services Section -->
-        
+
         <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
 
         <!-- Vendor JS Files -->
         @*<script src="assets/vendor/jquery/jquery.min.js"></script>
-        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
-        <script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script>
-        <script src="assets/vendor/counterup/counterup.min.js"></script>
-        <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-        <script src="assets/vendor/venobox/venobox.min.js"></script>
-        <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
-        <script src="assets/vendor/aos/aos.js"></script>*@
+            <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+            <script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+            <script src="assets/vendor/counterup/counterup.min.js"></script>
+            <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+            <script src="assets/vendor/venobox/venobox.min.js"></script>
+            <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+            <script src="assets/vendor/aos/aos.js"></script>*@
 
         @*<script src="~/Scripts/jquery-3.5.0.min.js"></script>
-        <script src="~/Scripts/Custom/Index/bootstrap.bundle.min.js"></script>
-        <script src="~/Scripts/Custom/Index/jquery.easing.min.js"></script>
-        <script src="~/Scripts/Custom/Index/jquery.waypoints.min.js"></script>
-        <script src="~/Scripts/Custom/Index/counterup.min.js"></script>
-        <script src="~/Scripts/Custom/Index/isotope.pkgd.min.js"></script>
-        <script src="~/Scripts/Custom/Index/venobox.min.js"></script>
-        <script src="~/Scripts/Custom/Index/owl.carousel.min.js"></script>
-        <script src="~/Scripts/Custom/Index/aos.js"></script>*@
+            <script src="~/Scripts/Custom/Index/bootstrap.bundle.min.js"></script>
+            <script src="~/Scripts/Custom/Index/jquery.easing.min.js"></script>
+            <script src="~/Scripts/Custom/Index/jquery.waypoints.min.js"></script>
+            <script src="~/Scripts/Custom/Index/counterup.min.js"></script>
+            <script src="~/Scripts/Custom/Index/isotope.pkgd.min.js"></script>
+            <script src="~/Scripts/Custom/Index/venobox.min.js"></script>
+            <script src="~/Scripts/Custom/Index/owl.carousel.min.js"></script>
+            <script src="~/Scripts/Custom/Index/aos.js"></script>*@
 
     </main>
 
-     @*Template Main JS File 
-    <script src="assets/js/main.js"></script>*@
+    @*Template Main JS File
+        <script src="assets/js/main.js"></script>*@
 </body>
 </html>

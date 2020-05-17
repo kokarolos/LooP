@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using Loop.Database;
 using Loop.Web.Models;
 using System.Linq;
+using System;
 
 namespace Loop.Web.Controllers
 {
@@ -43,6 +44,8 @@ namespace Loop.Web.Controllers
             model.PostsCount = db.Posts.GetAll().Count();
             model.ProductsCount = db.Products.GetAll().Count();
             model.OrdersCount = db.Orders.GetAll().Count();
+            model.RecentPosts = db.Posts.GetAll().Where(x => x.PostDate.Date == DateTime.Now.Date).Take(5);
+
             return model;
         }
     }
