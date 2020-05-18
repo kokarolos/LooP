@@ -17,6 +17,7 @@
 
 /* -----  NAVIGATION BAR -----*/
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
 .search {
     width: 100%;
     position: relative;
@@ -65,4 +66,10 @@
 
 .form-horizontal {
     padding-top: 10%;
+}
+
+#tutorial-post-div {
+    width: 400px;
+    height: 300px;
+    margin-top: 30px !important;
 }

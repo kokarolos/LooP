@@ -44,9 +44,9 @@ namespace Loop.Web.Controllers
             model.PostsCount = db.Posts.GetAll().Count();
             model.ProductsCount = db.Products.GetAll().Count();
             model.OrdersCount = db.Orders.GetAll().Count();
-            model.RecentPosts = db.Posts.GetAll().Where(x => x.PostDate.Date == DateTime.Now.Date).Take(5);
-            model.RecentProducts = db.Products.GetAll().OrderBy(x => x.InsertionDate).Take(5);
-            model.RecentReplies = db.Replies.GetAll().OrderBy(x => x.PostDate).Take(5);
+            model.RecentPosts = db.Posts.GetAll().Where(x => x.PostDate.Date == DateTime.Now.Date).Take(4);
+            model.RecentProducts = db.Products.GetAll().OrderBy(x => x.InsertionDate).Take(4);
+            model.RecentReplies = db.Replies.GetAll().OrderBy(x => x.PostDate).Take(3);
             return model;
         }
     }
