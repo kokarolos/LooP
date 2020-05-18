@@ -46,7 +46,7 @@ namespace Loop.Web.Controllers
             model.OrdersCount = db.Orders.GetAll().Count();
             model.RecentPosts = db.Posts.GetAll().Where(x => x.PostDate.Date == DateTime.Now.Date).Take(5);
             model.RecentProducts = db.Products.GetAll().OrderBy(x => x.InsertionDate).Take(5);
-            //model.RecetReplies = 
+            model.RecentReplies = db.Replies.GetAll().OrderBy(x => x.PostDate).Take(5);
             return model;
         }
     }

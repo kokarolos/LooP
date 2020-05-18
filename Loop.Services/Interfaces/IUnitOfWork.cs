@@ -14,6 +14,7 @@ namespace Loop.Services
         IOrderProductRepository OrderProducts { get; }
         ITagRepository Tags { get; }
         IImageRepository Images { get; }
+        IReplyRepository Replies { get; }
 
         void Save();
     }

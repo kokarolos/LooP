@@ -10,27 +10,33 @@
     {
         @Html.AntiForgeryToken()
         <div id="socialLoginList">
-            @foreach (AuthenticationDescription p in loginProviders)
-            {
-                switch (@p.AuthenticationType)
+            <ul class="sociaz-media">
+                @foreach (AuthenticationDescription p in loginProviders)
                 {
-                    case "Facebook":
-                        <button type="submit" class="btn btn-xsm facebook" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType"><i class="fa fa-facebook"></i></button>
-                        break;
-                    case "Twitter":
-                        <button type="submit" class="btn btn-xsm twitter" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType"><i class="fa fa-twitter"></i></button>
-                        break;
-                    case "Google":
-                        <button type="submit" class="btn btn-xsm googleplus" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType"><i class="fa fa-google-plus"></i></button>
-                        break;
-                    case "Microsoft":
-                        <button type="submit" class="btn btn-xsm microsoft" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType"><i class="fa fa-windows"></i></button>
-                        break;
-                    default:
-                        <button type="submit" class="btn btn-xsm" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType">@p.AuthenticationType.ToString()</button>
-                        break;
+
+                    <li>
+                        @switch (p.AuthenticationType)
+                        {
+                            case "Facebook":
+                                <button type="submit" class="facebook" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType"><i class="fa fa-facebook"></i></button>
+                                break;
+                            case "Twitter":
+                                <button type="submit" class="twitter" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType"><i class="fa fa-twitter"></i></button>
+                                break;
+                            case "Google":
+                                <button type="submit" class="google" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType"><i class="fa fa-google-plus"></i></button>
+                                break;
+                            case "Microsoft":
+                                <button type="submit" class="btn btn-xsm microsoft" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType"><i class="fa fa-windows"></i></button>
+                                break;
+                            default:
+                                <button type="submit" class="btn btn-xsm" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType">@p.AuthenticationType.ToString()</button>
+                                break;
+                        }
+                    </li>
+
                 }
-            }
+            </ul>
         </div>
     }
 }
