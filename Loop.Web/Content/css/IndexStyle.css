@@ -4,7 +4,7 @@
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 */
-
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i" type="text/css" media="all" >
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
@@ -32,8 +32,8 @@ h1, h2, h3, h4, h5, h6 {
 .back-to-top {
     position: fixed;
     display: none;
-    right: 15px;
-    bottom: 15px;
+    right: 50px;
+    bottom: 0px;
     z-index: 99999;
 }
 
@@ -43,7 +43,7 @@ h1, h2, h3, h4, h5, h6 {
         justify-content: center;
         font-size: 24px;
         width: 40px;
-        height: 40px;
+        height: 35px;
         border-radius: 50px;
         background: #273746;
         color: #fff;
@@ -51,7 +51,7 @@ h1, h2, h3, h4, h5, h6 {
     }
 
         .back-to-top i:hover {
-            background: #00805d;
+            background: #273746;
             color: #fff;
         }
 
