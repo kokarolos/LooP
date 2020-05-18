@@ -234,6 +234,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\cover2.jpg" />
     <Content Include="Content\cover3.jpg" />
+    <Content Include="Content\css\aos.css" />
     <Content Include="Content\css\Chat.css" />
     <Content Include="Content\css\color.css" />
     <Content Include="Content\css\IndexStyle.css" />

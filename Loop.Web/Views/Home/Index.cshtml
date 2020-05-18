@@ -28,7 +28,6 @@
         <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
         <link href="assets/vendor/aos/aos.css" rel="stylesheet">*@
 
-
     @*<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
         <link href="~/Content/css/Index/icofont.min.css" rel="stylesheet" />
         <link href="~/Content/css/Index/boxicons.min.css" rel="stylesheet" />
@@ -148,28 +147,49 @@
 
             </div>
         </section>
+        <section class="pricing" id="pricing">
+            <div class="row">
+                <div class="col-lg-4 aos-init aos-animate" data-aos="fade-in" data-aos-delay="100">
+                    <div class="box">
+                        <h3>Recent Posts</h3>
+                        <ul>
+                            @foreach (var post in Model.RecentPosts)
+                            {
 
-        <h1>Latest Posts</h1>
-        @foreach (var post in Model.RecentPosts)
-        {
-            <p>@post.Title</p>
-        }
+                                <li><i class="bx bx-file"></i> @post.Title</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
 
-        <h1>Latest Products</h1>
-        @foreach (var product in Model.RecentProducts)
-        {
-            <p>
-                @product.Title -@product.InsertionDate.ToShortDateString()
-            </p>
-        }
+                <div class="col-lg-4 mt-4 mt-lg-0 aos-init aos-animate" data-aos="fade-in" data-aos-delay="200">
+                    <div class="box featured">
+                        <h3>Recent Products</h3>
+                        <ul>
+                            @foreach (var product in Model.RecentProducts)
+                            {
 
-        <h1>Latest Replies</h1>
-        @foreach (var post in Model.RecentReplies)
-        {
-            <p>
-                @post.Text 
-            </p>
-        }
+                                <li><i class="bx bx-file"></i> @product.Title</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 aos-init aos-animate" data-aos="fade-in" data-aos-delay="300">
+                    <div class="box">
+                        <h3>Recent Posts</h3>
+                        <ul>
+                            @foreach (var reply in Model.RecentReplies)
+                            {
+
+                                <li><i class="bx bx-file"></i> @reply.Text</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+      
 
 
         <!-- End Counts Section -->
