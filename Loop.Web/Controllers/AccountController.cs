@@ -7,7 +7,6 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Loop.Web.Models;
 using Loop.Entities.Concrete;
-using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Loop.Web.Controllers
 {
