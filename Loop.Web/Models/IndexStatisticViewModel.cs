@@ -12,7 +12,7 @@ namespace Loop.Web.Models
         public int OrdersCount { get; set; }
         public IEnumerable<Post> RecentPosts { get; set; }
         public IEnumerable<Product> RecentProducts { get; set; }
-        public IEnumerable<Post> RecentReplies { get; set; }
+        public IEnumerable<Reply> RecentReplies { get; set; }
 
     }
 }

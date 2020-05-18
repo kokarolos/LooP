@@ -16,6 +16,7 @@ namespace Loop.Services
         public IOrderProductRepository OrderProducts { get; private set; }
         public ITagRepository Tags { get; private set; }
         public IImageRepository Images { get; private set; }
+        public IReplyRepository Replies { get; private set; }
 
 
         public UnitOfWork(ApplicationDbContext context)
@@ -28,6 +29,7 @@ namespace Loop.Services
             OrderProducts = new OrderProductRepository(_context);
             Tags = new TagRepository(_context);
             Images = new ImageRepository(_context);
+            Replies = new ReplyRepository(_context);
         }
 
         public void Save()

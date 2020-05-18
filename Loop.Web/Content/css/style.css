@@ -469,6 +469,41 @@ a.instagram {
 a.pinterest {
     background: #ca212a;
 }
+button .facebook {
+    background: #516eab;
+}
+
+button .google {
+    background: #e44a3c;
+}
+
+button .microsoft {
+    background: #333333;
+}
+
+button .twitter {
+    background: #00a6d3;
+}
+
+button .vk {
+    background: #466991;
+}
+
+button .dribble {
+    background: #1572b8;
+}
+
+button .google {
+    background: #dd4b39;
+}
+
+button .instagram {
+    background: #444;
+}
+
+button .pinterest {
+    background: #ca212a;
+}
 
 /*--- social colors ---*/
 .facebook-color {
@@ -6167,40 +6202,46 @@ a.addnewforum {
     width: 100%;
     margin-top: 40px;
 }
-.sociaz-media {
+#socialLoginList .sociaz-media {
     display: inline-block;
     list-style: outside none none;
     margin-bottom: 0;
     padding-left: 0;
     width: 100%;
 }
-.sociaz-media > li {
-    float: left;
-    line-height: 29px;
-    margin: 0 4px;
-}
-.sociaz-media > li:first-child{
-	margin-left: 0;
-}
-.sociaz-media > li > a {
-    border-radius: 100%;
-    color: #fff;
+#socialLoginList .sociaz-media{
     display: inline-block;
-    font-size: 12px;
-    font-weight: 500;
-    height: 30px;
-    line-height: 30px;
-    text-align: center;
-    transition: all 0.2s linear 0s;
-    width: 30px;
-    background: #989dbd;
+    list-style: outside none none;
+    margin-bottom: 0;
+    padding-left: 0;
+    width: 100%;
 }
-.sociaz-media > li > a:hover {
-    color: #fff;
-}
-.sociaz-media > li > a i {
-    font-size: 14px;
-}
+    #socialLoginList .sociaz-media > li {
+        float: left;
+        line-height: 29px;
+        margin: 0 4px;
+    }
+    #socialLoginList .sociaz-media  li:first-child {
+        margin-left: 0;
+    }
+    #socialLoginList .sociaz-media li > button {
+        border-radius: 100%;
+        color: #fff;
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 500;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        transition: all 0.2s linear 0s;
+        width: 30px;
+    }
+    #socialLoginList .sociaz-mediali > button:hover {
+        color: #fff;
+    }
+    #socialLoginList .sociaz-media  li > button i {
+        font-size: 14px;
+    }
 .salary-area > h4 {
     display: inline-block;
     margin-bottom: 0;
