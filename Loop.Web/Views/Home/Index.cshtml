@@ -156,7 +156,7 @@
                             @foreach (var post in Model.RecentPosts)
                             {
 
-                                <li><i class="bx bx-file"></i> @post.Title</li>
+                            <li><i class="bx bx-file"></i> @Html.ActionLink(post.Title, "Details","Post", new { id = post.PostId },null)</li>
                             }
                         </ul>
                     </div>
@@ -169,7 +169,7 @@
                             @foreach (var product in Model.RecentProducts)
                             {
 
-                                <li><i class="bx bx-file"></i> @product.Title</li>
+                            <li><i class="bx bx-file"></i> @Html.ActionLink(product.Title, "Details", "Products", new { id = product.ProductId }, null)</li>
                             }
                         </ul>
                     </div>
@@ -182,7 +182,7 @@
                             @foreach (var reply in Model.RecentReplies)
                             {
 
-                                <li><i class="bx bx-file"></i> @reply.Text</li>
+                            <li><i class="bx bx-file"></i>  @Html.ActionLink(reply.Text, "Details", "Post", new { id = reply.Post.PostId }, null)</li>
                             }
                         </ul>
                     </div>
