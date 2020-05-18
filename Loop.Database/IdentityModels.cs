@@ -3,8 +3,7 @@ using Loop.Entities.Concrete;
 using Loop.Entities.Intermediate;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
-using System.Data.Entity.ModelConfiguration.Conventions;
-using Twilio.Rest.Api.V2010.Account.Usage.Record;
+
 
 namespace Loop.Database
 {

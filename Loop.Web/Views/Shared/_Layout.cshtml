@@ -38,7 +38,7 @@
     @Scripts.Render("~/bundles/signalr")
     @Scripts.Render("/signalr/hubs")
 
-    <script>
+<script>
         $(function () {
             $("#addClass").on('click', function (event) {
                 event.preventDefault();
@@ -59,26 +59,24 @@ $(function () {
     chat.client.addNewMessageToPage = function (name, message) {
         let time = new Date();
 
-        if (name == "kokarolos@gmail.com") {
+        if('@User.IsInRole("Admin")') {
         // Add the message to the page.
         $('#chat').append('<div class="chat_message_wrapper">' +
             '<div class="chat_user_avatar">' +
-            '<a href="https://web.facebook.com/iamgurdeeposahan" target="_blank">' +
-            '<img alt="Gurdeep Osahan (Web Designer)" title="Gurdeep Osahan (Web Designer)"' +
-            'src="http://webncc.in/img/user/gurdeep-singh-osahan.jpg" class="md-user-image"</a></div>' +
+            '<img alt="@User.Identity.Name"' +
+            'src="https://www.pinclipart.com/picdir/big/344-3446018_best-whiteboard-video-software-robot-logo-png-clipart.png"  class="md-user-image"</a></div>' +
             '<ul class="chat_message">' +
             '<li><p>' + name + " : " + htmlEncode(message) +
             '<span class="chat_message_time">' + time.getHours() + ':' + time.getMinutes() + '</span>' +
             '</p ></li ></ul ></div > ');
 
         }
-        else if (name != "kokarolos@gmail.com") {
+        else {
         // Add the message to the page.
         $('#chat').append('<div class="chat_message_wrapper chat_message_right">' +
             '<div class="chat_user_avatar">' +
-            '<a href="https://web.facebook.com/iamgurdeeposahan" target="_blank">' +
-            '<img alt="Gurdeep Osahan (Web Designer)" title="Gurdeep Osahan (Web Designer)"' +
-            'src="http://webncc.in/img/user/gurdeep-singh-osahan.jpg" class="md-user-image"</a></div>' +
+            '<img alt="@User.Identity.Name"' +
+            'src="https://www.pinclipart.com/picdir/big/344-3446018_best-whiteboard-video-software-robot-logo-png-clipart.png" class="md-user-image"</a></div>' +
             '<ul class="chat_message">' +
             '<li><p>' + name + " : " + htmlEncode(message) +
             '<span class="chat_message_time">' + time.getHours() + ':' + time.getMinutes() + '</span>' +
@@ -93,7 +91,7 @@ $(function () {
     $("#form").on("submit", function (event) {
         event.preventDefault();
     });
-    
+
     var name = "@User.Identity.GetUserName()";
     $('#displayname').val(name);
     // Set initial focus to message input box.
@@ -114,7 +112,7 @@ $(function () {
         return encodedValue;
     }
 
-    </script>
+</script>
 
     @RenderSection("scripts", required: false)
 
