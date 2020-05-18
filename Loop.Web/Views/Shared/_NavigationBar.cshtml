@@ -3,14 +3,12 @@
     <div class="container">
         <div class="header-container d-flex align-items-center">
             <div class="logo mr-auto">
-                @*<h1 class="text-light"><a href="~/Views/Home/Index.cshtml"><span>LOOP</span></a></h1>*@
-                <!-- Uncomment below if you prefer to use an image logo -->
-                <a href="index.html"><img src="~/Content/loopLogo.png" alt="" class="img-fluid"></a>
+                <a href="/Home/Index"><img src="~/Content/loopLogo.png" alt="" class="img-fluid"></a>
             </div>
 
             <div class="wrap">
                 <div class="search">
-                    <input type="text" class="searchTerm" placeholder="What are you looking for?">
+                    <input type="text" class="searchTerm" placeholder="Write your question here..">
                     <button type="submit" class="searchButton">
                         <i class="fa fa-search"></i>
                     </button>
@@ -22,11 +20,10 @@
                     <li class="drop-down">
                         <a href="/Home/Index">Menu</a>
                         <ul>
+                            <li><a href="/Post/Index">Posts</a></li>
+                            <li><a href="/Products/Index">Tutorials</a></li>
                             <li><a href="#">Jobs</a></li>
-                            <li><a href="/Products/Index">Products</a></li>
                             <li><a href="/Home/About">About</a></li>
-                            <li><a href="/Post/Index">Forum</a></li>
-                            <li><a href="/Home/Index">Home</a></li>
                         </ul>
                     </li>
                     @* NEED TO TRY IT AGAIN | WE CAN WACTH THE NAME OF LOGGED USER *@
@@ -34,7 +31,6 @@
 
                     <li class="get-started"><a href="/Account/Login">Log in</a></li>
                     <li class="get-started"><a href="/Account/Register">Sign up</a></li>
-
                 </ul>
             </nav><!-- .nav-menu -->
         </div><!-- End Header Container -->
