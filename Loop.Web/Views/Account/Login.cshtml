@@ -42,8 +42,8 @@
 
                                     @Html.AntiForgeryToken()
                                     @Html.ValidationSummary("", new { @class = "text-danger " })
-                                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                                    @Html.TextBoxFor(m => m.Email, new { @class = "textbox", placeholder = "Type your Email" })
+                                    @Html.LabelFor(m => m.Username, new { @class = "col-md-2 control-label" })
+                                    @Html.TextBoxFor(m => m.Username, new { @class = "textbox", placeholder = "Type your UserName" })
                                     @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
                                     @Html.PasswordFor(m => m.Password, new { @class = "textbox", placeholder = "Type your Password" })
                                     <input type="submit" class="we-form " value="Login" />
