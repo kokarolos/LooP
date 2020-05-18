@@ -15,30 +15,19 @@
     <meta content="" name="keywords">
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-    @* CHECK IF NEEDED OR NOT *@
 
-    <!-- Vendor CSS Files -->
-    @*<link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
-        <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-        <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-        <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
-        <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-        <link href="assets/vendor/aos/aos.css" rel="stylesheet">*@
+    <link href="~/Content/css/assets/aos.css" rel="stylesheet" />
+    <link href="~/Content/css/assets/boxicons.min.css" rel="stylesheet" />
+    <link href="~/Content/css/assets/icofont.min.css" rel="stylesheet" />
+    <link href="~/Content/css/assets/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/Content/css/assets/remixicon.css" rel="stylesheet" />
+    <link href="~/Content/css/assets/venobox.css" rel="stylesheet" />
+    <link href="~/Content/css/IndexStyle.css" rel="stylesheet" />
 
-    @*<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-        <link href="~/Content/css/Index/icofont.min.css" rel="stylesheet" />
-        <link href="~/Content/css/Index/boxicons.min.css" rel="stylesheet" />
-        <link href="~/Content/css/Index/remixicon.css" rel="stylesheet" />
-        <link href="~/Content/css/Index/venobox.css" rel="stylesheet" />
-        <link href="~/Content/css/Index/owl.carousel.min.css" rel="stylesheet" />
-        <link href="~/Content/css/Index/aos.css" rel="stylesheet" />*@
 
-    @*Template Main CSS File*@
-    @*<link href="~/Content/css/Index/style.css" rel="stylesheet" />*@
-    @*<link href="~/Content/css/IndexStyle.css" rel="stylesheet" />*@
+
 </head>
 
 <body>
@@ -156,7 +145,7 @@
                             @foreach (var post in Model.RecentPosts)
                             {
 
-                            <li><i class="bx bx-file"></i> @Html.ActionLink(post.Title, "Details","Post", new { id = post.PostId },null)</li>
+                                <li><i class="bx bx-file"></i> @Html.ActionLink(post.Title, "Details", "Post", new { id = post.PostId }, null)</li>
                             }
                         </ul>
                     </div>
@@ -169,7 +158,7 @@
                             @foreach (var product in Model.RecentProducts)
                             {
 
-                            <li><i class="bx bx-file"></i> @Html.ActionLink(product.Title, "Details", "Products", new { id = product.ProductId }, null)</li>
+                                <li><i class="bx bx-file"></i> @Html.ActionLink(product.Title, "Details", "Products", new { id = product.ProductId }, null)</li>
                             }
                         </ul>
                     </div>
@@ -182,15 +171,13 @@
                             @foreach (var reply in Model.RecentReplies)
                             {
 
-                            <li><i class="bx bx-file"></i>  @Html.ActionLink(reply.Text, "Details", "Post", new { id = reply.Post.PostId }, null)</li>
+                                <li><i class="bx bx-file"></i>  @Html.ActionLink(reply.Text, "Details", "Post", new { id = reply.Post.PostId }, null)</li>
                             }
                         </ul>
                     </div>
                 </div>
             </div>
         </section>
-      
-
 
         <!-- End Counts Section -->
         <!-- ======= Services Section ======= -->
@@ -208,7 +195,7 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-stretch">
                                 <div class="icon-box" data-aos="zoom-in" data-aos-delay="100">
-                                    <div class="icon"><i class="bx bxl-dribbble"></i></div>
+                                    <div class="icon"><img src="https://www.pinclipart.com/picdir/big/344-3446018_best-whiteboard-video-software-robot-logo-png-clipart.png" /></div>
                                     <h4>Karolos Koniewicz</h4>
                                     <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
                                 </div>
@@ -216,7 +203,7 @@
 
                             <div class="col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
                                 <div class="icon-box" data-aos="zoom-in" data-aos-delay="200">
-                                    <div class="icon"><i class="bx bx-file"></i></div>
+                                    <div class="icon"><img src="https://www.pinclipart.com/picdir/big/344-3446018_best-whiteboard-video-software-robot-logo-png-clipart.png" /></div>
                                     <h4>Panagiotis Rizos</h4>
                                     <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
                                 </div>
@@ -224,7 +211,7 @@
 
                             <div class="col-md-6 d-flex align-items-stretch mt-4">
                                 <div class="icon-box" data-aos="zoom-in" data-aos-delay="300">
-                                    <div class="icon"><i class="bx bx-tachometer"></i></div>
+                                    <div class="icon"><img src="https://www.pinclipart.com/picdir/big/344-3446018_best-whiteboard-video-software-robot-logo-png-clipart.png" /></div>
                                     <h4>Ioannis Manthos</h4>
                                     <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
                                 </div>
@@ -232,7 +219,7 @@
 
                             <div class="col-md-6 d-flex align-items-stretch mt-4">
                                 <div class="icon-box" data-aos="zoom-in" data-aos-delay="400">
-                                    <div class="icon"><i class="bx bx-world"></i></div>
+                                    <div class="icon"><img src="https://www.pinclipart.com/picdir/big/344-3446018_best-whiteboard-video-software-robot-logo-png-clipart.png" /></div>
                                     <h4>Thanos Katrakis</h4>
                                     <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
                                 </div>
@@ -247,30 +234,19 @@
 
         <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
 
-        <!-- Vendor JS Files -->
-        @*<script src="assets/vendor/jquery/jquery.min.js"></script>
-        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
-        <script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script>
-        <script src="assets/vendor/counterup/counterup.min.js"></script>
-        <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-        <script src="assets/vendor/venobox/venobox.min.js"></script>
-        <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
-        <script src="assets/vendor/aos/aos.js"></script>*@
 
-        @*<script src="~/Scripts/jquery-3.5.0.min.js"></script>
-        <script src="~/Scripts/Custom/Index/bootstrap.bundle.min.js"></script>
-        <script src="~/Scripts/Custom/Index/jquery.easing.min.js"></script>
-        <script src="~/Scripts/Custom/Index/jquery.waypoints.min.js"></script>
-        <script src="~/Scripts/Custom/Index/counterup.min.js"></script>
-        <script src="~/Scripts/Custom/Index/isotope.pkgd.min.js"></script>
-        <script src="~/Scripts/Custom/Index/venobox.min.js"></script>
-        <script src="~/Scripts/Custom/Index/owl.carousel.min.js"></script>
-        <script src="~/Scripts/Custom/Index/aos.js"></script>*@
 
     </main>
 
-    @*Template Main JS File
-        <script src="assets/js/main.js"></script>*@
+    <script src="~/Scripts/Custom/cus/jquery.min.js"></script>
+    <script src="~/Scripts/Custom/cus/bootstrap.min.js"></script>
+    <script src="~/Scripts/Custom/cus/jquery.easing.min.js"></script>
+    <script src="~/Scripts/Custom/cus/jquery.waypoints.min.js"></script>
+    <script src="~/Scripts/Custom/cus/counterup.min.js"></script>
+    <script src="~/Scripts/Custom/cus/isotope.pkgd.min.js"></script>
+    <script src="~/Scripts/Custom/cus/venobox.min.js"></script>
+    <script src="~/Scripts/Custom/cus/owl.carousel.min.js"></script>
+    <script src="~/Scripts/Custom/cus/aos.js"></script>
+    <script src="~/Scripts/Custom/cus/index.js"></script>
 </body>
 </html>
