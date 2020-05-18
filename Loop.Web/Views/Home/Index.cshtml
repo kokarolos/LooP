@@ -17,6 +17,8 @@
     <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
+    @*FONT AWSOME ICONS*@
+    <script src="https://kit.fontawesome.com/0e62a71725.js" crossorigin="anonymous"></script>
 
     <link href="~/Content/css/assets/aos.css" rel="stylesheet" />
     <link href="~/Content/css/assets/boxicons.min.css" rel="stylesheet" />
@@ -25,92 +27,81 @@
     <link href="~/Content/css/assets/remixicon.css" rel="stylesheet" />
     <link href="~/Content/css/assets/venobox.css" rel="stylesheet" />
     <link href="~/Content/css/IndexStyle.css" rel="stylesheet" />
-
-
-
 </head>
 
 <body>
-    <!-- ======= Hero Section ======= -->
+    <!-- #region BACKGROUND IMAGE SECTION -->
     <section id="hero" class="d-flex align-items-center">
         <div class="container text-center position-relative" data-aos="fade-in" data-aos-delay="200">
             <h2 class="index-main-header">WELCOME TO LOOP</h2>
-            <a href="#" class="btn-get-started scrollto">Get Started</a>
+            <a href="/Account/Register" class="btn-get-started scrollto">Get Started</a>
         </div>
-    </section><!-- End Hero -->
+    </section>
+    <!-- #endregion -->
 
     <main id="main">
-        <!-- ======= Clients Section ======= -->
-        <section id="clients" class="clients">
-            <div class="container">
 
-                <div class="row">
-
-                    <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center" data-aos="zoom-in" data-aos-delay="100">
-                        <img src="assets/img/clients/client-1.png" class="img-fluid" alt="">
-                    </div>
-
-                    <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center" data-aos="zoom-in" data-aos-delay="200">
-                        <img src="assets/img/clients/client-2.png" class="img-fluid" alt="">
-                    </div>
-
-                    <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center" data-aos="zoom-in" data-aos-delay="300">
-                        <img src="assets/img/clients/client-3.png" class="img-fluid" alt="">
-                    </div>
-
-                    <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center" data-aos="zoom-in" data-aos-delay="400">
-                        <img src="assets/img/clients/client-4.png" class="img-fluid" alt="">
-                    </div>
-
-                    <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center" data-aos="zoom-in" data-aos-delay="500">
-                        <img src="assets/img/clients/client-5.png" class="img-fluid" alt="">
-                    </div>
-
-                    <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center" data-aos="zoom-in" data-aos-delay="600">
-                        <img src="assets/img/clients/client-6.png" class="img-fluid" alt="">
-                    </div>
-
-                </div>
-
-            </div>
-        </section><!-- End Clients Section -->
-        <!-- ======= About Section ======= -->
+        <!-- #region GENERAL INFO SECTION -->
         <section id="about" class="about">
             <div class="container">
-
                 <div class="row content">
                     <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
-                        <h2>Tts time to make a stronger Community</h2>
-
-                        <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assum perenda sruen jonee trave</h3>
+                        <h2>It's time to make a stronger Coding Community</h2>
+                        <h3>Loop is place where you can talk with fellow developers about coding and technology</h3>
                     </div>
                     <div class="col-lg-6 pt-4 pt-lg-0" data-aos="fade-left" data-aos-delay="200">
                         <p>
-                            Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                            culpa qui officia deserunt mollit anim id est laborum
+                            Hello beautiful people, our site is here for you to talk about your questions or ideas about coding. In our site you can
+                            also find fellow programmers to hang out. In our site you can also buy:
                         </p>
                         <ul>
-                            <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequa</li>
-                            <li><i class="ri-check-double-line"></i> Duis aute irure dolor in reprehenderit in voluptate velit</li>
-                            <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in</li>
+                            <li><i class="fas fa-check-double"></i> Video tutorials for all technologies you can name.</li>
+                            <li><i class="fas fa-check-double"></i> Book tutorials for all modern coding languages.</li>
+                            <li><i class="fas fa-check-double"></i> And all that at the the price <b>YOU CHOOSE TO PAY</b>.</li>
                         </ul>
                         <p class="font-italic">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                            magna aliqua.
+                            We are happy you are here. Please enjoy you stay.
                         </p>
                     </div>
-
                 </div>
-
             </div>
-        </section><!-- End About Section -->
-        <!-- ======= Counts Section ======= -->
+        </section>
+        <!-- #endregion -->
+        <!-- #region RECENT POSTS SECTION -->
+        <section id="services" class="services section-bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="section-title" data-aos="fade-right">
+                            <h2>Recent Posts</h2>
+                            <p>You can read all posts <a href="/Post/Index" style="color:#007acc; text-decoration: underline">here</a></p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-8">
+                        <div class="row">
+
+                            @foreach (var post in Model.RecentPosts)
+                            {
+                                <div class="col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
+                                    <div id="tutorial-post-div" class="icon-box mt-4" data-aos="zoom-in" data-aos-delay="100">
+                                        <div class="icon"><img src="#" /></div>
+                                        <h4>@post.Title</h4>
+                                        <p>@post.Text</p>
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- #endregion -->
+        <!-- #region BLUE BAR WITH COUNTERS SECTION -->
         <section id="counts" class="counts">
             <div class="container">
-
                 <div class="row counters">
-
                     <div class="col-lg-3 col-6 text-center">
                         <span data-toggle="counter-up">@Model.PostsCount</span>
                         <p>Posts</p>
@@ -130,114 +121,134 @@
                         <span data-toggle="counter-up">@Model.OrdersCount</span>
                         <p>Orders</p>
                     </div>
-
-
-                </div>
-
-            </div>
-        </section>
-        <section class="pricing" id="pricing">
-            <div class="row">
-                <div class="col-lg-4 aos-init aos-animate" data-aos="fade-in" data-aos-delay="100">
-                    <div class="box">
-                        <h3>Recent Posts</h3>
-                        <ul>
-                            @foreach (var post in Model.RecentPosts)
-                            {
-
-                                <li><i class="bx bx-file"></i> @Html.ActionLink(post.Title, "Details", "Post", new { id = post.PostId }, null)</li>
-                            }
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 mt-4 mt-lg-0 aos-init aos-animate" data-aos="fade-in" data-aos-delay="200">
-                    <div class="box featured">
-                        <h3>Recent Products</h3>
-                        <ul>
-                            @foreach (var product in Model.RecentProducts)
-                            {
-
-                                <li><i class="bx bx-file"></i> @Html.ActionLink(product.Title, "Details", "Products", new { id = product.ProductId }, null)</li>
-                            }
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 aos-init aos-animate" data-aos="fade-in" data-aos-delay="300">
-                    <div class="box">
-                        <h3>Recent Posts</h3>
-                        <ul>
-                            @foreach (var reply in Model.RecentReplies)
-                            {
-
-                                <li><i class="bx bx-file"></i>  @Html.ActionLink(reply.Text, "Details", "Post", new { id = reply.Post.PostId }, null)</li>
-                            }
-                        </ul>
-                    </div>
                 </div>
             </div>
         </section>
-
-        <!-- End Counts Section -->
-        <!-- ======= Services Section ======= -->
+        <!-- #endregion -->
+        <!-- #region RECENT TUTORIALS SECTION -->
         <section id="services" class="services section-bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="section-title" data-aos="fade-right">
+                            <h2>Recent Tutorials</h2>
+                            <p>Find all tutorials <a href="/Products/Index" style="color:#007acc; text-decoration: underline">here</a></p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-8">
+                        <div class="row">
+
+                            @foreach (var tutorial in Model.RecentProducts)
+                            {
+                                <div class="col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
+                                    <div id="tutorial-post-div" class="icon-box mt-4" data-aos="zoom-in" data-aos-delay="100">
+                                        <div class="icon"><img src="#" /></div>
+                                        <h4>@tutorial.Title</h4>
+                                        <p>@tutorial.Description</p>
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- #endregion -->
+        <!-- #region MEET TEAM SECTION -->
+        <section id="team" class="team">
             <div class="container">
 
                 <div class="row">
                     <div class="col-lg-4">
-                        <div class="section-title" data-aos="fade-right">
-                            <h2>The Team</h2>
-                            <p>Get to know our dream team</p>
+                        <div class="section-title aos-init aos-animate" data-aos="fade-right">
+                            <h2>Our Team</h2>
+                            <p>Here is the link to our team members personal social media</p>
                         </div>
                     </div>
                     <div class="col-lg-8">
                         <div class="row">
-                            <div class="col-md-6 d-flex align-items-stretch">
-                                <div class="icon-box" data-aos="zoom-in" data-aos-delay="100">
-                                    <div class="icon"><img src="https://www.pinclipart.com/picdir/big/344-3446018_best-whiteboard-video-software-robot-logo-png-clipart.png" /></div>
-                                    <h4>Karolos Koniewicz</h4>
-                                    <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+
+                            <div class="col-lg-6">
+                                <div class="member aos-init aos-animate" data-aos="zoom-in" data-aos-delay="100">
+                                    <div class="pic"><img src="assets/img/team/team-1.jpg" class="img-fluid" alt=""></div>
+                                    <div class="member-info">
+                                        <h4>Karol Koniewicz</h4>
+                                        <span>Full Stack Developer</span>
+                                        <p>Mini Bio</p>
+                                        <div class="social">
+                                            <a href=""><i class="ri-twitter-fill"></i></a>
+                                            <a href=""><i class="ri-facebook-fill"></i></a>
+                                            <a href=""><i class="ri-instagram-fill"></i></a>
+                                            <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
-                                <div class="icon-box" data-aos="zoom-in" data-aos-delay="200">
-                                    <div class="icon"><img src="https://www.pinclipart.com/picdir/big/344-3446018_best-whiteboard-video-software-robot-logo-png-clipart.png" /></div>
-                                    <h4>Panagiotis Rizos</h4>
-                                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
+                            <div class="col-lg-6 mt-4 mt-lg-0">
+                                <div class="member aos-init aos-animate" data-aos="zoom-in" data-aos-delay="200">
+                                    <div class="pic"><img src="assets/img/team/team-2.jpg" class="img-fluid" alt=""></div>
+                                    <div class="member-info">
+                                        <h4>Panos Rizos</h4>
+                                        <span>Full Stack Developer</span>
+                                        <p>Mini bio</p>
+                                        <div class="social">
+                                            <a href=""><i class="ri-twitter-fill"></i></a>
+                                            <a href=""><i class="ri-facebook-fill"></i></a>
+                                            <a href=""><i class="ri-instagram-fill"></i></a>
+                                            <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="col-md-6 d-flex align-items-stretch mt-4">
-                                <div class="icon-box" data-aos="zoom-in" data-aos-delay="300">
-                                    <div class="icon"><img src="https://www.pinclipart.com/picdir/big/344-3446018_best-whiteboard-video-software-robot-logo-png-clipart.png" /></div>
-                                    <h4>Ioannis Manthos</h4>
-                                    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
+                            <div class="col-lg-6 mt-4">
+                                <div class="member aos-init aos-animate" data-aos="zoom-in" data-aos-delay="300">
+                                    <div class="pic"><img src="assets/img/team/team-3.jpg" class="img-fluid" alt=""></div>
+                                    <div class="member-info">
+                                        <h4>Ioannis Manthos</h4>
+                                        <span>Full Stack Developer</span>
+                                        <p>Mini Bio</p>
+                                        <div class="social">
+                                            <a href=""><i class="ri-twitter-fill"></i></a>
+                                            <a href=""><i class="ri-facebook-fill"></i></a>
+                                            <a href=""><i class="ri-instagram-fill"></i></a>
+                                            <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="col-md-6 d-flex align-items-stretch mt-4">
-                                <div class="icon-box" data-aos="zoom-in" data-aos-delay="400">
-                                    <div class="icon"><img src="https://www.pinclipart.com/picdir/big/344-3446018_best-whiteboard-video-software-robot-logo-png-clipart.png" /></div>
-                                    <h4>Thanos Katrakis</h4>
-                                    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
+                            <div class="col-lg-6 mt-4">
+                                <div class="member aos-init aos-animate" data-aos="zoom-in" data-aos-delay="400">
+                                    <div class="pic"><img src="assets/img/team/team-4.jpg" class="img-fluid" alt=""></div>
+                                    <div class="member-info">
+                                        <h4>Thanos Katrakis</h4>
+                                        <span>Full Stack Developer</span>
+                                        <p>Pationate about coding and music.</p>
+                                        <div class="social">
+                                            <a href=""><i class="ri-twitter-fill"></i></a>
+                                            <a href=""><i class="ri-facebook-fill"></i></a>
+                                            <a href=""><i class="ri-instagram-fill"></i></a>
+                                            <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
-
             </div>
-        </section><!-- End Services Section -->
-
+        </section>
+        <!-- #endregion -->
+        <!-- #region BACK TO TOP BUTTON -->
         <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
-
-
-
+        <!-- #endregion -->
+        
     </main>
-
+    <!-- #region ALL SCRIPTS -->
     <script src="~/Scripts/Custom/cus/jquery.min.js"></script>
     <script src="~/Scripts/Custom/cus/bootstrap.min.js"></script>
     <script src="~/Scripts/Custom/cus/jquery.easing.min.js"></script>
@@ -248,5 +259,6 @@
     <script src="~/Scripts/Custom/cus/owl.carousel.min.js"></script>
     <script src="~/Scripts/Custom/cus/aos.js"></script>
     <script src="~/Scripts/Custom/cus/index.js"></script>
+    <!-- #endregion -->
 </body>
 </html>

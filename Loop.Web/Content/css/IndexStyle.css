@@ -207,12 +207,6 @@ h1, h2, h3, h4, h5, h6 {
             color: #273746;
         }
 
-    .nav-menu .drop-down > a:after {
-        content: "\ea99";
-        font-family: IcoFont;
-        padding-left: 5px;
-    }
-
     .nav-menu .drop-down .drop-down ul {
         top: 0;
         left: calc(100% - 30px);
@@ -410,7 +404,7 @@ h1, h2, h3, h4, h5, h6 {
     #hero h2 {
         color: #eee;
         margin-bottom: 40px;
-        font-size: 15px;
+        font-size: 100px;
         font-weight: 500;
         font-family: "Open Sans", sans-serif;
         letter-spacing: 0.5px;
@@ -430,6 +424,7 @@ h1, h2, h3, h4, h5, h6 {
         margin: 10px;
         border: 2px solid #fff;
         color: #fff;
+        background-color: #2ea2d3;
     }
 
         #hero .btn-get-started:hover {
@@ -1604,3 +1599,11 @@ section {
         margin: 0 auto 30px auto;
     }
 }
+
+
+/*NEED TO BE DELETED*/
+/*.nav-menu .drop-down > a:after {
+        content: "\ea99";
+        font-family: IcoFont;
+        padding-left: 5px;
+    }*/
