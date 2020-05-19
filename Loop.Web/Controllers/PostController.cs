@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using Loop.Database;
 using Loop.Entities;
@@ -20,8 +17,6 @@ namespace Loop.Web.Controllers
         // GET: Post
         public ActionResult Index()
         {
-            //chekare ama sto getall prepei na kaneis include to user
-            //var posts = db.Posts.Include(p => p.ApplicationUser);
             var posts = db.Posts.GetAll();
             return View(posts.ToList());
         }

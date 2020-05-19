@@ -3,7 +3,6 @@ using Loop.Services.Interfaces.Repositories;
 using Loop.Services.Repositories;
 using Loop.Services.Repositories_interface;
 using System;
-using System.Threading.Tasks;
 
 namespace Loop.Services
 {
