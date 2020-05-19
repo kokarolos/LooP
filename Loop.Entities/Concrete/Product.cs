@@ -23,6 +23,8 @@ namespace Loop.Entities.Concrete
 
         [Display(Name = "Date and Time of Production")]
         public DateTime InsertionDate { get; set; } = DateTime.Now;
+        public string PhotoUrl { get; set; }
+
 
         public virtual ICollection<OrderProduct> OrderProducts { get; set; }
     }

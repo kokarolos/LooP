@@ -100,17 +100,23 @@ namespace Loop.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Products.GetById(id);
+            var product = db.Products.GetById(id);
             ProductViewModel model = new ProductViewModel();
             if (product == null)
             {
                 return HttpNotFound();
             }
-            if (product.GetType().Name.Split('_')[0] == "Book")
+            if(product is Book)
             {
-                
-                model.Description = product.Description;
-                model.Title = product.Title;
+                Book book = (Book)product;
+                model.ProductId = book.ProductId;
+                model.Pages = book.Pages;
+                model.ProductionDate = book.ProductionDate;
+                model.Publisher = book.Publisher;
+                model.BookAuthor = book.BookAuthor;
+                model.Description = book.Description;
+                model.Title = book.Title;
+
                 return View(model);
             }
             else
@@ -125,16 +131,16 @@ namespace Loop.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Product product)
+        public ActionResult Edit(ProductViewModel model)
         {
             
             if (ModelState.IsValid)
             {
-                db.Products.Update(product);
+                //db.Products.Update(model);
                 db.Save();
                 return RedirectToAction("Index");
             }
-            return View(product);
+            return View(model);
         }
 
         // GET: Products/Delete/5
