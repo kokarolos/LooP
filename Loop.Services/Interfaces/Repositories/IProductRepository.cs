@@ -1,4 +1,5 @@
-﻿using Loop.Entities.Concrete;
+﻿using Loop.Entities;
+using Loop.Entities.Concrete;
 using Loop.Services.Repositories_interface;
 
 namespace Loop.Services.Interfaces.Repositories

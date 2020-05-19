@@ -1,9 +1,9 @@
 ﻿using Loop.Database;
 using Loop.Entities;
 using Loop.Services.Repositories_interface;
-using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 
 namespace Loop.Services.Repositories
 {
@@ -20,6 +20,16 @@ namespace Loop.Services.Repositories
         {
             
 
+        }
+
+        //Including User Image Table so we can display user who posted
+        //TODO : Include ApplicationUser Images but from Replies table
+        // .Replies.ApplicationUser.Images smth like this
+        public override IEnumerable<Post> GetAll()
+        {
+           return Database.Posts.Include(posts => posts.ApplicationUser.Images)
+                                .Include(post=>post.Replies)
+                                .AsEnumerable();
         }
 
         public void Insert(Post post, IEnumerable<int> SelectedTagsIds)

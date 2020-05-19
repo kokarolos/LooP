@@ -5,6 +5,9 @@
 }
 
 <h2>Details</h2>
+@* Redirection to Reply Controller *@
+@Html.ActionLink("Reply", "Create", "Reply", new { id = Model.PostId }, new { @class = "btn btn-primary" })
+
 <div class="central-meta">
     <div class="forum-open">
         <h5 class=""><i class="fa fa-star"></i> Asset for creating a beautiful website</h5>
@@ -12,17 +15,21 @@
             <thead>
                 <tr>
                     <th>@Html.DisplayFor(m => m.ApplicationUser.UserName)</th>
-                    <th>@Html.DisplayFor(m=>m.Text)</th>
-                    <th>@Html.DisplayFor(m=>m.PostDate)</th>
+                    <th>@Html.DisplayFor(m => m.Text)</th>
+                    <th>@Html.DisplayFor(m => m.PostDate)</th>
                 </tr>
-         
+
             </thead>
             <tbody>
                 @foreach (var reply in Model.Replies)
                 {
                     <tr>
                         <td class="topic-data">
-                            <img src="~/Content/images/resources/forum-author1.png" alt="User's Avatar" />
+                            @*@foreach (var image in reply.ApplicationUser.Images)
+                            {
+                                <img src="@Url.Content(image.ImgPath)" width="100" height="100" />
+
+                            }*@
                             <span>@reply.ApplicationUser.UserName</span>
                             <em>Participant</em>
                         </td>
@@ -34,7 +41,8 @@
                             <p>@reply.Text</p>
                         </td>
                         <td>
-                            @Html.ActionLink("Delete", "Delete", new { id = reply.ReplyId })
+                            @Html.ActionLink("Delete", "Delete", "Reply", new { id = reply.ReplyId }, null)
+                            @Html.ActionLink("Edit", "Edit", "Reply", new { id = reply.ReplyId }, null)
                         </td>
                     </tr>
                 }
