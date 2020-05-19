@@ -5,6 +5,7 @@
 }
 
 
+
 @Html.ActionLink("Create New", "Create", null, new { @class = "btn-danger" })
 
 
@@ -67,11 +68,11 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="row merged20" id="page-contents">
-                            <div class="col-lg-12">
+                            @foreach (var product in Model)
+                            {
+                                <div class="col-lg-4">
 
-                                <div class="load-more">
-                                    @foreach (var product in Model)
-                                    {
+                                    <div class="load-more">
                                         <div class="central-meta item">
                                             <div class="classic-post">
                                                 <figure>
@@ -103,10 +104,10 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    }
 
-                                </div>
-                            </div><!-- centerl meta -->
+                                    </div>
+                                </div><!-- centerl meta -->
+                            }
 
                         </div>
                     </div>
@@ -114,7 +115,6 @@
             </div>
         </div>
     </section><!-- content -->
-
 
 </div>
 

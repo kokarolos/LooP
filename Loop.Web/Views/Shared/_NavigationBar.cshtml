@@ -1,38 +1,25 @@
-﻿<!-- ======= Header ======= -->
-<header id="header" class="fixed-top d-flex align-items-center">
-    <div class="container">
-        <div class="header-container d-flex align-items-center">
-            <div class="logo mr-auto">
-                <a href="/Home/Index"><img src="~/Content/loopLogo.png" alt="" class="img-fluid"></a>
-            </div>
+﻿
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #273746;">
+    <a href="/Home/Index"><img src="~/Content/loopLogo.png" alt="" class="img-fluid"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-            <div class="wrap">
-                <div class="search">
-                    <input type="text" class="searchTerm" placeholder="Write your question here..">
-                    <button type="submit" class="searchButton">
-                        <i class="fa fa-search"></i>
-                    </button>
-                </div>
-            </div>
-
-            <nav class="nav-menu d-none d-lg-block">
-                <ul>
-                    <li class="drop-down">
-                        <a href="/Home/Index">Menu<i class="fas fa-caret-square-down"></i></a>
-                        <ul>
-                            <li><a href="/Post/Index">Posts</a></li>
-                            <li><a href="/Products/Index">Tutorials</a></li>
-                            <li><a href="#">Jobs</a></li>
-                            <li><a href="/Home/About">About</a></li>
-                        </ul>
-                    </li>
-                    @* NEED TO TRY IT AGAIN | WE CAN WACTH THE NAME OF LOGGED USER *@
-                    @*@Html.Partial("_LoginPartial")*@
-
-                    <li class="get-started"><a href="/Account/Login">Log in</a></li>
-                    <li class="get-started"><a href="/Account/Register">Sign up</a></li>
-                </ul>
-            </nav><!-- .nav-menu -->
-        </div><!-- End Header Container -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/Post/Index">Post<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/Products/Index">Tutorials</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Jobs</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+        </form>
     </div>
-</header><!-- End Header -->
+</nav>
