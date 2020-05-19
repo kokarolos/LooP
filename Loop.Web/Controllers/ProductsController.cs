@@ -1,13 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Security.Cryptography.X509Certificates;
 using System.Web.Mvc;
 using Loop.Database;
 using Loop.Entities.Concrete;
 using Loop.Services;
 using Loop.Web.Models;
-using Twilio.Rest.Api.V2010.Account.Usage.Record;
 
 namespace Loop.Web.Controllers
 {
@@ -51,15 +50,19 @@ namespace Loop.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(ProductViewModel model, string SelectedProduct)
         {
+            //If user selects to create book -> book view
+            //after redirection to book view selectedproduct is null so it will check for model.Pages to distinguish model as book or tut
             if (SelectedProduct == "Book")
             {
                 return View("Book");
             }
+            //If user selects to create book -> book view
             if (SelectedProduct == "Tutorial")
             {
                 return View("Tutorial");
             }
-            if (model.Pages < 0)
+
+            if (model.Pages <= 0)
             {
                 Product tutorial = new Tutorial()
                 {
@@ -71,7 +74,6 @@ namespace Loop.Web.Controllers
                 };
                 db.Products.Insert(tutorial);
                 db.Save();
-
             }
             else
             {
@@ -79,20 +81,16 @@ namespace Loop.Web.Controllers
                 {
                     BookAuthor = model.BookAuthor,
                     Description = model.Description,
-                    Publisher = model.Publisher,
+                    ProductionDate = model.ProductionDate.GetValueOrDefault(),
                     Pages = model.Pages,
-                    ProductionDate = model.ProductionDate,
-                    Title = model.Title,
-                    //ImageFile 
+                    Publisher = model.Publisher,
+                    Title = model.Title
                 };
                 db.Products.Insert(book);
                 db.Save();
             }
-          
-
             return RedirectToAction("Index");
         }
-
 
         // GET: Products/Edit/5
         [HandleError]
@@ -103,11 +101,23 @@ namespace Loop.Web.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Product product = db.Products.GetById(id);
+            ProductViewModel model = new ProductViewModel();
             if (product == null)
             {
                 return HttpNotFound();
             }
-            return View(product);
+            if (product.GetType().Name.Split('_')[0] == "Book")
+            {
+                
+                model.Description = product.Description;
+                model.Title = product.Title;
+                return View(model);
+            }
+            else
+            {
+                return View("Tutorial");
+            }
+          
         }
 
         // POST: Products/Edit/5
@@ -115,8 +125,9 @@ namespace Loop.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductId,Title,Description")] Product product)
+        public ActionResult Edit(Product product)
         {
+            
             if (ModelState.IsValid)
             {
                 db.Products.Update(product);
@@ -151,7 +162,13 @@ namespace Loop.Web.Controllers
             db.Save();
             return RedirectToAction("Index");
         }
-
+      // private Product GenerateProduct(ProductViewModel model,Func<Product,bool> IsType)
+      // {
+      //     if (IsType())
+      //     {
+      //
+      //     }
+      // }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
