@@ -1199,6 +1199,8 @@
     <Content Include="Views\Products\Select.cshtml" />
     <Content Include="Views\Products\Book.cshtml" />
     <Content Include="Views\Products\Tutorial.cshtml" />
+    <Content Include="Views\Products\EditBook.cshtml" />
+    <Content Include="Views\Products\EditTutorial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
