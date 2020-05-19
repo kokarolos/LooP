@@ -28,9 +28,9 @@ namespace Loop.Database
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Product>()
-                        .Map<Tutorial>(m => m.Requires("ProductType").HasValue("Tutorial"))
-                        .Map<Book>(m => m.Requires("ProductType").HasValue("Book"));
+           // modelBuilder.Entity<Product>()
+           //             .Map<Tutorial>(m => m.Requires("ProductType").HasValue("Tutorial"))
+           //             .Map<Book>(m => m.Requires("ProductType").HasValue("Book"));
         }
 
         public static ApplicationDbContext Create()

@@ -1,7 +1,4 @@
 ﻿using System;
-using Loop.Entities;
-using Loop.Entities.Intermediate;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 
@@ -43,7 +40,7 @@ namespace Loop.Web.Models
         [Display(Name = "Duration")]
         public TimeSpan? Duration { get; set; }
 
-        public virtual Image ImageFile { get; set; }
-        public virtual ICollection<OrderProduct> OrderProducts { get; set; }
+        //public virtual Image ImageFile { get; set; }
+        //public virtual ICollection<OrderProduct> OrderProducts { get; set; }
     }
 }

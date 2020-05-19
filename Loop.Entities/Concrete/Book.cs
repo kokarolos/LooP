@@ -17,6 +17,6 @@ namespace Loop.Entities.Concrete
         [Display(Name = "Number of pages")]
         public int Pages { get; set; }
 
-        public virtual Image  ImageFile { get; set; }
+        //public virtual Image  ImageFile { get; set; }
     }
 }
