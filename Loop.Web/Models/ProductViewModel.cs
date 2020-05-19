@@ -40,6 +40,8 @@ namespace Loop.Web.Models
         [Display(Name = "Duration")]
         public TimeSpan? Duration { get; set; }
 
+        public string PhotoUrl { get; set; }
+
         //public virtual Image ImageFile { get; set; }
         //public virtual ICollection<OrderProduct> OrderProducts { get; set; }
     }

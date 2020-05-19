@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using Loop.Database;
@@ -31,6 +29,9 @@ namespace Loop.Web.Controllers
         // GET: Products/Create
         public ActionResult Create()
         {
+            //getting all products group them by Value(Book, or Tut) , because of Entity Proxies when i getType of Product
+            //It stores it like Book_1203021302139SDIXUASUDAS so i split string from _ and taking back the first string
+
             ViewBag.SelectedProduct = db.Products.GetAll()
                                                           .GroupBy(y => y.GetType().Name)
                                                           .Select(x => new SelectListItem()
@@ -77,15 +78,7 @@ namespace Loop.Web.Controllers
             }
             else
             {
-                Book book = new Book
-                {
-                    BookAuthor = model.BookAuthor,
-                    Description = model.Description,
-                    ProductionDate = model.ProductionDate.GetValueOrDefault(),
-                    Pages = model.Pages,
-                    Publisher = model.Publisher,
-                    Title = model.Title
-                };
+                var book = CreateBook(model);
                 db.Products.Insert(book);
                 db.Save();
             }
@@ -101,29 +94,21 @@ namespace Loop.Web.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var product = db.Products.GetById(id);
-            ProductViewModel model = new ProductViewModel();
             if (product == null)
             {
                 return HttpNotFound();
             }
-            if(product is Book)
+            if (product is Book book)
             {
-                Book book = (Book)product;
-                model.ProductId = book.ProductId;
-                model.Pages = book.Pages;
-                model.ProductionDate = book.ProductionDate;
-                model.Publisher = book.Publisher;
-                model.BookAuthor = book.BookAuthor;
-                model.Description = book.Description;
-                model.Title = book.Title;
-
-                return View(model);
+                var model = CreateModelFromBook(book);
+                return View("EditBook",model);
             }
             else
             {
-                return View("Tutorial");
+                var model = CreateModelFromTutorial(product as Tutorial);
+                return View("EditTutorial",model);
             }
-          
+
         }
 
         // POST: Products/Edit/5
@@ -133,12 +118,24 @@ namespace Loop.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(ProductViewModel model)
         {
-            
+
             if (ModelState.IsValid)
             {
-                //db.Products.Update(model);
-                db.Save();
-                return RedirectToAction("Index");
+                if(model.Pages > 0)
+                {
+                    var book = CreateBook(model);
+                    db.Products.Update(book);
+                    db.Save();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    var tutorial = CreateTutorial(model);
+                    db.Products.Update(tutorial);
+                    db.Save();
+                    return RedirectToAction("Index");
+                }
+               
             }
             return View(model);
         }
@@ -168,20 +165,81 @@ namespace Loop.Web.Controllers
             db.Save();
             return RedirectToAction("Index");
         }
-      // private Product GenerateProduct(ProductViewModel model,Func<Product,bool> IsType)
-      // {
-      //     if (IsType())
-      //     {
-      //
-      //     }
-      // }
-        protected override void Dispose(bool disposing)
+
+        [NonAction]
+        private Book CreateBook(ProductViewModel model)
         {
-            if (disposing)
+            var book = new Book() 
             {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
+                ProductId = model.ProductId,
+                Pages = model.Pages,
+                ProductionDate = model.ProductionDate,
+                Publisher = model.Publisher,
+                BookAuthor = model.BookAuthor,
+                Description = model.Description,
+                Title = model.Title,
+                PhotoUrl = model.PhotoUrl
+            };
+            return book;
         }
+
+        [NonAction]
+        private ProductViewModel CreateModelFromBook(Book book)
+        {
+            var model = new ProductViewModel()
+            {
+                ProductId = book.ProductId,
+                Pages = book.Pages,
+                ProductionDate = book.ProductionDate,
+                Publisher = book.Publisher,
+                BookAuthor = book.BookAuthor,
+                Description = book.Description,
+                Title = book.Title,
+                PhotoUrl = book.PhotoUrl
+            };
+            return model;
+        }
+
+
+        [NonAction]
+        private Tutorial CreateTutorial(ProductViewModel model)
+        {
+            var tutorial = new Tutorial()
+            {
+                ProductId = model.ProductId,
+                Duration = model.Duration.GetValueOrDefault(),
+                ProductionDate = model.ProductionDate,
+                TutorialAuthor = model.TutorialAuthor,
+                Description = model.Description,
+                Title = model.Title,
+                PhotoUrl = model.PhotoUrl
+            };
+            return tutorial;
+        }
+
+        [NonAction]
+        private ProductViewModel CreateModelFromTutorial(Tutorial tutorial)
+        {
+            var model = new ProductViewModel()
+            {
+                ProductId = tutorial.ProductId,
+                Duration = tutorial.Duration,
+                ProductionDate = tutorial.ProductionDate,
+                TutorialAuthor = tutorial.TutorialAuthor,
+                Description = tutorial.Description,
+                Title = tutorial.Title,
+                PhotoUrl = tutorial.PhotoUrl
+            };
+            return model;
+        }
+
+        protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            db.Dispose();
+        }
+        base.Dispose(disposing);
     }
+}
 }
