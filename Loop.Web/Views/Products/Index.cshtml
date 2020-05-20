@@ -76,7 +76,7 @@
                                         <div class="central-meta item">
                                             <div class="classic-post">
                                                 <figure>
-                                                    <img src="@product.PhotoUrl" style="width:150px; height:150px" alt="">
+                                                    <img class="prod-image" src="@product.PhotoUrl" alt="Photo Missing">
                                                 </figure>
                                                 <div class="classic-pst-meta">
                                                     <div class="more">
@@ -90,8 +90,8 @@
                                                             </ul>
                                                         </div>
                                                     </div>
-                                                    <h4><i class="fa fa-check-circle" title="verified"></i>@Html.ActionLink(product.Title, "Details", new { id = product.ProductId })</h4>
-                                                    <div style="width:600px"><p>@Html.ActionLink(product.Description, "Details", new { id = product.ProductId })</p></div>
+                                                    <h4><i class="fa fa-check-circle" title="verified"></i>Title: @product.Title</h4>
+                                                    <div><p>Description: @product.Description</p></div>
                                                     @{
 
                                                         var str = product.GetType().Name.Split('_');
@@ -108,7 +108,6 @@
                                     </div>
                                 </div><!-- centerl meta -->
                             }
-
                         </div>
                     </div>
                 </div>

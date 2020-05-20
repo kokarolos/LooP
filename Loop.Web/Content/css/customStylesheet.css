@@ -59,7 +59,7 @@
     transform: translate(-50%, -50%);
 }
 
-/* -----  PRODUCT PAGE -----*/
+/* -----  PRODUCT PER PAGE -----*/
 .se-pre-con {
     padding-top: 2%;
 }
@@ -72,4 +72,10 @@
     width: 400px;
     height: 300px;
     margin-top: 30px !important;
+}
+
+/*product-image*/
+.prod-image {
+    width: 150px;
+    height: 150px;
 }

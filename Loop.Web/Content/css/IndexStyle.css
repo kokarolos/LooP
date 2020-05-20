@@ -404,7 +404,7 @@ h1, h2, h3, h4, h5, h6 {
     #hero h2 {
         color: #eee;
         margin-bottom: 40px;
-        font-size: 100px;
+        font-size: 60px;
         font-weight: 500;
         font-family: "Open Sans", sans-serif;
         letter-spacing: 0.5px;
@@ -424,7 +424,7 @@ h1, h2, h3, h4, h5, h6 {
         margin: 10px;
         border: 2px solid #fff;
         color: #fff;
-        background-color: #2ea2d3;
+        background-color: #84909d;
     }
 
         #hero .btn-get-started:hover {
