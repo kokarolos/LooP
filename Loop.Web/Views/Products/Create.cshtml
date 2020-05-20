@@ -1,7 +1,7 @@
 ﻿@model Loop.Web.Models.ProductViewModel
 
 @{
-    Layout = null;
+    ViewBag.Title = "Create";
 }
 
 <!DOCTYPE html>
@@ -22,7 +22,7 @@
 
         <div class="container">
             <div class="form-horizontal">
-                <h4>Product</h4>
+                <h4>Create New Product</h4>
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
@@ -56,5 +56,9 @@
     <div>
         @Html.ActionLink("Back to List", "Index")
     </div>
+   
+
 </body>
 </html>
+
+
