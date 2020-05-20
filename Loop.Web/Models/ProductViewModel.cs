@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Loop.Web.Models
 {
-    public class ProductViewModel
+    public class ProductViewModel 
     {
         public int ProductId { get; set; }
 
