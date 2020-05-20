@@ -95,4 +95,9 @@ small {
     display: block;
     line-height: 1.428571429;
     color: #999;
-} 
+}
+
+#goo-map {
+    height: 150px;
+    width: 250px;
+}
