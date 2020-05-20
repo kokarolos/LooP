@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using Loop.Database;
@@ -35,14 +34,12 @@ namespace Loop.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(ReplyViewModel model)
         {
-            var user = db.Users.GetUserById(User.Identity.GetUserId());
-            var post = db.Posts.GetById(model.PostId);
             var reply = new Reply()
             {
                 Text = model.Text,
-                ApplicationUser = user,
+                ApplicationUser = db.Users.GetUserById(User.Identity.GetUserId()),
                 PostDate = DateTime.Now,
-                Post = post
+                Post = db.Posts.GetById(model.PostId)
             };
 
             if (ModelState.IsValid)
@@ -50,9 +47,8 @@ namespace Loop.Web.Controllers
                 db.Replies.Insert(reply);
                 db.Save();
                 //Redirection To Post Details View
-                return RedirectToAction("Details", "Post", new { id = post.PostId });
             }
-            return View(reply);
+            return RedirectToAction("Details", "Post", new { id = reply.Post.PostId });
         }
 
         // GET: Reply/Edit/5
@@ -67,13 +63,8 @@ namespace Loop.Web.Controllers
             {
                 return HttpNotFound();
             }
-            var model = new ReplyViewModel()
-            {
-                ReplyId = reply.ReplyId,
-                Text = reply.Text,
-                PostDate = reply.PostDate,
-                PostId = reply.Post.PostId
-            };
+            var model = CreateModel(reply);
+
 
             return View(model);
         }
@@ -85,20 +76,14 @@ namespace Loop.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(ReplyViewModel model)
         {
-            //DTO from model to reply and updating values
-            var post = db.Posts.GetAll();
-            Post e = post.Where(x => x.PostId == model.PostId).First();
-            var reply = db.Replies.GetById(model.ReplyId);
-            reply.Text = model.Text;
-            reply.PostDate = model.PostDate;
-            reply.Post = db.Posts.GetById(model.PostId);
-            reply.ApplicationUser = db.Users.GetUserById(User.Identity.GetUserId());
-            
+
+            var reply = CreateReply(model);
             if (ModelState.IsValid)
             {
                 db.Replies.Update(reply);
+                db.Save();
             }
-            return RedirectToAction("Details", "Post", new { id = e.PostId });
+            return RedirectToAction("Details", "Post", new { id = reply.Post.PostId });
         }
 
         // GET: Reply/Delete/5
@@ -126,6 +111,36 @@ namespace Loop.Web.Controllers
             db.Replies.Remove(reply);
             db.Save();
             return RedirectToAction("Details", "Post", new { id = post });
+        }
+
+
+        [NonAction]
+        //Responsible for Reply Creation from model (edit post method)
+        //DTO from model to reply and updating values
+        private Reply CreateReply(ReplyViewModel model)
+        {
+            var reply = db.Replies.GetById(model.ReplyId);
+            reply.Text = model.Text;
+            reply.PostDate = model.PostDate;
+            reply.Post = db.Posts.GetById(model.PostId);
+            reply.ApplicationUser = db.Users.GetUserById(User.Identity.GetUserId());
+
+            return reply;
+        }
+
+        [NonAction]
+        //Reponsible for Model creation after getting id of an reply from GET edit method.
+        private ReplyViewModel CreateModel(Reply reply)
+        {
+            var model = new ReplyViewModel()
+            {
+                ReplyId = reply.ReplyId,
+                Text = reply.Text,
+                PostDate = reply.PostDate,
+                PostId = reply.Post.PostId
+            };
+
+            return model;
         }
 
         protected override void Dispose(bool disposing)
