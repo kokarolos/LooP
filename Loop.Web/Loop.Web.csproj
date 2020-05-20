@@ -1205,6 +1205,7 @@
     <Content Include="Views\Reply\Create.cshtml" />
     <Content Include="Views\Reply\Delete.cshtml" />
     <Content Include="Views\Reply\Edit.cshtml" />
+    <Content Include="Views\Shared\_SecondaryMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

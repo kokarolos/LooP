@@ -79,3 +79,20 @@
     width: 150px;
     height: 150px;
 }
+
+
+/*USER INDEX*/
+body {
+    padding-top: 30px;
+}
+
+.glyphicon {
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+small {
+    display: block;
+    line-height: 1.428571429;
+    color: #999;
+} 
