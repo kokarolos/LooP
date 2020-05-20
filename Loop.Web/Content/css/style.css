@@ -93,11 +93,6 @@ button:focus {
     outline: none;
 }
 
-img {
-    height: auto;
-    max-width: 100%;
-}
-
 .overlap {
     position: relative;
     margin-top: -70px;
