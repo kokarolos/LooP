@@ -81,6 +81,7 @@
 }
 
 
+
 /*USER INDEX*/
 body {
     padding-top: 30px;
@@ -95,4 +96,11 @@ small {
     display: block;
     line-height: 1.428571429;
     color: #999;
-} 
+}
+
+.user-Image {
+    height: 160px;
+    width: 150px;
+    border-radius: 10px;
+    object-fit:cover;
+}
