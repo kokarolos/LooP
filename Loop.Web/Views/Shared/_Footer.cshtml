@@ -21,7 +21,7 @@
                     <ul class="location">
                         <li>
                             <i class="fa fa-map-marker"></i>
-                            <p>33 new montgomery st.750 san francisco, CA USA 94105.</p>
+                            <p>Panepistimiou 39. Athens Greece 104 31.</p>
                         </li>
                         <li>
                             <i class="fa fa-phone"></i>
@@ -55,10 +55,10 @@
             </div>
             <div class="col-lg-4 col-md-2 col-sm-4">
                 <div class="widget">
-                    <div class="widget-title"><h4>Our Basement</h4></div>
-                    <iframe>
-                        <p> to vazeis edw</p>
-                    </iframe>
+                    <div class="widget-title"><h4>Meetup</h4></div>
+                    <div id="goo-map">
+
+                    </div>
                 </div>
             </div>
 
@@ -74,3 +74,55 @@
         </div>
     </div>
 </div><!-- bottom bar -->
+
+<script>
+    function initMap() {
+        // Map Options
+        var options = {
+            zoom: 14,
+            center: { lat: 37.983810, lng: 23.727539 }
+        }
+
+        // New Map
+        var map = new google.maps.Map(document.getElementById('goo-map'), options);
+        var allMarkers = [
+            {
+                coords: { lat: 37.984410, lng: 23.728260 },
+                iconImage: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+                content: '<h5>All meetups</h5> <p>Here is the place where all our meetups took place</p>'
+            }
+        ];
+
+        // Loop All Markers
+        for (var i = 0; i < allMarkers.length; i++) {
+            addMarker(allMarkers[i]);
+        }
+
+        function addMarker(props) {
+            var marker = new google.maps.Marker({
+                position: props.coords,
+                map: map
+            });
+
+            // Check For Custom Icon
+            if (props.iconImage) {
+                marker.setIcon(props.iconImage);
+            }
+
+            // Check For Content
+            if (props.content) {
+                var infoWindow = new google.maps.InfoWindow({
+                    content: props.content
+                });
+
+                marker.addListener('click', function () {
+                    infoWindow.open(map, marker);
+                });
+            }
+        }
+    }
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBW84ZO3cLRAfmXWPTRC-xQvCelNSoTx08&callback=initMap"
+        async defer>
+</script>
