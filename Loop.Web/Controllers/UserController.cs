@@ -110,11 +110,10 @@ namespace Loop.Web.Controllers
                     var img = new Image() { User = applicationUser, Data = imageSize, ImgName = filename, ImgPath = "~/Content/Avatars/" + filename };
                     applicationUser.Images = new List<Image>() { img };
                     UserManager.AddToRole(applicationUser.Id, role);
-                    db.Users.Insert(applicationUser);
+                    db.Save();
                 }
                 return RedirectToAction("Index");
             }
-            db.Save();
             //If not succeded redirect to form
             return View(model);
         }

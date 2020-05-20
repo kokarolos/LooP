@@ -9,12 +9,10 @@
     ViewBag.Title = "Index";
 }
 
-
-
-@foreach (var user in Model)
-{
-    <div class="container">
-        <div class="row">
+<div class="container">
+    <div class="row">
+        @foreach (var user in Model)
+        {
             <div class="col-xs-12 col-sm-6 col-md-6">
                 <div class="well well-sm">
                     <div class="row">
@@ -23,20 +21,47 @@
                             {
                                 foreach (var item in user.Images)
                                 {
-                                    <img src="@Url.Content(item.ImgPath)" alt="" class="img-rounded img-responsive" />
+                                    <img src="@Url.Content(item.ImgPath)" alt="" class="user-Image" />
                                     @*<img src="@Url.Content(item.ImgPath) " width="100" height="100" />*@
                                 }
                             }
                             else
                             {
-                                <img src="@Url.Content("~/Content/Avatars/chatbot.png")" alt="" class="img-rounded img-responsive" />
+                                <img src="@Url.Content("~/Content/Avatars/chatbot.png")" alt="" class="user-Image" />
                             }
-
                         </div>
                         <div class="col-sm-6 col-md-8">
                             <h4>
-                                @user.LastName @user.FirstName
+                                @if (user.Roles.Count > 0)
+                                {
+                                    if (user.Roles.First().RoleId == "87051edf-9529-4664-a617-387d09a2fdd6")
+                                    {
+                                        <em>@user.LastName @user.FirstName - User</em>
+
+                                    }
+
+                                    else
+                                    {
+                                        <em>@user.LastName @user.FirstName - Admin</em>
+                                    }
+                                }
+                                else
+                                {
+                                    <em>@user.LastName @user.FirstName - User</em>
+                                }
+
                             </h4>
+                            <div class="more" style="display:inline-block">
+                                <div class="more-post-optns">
+                                    <i class="ti-more-alt"></i>
+                                    <ul>
+                                        <li><i class="fa fa-pencil-square-o"></i>@Html.ActionLink("Edit", "Edit", new { id = user.Id }, new { onclick = "return confirm('Are you sure you wish to edit this product?');" })</li>
+                                        <li>
+                                            <i class="fa fa-trash-o"></i>@Html.ActionLink("Delete", "Delete", new { id = user.Id }, new { onclick = "return confirm('Are you sure you wish to delete this product?');" })
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                             <p>
                                 @if (!(user.Email == null))
                                 {
@@ -60,163 +85,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-}
-
-<div class="container">
-    <div class="row merged20">
-        <div class="col-lg-12">
-            <div class="row">
-                <div class="central-meta">
-                    <div class="title-block">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="align-left">
-                                    <h5>Forum open topic</h5>
-                                </div>
-
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="row merged20">
-                                    <div class="col-lg-7 col-md-7 col-sm-7">
-                                        <form method="post">
-                                            <input type="text" placeholder="Search...">
-                                            <button type="submit"><i class="fa fa-search"></i></button>
-                                        </form>
-                                    </div>
-
-                                    <div class="col-lg-4 col-md-4 col-sm-4">
-                                        <div class="select-options">
-                                            <select class="select">
-                                                <option>Sort by</option>
-                                                <option>See All</option>
-                                                <option>Newest</option>
-                                                <option>oldest</option>
-                                                <option>A to Z</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-1 col-md-1 col-sm-1">
-                                        <div class="option-list">
-                                            <i class="fa fa-ellipsis-v"></i>
-                                            <ul>
-                                                <li class="active"><i class="fa fa-check"></i><a title="" href="#">Show Public</a></li>
-                                                <li><a title="" href="#">Show only Friends</a></li>
-                                                <li><a title="" href="#">Hide all Posts</a></li>
-                                                <li><a title="" href="#">Mute Notifications</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div><!-- title block -->
-            </div>
-            <div class="central-meta">
-                <div class="forum-open">
-                    <h5 class=""><i class="fa fa-star"></i> Asset for creating a beautiful website</h5>
-                    <table class="table table-responsive">
-                        <thead>
-                            <tr>
-
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Images)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Email)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.EmailConfirmed)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.PasswordHash)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.SecurityStamp)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.PhoneNumber)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.PhoneNumberConfirmed)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.TwoFactorEnabled)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.LockoutEndDateUtc)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.LockoutEnabled)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.AccessFailedCount)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.UserName)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.FirstName)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.LastName)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.DateOfBirth)
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var user in Model)
-                            {
-                                <tr>
-                                    <td class="topic-data">
-                                        @if (user.Images.Count > 0)
-                                        {
-                                            foreach (var item in user.Images)
-                                            {
-                                                <img src="@Url.Content(item.ImgPath) " width="100" height="100" />
-                                            }
-                                        }
-                                        else
-                                        {
-                                            <img src="@Url.Content("~/ Content / Avatars / chatbot.png")" width="100" height="100" />
-                                        }
-
-
-                                        @if (user.Roles.Count > 0)
-                                        {
-                                            if (user.Roles.First().RoleId == "87051edf-9529-4664-a617-387d09a2fdd6")
-                                            {
-                                                <em>Admin</em>
-                                            }
-                                            else
-                                            {
-                                                <em>User</em>
-                                            }
-                                        }
-
-
-                                    </td>
-                                    <td>
-                                        @user.Email
-                                    </td>
-
-                                    <td class="topic-detail">
-                                    </td>
-                                    <td>
-                                        @Html.ActionLink("Edit", "Edit", new { id = user.Id }) |
-                                        @Html.ActionLink("Delete", "Delete", new { id = user.Id })
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+        }
     </div>
 </div>
 
