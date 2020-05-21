@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="Concrete\ApplicationUser.cs" />
     <Compile Include="Concrete\Book.cs" />
+    <Compile Include="Concrete\Cart.cs" />
     <Compile Include="Concrete\Location.cs" />
     <Compile Include="Concrete\Order.cs" />
     <Compile Include="Concrete\Post.cs" />

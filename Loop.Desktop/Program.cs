@@ -3,6 +3,7 @@ using Loop.Entities.Concrete;
 using Loop.Services;
 using System;
 using System.Linq;
+using System.Net.Http.Headers;
 
 namespace Loop.Desktop
 {
@@ -59,6 +60,29 @@ namespace Loop.Desktop
             //{
             //    Console.WriteLine($"{item.ProductId} {item.Title}");
             //}
+
+
+            int rows = 0;
+            UnitOfWork db = new UnitOfWork(new ApplicationDbContext());
+
+            foreach (var user in db.Users.GetAll().ToList())
+            {
+                foreach (var order in db.Orders.GetAll().ToList())
+                {
+                    foreach (var orderProduct in db.OrderProducts.GetAll().ToList())
+                    {
+                        if (order.OrderId == orderProduct.OrderId)
+                        {
+                            Console.Write($"{user.FirstName} \t");
+                            Console.WriteLine($"{order.OrderId} {orderProduct.Product.Title} ");
+                            rows++;
+                        }
+                    }
+                }
+            }
+            Console.WriteLine(rows);
+
+
         }
     }
 }
