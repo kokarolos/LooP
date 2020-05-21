@@ -1,9 +1,9 @@
-﻿using System.Data.Entity;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
 using System.Linq;
-using System.Net;
 using System.Web.Mvc;
 using Loop.Database;
-using Loop.Entities.Intermediate;
+using Loop.Entities.Concrete;
 using Loop.Services;
 
 namespace Loop.Web.Controllers
@@ -22,102 +22,49 @@ namespace Loop.Web.Controllers
         //TODO: ViewModel for OrderProducts
 
 
-
-        // GET: OrderProducts/Create
-        public ActionResult Create()
+        public ActionResult Cart()
         {
-            ViewBag.OrderId = new SelectList(db.Orders, "OrderId", "ApplicationUserId");
-            ViewBag.ProductId = new SelectList(db.Products, "ProductId", "Title");
-            return View();
+            var cart = CreateOrGetCart();
+            return View(cart);
         }
 
-        // POST: OrderProducts/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "OrderId,ProductId,Price,Quantity,Dummy")] OrderProduct orderProduct)
+        private Cart CreateOrGetCart() 
         {
-            if (ModelState.IsValid)
+            var cart = Session["Cart"] as Cart;
+            if (cart == null)
             {
-                db.OrderProducts.Add(orderProduct);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                cart = new Cart();
+                SaveCart(cart);
             }
-
-            ViewBag.OrderId = new SelectList(db.Orders, "OrderId", "ApplicationUserId", orderProduct.OrderId);
-            ViewBag.ProductId = new SelectList(db.Products, "ProductId", "Title", orderProduct.ProductId);
-            return View(orderProduct);
+            return cart;
         }
 
-        // GET: OrderProducts/Edit/5
-        public ActionResult Edit(int? id)
+
+        // orderId : 1293912
+        // productId : 123
+        // Quantity : 5
+        // price : 50
+
+        //If user is authenticated -> Store user to Order and match the relationship then store it db
+        // Goal is from Order to get AppUser using User.Identity -> Order-> AppUser and store it 
+
+        // orderId : 1293912
+        // productId : 124
+        // Quantity : 2
+        // price : 50
+
+        private void ClearCart() 
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            OrderProduct orderProduct = db.OrderProducts.Find(id);
-            if (orderProduct == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.OrderId = new SelectList(db.Orders, "OrderId", "ApplicationUserId", orderProduct.OrderId);
-            ViewBag.ProductId = new SelectList(db.Products, "ProductId", "Title", orderProduct.ProductId);
-            return View(orderProduct);
+            var cart = new Cart();
+            SaveCart(cart);
         }
 
-        // POST: OrderProducts/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "OrderId,ProductId,Price,Quantity,Dummy")] OrderProduct orderProduct)
+        private void SaveCart(Cart cart) 
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(orderProduct).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.OrderId = new SelectList(db.Orders, "OrderId", "ApplicationUserId", orderProduct.OrderId);
-            ViewBag.ProductId = new SelectList(db.Products, "ProductId", "Title", orderProduct.ProductId);
-            return View(orderProduct);
+            Session["Cart"] = cart;
         }
 
-        // GET: OrderProducts/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            OrderProduct orderProduct = db.OrderProducts.Find(id);
-            if (orderProduct == null)
-            {
-                return HttpNotFound();
-            }
-            return View(orderProduct);
-        }
 
-        // POST: OrderProducts/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            OrderProduct orderProduct = db.OrderProducts.Find(id);
-            db.OrderProducts.Remove(orderProduct);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
 }
