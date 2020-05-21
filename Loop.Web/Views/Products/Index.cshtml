@@ -4,8 +4,6 @@
     ViewBag.Title = "Index";
 }
 
-@Html.ActionLink("Create New", "Create", null, new { @class = "btn-danger" })
-
 <div class="se-pre-con"></div>
 <div class="theme-layout">
 
@@ -54,11 +52,12 @@
                             </div>
                         </div>
                     </div><!-- title block -->
+                    <h4>Find Any Tutorial You Need</h4>
+                    <a class="addnewforum" href="~/Products/Create" title=""><i class="fa fa-plus"></i> Create Product</a>
                 </div>
             </div>
         </div>
     </div>
-
     <section>
         <div class="gap2 gray-bg">
             <div class="container">
@@ -68,8 +67,8 @@
                             @foreach (var product in Model)
                             {
                                 <div class="col-lg-4">
-
                                     <div class="load-more">
+
                                         <div class="central-meta item">
                                             <div class="classic-post">
                                                 <figure>
@@ -110,7 +109,7 @@
                 </div>
             </div>
         </div>
-    </section><!-- content -->
+    </section>
 
 </div>
 
