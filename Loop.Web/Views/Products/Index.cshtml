@@ -96,7 +96,11 @@
                                                     }
                                                     <span>Product Type : @str[0]</span>
                                                     <div class="location-area">
-                                                        <a href="~OrderProducts/Cart" class="main-btn" title="">Add to Cart</a>
+                                                        @using (Html.BeginForm("Add", "OrderProducts", FormMethod.Post))
+                                                        {
+                                                            @Html.Hidden("ProductId", product.ProductId)
+                                                            <button type="submit" class="btn btn-primary">Add to cart</button>
+                                                        }
                                                     </div>
                                                 </div>
                                             </div>

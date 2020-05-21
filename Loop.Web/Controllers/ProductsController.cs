@@ -101,12 +101,12 @@ namespace Loop.Web.Controllers
             if (product is Book book)
             {
                 var model = CreateModelFromBook(book);
-                return View("EditBook",model);
+                return View("EditBook", model);
             }
             else
             {
                 var model = CreateModelFromTutorial(product as Tutorial);
-                return View("EditTutorial",model);
+                return View("EditTutorial", model);
             }
 
         }
@@ -121,7 +121,7 @@ namespace Loop.Web.Controllers
 
             if (ModelState.IsValid)
             {
-                if(model.Pages > 0)
+                if (model.Pages > 0)
                 {
                     var book = CreateBook(model);
                     db.Products.Update(book);
@@ -135,7 +135,7 @@ namespace Loop.Web.Controllers
                     db.Save();
                     return RedirectToAction("Index");
                 }
-               
+
             }
             return View(model);
         }
@@ -169,7 +169,7 @@ namespace Loop.Web.Controllers
         [NonAction]
         private Book CreateBook(ProductViewModel model)
         {
-            var book = new Book() 
+            var book = new Book()
             {
                 ProductId = model.ProductId,
                 Pages = model.Pages,
@@ -233,13 +233,14 @@ namespace Loop.Web.Controllers
             return model;
         }
 
+
         protected override void Dispose(bool disposing)
-    {
-        if (disposing)
         {
-            db.Dispose();
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
-        base.Dispose(disposing);
     }
-}
 }
