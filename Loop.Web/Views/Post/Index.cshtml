@@ -3,79 +3,168 @@
 @{
     ViewBag.Title = "Index";
 }
-<h2>Index</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link href="~/Content/css/main.min.css" rel="stylesheet" />
+    <link href="~/Content/css/style.css" rel="stylesheet" />
+    <link href="~/Content/css/color.css" rel="stylesheet" />
+    <link href="~/Content/css/responsive.css" rel="stylesheet" />
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+</head>
+<body>
+    <div class="se-pre-con"></div>
 
+    <div class="theme-layout">
 
-<div class="theme-layout">
-    <section>
+        <section>
+            <div class="page-header">
+                <div class="header-inner">
+                    <h2>Forum</h2>
+                    <p>
+                        Mipws meinei auto ti lete?
+                    </p>
+                </div>
+                <figure><img src="images/resources/baner-forum.png" alt=""></figure>
+            </div>
+        </section><!-- sub header -->
+
         <div class="gap gray-bg">
             <div class="container">
                 <div class="row merged20">
                     <div class="col-lg-12">
+                        <div class="forum-warper">
+                            <div class="central-meta">
+                                <div class="title-block">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="align-left">
+                                                <h5>Forum Posts</h5>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="row merged20">
+                                                <div class="col-lg-7 col-md-7 col-sm-7">
+                                                    <form method="post">
+                                                        <input type="text" placeholder="Search...">
+                                                        <button type="submit"><i class="fa fa-search"></i></button>
+                                                    </form>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 col-sm-4">
+                                                    <div class="select-options">
+                                                        <select class="select">
+                                                            <option>Sort by</option>
+                                                            <option>See All</option>
+                                                            <option>Newest</option>
+                                                            <option>oldest</option>
+                                                            <option>A to Z</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-1 col-md-1 col-sm-1">
+                                                    <div class="option-list">
+                                                        <i class="fa fa-ellipsis-v"></i>
+                                                        <ul>
+                                                            <li class="active"><i class="fa fa-check"></i><a title="" href="#">Show Public</a></li>
+                                                            <li><a title="" href="#">Show only Friends</a></li>
+                                                            <li><a title="" href="#">Hide all Posts</a></li>
+                                                            <li><a title="" href="#">Mute Notifications</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- title block -->
+                            <h4>A new way to find help </h4>
+                            <a class="addnewforum" href="~/Post/Create" title=""><i class="fa fa-plus"></i> Create Post</a>
+                        </div>
                         <div class="central-meta">
-                            <div class="forum-open">
-                                <h5 class=""><i class="fa fa-star"></i> Asset for creating a beautiful website</h5>
+                            <div class="forum-list">
                                 <table class="table table-responsive">
                                     <thead>
                                         <tr>
-                                            <th>Author</th>
-                                            <th>Post Title</th>
-                                            <th>Posts</th>
+                                            <th scope="col">Posts</th>
+                                            <th scope="col">Replies</th>
+                                            <th scope="col">Tags</th>
+                                            <th scope="col">Posted By</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach (var post in Model)
                                         {
+
                                             <tr>
-                                                <td class="topic-data">
-                                                    @if (!(post.ApplicationUserId is null))
-                                                    {
-                                                        <span>@post.ApplicationUser.UserName</span>
-                                                        foreach (var image in post.ApplicationUser.Images)
-                                                        {
-                                                            <img src="@Url.Content(image.ImgPath) " width="100" height="100" />
-
-                                                        }
-                                                    }
-
-                                                    <em>Posted : @post.PostDate.ToShortDateString()</em>
-                                                </td>
-                                                <td class="date-n-reply">
-                                                    <span>@post.Title</span>
-                                                    <a href="#" title="">Reply</a>
-                                                </td>
-                                                <td class="topic-detail">
-                                                    @Html.ActionLink(@post.Text, "Details", new { id = post.PostId })
-                                                </td>
-                                                @foreach (var tag in post.Tags)
-                                                {
-                                                    <td class="topic-detail">
-                                                        <img src="@tag.ImageUrl" class="img-fluid" width="30" height="30" />
-                                                    </td>
+                                                @{
+                                                    int RepliesCount = post.Replies.Count();
                                                 }
-
                                                 <td>
-                                                    <div class="option-list">
-                                                        <i class="fa fa-ellipsis-v"></i>
-                                                        <ul>
-                                                            <li><i class="fa fa-pencil-square-o"></i>@Html.ActionLink("Edit", "Edit", new { id = post.PostId }, new { onclick = "return confirm('Are you sure you wish to edit this product?');" })</li>
-                                                            <li><i class="fa fa-trash-o"></i>@Html.ActionLink("Delete", "Delete", new { id = post.PostId }, new { onclick = "return confirm('Are you sure you wish to delete this product?');" }) </li>
-                                                        </ul>
-                                                    </div>
+                                                    <i class="fa fa-comments"></i>
+                                                    @Html.ActionLink(post.Title, "Details", new { id = post.PostId })
+                                                    <p>@post.Text</p>
+                                                </td>
+                                                <td>@RepliesCount</td>
+                                                <td>
+                                                    <ul style="list-style-type:none">
+                                                        @foreach (var tag in post.Tags)
+                                                        {
+                                                            <li><img src="@tag.ImageUrl"  class="img-fluid" width="40" height="40" /></li>
+                                                        }
+                                                    </ul>
+                                                </td>
+                                                <td>
+                                                    @if (!(post.ApplicationUserId.Length < 0))
+                                                    {
+                                                        if (!(post.ApplicationUser.Images.FirstOrDefault() is null))
+                                                        {
+                                                            foreach (var image in post.ApplicationUser.Images)
+                                                            {
+                                                                if (image.ImgPath.Length > 0)
+                                                                {
+                                                                    <img src="@Url.Content(image.ImgPath) " width="50" height="50" />
+                                                                }
+
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <img src="~/Content/Avatars/chatbot.png" width="50" height="50" />
+                                                        }
+
+                                                    }
+                                                    <br />
+                                                    <span>@post.ApplicationUser.UserName</span>
+                                                    <span>Posted : @post.PostDate.ToShortDateString()</span>
+                                                </td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>
+                                                <button class="add-btn">SACVE</button>
                                                 </td>
                                             </tr>
                                         }
                                     </tbody>
                                 </table>
+                                <div class="lodmore">
+                                    <button class="btn-view btn-load-more"></button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-</div>
+    </div>
+
+    <script src="~/Scripts/Custom/main.min.js"></script>
+    <script src="~/Scripts/Custom/script.js"></script>
+</body>
+</html>
+<script>
+
+</script>
