@@ -1602,7 +1602,7 @@ header.sticky {
     }
 /*--- central posts meta box ---*/
 .central-meta {
-    background: #fff none repeat scroll 0 0;
+    background: #f5f5f5 none repeat scroll 0 0;
     border: 1px solid #ede9e9;
     border-radius: 5px;
     display: inline-block;
@@ -2820,7 +2820,8 @@ span.status {
 /*--- footer ---*/
 
 footer {
-    background: #fff;
+    background-color: #273746;
+    color: #FFFFFF;
     float: left;
     padding: 70px 0;
     width: 100%;
@@ -2874,11 +2875,11 @@ footer {
     vertical-align: top;
     width: 88%;
     margin-bottom: 0;
-    color: #757a95;
+    color: #ffffff;
 }
 
 .foot-logo > p {
-    color: #757a95;
+    color: #ffffff;
 }
 
 .widget > a {
@@ -2893,7 +2894,7 @@ footer {
 }
 
 footer .widget-title h4 {
-    color: #535165;
+    color: #ffffff;
     font-size: 15px;
     font-weight: 500;
     text-transform: uppercase;
