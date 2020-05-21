@@ -1,9 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Data.Entity;
-using System.Linq;
+﻿using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Web.Mvc;
 using Loop.Database;
 using Loop.Entities.Concrete;
+using Loop.Entities.Intermediate;
 using Loop.Services;
 
 namespace Loop.Web.Controllers
@@ -12,23 +12,13 @@ namespace Loop.Web.Controllers
     {
         private UnitOfWork db = new UnitOfWork(new ApplicationDbContext());
 
-        // GET: OrderProducts
-        public ActionResult Index()
-        {
-            var orderProducts = db.OrderProducts.GetAll();
-            return View(orderProducts.ToList());
-        }
-
-        //TODO: ViewModel for OrderProducts
-
-
         public ActionResult Cart()
         {
             var cart = CreateOrGetCart();
             return View(cart);
         }
 
-        private Cart CreateOrGetCart() 
+        private Cart CreateOrGetCart()
         {
             var cart = Session["Cart"] as Cart;
             if (cart == null)
@@ -37,6 +27,31 @@ namespace Loop.Web.Controllers
                 SaveCart(cart);
             }
             return cart;
+        }
+
+        public ActionResult Add(int ProductId)
+        {
+            var product = db.Products.GetAll().ToList().FirstOrDefault(x => x.ProductId == ProductId);
+            var cart = CreateOrGetCart();
+            //TODO:: Counter ++
+            //var existingItem = cart.OrderProducts.Where(x => x.ProductId == ProductId);
+
+            //TODO : If cart is Checkouted or Canceled we will Create new Order else we will keep the same
+            //Maybe Delegate?
+
+            cart.OrderProducts.Add(new OrderProduct()
+            {
+                Order = new Order(),
+                ProductId = ProductId,
+                Product = db.Products.GetById(ProductId),
+                Price = 100,
+                Quantity = 1
+            });
+
+
+            SaveCart(cart);
+
+            return RedirectToAction("Cart", "OrderProducts");
         }
 
 
@@ -53,13 +68,13 @@ namespace Loop.Web.Controllers
         // Quantity : 2
         // price : 50
 
-        private void ClearCart() 
+        private void ClearCart()
         {
             var cart = new Cart();
             SaveCart(cart);
         }
 
-        private void SaveCart(Cart cart) 
+        private void SaveCart(Cart cart)
         {
             Session["Cart"] = cart;
         }
