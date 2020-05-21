@@ -98,7 +98,7 @@ namespace Loop.Web.Controllers
 
                 var applicationUser = CreateUser(model);
                 var result = await UserManager.CreateAsync(applicationUser, model.Password);
-                //TODO:REFACTOR THIS SHIT
+                //TODO:REFACTOR THAT
 
                 if (result.Succeeded)
                 {
@@ -162,10 +162,10 @@ namespace Loop.Web.Controllers
 
                 byte[] imageSize = new byte[file.ContentLength];
                 file.InputStream.Read(imageSize, 0, file.ContentLength);
+
                 var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
                 var roleMngr = new RoleManager<IdentityRole>(roleStore);
                 var roles = roleMngr.Roles.ToList();
-
                 var role = roles.SingleOrDefault(x => x.Id == SelectedRoleId).Name;
                 UserManager.RemoveFromRoles(applicationUser.Id, "Admin", "User");
                 UserManager.AddToRole(applicationUser.Id, role);
@@ -176,7 +176,7 @@ namespace Loop.Web.Controllers
             }
             return View(applicationUser);
         }
-
+        
 
 
         // GET: User/Delete/5
@@ -221,6 +221,21 @@ namespace Loop.Web.Controllers
             };
             return user;
         }
+
+
+        //private ApplicationUser EditUser(RegisterViewModel model, string id)
+        //{
+        //    ApplicationUser applicationUser = db.Users.GetUserById(id);
+
+        //    applicationUser.UserName = model.UserName;
+        //    applicationUser.Email = model.Email;
+        //    applicationUser.FirstName = model.FirstName;
+        //    applicationUser.LastName = model.LastName;
+        //    applicationUser.PhoneNumber = model.PhoneNumber;
+        //    applicationUser.DateOfBirth = model.DateOfBirth;
+
+        //    return applicationUser;
+        //}
 
 
         protected override void Dispose(bool disposing)
