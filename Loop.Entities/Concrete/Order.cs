@@ -10,6 +10,8 @@ namespace Loop.Entities.Concrete
         public int OrderId { get; set; }
         public DateTime OrderDate { get; set; }
 
+        public string ApplicationUserId { get; set; }
+        public virtual ApplicationUser ApplicationUser { get; set; }
         public virtual ICollection<OrderProduct> OrderProducts { get; set; }
     }
 }

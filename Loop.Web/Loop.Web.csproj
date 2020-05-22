@@ -211,6 +211,7 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OrderProductsController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ReplyController.cs" />
@@ -220,6 +221,7 @@
     </Compile>
     <Compile Include="LiveChat\hubs\ChatHub.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CartVm.cs" />
     <Compile Include="Models\IndexStatisticViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
@@ -1207,6 +1209,8 @@
     <Content Include="Views\Reply\Delete.cshtml" />
     <Content Include="Views\Reply\Edit.cshtml" />
     <Content Include="Views\Shared\_SecondaryMenu.cshtml" />
+    <Content Include="Views\OrderProducts\Index.cshtml" />
+    <Content Include="Views\OrderProducts\Cart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
