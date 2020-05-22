@@ -34,9 +34,6 @@
                         {
                             <tr>
                                 <td>@item.Product.Title</td>
-
-                                <td class="text-right"><input type="number" id="price" />Price</td>
-                                @Html.Hidden("price", item.Price);
                                 <td class="text-right">$@((item.Price / 100M).ToString("0.00"))</td>
                                 <td class="text-right">@item.Quantity</td>
                                 <td class="text-right">$@(((item.Price * item.Quantity) / 100M).ToString("0.00"))</td>

@@ -4,6 +4,8 @@
     ViewBag.Title = "Index";
 }
 
+<a href="/OrderProducts/Cart">Cart</a>
+
 <div class="se-pre-con"></div>
 <div class="theme-layout">
 
@@ -95,11 +97,17 @@
                                                     }
                                                     <span>Product Type : @str[0]</span>
                                                     <div class="location-area">
-                                                        @using (Html.BeginForm("Add", "OrderProducts", FormMethod.Post))
-                                                        {
-                                                            @Html.Hidden("ProductId", product.ProductId)
-                                                            <button type="submit" class="btn btn-primary">Add to cart</button>
-                                                        }
+                                                        <div>
+                                                            @*"https://localhost:44391/api/cart/getfive"*@
+                                                            <form id="form2" action="/OrderProducts/Add" method="get">
+                                                                <div>
+                                                                    <input type="text" id="quanity" name="quantity" />
+                                                                    <input type="text" id="price" name="price" />
+                                                                    @Html.Hidden("productId", product.ProductId)
+                                                                    <button type="submit" id="btn" class="btn btn-primary">Add to Cart</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -116,9 +124,47 @@
     </section>
 
 </div>
-
+<script src="~/Scripts/jquery-3.5.0.js"></script>
 <script src="js/main.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI"></script>
 <script src="js/locationpicker.jquery.js"></script>
 <script src="js/map-init.js"></script>
 <script src="js/script.js"></script>
+
+
+
+
+@*<script>
+    $(document).ready(function () {
+
+        $('#btn').on('click', function () {
+
+            $.ajax({
+                url: "https://localhost:44391/api/cart/getfive",
+                type: "Get",
+                data: "5",
+                success: function (data) {
+                    jQuery('#message').text('Success');
+                },
+                error: function () {
+                    jQuery('#message').text('Error');
+                },
+                async: false
+
+            });
+
+        });
+
+
+        //$.ajax({
+        //url: "http://localhost:44687/api/students",
+        //type: "Get",
+        //success: function (data) {
+        //for (var i = 0; i < data.length; i++) {
+        //$("<tr><td>" + data[i].Name + "</td><td>" + data[i].Course + "</td><td>" + data[i].City + "</td></tr>").appendTo("#students");
+        //}
+        //},
+        //error: function (msg) { alert(msg); }
+        //});
+    });
+</script>*@

@@ -16,9 +16,16 @@ namespace Loop.Web
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
+                routeTemplate: "api/{controller}/{action}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+           // config.Routes.MapHttpRoute(
+           //    name: "robtest2Api",
+           //    routeTemplate: "api/{controller}/{action}/{price}",
+           //    defaults: new { price = RouteParameter.Optional }
+           //);
+
         }
     }
 }

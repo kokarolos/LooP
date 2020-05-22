@@ -1,17 +1,15 @@
 ﻿using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Web.Mvc;
 using Loop.Database;
 using Loop.Entities.Concrete;
 using Loop.Entities.Intermediate;
 using Loop.Services;
-using Twilio.Types;
 
 namespace Loop.Web.Controllers
 {
     public class OrderProductsController : Controller
     {
-        private UnitOfWork db = new UnitOfWork(new ApplicationDbContext());
+        private readonly UnitOfWork db = new UnitOfWork(new ApplicationDbContext());
 
         //this is the index page of our cart
         public ActionResult Cart()
@@ -33,21 +31,16 @@ namespace Loop.Web.Controllers
 
         //Firstly we will get product from products/index on add click we get product -> redirection to Cart View
 
-        public ActionResult Add(int ProductId)
+        public ActionResult Add(int productId,decimal price,int quantity)
         {
-            var product = db.Products.GetAll().ToList().FirstOrDefault(x => x.ProductId == ProductId);
+            var product = db.Products.GetAll().ToList().FirstOrDefault(x => x.ProductId == productId);
             var cart = CreateOrGetCart();
             //TODO:: Counter ++
-            var existingItem = cart.OrderProducts.Where(x => x.ProductId == ProductId).Any();
+            var existingItem = cart.OrderProducts.Where(x => x.ProductId == productId).Any();
 
             if (existingItem)
             {
-                var e = cart.OrderProducts.GroupBy(x => db.Products.GetById(ProductId))
-                                          .Select(y => new
-                                          {
-                                              y.Key,
-                                              Quantity = y.Key.
-                                          });
+                // Product 1 , int ? 5
             }
 
             //TODO : If cart is Checkouted or Canceled we will Create new Order else we will keep the same
@@ -57,10 +50,10 @@ namespace Loop.Web.Controllers
             {
                 //We dont need to create an order -> we will create order at checkout proccess
                 Order = null,
-                ProductId = ProductId,
-                Product = db.Products.GetById(ProductId),
-                Price = 100,
-                Quantity = 1
+                ProductId = productId,
+                Product = db.Products.GetById(productId),
+                Price = price,
+                Quantity = quantity
             });
 
 
