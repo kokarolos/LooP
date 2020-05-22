@@ -102,14 +102,30 @@ small {
     height: 150px;
     width: 250px;
 }
+
 .user-Image {
     height: 160px;
     width: 150px;
     border-radius: 10px;
-    object-fit:cover;
+    object-fit: cover;
 }
 
 /*FOOTER LOGO*/
 #logo-img-footer {
     border: 1px solid #ffffff;
 }
+
+/*TAG MINI PHOTO*/
+#tag-mini-photo {
+    padding: 3px;
+    object-fit: cover;
+    width: 30px;
+    height: 30px;
+    align-items:start;
+}
+
+/*POST TITLE TO LEFT*/
+#post-title {
+    text-align:left;
+}
+

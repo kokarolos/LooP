@@ -355,6 +355,7 @@
     <Content Include="Content\images\map-marker.png" />
     <Content Include="Content\images\messenger-bg.png" />
     <Content Include="Content\images\play-list-icon.png" />
+    <Content Include="Content\images\Post Backgound Photo.jpg" />
     <Content Include="Content\images\resources\ad-widget.gif" />
     <Content Include="Content\images\resources\add-banner.jpg" />
     <Content Include="Content\images\resources\admin.jpg" />

@@ -3057,7 +3057,7 @@ footer .widget .colla-apps > li a {
 }
 
 .copyright {
-    float: left;
+    text-align:center;
     font-size: 13px;
     font-weight: 300;
 }
@@ -3921,12 +3921,12 @@ nav.breadcrumb {
 }
 
 .page-header {
-    background: #495b72 none repeat scroll 0 0;
     border-bottom: 1px solid #e1e8ed;
     position: relative;
     float: left;
     padding: 50px 15px 0;
     width: 100%;
+    height: 100px;
 }
 
 .header-inner > p {
@@ -6097,11 +6097,12 @@ h3.resutl-found {
     font-weight: 500;
     padding: 0 20px 10px;
     text-transform: capitalize;
+    text-align: right;
 }
 
 .forum-list table tbody tr td {
     padding: 20px;
-    text-align: center;
+    text-align: right;
     width: 100%;
     border-top: 1px dashed #d6dce5;
 }
