@@ -5,6 +5,7 @@ using Loop.Database;
 using Loop.Entities.Concrete;
 using Loop.Entities.Intermediate;
 using Loop.Services;
+using Twilio.Types;
 
 namespace Loop.Web.Controllers
 {
@@ -12,6 +13,7 @@ namespace Loop.Web.Controllers
     {
         private UnitOfWork db = new UnitOfWork(new ApplicationDbContext());
 
+        //this is the index page of our cart
         public ActionResult Cart()
         {
             var cart = CreateOrGetCart();
@@ -29,19 +31,32 @@ namespace Loop.Web.Controllers
             return cart;
         }
 
+        //Firstly we will get product from products/index on add click we get product -> redirection to Cart View
+
         public ActionResult Add(int ProductId)
         {
             var product = db.Products.GetAll().ToList().FirstOrDefault(x => x.ProductId == ProductId);
             var cart = CreateOrGetCart();
             //TODO:: Counter ++
-            //var existingItem = cart.OrderProducts.Where(x => x.ProductId == ProductId);
+            var existingItem = cart.OrderProducts.Where(x => x.ProductId == ProductId).Any();
+
+            if (existingItem)
+            {
+                var e = cart.OrderProducts.GroupBy(x => db.Products.GetById(ProductId))
+                                          .Select(y => new
+                                          {
+                                              y.Key,
+                                              Quantity = y.Key.
+                                          });
+            }
 
             //TODO : If cart is Checkouted or Canceled we will Create new Order else we will keep the same
             //Maybe Delegate?
 
             cart.OrderProducts.Add(new OrderProduct()
             {
-                Order = new Order(),
+                //We dont need to create an order -> we will create order at checkout proccess
+                Order = null,
                 ProductId = ProductId,
                 Product = db.Products.GetById(ProductId),
                 Price = 100,
@@ -79,7 +94,24 @@ namespace Loop.Web.Controllers
             Session["Cart"] = cart;
         }
 
+        public ActionResult Delete(int ProductId)
+        {
+            //Get Product from db
+            var product = db.Products.GetAll().FirstOrDefault(x => x.ProductId == ProductId);
 
+            var cart = CreateOrGetCart();
+            //Searching for the product in the list of OrderProducts and receiving the OrderProduct Object
+            var existingItem = cart.OrderProducts.Where(x => x.ProductId == ProductId).FirstOrDefault();
 
+            if (existingItem != null)
+            {
+                //Finally removing it from OrderProducts List
+                cart.OrderProducts.Remove(existingItem);
+            }
+
+            SaveCart(cart);
+
+            return RedirectToAction("Cart", "OrderProducts");
+        }
     }
 }

@@ -41,10 +41,10 @@
                                 <td class="text-right">@item.Quantity</td>
                                 <td class="text-right">$@(((item.Price * item.Quantity) / 100M).ToString("0.00"))</td>
                                 <td class="text-right">
-                                    @using (Html.BeginForm("Delete", "ECommerce", FormMethod.Post))
+                                    @using (Html.BeginForm("Delete", "OrderProducts", FormMethod.Post , new { id="deleteForm"}))
                                     {
                                         @Html.Hidden("ProductId", item.ProductId)
-                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                        <button type="submit" id="delete" class="btn btn-danger btn-sm">Delete</button>
                                     }
                                 </td>
                             </tr>
@@ -95,5 +95,10 @@
     }
     nameValidationInput.onchange = useValue;
     nameValidationInput.onblur = useValue;
+
+
+    $('#deleteForm').on('click', function (event) {
+        event.preventDefault();
+    });
 
 </script>
