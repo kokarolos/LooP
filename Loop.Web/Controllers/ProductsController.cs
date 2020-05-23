@@ -13,9 +13,26 @@ namespace Loop.Web.Controllers
         private readonly UnitOfWork db = new UnitOfWork(new ApplicationDbContext());
 
         // GET: Products
-        public ViewResult Index()
+        public ViewResult Index(string sortOrder, string searchTitle)
         {
+            ViewBag.TitleSortParam = string.IsNullOrEmpty(sortOrder) ? "TitleDesc" : "";
+
             var products = db.Products.GetAll();
+
+            //FILTERING
+            if(!string.IsNullOrWhiteSpace(searchTitle))
+            {
+                products = products.Where(x => x.Title.ToUpper().Contains(searchTitle.ToUpper()));
+            }
+
+            //SORTING
+            switch (sortOrder)
+            {
+                case "TitleDesc": products = products.OrderByDescending(x => x.Title); break;
+
+                default: products = products.OrderBy(x => x.Title); break;
+            }
+
             return View(products.ToList());
         }
 

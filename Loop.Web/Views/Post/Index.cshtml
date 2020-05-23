@@ -21,31 +21,19 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="row merged20">
-                                        <div class="col-lg-7 col-md-7 col-sm-7">
+                                        <div class="col-lg-6 col-md-6 col-sm-6">
                                             <form method="post">
-                                                <input type="text" placeholder="Search...">
-                                                <button type="submit"><i class="fa fa-search"></i></button>
+                                                @using (Html.BeginForm("Index", "Post", FormMethod.Get))
+                                                {
+                                                    @Html.TextBox("searchTitle", null, new { placeholder = "Search Post By Name" })
+                                                }
                                             </form>
                                         </div>
-                                        <div class="col-lg-4 col-md-4 col-sm-4">
-                                            <div class="select-options">
-                                                <select class="select">
-                                                    <option>Sort by</option>
-                                                    <option>See All</option>
-                                                    <option>Newest</option>
-                                                    <option>oldest</option>
-                                                    <option>A to Z</option>
-                                                </select>
-                                            </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-3">
+                                            @Html.ActionLink("Sort By Title", "Index", "Post", new { sortOrder = ViewBag.TitleSortParam }, new { @class = "btn btn-outline-secondary btn-sm" })
                                         </div>
-                                        <div class="col-lg-1 col-md-1 col-sm-1">
-                                            <div class="option-list">
-                                                <i class="fa fa-ellipsis-v"></i>
-                                                <ul>
-                                                    <li class="active"><i class="fa fa-check"></i><a title="" href="#">Show Public</a></li>
-                                                    <li><a title="" href="#">Hide all Posts</a></li>
-                                                </ul>
-                                            </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-3">
+                                            @Html.ActionLink("Sort By Replies", "Index", "Post", new { sortOrder = ViewBag.RepliesSortParam }, new { @class = "btn btn-outline-secondary btn-sm" })
                                         </div>
                                     </div>
                                 </div>
