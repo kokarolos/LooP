@@ -709,6 +709,8 @@ section {
         margin-bottom: 20px;
         transition: ease-in-out 0.3s;
         color: #273746;
+        overflow: hidden;
+        object-fit: cover;
     }
 
         .services .icon-box .icon i {
@@ -1031,7 +1033,6 @@ section {
 
                 .team .member .social a i {
                     color: #fff;
-                    font-size: 16px;
                     margin: 0 2px;
                 }
 
