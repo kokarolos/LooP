@@ -80,8 +80,7 @@
                                         </td>
                                         <td>
                                             @RepliesCount
-                                            @*<a class="addnewforum" href="~/Products/Create" title=""><i class="fa"></i>Reply</a>*@ @*mporei na xreiastei*@
-                                            @Html.ActionLink("Reply", "Details", null, new { @class = "btn btn-outline-secondary btn-sm", id = post.PostId })
+                                            @Html.ActionLink("Reply", "Details", new { id = post.PostId }, new { @class = "btn btn-outline-secondary btn-sm" })
                                         </td>
                                         <td>
                                             <ul style="list-style-type:none">
