@@ -40,6 +40,7 @@ namespace Loop.Web.Controllers
                             paypalRedirectUrl = lnk.href;
                         }
                     }
+                    Session.Add(guid, createPayment.id);
                     return Redirect(paypalRedirectUrl);
                 }
                 else
@@ -54,15 +55,15 @@ namespace Loop.Web.Controllers
 
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return View("failureView");
+                return View("failureView",e);
             }
 
             return View("succesView");
         }
 
-        private Payment ExecutePayment(APIContext apiContext, string payerId, string PaymentId)
+        private object ExecutePayment(APIContext apiContext, string payerId, string PaymentId)
         {
             var paymentExecution = new PaymentExecution()
             {
