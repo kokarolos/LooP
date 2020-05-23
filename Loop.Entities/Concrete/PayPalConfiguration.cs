@@ -1,9 +1,6 @@
 ﻿using PayPal.Api;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Loop.Entities.Concrete
 {
@@ -11,7 +8,6 @@ namespace Loop.Entities.Concrete
     {
         public readonly static string clientId;
         public readonly static string clientSecret;
-
 
         static PayPalConfiguration() 
         {
@@ -22,7 +18,7 @@ namespace Loop.Entities.Concrete
 
         private static Dictionary<string,string> getconfig()
         {
-            return PayPal.Api.ConfigManager.Instance.GetProperties();
+            return ConfigManager.Instance.GetProperties();
         }
 
         private static string GetAccessToken() 

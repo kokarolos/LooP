@@ -1217,6 +1217,8 @@
     <Content Include="Views\OrderProducts\Index.cshtml" />
     <Content Include="Views\OrderProducts\Cart.cshtml" />
     <Content Include="Views\Payment\PaymentWithPaypal.cshtml" />
+    <Content Include="Views\Payment\FailureView.cshtml" />
+    <Content Include="Views\Payment\SuccessView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
