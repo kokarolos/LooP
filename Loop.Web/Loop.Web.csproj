@@ -214,6 +214,7 @@
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ReplyController.cs" />
+    <Compile Include="Controllers\TagsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -978,6 +979,7 @@
     <Content Include="Content\images\themify.png" />
     <Content Include="Content\images\wiki.png" />
     <Content Include="Content\images\windows.png" />
+    <Content Include="Content\ioannis\TagsStyleSheet.css" />
     <Content Include="Content\LoopFooter.png" />
     <Content Include="Content\loopLogo.png" />
     <Content Include="favicon.ico" />
@@ -1049,6 +1051,7 @@
     <Content Include="Content\fonts\weathericons-regular-webfont.woff" />
     <Content Include="Content\fonts\weathericons-regular-webfont.woff2" />
     <None Include="Scripts\jquery-3.5.0.intellisense.js" />
+    <Content Include="Scripts\ioannis\tags.js" />
     <Content Include="Scripts\jquery-3.5.0.js" />
     <Content Include="Scripts\jquery-3.5.0.min.js" />
     <Content Include="Scripts\jquery-3.5.0.slim.js" />
@@ -1206,6 +1209,7 @@
     <Content Include="Views\Reply\Delete.cshtml" />
     <Content Include="Views\Reply\Edit.cshtml" />
     <Content Include="Views\Shared\_SecondaryMenu.cshtml" />
+    <Content Include="Views\Tags\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
