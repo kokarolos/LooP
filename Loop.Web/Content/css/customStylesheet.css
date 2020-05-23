@@ -129,3 +129,7 @@ small {
     text-align:left;
 }
 
+/*PRODUCT BASKET ICON*/
+#basket-button {
+    margin-left: 10px;
+}

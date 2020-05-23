@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<a href="/OrderProducts/Cart">Cart</a>
+    <script src="https://kit.fontawesome.com/0e62a71725.js" crossorigin="anonymous"></script>
 
 <div class="se-pre-con"></div>
 <div class="theme-layout">
@@ -55,7 +55,8 @@
                         </div>
                     </div><!-- title block -->
                     <h4>Find Any Tutorial You Need</h4>
-                    <a class="addnewforum" href="~/Products/Create" title=""><i class="fa fa-plus"></i> Create Product</a>
+                    <a id="basket-button" class="addnewforum" href="/OrderProducts/Cart"><i class="fas fa-shopping-cart"></i>  Shopping Basket</a>
+                    <a class="addnewforum" href="~/Products/Create" title=""><i class="fa fa-plus mx-2"></i> Create Product</a>
                 </div>
             </div>
         </div>
@@ -104,7 +105,7 @@
                                                                     <input type="text" id="quanity" name="quantity" />
                                                                     <input type="text" id="price" name="price" />
                                                                     @Html.Hidden("productId", product.ProductId)
-                                                                    <button type="submit" id="btn" class="btn btn-primary">Add to Cart</button>
+                                                                    <button type="submit" id="btn" class="btn btn-outline-secondary btn-sm">Add to Cart</button>
                                                                 </div>
                                                             </form>
                                                         </div>
