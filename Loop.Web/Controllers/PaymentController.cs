@@ -25,16 +25,14 @@ namespace Loop.Web.Controllers
                 {
                     string baseUri = Request.Url.Scheme + "://" + Request.Url.Authority +
                         "/Payment/PaymentWithPaypal?";
-
                     var guid = Convert.ToString((new Random()).Next(100000000));
-                    var createPayment = CreatePayment(ApiContext, baseUri + "&guid=" + guid);
+                    var createPayment = CreatePayment(ApiContext, baseUri + "guid=" + guid);
                     var links = createPayment.links.GetEnumerator();
                     string paypalRedirectUrl = null;
 
                     while (links.MoveNext())
                     {
                         Links lnk = links.Current;
-
                         if (lnk.rel.ToLower().Trim().Equals("approval_url"))
                         {
                             paypalRedirectUrl = lnk.href;
@@ -48,22 +46,25 @@ namespace Loop.Web.Controllers
                     var guid = Request.Params["guid"];
                     var executePayment = ExecutePayment(ApiContext, PayerId, Session[guid] as string);
 
-                    if (executePayment.ToString().ToLower() != "approved")
+                    if (executePayment.state.ToLower() != "approved")
                     {
+                        Session.Remove("Cart");
                         return View("failureView");
-                    }
 
+                    }
                 }
             }
             catch (Exception e)
             {
-                return View("failureView",e);
+                Session.Remove("Cart");
+                return View("failureView", e);
             }
 
-            return View("succesView");
+            Session.Remove("Cart");
+            return View("successView");
         }
 
-        private object ExecutePayment(APIContext apiContext, string payerId, string PaymentId)
+        private Payment ExecutePayment(APIContext apiContext, string payerId, string PaymentId)
         {
             var paymentExecution = new PaymentExecution()
             {
@@ -73,7 +74,6 @@ namespace Loop.Web.Controllers
             {
                 id = PaymentId
             };
-
             return payment.Execute(apiContext, paymentExecution);
         }
 
@@ -81,8 +81,6 @@ namespace Loop.Web.Controllers
         private Payment CreatePayment(APIContext apiContext, string redirectUrl)
         {
             var itemList = new ItemList() { items = new List<Item>() };
-
-
 
             if (!(Session["Cart"] is null))
             {
@@ -132,7 +130,7 @@ namespace Loop.Web.Controllers
                 transactionList.Add(new Transaction()
                 {
                     description = "Transaction Description",
-                    invoice_number = "#10000",
+                    invoice_number = new Random().Next(0,1000).ToString(),
                     amount = amount,
                     item_list = itemList
                 });
