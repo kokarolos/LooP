@@ -1,9 +1,11 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using Loop.Database;
 using Loop.Entities.Concrete;
 using Loop.Entities.Intermediate;
 using Loop.Services;
+using Microsoft.AspNet.Identity;
 
 namespace Loop.Web.Controllers
 {
@@ -105,6 +107,29 @@ namespace Loop.Web.Controllers
             SaveCart(cart);
 
             return RedirectToAction("Cart", "OrderProducts");
+        }
+        public ActionResult Checkout()
+        {
+            var cart = CreateOrGetCart();
+
+            if (cart.OrderProducts.Any())
+            {
+                var user = db.Users.GetUserById(User.Identity.GetUserId());
+                // Create an Order object to store info about the shopping cart
+                var order = new Order()
+                {
+                    OrderDate = DateTime.UtcNow,
+                    ApplicationUser = user,
+                    ApplicationUserId = User.Identity.GetUserId(),
+                    OrderProducts = cart.OrderProducts.ToList(),
+                };
+
+                db.Orders.Insert(order);
+                db.Save();
+
+            }
+
+            return RedirectToAction("Cart");
         }
     }
 }
