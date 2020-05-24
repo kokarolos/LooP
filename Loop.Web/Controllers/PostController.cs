@@ -7,6 +7,7 @@ using Loop.Database;
 using Loop.Entities;
 using Loop.Services;
 using Microsoft.AspNet.Identity;
+using PagedList;
 
 namespace Loop.Web.Controllers
 {
@@ -15,10 +16,11 @@ namespace Loop.Web.Controllers
         private UnitOfWork db = new UnitOfWork(new ApplicationDbContext());
 
         // GET: Post
-        public ActionResult Index(string sortOrder, string searchTitle)
+        public ActionResult Index(string sortOrder, string searchTitle, int? page, int? pSize)
         {
             ViewBag.TitleSortParam = string.IsNullOrEmpty(sortOrder) ? "TitleDesc" : "";
             ViewBag.RepliesSortParam = string.IsNullOrEmpty(sortOrder) ? "RepliesDesc" : "";
+            ViewBag.CurrentpSize = pSize;
 
             var posts = db.Posts.GetAll();
 
@@ -36,8 +38,10 @@ namespace Loop.Web.Controllers
 
                 default: posts = posts.OrderBy(x => x.Title); break;
             }
+            int pageSize = pSize ?? 9;
+            int pageNumber = page ?? 1;
 
-            return View(posts.ToList());
+            return View(posts.ToPagedList(pageNumber,pageSize));
         }
 
         // GET: Post/Details/5
