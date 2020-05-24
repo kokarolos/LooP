@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-    <script src="https://kit.fontawesome.com/0e62a71725.js" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/0e62a71725.js" crossorigin="anonymous"></script>
 
 <div class="se-pre-con"></div>
 <div class="theme-layout">
@@ -23,38 +23,24 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="row merged20">
-                                        <div class="col-lg-7 col-md-7 col-sm-7">
+                                        <div class="col-lg-6 col-md-6 col-sm-6">
                                             <form method="post">
-                                                <input type="text" placeholder="Search...">
-                                                <button type="submit"><i class="fa fa-search"></i></button>
+                                                @using (Html.BeginForm("Index", "Products", FormMethod.Get))
+                                                {
+                                                    @Html.TextBox("searchTitle", null, new { placeholder = "Search Product By Name" })
+                                                }
                                             </form>
                                         </div>
-                                        <div class="col-lg-4 col-md-4 col-sm-4">
-                                            <div class="select-options">
-                                                <select class="select">
-                                                    <option>Sort by</option>
-                                                    <option>See All</option>
-                                                    <option>Newest</option>
-                                                    <option>oldest</option>
-                                                    <option>A to Z</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-1 col-md-1 col-sm-1">
-                                            <div class="option-list">
-                                                <i class="fa fa-ellipsis-v"></i>
-                                                <ul>
-                                                    <li class="active"><i class="fa fa-check"></i><a title="" href="#">Show Public</a></li>
-                                                    <li><a title="" href="#">Hide all Products</a></li>
-                                                </ul>
-                                            </div>
+                                        @* SORTING HERE *@
+                                        <div class="col-lg-3 col-md-3 col-sm-3">
+                                            @Html.ActionLink("Sort By Title", "Index", "Products", new { sortOrder = ViewBag.TitleSortParam }, new { @class = "btn btn-outline-secondary btn-sm" })
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div><!-- title block -->
-                    <h4>Find Any Tutorial You Need</h4>
+                    <h4>Find Any Product You Need</h4>
                     <a id="basket-button" class="addnewforum" href="/OrderProducts/Cart"><i class="fas fa-shopping-cart"></i>  Shopping Basket</a>
                     <a class="addnewforum" href="~/Products/Create" title=""><i class="fa fa-plus mx-2"></i> Create Product</a>
                 </div>
@@ -136,36 +122,36 @@
 
 
 @*<script>
-    $(document).ready(function () {
+        $(document).ready(function () {
 
-        $('#btn').on('click', function () {
+            $('#btn').on('click', function () {
 
-            $.ajax({
-                url: "https://localhost:44391/api/cart/getfive",
-                type: "Get",
-                data: "5",
-                success: function (data) {
-                    jQuery('#message').text('Success');
-                },
-                error: function () {
-                    jQuery('#message').text('Error');
-                },
-                async: false
+                $.ajax({
+                    url: "https://localhost:44391/api/cart/getfive",
+                    type: "Get",
+                    data: "5",
+                    success: function (data) {
+                        jQuery('#message').text('Success');
+                    },
+                    error: function () {
+                        jQuery('#message').text('Error');
+                    },
+                    async: false
+
+                });
 
             });
 
+
+            //$.ajax({
+            //url: "http://localhost:44687/api/students",
+            //type: "Get",
+            //success: function (data) {
+            //for (var i = 0; i < data.length; i++) {
+            //$("<tr><td>" + data[i].Name + "</td><td>" + data[i].Course + "</td><td>" + data[i].City + "</td></tr>").appendTo("#students");
+            //}
+            //},
+            //error: function (msg) { alert(msg); }
+            //});
         });
-
-
-        //$.ajax({
-        //url: "http://localhost:44687/api/students",
-        //type: "Get",
-        //success: function (data) {
-        //for (var i = 0; i < data.length; i++) {
-        //$("<tr><td>" + data[i].Name + "</td><td>" + data[i].Course + "</td><td>" + data[i].City + "</td></tr>").appendTo("#students");
-        //}
-        //},
-        //error: function (msg) { alert(msg); }
-        //});
-    });
-</script>*@
+    </script>*@

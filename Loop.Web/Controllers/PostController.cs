@@ -15,9 +15,28 @@ namespace Loop.Web.Controllers
         private UnitOfWork db = new UnitOfWork(new ApplicationDbContext());
 
         // GET: Post
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string searchTitle)
         {
+            ViewBag.TitleSortParam = string.IsNullOrEmpty(sortOrder) ? "TitleDesc" : "";
+            ViewBag.RepliesSortParam = string.IsNullOrEmpty(sortOrder) ? "RepliesDesc" : "";
+
             var posts = db.Posts.GetAll();
+
+            //FILTERING
+            if (!string.IsNullOrWhiteSpace(searchTitle))
+            {
+                posts = posts.Where(x => x.Title.ToUpper().Contains(searchTitle.ToUpper()));
+            }
+
+            switch (sortOrder)
+            {
+                case "TitleDesc": posts = posts.OrderByDescending(x => x.Title); break;
+                case "RepliesAsc": posts = posts.OrderByDescending(x => x.Replies.Count()); break;
+                case "RepliesDesc": posts = posts.OrderByDescending(x => x.Replies.Count()); break;
+
+                default: posts = posts.OrderBy(x => x.Title); break;
+            }
+
             return View(posts.ToList());
         }
 
@@ -70,7 +89,6 @@ namespace Loop.Web.Controllers
 
             return View(post);
         }
-
 
         // GET: Post/Edit/5
         public ActionResult Edit(int? id)

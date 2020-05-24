@@ -125,27 +125,27 @@
             </div>
         </section>
         <!-- #endregion -->
-        <!-- #region RECENT TUTORIALS SECTION -->
+        <!-- #region RECENT PRODUCTS SECTION -->
         <section id="products" class="services section-bg">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="section-title" data-aos="fade-right">
-                            <h2>Recent Tutorials</h2>
-                            <p>Find all tutorials <a href="/Products/Index" style="color:#007acc; text-decoration: underline">here</a></p>
+                            <h2>Recent Products</h2>
+                            <p>Find all products<a href="/Products/Index" style="color:#007acc; text-decoration: underline">here</a></p>
                         </div>
                     </div>
 
                     <div class="col-lg-8">
                         <div class="row">
 
-                            @foreach (var tutorial in Model.RecentProducts)
+                            @foreach (var product in Model.RecentProducts)
                             {
                                 <div class="col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
                                     <div id="tutorial-post-div" class="icon-box mt-4" data-aos="zoom-in" data-aos-delay="100">
-                                        <div class="icon"><img src="@tutorial.PhotoUrl" /></div>
-                                        <h4>@Html.ActionLink(tutorial.Title, "Details", "Products", new { id = tutorial.ProductId }, null)</h4>
-                                        <p>@tutorial.Description</p>
+                                        <div class="icon"><img src="@product.PhotoUrl" /></div>
+                                        <h4>@Html.ActionLink(product.Title, "Details", "Products", new { id = product.ProductId }, null)</h4>
+                                        <p>@product.Description</p>
                                     </div>
                                 </div>
                             }
