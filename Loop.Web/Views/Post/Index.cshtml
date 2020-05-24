@@ -1,8 +1,22 @@
-﻿@model IEnumerable<Loop.Entities.Post>
+﻿@model PagedList.IPagedList<Loop.Entities.Post>
+@using PagedList;
+@using PagedList.Mvc;
+
+<link href="~/Content/PagedList.css" rel="stylesheet" />
 
 @{
     ViewBag.Title = "Index";
 }
+
+@{
+    SelectListItem a1 = new SelectListItem() { Text = "5", Value = "5" };
+    SelectListItem a2 = new SelectListItem() { Text = "10", Value = "10" };
+    SelectListItem a3 = new SelectListItem() { Text = "25", Value = "25" };
+    SelectListItem a4 = new SelectListItem() { Text = "50", Value = "50" };
+    SelectListItem a5 = new SelectListItem() { Text = "100", Value = "100" };
+    List<SelectListItem> items = new List<SelectListItem>() { a1, a2, a3, a4, a5 };
+}
+
 
 <div class="se-pre-con"></div>
 <div class="theme-layout">
@@ -41,7 +55,9 @@
                         </div>
                     </div><!-- title block -->
                     <h4>A new way to find help </h4>
+
                     <a class="addnewforum" href="~/Post/Create" title=""><i class="fa fa-plus"></i> Create Post</a>
+                    @Html.PagedListPager(Model, x => @Url.Action("Index", "Post", new { page = x, sortOrder = ViewBag.TitleSortParam, pSize = ViewBag.CurrentpSize }))
                 </div>
                 <div class="central-meta">
                     <div class="forum-list">
@@ -116,10 +132,14 @@
                         </div>
                     </div>
                 </div>
+                @Html.PagedListPager(Model, x => @Url.Action("Index", "Post", new { page = x, sortOrder = ViewBag.TitleSortParam, pSize = ViewBag.CurrentpSize }))
             </div>
         </div>
     </div>
 </div>
+
+
+
 
 <script src="~/Scripts/Custom/main.min.js"></script>
 <script src="~/Scripts/Custom/script.js"></script>
