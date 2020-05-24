@@ -1,0 +1,59 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+    @*<script src="@Url.Content("~/Scripts/ioannis/tags.js")"></script>*@
+    <meta name="viewport" content="width=device-width" />
+    <title>Jobs</title>
+
+    <script>
+        var app = angular.module('JobApp', []);
+        app.controller("JobController", function ($scope, $http) {
+            var url = "https://reqres.in/api/users?";
+
+            $http.get(url).then(
+                function (response) {
+                    $scope.jobs = response.data;
+                }
+                , function (response) {
+                    console.log(response.status);
+                }
+            );
+
+            $scope.tagFilter = function (tag) {
+                if ($scope.model_search === undefined || $scope.model_search === null || $scope.model_search === "" || tag === undefined) return true;
+                return tag.Title.toLowerCase().includes($scope.model_search.toLowerCase());
+            }
+
+        });
+    </script>
+</head>
+
+<body ng-app="JobApp">
+    <div class="myCustomContainer" ng-controller="JobController">
+        <main>
+            <div class="search-container">
+                <h4>Tag search</h4>
+                <input type="search" ng-model="model_search" ng-change="tagFilter()" placeholder="Enter search text" />
+            </div>
+            <div class="tags-container">
+                <div class="job" ng-repeat="job in jobs | filter: tagFilter">
+                    <div class="tag-header">
+                        <button>{{tag.Title}}</button>
+                        <img src="{{tag.ImageUrl}}" alt="Image of the {{tag.Title}} tag.">
+                    </div>
+                    <div>
+                        {{tag.Description}}
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

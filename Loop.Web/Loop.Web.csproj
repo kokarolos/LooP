@@ -214,6 +214,7 @@
     <Compile Include="Controllers\API\CartController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JobsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrderProductsController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
@@ -1223,6 +1224,7 @@
     <Content Include="Views\Payment\FailureView.cshtml" />
     <Content Include="Views\Payment\SuccessView.cshtml" />
     <Content Include="Views\Tags\Index.cshtml" />
+    <Content Include="Views\Jobs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
