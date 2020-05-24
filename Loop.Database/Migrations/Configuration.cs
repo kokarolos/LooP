@@ -171,26 +171,25 @@
             // *** ~~~ ~~~ ~~~ *** Tags *** ~~~ ~~~ ~~~ ***
 
             Tag tg1 = new Tag() { Title = "C#", Description = "C# is a modern all purpose programming language.", ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/7/7a/C_Sharp_logo.svg" };
-            Tag tg2 = new Tag() { Title = "Javascript", Description = "Javascript is the de facto language of front end development.", ImageUrl = "https://cdn.worldvectorlogo.com/logos/javascript.svg" };
-            Tag tg3 = new Tag() { Title = "Laravel", Description = "Once a very popular first language.", ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/9/9a/Laravel.svg" };
-            Tag tg4 = new Tag() { Title = "C", Description = "C is a very fast and close to the system language.", ImageUrl = "https://www.pinclipart.com/picdir/big/396-3965857_c-c-programming-language-logo-clipart.png" };
+            Tag tg2 = new Tag() { Title = "JavaScript", Description = "Javascript is the de facto language of front end development.", ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg" };
+            Tag tg3 = new Tag() { Title = "Laravel", Description = "Laravel is an open-source PHP framework for developing web applications.", ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/9/9a/Laravel.svg" };
+            Tag tg4 = new Tag() { Title = "C", Description = "C is a very fast and close to the system language.", ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/3/35/The_C_Programming_Language_logo.svg" };
             Tag tg5 = new Tag() { Title = "C++", Description = "C++ added classes to the C language.", ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" };
-            Tag tg6 = new Tag() { Title = "HTML", Description = "Hyper text markup language\'s main application is constructing web sites.", ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg" };
-            Tag tg7 = new Tag() { Title = "Python", Description = "Easier language to learn. Usefull at statistics", ImageUrl = "https://qph.fs.quoracdn.net/main-qimg-28cadbd02699c25a88e5c78d73c7babc" };
-            Tag tg8 = new Tag() { Title = "Java", Description = "Very Usefull OOP Language.", ImageUrl = "https://upload.wikimedia.org/wikipedia/en/3/30/Java_programming_language_logo.svg" };
-            Tag tg9 = new Tag() { Title = "Asp.net", Description = "Web Framework,created by Microsoft", ImageUrl = "https://b7.pngbarn.com/png/534/663/net-framework-software-framework-c-microsoft-asp-net-microsoft-png-clip-art.png" };
-            Tag tg10 = new Tag() { Title = "Haskell", Description = "General purpose purely functional programming language.", ImageUrl = "https://cdn.worldvectorlogo.com/logos/haskell.svg" };
+            Tag tg6 = new Tag() { Title = "HTML", Description = "Hyper Text Markup Language\'s main application is constructing web sites.", ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg" };
+            Tag tg7 = new Tag() { Title = "Python", Description = "Easier language to learn. Useful at statistics.", ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" };
+            Tag tg8 = new Tag() { Title = "Java", Description = "Very useful object-oriented programming language.", ImageUrl = "https://upload.wikimedia.org/wikipedia/de/e/e1/Java-Logo.svg" };
+            Tag tg9 = new Tag() { Title = "Asp.net", Description = "Web framework, created by Microsoft.", ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/1/13/Asp.net.svg" };
+            Tag tg10 = new Tag() { Title = "Haskell", Description = "General purpose purely functional programming language.", ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/1/1c/Haskell-Logo.svg" };
             Tag tg11 = new Tag() { Title = "Kotlin", Description = "Kotlin is designed to interoperate fully with Java, and the JVM version", ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/7/74/Kotlin-logo.svg" };
-            Tag tg12 = new Tag() { Title = "F#", Description = "F# is most often used as a cross-platform.", ImageUrl = "https://upload.wikimedia.org/wikipedia/en/thumb/d/d5/Fsharp%2C_Logomark%2C_October_2014.svg/1024px-Fsharp%2C_Logomark%2C_October_2014.svg.png" };
-            Tag tg13 = new Tag() { Title = "TypeScript", Description = "TypeScript extends JavaScript by adding types to the language.", ImageUrl = "https://profile.codersrank.io/static/libraries/typescript.svg" };
-            Tag tg14 = new Tag() { Title = "Jython", Description = "Jython is a Java implementation of Python that combines expressive power.", ImageUrl = "https://www.google.com/imgres?imgurl=https%3A%2F%2Fwww.saashub.com%2Fimages%2Fapp%2Fservice_logos%2F85%2F813f0e075da8%2Flarge.png%3F1569940863&imgrefurl=https%3A%2F%2Fwww.saashub.com%2Fjython-alternatives&tbnid=SVTExYdWClsBnM&vet=12ahUKEwjI05XGlLvpAhWVwYUKHTijB88QMygGegUIARDiAQ..i&docid=DMhSK8kMlDcC2M&w=192&h=192&q=jython%20logo&ved=2ahUKEwjI05XGlLvpAhWVwYUKHTijB88QMygGegUIARDiAQ" };
-            Tag tg15 = new Tag() { Title = "Ruby", Description = "Ruby is an interpreted, high-level, general-purpose programming language.", ImageUrl = "https://upload.wikimedia.org/wikipedia/en/e/ea/Jython.png" };
-            Tag tg16 = new Tag() { Title = "PHP", Description = "General-purpose scripting language that is especially suited to web development.", ImageUrl = "https://www.php.net//images/logos/new-php-logo.svg" };
-            Tag tg17 = new Tag() { Title = "Vue", Description = "Very Usefull OOP Language.", ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/9/95/Vue.js_Logo_2.svg" };
-            Tag tg18 = new Tag() { Title = "Ember", Description = "battle-tested JavaScript framework for building modern web applications.", ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/2/27/Ember-logo.png" };
-            Tag tg19 = new Tag() { Title = "React", Description = "Js lib,React makes it painless to create interactive UIs.", ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/React.svg/1024px-React.svg.png" };
-            Tag tg20 = new Tag() { Title = "Angular", Description = "Angular is an app design framework for creating efficient and sophisticated single-page apps.", ImageUrl = "https://cdn.worldvectorlogo.com/logos/angular-icon.svg" };
-
+            Tag tg12 = new Tag() { Title = "F#", Description = "F# is most often used as a cross-platform Common Language Infrastructure programming language.", ImageUrl = "https://upload.wikimedia.org/wikipedia/en/d/d5/Fsharp%2C_Logomark%2C_October_2014.svg" };
+            Tag tg13 = new Tag() { Title = "TypeScript", Description = "TypeScript extends JavaScript by adding types to the language.", ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/6/67/TypeScript_Logo.svg" };
+            Tag tg14 = new Tag() { Title = "Jython", Description = "Jython is a Java implementation of Python that combines expressive power.", ImageUrl = "https://upload.wikimedia.org/wikipedia/en/e/ea/Jython.png" };
+            Tag tg15 = new Tag() { Title = "Ruby", Description = "Ruby is an interpreted, high-level, general-purpose programming language.", ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/7/73/Ruby_logo.svg" };
+            Tag tg16 = new Tag() { Title = "PHP", Description = "General-purpose scripting language that is especially suited to web development.", ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/2/27/PHP-logo.svg" };
+            Tag tg17 = new Tag() { Title = "Vue", Description = "Vue is an open-source JavaScript framework for building user interfaces.", ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/9/95/Vue.js_Logo_2.svg" };
+            Tag tg18 = new Tag() { Title = "Ember", Description = "Battle-tested JavaScript framework for building modern web applications.", ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/2/27/Ember-logo.png" };
+            Tag tg19 = new Tag() { Title = "React", Description = "A JavaScript library, React makes it painless to create interactive user interfaces.", ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" };
+            Tag tg20 = new Tag() { Title = "Angular", Description = "Angular is an app design framework for creating efficient and sophisticated single-page apps.", ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/c/cf/Angular_full_color_logo.svg" };
 
             // *** ~~~ ~~~ ~~~ *** Posts *** ~~~ ~~~ ~~~ ***
 
