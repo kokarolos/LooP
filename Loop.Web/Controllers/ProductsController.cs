@@ -5,6 +5,7 @@ using Loop.Database;
 using Loop.Entities.Concrete;
 using Loop.Services;
 using Loop.Web.Models;
+using PagedList;
 
 namespace Loop.Web.Controllers
 {
@@ -13,14 +14,15 @@ namespace Loop.Web.Controllers
         private readonly UnitOfWork db = new UnitOfWork(new ApplicationDbContext());
 
         // GET: Products
-        public ViewResult Index(string sortOrder, string searchTitle)
+        public ViewResult Index(string sortOrder, string searchTitle, int? page, int? pSize)
         {
             ViewBag.TitleSortParam = string.IsNullOrEmpty(sortOrder) ? "TitleDesc" : "";
+            ViewBag.CurrentpSize = pSize;
 
             var products = db.Products.GetAll();
 
             //FILTERING
-            if(!string.IsNullOrWhiteSpace(searchTitle))
+            if (!string.IsNullOrWhiteSpace(searchTitle))
             {
                 products = products.Where(x => x.Title.ToUpper().Contains(searchTitle.ToUpper()));
             }
@@ -33,7 +35,10 @@ namespace Loop.Web.Controllers
                 default: products = products.OrderBy(x => x.Title); break;
             }
 
-            return View(products.ToList());
+            int pageSize = pSize ?? 9;
+            int pageNumber = page ?? 1;
+
+            return View(products.ToPagedList(pageNumber,pageSize));
         }
 
         // GET: Products/Details/5
