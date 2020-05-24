@@ -1,17 +1,21 @@
-﻿using PayPal.Api;
-using System;
-using System.Collections.Generic;
-using Loop.Entities.Concrete;
-using System.Web.Mvc;
-using Loop.Entities.Intermediate;
-using Twilio.TwiML.Voice;
+﻿using System;
+using PayPal.Api;
 using System.Linq;
+using Loop.Database;
+using Loop.Services;
+using System.Web.Mvc;
+using Loop.Entities.Concrete;
+using Microsoft.AspNet.Identity;
+using System.Web.UI.WebControls;
+using System.Collections.Generic;
+using Loop.Entities.Intermediate;
 
 namespace Loop.Web.Controllers
 {
     public class PaymentController : Controller
     {
         private Payment payment;
+        private readonly UnitOfWork db = new UnitOfWork(new ApplicationDbContext());
 
         //GET: Payment
         public ActionResult PaymentWithPaypal()
@@ -54,6 +58,7 @@ namespace Loop.Web.Controllers
                     }
                 }
             }
+            //for better debugging exception sending directly to failure View
             catch (Exception e)
             {
                 Session.Remove("Cart");
@@ -64,6 +69,7 @@ namespace Loop.Web.Controllers
             return View("successView");
         }
 
+        //Payment Execution getting from URL (after paypal redirection) payerid, guid as PaymentId 
         private Payment ExecutePayment(APIContext apiContext, string payerId, string PaymentId)
         {
             var paymentExecution = new PaymentExecution()
@@ -77,7 +83,6 @@ namespace Loop.Web.Controllers
             return payment.Execute(apiContext, paymentExecution);
         }
 
-
         private Payment CreatePayment(APIContext apiContext, string redirectUrl)
         {
             var itemList = new ItemList() { items = new List<Item>() };
@@ -85,11 +90,33 @@ namespace Loop.Web.Controllers
             if (!(Session["Cart"] is null))
             {
                 var cart = Session["Cart"] as Cart;
-                var cartt = cart.OrderProducts.ToList();
+                var shoppingCart = cart.OrderProducts.ToList();
 
-                var pricesum = cartt.Sum(x => x.Price * x.Quantity).ToString();
+                //SubTotal -> used for Paypal verifications
+                var pricesum = shoppingCart.Sum(x => x.Price * x.Quantity).ToString();
 
-                foreach (var product in cartt)
+                //Creating Order -> Assign it to user and getting his cart
+                //If user isnt registered, he can still checkout
+                //Using Linq i insert to OrderProducts table every product he purchased
+
+                var user = db.Users.GetUserById(User.Identity.GetUserId());
+                var order = new Entities.Concrete.Order()
+                {
+                    ApplicationUser = user,
+                    ApplicationUserId = User.Identity.GetUserId(),
+                    OrderDate = DateTime.Now,
+                    OrderProducts = cart.OrderProducts.ToList().Select(x=>new OrderProduct()
+                    {
+                        Price = x.Price,
+                        Quantity = x.Quantity,
+                        Product = db.Products.GetById(x.ProductId),
+                        ProductId = x.ProductId
+                    }).ToList()
+                };
+                db.Orders.Insert(order);
+                db.Save();
+
+                foreach (var product in shoppingCart)
                 {
                     itemList.items.Add(new Item()
                     {
@@ -130,7 +157,7 @@ namespace Loop.Web.Controllers
                 transactionList.Add(new Transaction()
                 {
                     description = "Transaction Description",
-                    invoice_number = new Random().Next(0,1000).ToString(),
+                    invoice_number = new Random().Next(0, 1000).ToString(),
                     amount = amount,
                     item_list = itemList
                 });

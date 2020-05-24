@@ -1,7 +1,9 @@
 ﻿using Loop.Database;
 using Loop.Entities.Concrete;
+using Loop.Entities.Intermediate;
 using Loop.Services;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
 
@@ -62,25 +64,62 @@ namespace Loop.Desktop
             //}
 
 
-            int rows = 0;
-            UnitOfWork db = new UnitOfWork(new ApplicationDbContext());
+           //int rows = 0;
+           UnitOfWork db = new UnitOfWork(new ApplicationDbContext());
+            //
+            //foreach (var user in db.Users.GetAll().ToList())
+            //{
+            //    foreach (var order in db.Orders.GetAll().ToList())
+            //    {
+            //        foreach (var orderProduct in db.OrderProducts.GetAll().ToList())
+            //        {
+            //            if (order.OrderId == orderProduct.OrderId)
+            //            {
+            //                Console.Write($"{user.FirstName} \t");
+            //                Console.WriteLine($"{order.OrderId} {orderProduct.Product.Title} ");
+            //                rows++;
+            //            }
+            //        }
+            //    }
+            //}
+            //Console.WriteLine(rows);
 
-            foreach (var user in db.Users.GetAll().ToList())
+            var order = db.Orders.GetAll().ToList();
+            var op = db.OrderProducts.GetAll().ToList();
+            var op1 = new OrderProduct()
             {
-                foreach (var order in db.Orders.GetAll().ToList())
-                {
-                    foreach (var orderProduct in db.OrderProducts.GetAll().ToList())
-                    {
-                        if (order.OrderId == orderProduct.OrderId)
-                        {
-                            Console.Write($"{user.FirstName} \t");
-                            Console.WriteLine($"{order.OrderId} {orderProduct.Product.Title} ");
-                            rows++;
-                        }
-                    }
-                }
+                Price = 12,
+                Product = db.Products.GetById(1),
+                ProductId = 1,
+                Quantity = 5
+            };
+            var op2 = new OrderProduct()
+            {
+                Price = 125,
+                Product = db.Products.GetById(2),
+                ProductId = 2,
+                Quantity = 3
+            };
+            var op3 = new OrderProduct()
+            {
+                Price = 1,
+                Product = db.Products.GetById(3),
+                ProductId = 3,
+                Quantity = 1
+            };
+            var op4 = new List<OrderProduct>();
+            op4.Add(op1);
+            op4.Add(op2);
+            op4.Add(op3);
+
+            foreach (var item in op4)
+            {
+                Console.WriteLine(item.Product.Description);
+                db.OrderProducts.Insert(item);
             }
-            Console.WriteLine(rows);
+            var o = new Order() { OrderProducts = op4.ToList() ,OrderDate = DateTime.Now};
+            db.Orders.Insert(o);
+            db.Save();
 
 
         }
