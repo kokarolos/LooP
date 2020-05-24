@@ -1,0 +1,93 @@
+﻿﻿.myCustomContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: rgb(255, 230, 200);
+    color: rgb(39, 55, 70);
+}
+
+.myCustomContainer main {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    background-color: white;
+}
+
+.myCustomContainer > main > * {
+    padding: 8px;
+    margin: 8px;
+}
+
+.myCustomContainer > main > div > input {
+    padding: 8px;
+    margin: 4px;
+}
+
+.myCustomContainer .search-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: rgb(128, 128, 192);
+    background-color: rgb(240, 240, 240);
+    border-radius: 10px;
+    border-style: solid;
+    border-color: rgb(160, 160, 160);
+    border-width: 1px;
+    padding: 24px;
+    margin: 8px 20px 8px 20px;
+}
+
+    .myCustomContainer .search-container > h4 {
+        margin: 0px;
+        padding: 8px;
+    }
+
+    .myCustomContainer .search-container > input {
+        width: 240px;
+        border-radius: 4px;
+        margin: 0px;
+        padding: 8px;
+    }
+
+.myCustomContainer .tags-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.myCustomContainer .tag {
+    display: flex;
+    flex-direction: column;
+    width: 240px;
+    height: 150px;
+    background-color: rgb(255, 230, 200);
+    border-radius: 10px;
+    border-style: solid;
+    border-color: rgb(160, 160, 160);
+    border-width: 1px;
+    padding: 8px;
+    margin: 8px;
+}
+
+.myCustomContainer .tag-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+    .myCustomContainer .tag-header > button {
+        background-color: rgb(200, 200, 255);
+        color: rgb(0, 0, 255);
+        border-radius: 5px;
+        padding: 4px;
+        margin: 4px;
+    }
+
+    .myCustomContainer .tag-header > img {
+        max-width: 120px;
+        max-height: 48px;
+        border-radius: 4px;
+        padding: 4px;
+        margin: 0px;
+        align-self: center;
+    }

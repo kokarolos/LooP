@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "TagsPage";
+}
+
+<head>
+    <link href="@Url.Content("~/Content/ioannis/TagsStyleSheet.css")" rel="stylesheet" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+    <script src="@Url.Content("~/Scripts/ioannis/tags.js")"></script>
+</head>
+
+<body ng-app="TagsApp">
+    <div class="myCustomContainer" ng-controller="TagsController">
+        <main>
+            <div class="search-container">
+                <h4>Tag search</h4>
+                <input type="search" ng-model="model_search" ng-change="tagFilter()" placeholder="Enter search text" />
+            </div>
+            <header>
+                <h2>Tags page</h2>
+                <h3>Use tags to categorize your questions.</h3>
+            </header>
+            <div class="tags-container">
+                <div class="tag" ng-repeat="tag in tags | filter: tagFilter">
+                    <div class="tag-header">
+                        <button>{{tag.Title}}</button>
+                        <img src="{{tag.ImageUrl}}" alt="Image of the {{tag.Title}} tag.">
+                    </div>
+                    <div>
+                        {{tag.Description}}
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
