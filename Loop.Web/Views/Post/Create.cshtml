@@ -5,15 +5,11 @@
 }
 
 
-
-
-
-
 @using (Html.BeginForm("Create", "Post", FormMethod.Post, new { @class = "form", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
-    <h4 class="text-center">Create A New Book</h4>
+    <h4 class="text-center">Create A New Post</h4>
 
     <div class="container ">
         <div class="row">
@@ -62,10 +58,10 @@
                             </div>
                         </div>
 
-                    </div><!--/tab-content-->
+                    </div>/tab-content
 
-                </div><!--/col-9-->
-            </div><!--/row-->
+                </div>/col-9
+            </div>/row
         </div>
     </div>
 }
