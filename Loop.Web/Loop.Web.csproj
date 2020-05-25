@@ -218,6 +218,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\API\CartController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobsController.cs" />
@@ -249,6 +250,8 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Chart.css" />
+    <Content Include="Content\Chart.min.css" />
     <Content Include="Content\cover2.jpg" />
     <Content Include="Content\cover3.jpg" />
     <Content Include="Content\css\assets\aos.css" />
@@ -1043,6 +1046,8 @@
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Chart.js" />
+    <Content Include="Scripts\Chart.min.js" />
     <Content Include="Scripts\Custom\cus\aos.js" />
     <Content Include="Scripts\Custom\cus\bootstrap.min.js" />
     <Content Include="Scripts\Custom\cus\counterup.min.js" />
@@ -2020,6 +2025,7 @@
     <Content Include="Views\Tags\Index.cshtml" />
     <Content Include="Views\Jobs\Index.cshtml" />
     <Content Include="Scripts\version.json" />
+    <Content Include="Views\Dashboard\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

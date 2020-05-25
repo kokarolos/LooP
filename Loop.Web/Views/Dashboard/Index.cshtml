@@ -1,0 +1,158 @@
+﻿@{
+    Layout = Layout;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div class="container">
+
+        <div class="col-12">
+            <div class="row">
+                <canvas id="myChart" width="500" height="500"></canvas>
+                <canvas id="myChart2" width="500" height="500"></canvas>
+                <canvas id="myChart3" width="500" height="500"></canvas>
+            </div>
+        </div>
+
+    </div>
+    <script src="~/Scripts/jquery-3.5.0.js"></script>
+    <script src="~/Scripts/Chart.js"></script>
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var actionUrl = '@Url.Action("GetPosts","Dashboard")';
+
+        $.ajax({
+            url: actionUrl,
+            method: 'GET',
+            dataType: 'json',
+            success: function (d) {
+
+                var date = [];
+                var postCount = [];
+                var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                for (var i in d) {
+                    date.push(months[d[i].date - 1]);
+                    postCount.push(d[i].count);
+                }
+                var myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: date,
+                        datasets: [{
+                            label: '# of Posts Per Month',
+                            data: postCount,
+                            backgroundColor: [
+                                'rgba(191,227,182,0.5)',
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(191,227,182,1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: false,
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                });
+            }
+        });
+
+ var ctx1 = document.getElementById('myChart2').getContext('2d');
+        var actionUrl = '@Url.Action("GetReplies","Dashboard")';
+
+        $.ajax({
+            url: actionUrl,
+            method: 'GET',
+            dataType: 'json',
+            success: function (d) {
+
+                var date = [];
+                var repliesCount = [];
+                var months = ["January", "February", "March", "April", "May", "June", "July","August","September","October","November","December"];
+                for (var i in d) {
+                    date.push(months[d[i].date-1]);
+                    repliesCount.push(d[i].count);
+                }
+                var myChart = new Chart(ctx1, {
+                    type: 'line',
+                    data: {
+                        labels: date,
+                        datasets: [{
+                            label: '# of Replies Per Month',
+                            data: repliesCount,
+                            backgroundColor: [
+                                'rgba(255,246,143,0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255,246,143,1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: false,
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                });
+            }
+        });
+
+
+    var ctx2 = document.getElementById('myChart3').getContext('2d');
+        var actionUrl = '@Url.Action("GetTagsPercentage", "Dashboard")';
+        $.ajax({
+            url: actionUrl,
+            method: 'GET',
+            dataType: 'json',
+            success: function (d) {
+
+                var myDoughnutChart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: data,
+                    options: options
+                });
+            }
+        });
+
+    </script>
+
+</body>
+</html>
