@@ -1,4 +1,5 @@
-﻿
+﻿<script src="https://kit.fontawesome.com/0e62a71725.js" crossorigin="anonymous"></script>
+
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #273746;">
     <a href="/Home/Index"><img src="~/Content/loopLogo.png" alt="" class="img-fluid"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,21 +15,20 @@
                 <a class="nav-link" href="/Products/Index">Products</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="@Url.Action("Index", "Tags")">Tags</a>
+                <a class="nav-link" href="/Tags/Index" )">Tags</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="#">Jobs</a>
+                <a class="nav-link" href="/Jobs/Index">Jobs</a>
             </li>
         </ul>
-        <div >
+
+        <div>
             <span id="counter">0</span>
             <a href=""><i style="width:20px; height:20px; padding-right:50px;" class="fas fa-shopping-cart"></i></a>
         </div>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-
-            <a href="/Account/Login" class="btn btn-outline-light my-2 my-sm-0 mx-2 btn-sm" role="button">Sign-In</a>
-            <a href="/Account/Register" class="btn btn-outline-light my-2 my-sm-0 btn-sm" role="button">Register</a>
+            @Html.Partial("_LoginPartial")
         </form>
     </div>
 </nav>

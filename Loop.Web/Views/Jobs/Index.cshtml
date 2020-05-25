@@ -1,0 +1,109 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/Scripts/angular.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+    <script>
+        var app = angular.module('AllJobs', []);
+
+        app.controller("JobController", function ($scope, $http) {
+            var url = "/Content/ioannis/jobsData.json";
+
+            $http.get(url)
+                .then(function (response) {
+
+                    $scope.Jobs = response.data;
+
+                }, function myError(response) {
+                    console.log(response);
+                });
+
+            $scope.jobFilter = function (job) {
+                if ($scope.model_search === undefined || $scope.model_search === null || $scope.model_search === "" || job === undefined) return true;
+                return job.title.toLowerCase().includes($scope.model_search.toLowerCase());
+            }
+        })
+
+    </script>
+</head>
+
+<body ng-app="AllJobs" ng-controller="JobController">
+
+    <!-- #region Test -->
+    <div class="se-pre-con"></div>
+    <div class="theme-layout">
+        <div class="container">
+            <div class="row merged20">
+                <div class="col-lg-12">
+                    <div class="forum-warper">
+                        <div class="central-meta">
+                            <div class="title-block">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="align-left">
+                                            <h5>All Jobs</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="row merged20">
+                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                                <form method="post">
+                                                    <input type="search" ng-model="model_search" ng-change="jobFilter()" placeholder="Search A Job By Name" />
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- title block -->
+                        <div><h4 class="text-center">Find A Job Close To You</h4></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- #endregion -->
+
+
+    <table class="table table-striped table-bordered container">
+        <thead>
+            <tr>
+                <th>Job Title</th>
+                <th>Job Type</th>
+                <th>Company Name</th>
+                <th>Company Logo</th>
+                <th>Location</th>
+                <th>Publication Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="job in Jobs | filter:jobFilter">
+                <td>{{job.title}}</td>
+                <td>{{job.type}}</td>
+                <td>{{job.company}}</td>
+                <td><img width="100" src="{{job.company_logo}}" alt="Photo Misiing" /></td>
+                <td>{{job.location}}</td>
+                <td>{{job.created_at}}</td>
+            </tr>
+        </tbody>
+
+    </table>
+
+</body>
+</html>
+
+<script src="~/Scripts/jquery-3.5.0.js"></script>
+<script src="js/main.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI"></script>
+<script src="js/locationpicker.jquery.js"></script>
+<script src="js/map-init.js"></script>
+<script src="js/script.js"></script>
