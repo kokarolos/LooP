@@ -1,5 +1,4 @@
 ﻿@model PagedList.IPagedList<Loop.Entities.Concrete.Product>
-@using PagedList;
 @using PagedList.Mvc;
 
 <link href="~/Content/PagedList.css" rel="stylesheet" />
@@ -19,6 +18,27 @@
 
 
 <script src="https://kit.fontawesome.com/0e62a71725.js" crossorigin="anonymous"></script>
+
+<div class="container">
+    <!-- Modal -->
+    <div class="modal fade" id="modal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Welcome To Shopping Section</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Loop is an Open Source Project , so you can purchase any product in your desirable price<br />Happy Shopping!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="se-pre-con"></div>
 <div class="theme-layout">
@@ -101,12 +121,25 @@
                                                         <div>
                                                             @*"https://localhost:44391/api/cart/getfive"*@
                                                             <form id="form2" action="/OrderProducts/Add" method="get">
-                                                                <div>
-                                                                    <input type="text" id="quanity" name="quantity" />
-                                                                    <input type="text" id="price" name="price" />
+                                                                <table class="table-borderless">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Quantity</th>
+                                                                            <td>
+
+                                                                                <input type="number" id="quanity" name="quantity" style="width: 45px;" />
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th>Price</th>
+                                                                            <td>
+                                                                                <input type="text" id="price" name="price" style="width: 60px;" />
+                                                                            </td>
+                                                                        </tr>
+                                                                    </thead>
                                                                     @Html.Hidden("productId", product.ProductId)
-                                                                    <button type="submit" id="btn" class="btn btn-outline-secondary btn-sm">Add to Cart</button>
-                                                                </div>
+                                                                </table>
+                                                                <button type="submit" id="btn" class="btn btn-outline-secondary btn-sm">Add to Cart</button>
                                                             </form>
                                                         </div>
                                                     </div>
@@ -129,6 +162,8 @@
 
 </div>
 
+
+
 <script src="~/Scripts/jquery-3.5.0.js"></script>
 <script src="js/main.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI"></script>
@@ -136,3 +171,8 @@
 <script src="js/map-init.js"></script>
 <script src="js/script.js"></script>
 
+<script type="text/javascript">
+    $(window).on('load', function () {
+        $('#modal').modal('show');
+    });
+</script>
