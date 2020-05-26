@@ -5,11 +5,13 @@
     ViewBag.Title = "Shopping Cart";
 }
 
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
 <div class="heads" style="background: url(/public/img/brewery-back1.jpg) 50% 27%;">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2><span>//</span> Shopping Cart</h2>
+                <h2><span></span> Shopping Cart</h2>
             </div>
         </div>
     </div>
@@ -23,7 +25,8 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Beer</th>
+                            <th >Product</th>
+                            <th >Description</th>
                             <th class="text-right">Price</th>
                             <th class="text-right">Quantity</th>
                             <th class="text-right">Sub Total</th>
@@ -34,6 +37,7 @@
                         @foreach (var item in Model.OrderProducts)
                         {
                             <tr>
+                                <td><img src="@item.Product.PhotoUrl" width="50" height="50" /></td>
                                 <td>@item.Product.Title</td>
                                 <td class="text-right">$@((item.Price).ToString("0.00"))</td>
                                 <td class="text-right">@item.Quantity</td>
@@ -42,7 +46,7 @@
                                     @using (Html.BeginForm("Delete", "OrderProducts", FormMethod.Post, new { id = "deleteForm" }))
                                     {
                                         @Html.Hidden("ProductId", item.ProductId)
-                                        <button type="submit" id="delete" class="btn btn-danger btn-sm">Delete</button>
+                                        <button type="submit" id="delete" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
                                     }
                                 </td>
                             </tr>
@@ -56,7 +60,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="3"><strong>Total</strong></td>
+                            <td colspan="4"><strong>Total</strong></td>
                             <td class="text-right"><strong>$@((Model.OrderProducts.Sum(x => x.Price * x.Quantity)).ToString("0.00"))</strong></td>
                             <td></td>
                         </tr>
@@ -67,13 +71,20 @@
                     var total = Model.OrderProducts.Sum(x => x.Price * x.Quantity);
                     Session["SesTotal"] = total.ToString();
                 }
-
-                <div class="form-group">
-                    <label>In-line Checkout Experience</label>
+            <div class="row">
+                <div class="col-3">
                     <p>
-                        <a href="@Url.Action("PaymentWithPaypal", "Payment")" class="btn btn-warning">Checkout with PayPal</a>
+                        <a href="@Url.Action("Index", "Products")" class="btn btn-dark">Back to Products</a>
                     </p>
                 </div>
+                <div class="col-6"></div>
+                <div class="col-3">
+                    <p>
+                        <a href="@Url.Action("PaymentWithPaypal", "Payment")" class="btn btn-warning">Checkout</a>
+                    </p>
+                </div>
+            </div>
+             
                 @*<div class="form-group">
                         <label>Popup Checkout Experience</label>
                         <form id="myContainer" method="post" action="@Url.Action("Checkout", "ECommerce")"></form>
