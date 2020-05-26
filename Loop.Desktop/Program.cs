@@ -162,7 +162,7 @@ namespace Loop.Desktop
 
             //Get Replies Count from Posts of an user  and Group them By Tags Img.
 
-            var userId = "8089c1bf-0f5d-4175-850c-19b0a6eb3bf3";
+            var userId = "338f7322-393f-49d5-bba3-34f72a46a422";
             var user = db.Users.GetUserById(userId);
             var tagsPercentage = db.Posts.GetAll()
                                           .ToList() //Posts that user replied
@@ -171,13 +171,38 @@ namespace Loop.Desktop
                                           .Select(x => new
                                           {
                                               tagTitle = x.Key.Tags.FirstOrDefault().Title,
-                                              repliesCount = x.Key.Replies.Where(g => g.ApplicationUser == user).Count()
+                                              repliesCount = db.Posts.GetAll().ToList()
+                                                                                .Where(y => y.Replies.All(e => e.ApplicationUser == user))
+                                                                                .GroupBy(q => q.Replies)
+                                                                                .Select(q => new
+                                                                                {
+                                                                                    Reply = q,
+                                                                                    sum = q.Key.Count()
+                                                                                })
+
+
+
+                                              /*.Replies.Where(g => g.ApplicationUser == user ).Count()*/
+
 
                                           });
 
+            //var dic = new Dictionary<string, int>();
+            //foreach (var item in tagsPercentage)
+            //{
+            //    if(item.repliesCount != 0)
+            //    {
+            //        dic.Add(item.tagTitle, item.repliesCount);
+            //    }
+            //}
+
             foreach (var item in tagsPercentage)
             {
-                Console.WriteLine($"{item.tagTitle} : {item.repliesCount}");
+                foreach (var q in item.repliesCount)
+                {
+                    Console.WriteLine($"{item.tagTitle} : {item.repliesCount}");
+
+                }
             }
 
         }

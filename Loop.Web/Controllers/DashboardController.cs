@@ -65,18 +65,31 @@ namespace Loop.Web.Controllers
         //Get Replies Count from Posts and Group them By Tags Img.
         public JsonResult GetTagsPercentage()
         {
-            var userId = User.Identity.GetUserId();
+            var userId = "338f7322-393f-49d5-bba3-34f72a46a422";
             var user = db.Users.GetUserById(userId);
             var tagsPercentage = db.Posts.GetAll()
                                           .ToList() //Posts that user replied
                                           .Where(reply => reply.ApplicationUser == user)
-                                          .GroupBy(post => post.Tags)
+                                          .GroupBy(post => post)
                                           .Select(x => new
                                           {
-                                             
+                                              tagTitle = x.Key.Tags.FirstOrDefault().Title,
+                                              repliesCount = x.Key.Replies.Where(g => g.ApplicationUser == user).Count()
+
+
                                           });
 
-            return Json(tagsPercentage, JsonRequestBehavior.AllowGet);
+            var dic = new Dictionary<string, int>();
+            foreach (var item in tagsPercentage)
+            {
+                if (item.repliesCount != 0)
+                {
+                    dic.Add(item.tagTitle, item.repliesCount);
+                }
+            }
+
+
+            return Json(dic, JsonRequestBehavior.AllowGet);
         }
 
     }

@@ -195,6 +195,9 @@
 
             // *** ~~~ ~~~ ~~~ *** Posts *** ~~~ ~~~ ~~~ ***
 
+            var admin = userManager1.FindByEmail("admin1@gmail.com");
+
+
             Post p1 = new Post() { ApplicationUser = a1, Title = "Printing a string", Text = "I want to print a string multiple times at the console using C#", PostDate = new DateTime(2019, 06, 18, 7, 0, 0), Tags = new List<Tag>() { tg1 } };
             Reply r1_1 = new Reply() { ApplicationUser = a2, Post = p1, Text = "Use the Console.WriteLine function!", PostDate = new DateTime(2019, 06, 18, 7, 15, 0) };
             Reply r1_2 = new Reply() { ApplicationUser = a5, Post = p1, Text = "Use the for statement combined with Console.WriteLine!", PostDate = new DateTime(2019, 06, 18, 7, 30, 0) };
@@ -233,11 +236,13 @@
             Reply r8_1 = new Reply() { ApplicationUser = a1, Post = p8, Text = "An enum is a value type with a set of related named constants often referred to as an enumerator list. The enum keyword is used to declare an enumeration. It is a primitive data type that is user-defined.", PostDate = new DateTime(2019, 07, 28, 16, 7, 0) };
             Reply r8_2 = new Reply() { ApplicationUser = a4, Post = p8, Text = "An enum type can be an integer (float, int, byte, double, etc.). But if you use it beside int it has to be cast.", PostDate = new DateTime(2019, 07, 28, 16, 14, 0) };
             Reply r8_3 = new Reply() { ApplicationUser = a2, Post = p8, Text = "An enum is used to create numeric constants in the .NET framework. All the members of enum are enum type. There must be a numeric value for each enum type.", PostDate = new DateTime(2019, 07, 28, 17, 18, 0) };
+            Reply r8_4 = new Reply() { ApplicationUser = admin, Post = p8, Text = "An enum iqweqws used to create numeric constants in the .NET framework. All the members of enum are enum type. There must be a numeric value for each enum type.", PostDate = new DateTime(2019, 07, 28, 17, 18, 0) };
 
             Post p9 = new Post() { ApplicationUser = a11, Title = "Continue and Break statements", Text = "Whats the diffence of Continue and Break statements", PostDate = new DateTime(2019, 02, 15, 16, 0, 0), Tags = new List<Tag>() { tg1, tg4, tg5 } };
             Reply r9_1 = new Reply() { ApplicationUser = a1, Post = p9, Text = "Using break statement, you can 'jump out of a loop' whereas by using a continue statement, you can 'jump over one iteration' and then resume your loop execution", PostDate = new DateTime(2019, 02, 15, 16, 7, 0) };
             Reply r9_2 = new Reply() { ApplicationUser = a4, Post = p9, Text = "The continue statement passes control to the next iteration", PostDate = new DateTime(2019, 02, 15, 16, 14, 0) };
             Reply r9_3 = new Reply() { ApplicationUser = a3, Post = p9, Text = " you can 'jump over one iteration' and then resume your loop execution", PostDate = new DateTime(2019, 02, 15, 17, 18, 0) };
+            Reply r9_4 = new Reply() { ApplicationUser = admin, Post = p9, Text = " you can 'jump ovwqeqweer one iteration' and then resume your loop execution", PostDate = new DateTime(2019, 02, 15, 17, 18, 0) };
 
             Post p10 = new Post() { ApplicationUser = a11, Title = "Constant and readonly in C#", Text = "What is the difference between constant and readonly in C#?", PostDate = new DateTime(2019, 12, 28, 16, 0, 0), Tags = new List<Tag>() { tg5, tg3, tg6 } };
             Reply r10_1 = new Reply() { ApplicationUser = a1, Post = p10, Text = "Const is nothing but constant, a variable of which the value is constant but at compile time.", PostDate = new DateTime(2019, 12, 18, 17, 7, 0) };
@@ -433,7 +438,6 @@
             // *** ~~~ ~~~ ~~~ *** Admin's Post Replies *** ~~~ ~~~ ~~~ ***
             //This User is to test statistics view
 
-            var admin = userManager1.FindByEmail("admin1@gmail.com");
 
             Post p53 = new Post() { ApplicationUser = admin, Title = "dummy1dummy1", Text = "dummy1dummy1", PostDate = new DateTime(2020, 1, 1), Tags = new List<Tag>() { tg11 } };
             Reply r53_1 = new Reply() { ApplicationUser = admin, Post = p53, Text = "This is a Dummy reply1", PostDate = new DateTime(2020, 2, 1) };
@@ -486,7 +490,7 @@
             Reply r57_7 = new Reply() { ApplicationUser = admin, Post = p57, Text = "This is a Dummy replppp23y7", PostDate = new DateTime(2020, 2, 1) };
             Reply r57_8 = new Reply() { ApplicationUser = admin, Post = p57, Text = "This is a Dummy replp2ppy8", PostDate = new DateTime(2020, 2, 1) };
 
-            Post p58 = new Post() { ApplicationUser = admin, Title = "dummy6dummy1", Text = "dummy6dummy1", PostDate = new DateTime(2020, 4, 1), Tags = new List<Tag>() { tg4 } };
+            Post p58 = new Post() { ApplicationUser = admin, Title = "dummy6dummy1", Text = "dummy6dummy1", PostDate = new DateTime(2020, 4, 1), Tags = new List<Tag>() { tg9 } };
             Reply r58_1 = new Reply() { ApplicationUser = admin, Post = p58, Text = "This is a Dummy reppp23ly1", PostDate = new DateTime(2020, 6, 1) };
             Reply r58_2 = new Reply() { ApplicationUser = admin, Post = p58, Text = "This is a Dummy replpp42y2", PostDate = new DateTime(2020, 6, 1) };
             Reply r58_3 = new Reply() { ApplicationUser = admin, Post = p58, Text = "This is a Dummy replpp52y3", PostDate = new DateTime(2020, 6, 1) };
@@ -497,14 +501,22 @@
             Reply r58_8 = new Reply() { ApplicationUser = admin, Post = p58, Text = "This is a Dummy repl232pppy8", PostDate = new DateTime(2020, 4, 1) };
 
             Post p59 = new Post() { ApplicationUser = admin, Title = "dummy7dummy1", Text = "dummy7dummy1", PostDate = new DateTime(2020, 5, 1), Tags = new List<Tag>() { tg7 } };
-            Reply r59_1 = new Reply() { ApplicationUser = admin, Post = p55, Text = "This is a Dummy reppp424ly1", PostDate = new DateTime(2020, 8, 1) };
-            Reply r59_2 = new Reply() { ApplicationUser = admin, Post = p55, Text = "This is a Dummy rep52lppy2", PostDate = new DateTime(2020, 8, 1) };
-            Reply r59_3 = new Reply() { ApplicationUser = admin, Post = p55, Text = "This is a Dummy repl3232ppy3", PostDate = new DateTime(2020, 8, 1) };
-            Reply r59_4 = new Reply() { ApplicationUser = admin, Post = p55, Text = "This is a Dummy replppp5252y4", PostDate = new DateTime(2020, 11, 1) };
-            Reply r59_5 = new Reply() { ApplicationUser = admin, Post = p55, Text = "This is a Dummy rep23232lppy5", PostDate = new DateTime(2020, 11, 1) };
-            Reply r59_6 = new Reply() { ApplicationUser = admin, Post = p55, Text = "This is a Dummy replp52542ppy6", PostDate = new DateTime(2020, 11, 1) };
-            Reply r59_7 = new Reply() { ApplicationUser = admin, Post = p55, Text = "This is a Dummy replppp32323y7", PostDate = new DateTime(2020, 10, 1) };
-            Reply r59_8 = new Reply() { ApplicationUser = admin, Post = p55, Text = "This is a Dummy replpp2323py8", PostDate = new DateTime(2020, 12, 1) };
+            Reply r59_1 = new Reply() { ApplicationUser = admin, Post = p59, Text = "This is a Dummy reppp424ly1", PostDate = new DateTime(2020, 8, 1) };
+            Reply r59_2 = new Reply() { ApplicationUser = admin, Post = p59, Text = "This is a Dummy rep52lppy2", PostDate = new DateTime(2020, 8, 1) };
+            Reply r59_3 = new Reply() { ApplicationUser = admin, Post = p59, Text = "This is a Dummy repl3232ppy3", PostDate = new DateTime(2020, 8, 1) };
+            Reply r59_4 = new Reply() { ApplicationUser = admin, Post = p59, Text = "This is a Dummy replppp5252y4", PostDate = new DateTime(2020, 11, 1) };
+            Reply r59_5 = new Reply() { ApplicationUser = admin, Post = p59, Text = "This is a Dummy rep23232lppy5", PostDate = new DateTime(2020, 11, 1) };
+            Reply r59_6 = new Reply() { ApplicationUser = admin, Post = p59, Text = "This is a Dummy replp52542ppy6", PostDate = new DateTime(2020, 11, 1) };
+            Reply r59_7 = new Reply() { ApplicationUser = admin, Post = p59, Text = "This is a Dummy replppp32323y7", PostDate = new DateTime(2020, 10, 1) };
+            Reply r59_8 = new Reply() { ApplicationUser = admin, Post = p59, Text = "This is a Dummy replpp2323py8", PostDate = new DateTime(2020, 12, 1) };
+            Reply r59_9 = new Reply() { ApplicationUser = admin, Post = p59, Text = "This is a Dummy replpp1232323py8", PostDate = new DateTime(2020, 10, 1) };
+            Reply r59_10 = new Reply() { ApplicationUser = admin, Post = p59, Text = "This is a Dummy repl23pp2323py8", PostDate = new DateTime(2020, 10, 1) };
+            Reply r59_11 = new Reply() { ApplicationUser = admin, Post = p59, Text = "This is a Dummy replpqwep2323py8", PostDate = new DateTime(2020, 10, 1) };
+            Reply r59_12 = new Reply() { ApplicationUser = admin, Post = p59, Text = "This is a Dummy replpqweqwp2323py8", PostDate = new DateTime(2020, 10, 1) };
+            Reply r59_13 = new Reply() { ApplicationUser = admin, Post = p59, Text = "This is a Dummy repqwelpp2323py8", PostDate = new DateTime(2020, 10, 1) };
+            Reply r59_14 = new Reply() { ApplicationUser = admin, Post = p59, Text = "This is a Dummy repl12312pp2323py8", PostDate = new DateTime(2020, 10, 1) };
+            Reply r59_15 = new Reply() { ApplicationUser = admin, Post = p59, Text = "This is a Dummy replqweqwpp2323py8", PostDate = new DateTime(2020, 10, 1) };
+            Reply r59_16 = new Reply() { ApplicationUser = admin, Post = p59, Text = "This is a Dummy replqweqpp2323py8", PostDate = new DateTime(2020, 10, 1) };
 
             Post p60 = new Post() { ApplicationUser = admin, Title = "dummy8dummy1", Text = "dummy8dummy1", PostDate = new DateTime(2020, 5, 1), Tags = new List<Tag>() { tg10 } };
             Post p61 = new Post() { ApplicationUser = admin, Title = "dummy9dummy1", Text = "dummy9dummy1", PostDate = new DateTime(2020, 6, 1), Tags = new List<Tag>() { tg12 } };
@@ -716,8 +728,8 @@
             r5_1, r5_2, r5_3,
             r6_1, r6_2, r6_3,
             r7_1, r7_2, r7_3,
-            r8_1, r8_2, r8_3,
-            r9_1, r9_2, r9_3,
+            r8_1, r8_2, r8_3,r8_4,
+            r9_1, r9_2, r9_3,r9_4,
             r10_1, r10_2, r10_3,
             r11_1, r11_2, r11_3,
             r12_1, r12_2, r12_3,
@@ -754,13 +766,13 @@
             r43_1, r43_2, r43_3,
             r44_1, r44_2, r44_3,
             r45_1, r45_2, r45_3,
-            r53_1, r53_2, r53_3, r53_4, r53_5, r54_6, r53_7, r53_8,
+            r53_1, r53_2, r53_3, r53_4, r53_5, r53_6, r53_7, r53_8,
             r54_1, r54_2, r54_3, r54_4, r54_5, r54_6, r54_7, r54_8,
             r55_1, r55_2, r55_3, r55_4, r55_5, r55_6, r55_7, r55_8,
             r56_1, r56_2, r56_3, r56_4, r56_5, r56_6, r56_7, r56_8,
             r57_1, r57_2, r57_3, r57_4, r57_5, r57_6, r57_7, r57_8,
             r58_1, r58_2, r58_3, r58_4, r58_5, r58_6, r58_7, r58_8,
-            r59_1, r59_2, r59_3, r59_4, r59_5, r59_6, r59_7, r59_8
+            r59_1, r59_2, r59_3, r59_4, r59_5, r59_6, r59_7, r59_8,r59_9,r59_10,r59_11, r59_12, r59_13, r59_14, r59_15, r59_16
             );
             context.Products.AddOrUpdate(x => x.Title, tu1, tu2, tu3, tu4, tu5, tu6, tu7, tu8, tu9, tu10, tu11, tu12, tu13, tu14, tu15, tu16, tu17,
                 b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11, b12, b13, b14, b15, b16, b17);
