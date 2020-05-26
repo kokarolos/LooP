@@ -162,30 +162,30 @@ namespace Loop.Desktop
 
             //Get Replies Count from Posts of an user  and Group them By Tags Img.
 
-            var userId = "338f7322-393f-49d5-bba3-34f72a46a422";
-            var user = db.Users.GetUserById(userId);
-            var tagsPercentage = db.Posts.GetAll()
-                                          .ToList() //Posts that user replied
-                                          .Where(reply => reply.ApplicationUser == user)
-                                          .GroupBy(post => post)
-                                          .Select(x => new
-                                          {
-                                              tagTitle = x.Key.Tags.FirstOrDefault().Title,
-                                              repliesCount = db.Posts.GetAll().ToList()
-                                                                                .Where(y => y.Replies.All(e => e.ApplicationUser == user))
-                                                                                .GroupBy(q => q.Replies)
-                                                                                .Select(q => new
-                                                                                {
-                                                                                    Reply = q,
-                                                                                    sum = q.Key.Count()
-                                                                                })
-
-
-
-                                              /*.Replies.Where(g => g.ApplicationUser == user ).Count()*/
-
-
-                                          });
+            //var userId = "338f7322-393f-49d5-bba3-34f72a46a422";
+            //var user = db.Users.GetUserById(userId);
+            //var tagsPercentage = db.Posts.GetAll()
+            //                              .ToList() //Posts that user replied
+            //                              .Where(reply => reply.ApplicationUser == user)
+            //                              .GroupBy(post => post)
+            //                              .Select(x => new
+            //                              {
+            //                                  tagTitle = x.Key.Tags.FirstOrDefault().Title,
+            //                                  repliesCount = db.Posts.GetAll().ToList()
+            //                                                                    .Where(y => y.Replies.All(e => e.ApplicationUser == user))
+            //                                                                    .GroupBy(q => q.Replies)
+            //                                                                    .Select(q => new
+            //                                                                    {
+            //                                                                        Reply = q,
+            //                                                                        sum = q.Key.Count()
+            //                                                                    })
+            //
+            //
+            //
+            //                                  /*.Replies.Where(g => g.ApplicationUser == user ).Count()*/
+            //
+            //
+            //                              });
 
             //var dic = new Dictionary<string, int>();
             //foreach (var item in tagsPercentage)
@@ -196,15 +196,46 @@ namespace Loop.Desktop
             //    }
             //}
 
-            foreach (var item in tagsPercentage)
-            {
-                foreach (var q in item.repliesCount)
-                {
-                    Console.WriteLine($"{item.tagTitle} : {item.repliesCount}");
-
-                }
-            }
-
+            //
+            //  var user = db.Users.GetUserById("338f7322-393f-49d5-bba3-34f72a46a422");
+            //  var Replies = db.Replies.GetAll().Where(x => x.ApplicationUser == user);
+            //
+            //  var lista = (from i in Replies
+            //               group i by i.Post into y
+            //               select new
+            //               {
+            //                   Tags = y.Key.Tags,
+            //                   count = y.Key.Replies.Count()
+            //               }).AsEnumerable();
+            //
+            //  var dic = new Dictionary<string, string>();
+            //  foreach (var item in lista)
+            //  {
+            //      foreach (var por in item.Tags)
+            //      {
+            //          if (item.Tags.Contains(por))
+            //          {
+            //              foreach (var w in dic)
+            //              {
+            //                  if (w.Key == por.Title)
+            //                  {
+            //                      continue;
+            //                  }
+            //                  else
+            //                  {
+            //                      dic.Add(por.Title, item.count.ToString());
+            //
+            //                  }
+            //              }
+            //          }
+            //
+            //      }
+            //  }
+            //  foreach (var item in dic)
+            //  {
+            //      Console.WriteLine($"{item.Key} {item.Value}");
+            //  }
+            //
         }
     }
 }

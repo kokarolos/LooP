@@ -63,6 +63,7 @@ namespace Loop.Web.Controllers
         }
 
         //Get Replies Count from Posts and Group them By Tags Img.
+        //TODO:
         public JsonResult GetTagsPercentage()
         {
             var userId = "338f7322-393f-49d5-bba3-34f72a46a422";
@@ -87,8 +88,6 @@ namespace Loop.Web.Controllers
                     dic.Add(item.tagTitle, item.repliesCount);
                 }
             }
-
-
             return Json(dic, JsonRequestBehavior.AllowGet);
         }
 
