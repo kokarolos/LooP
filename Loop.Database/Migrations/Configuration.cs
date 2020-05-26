@@ -20,8 +20,8 @@
 
         protected override void Seed(ApplicationDbContext context)
         {
-
             #region Seeding 
+            var userManager1 = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
             // *** ~~~ ~~~ ~~~ *** Locations *** ~~~ ~~~ ~~~ ***
 
@@ -67,6 +67,7 @@
                     FirstName = "Karolos",
                     LastName = "Koniewicz",
                 };
+
                 userManager.Create(user);
                 userManager.AddToRole(user.Id, "Admin");
             }
@@ -127,6 +128,7 @@
             }
 
             // *** ~~~ ~~~ ~~~ *** Users *** ~~~ ~~~ ~~~ *** 
+
             ApplicationUser a1 = new ApplicationUser() { FirstName = "Maria", LastName = "Kalimeri", DateOfBirth = new DateTime(1993, 05, 27), UserName = "mkalimeri93!" };
             ApplicationUser a2 = new ApplicationUser() { FirstName = "Nikolaos", LastName = "Koromilakis", DateOfBirth = new DateTime(1980, 09, 18), UserName = "nkoromilakis80!" };
             ApplicationUser a3 = new ApplicationUser() { FirstName = "Konstantinos", LastName = "Peponakis", DateOfBirth = new DateTime(2001, 07, 23), UserName = "kpeponakis01!" };
@@ -193,6 +195,9 @@
 
             // *** ~~~ ~~~ ~~~ *** Posts *** ~~~ ~~~ ~~~ ***
 
+            var admin = userManager1.FindByEmail("admin1@gmail.com");
+
+
             Post p1 = new Post() { ApplicationUser = a1, Title = "Printing a string", Text = "I want to print a string multiple times at the console using C#", PostDate = new DateTime(2019, 06, 18, 7, 0, 0), Tags = new List<Tag>() { tg1 } };
             Reply r1_1 = new Reply() { ApplicationUser = a2, Post = p1, Text = "Use the Console.WriteLine function!", PostDate = new DateTime(2019, 06, 18, 7, 15, 0) };
             Reply r1_2 = new Reply() { ApplicationUser = a5, Post = p1, Text = "Use the for statement combined with Console.WriteLine!", PostDate = new DateTime(2019, 06, 18, 7, 30, 0) };
@@ -202,57 +207,59 @@
             Reply r2_2 = new Reply() { ApplicationUser = a4, Post = p2, Text = "You may also use querySelector, for css selectors", PostDate = new DateTime(2019, 07, 30, 16, 14, 0) };
             Reply r2_3 = new Reply() { ApplicationUser = a5, Post = p2, Text = "There is also querySelectorAll for multiple results", PostDate = new DateTime(2019, 07, 30, 17, 18, 0) };
 
-            Post p3 = new Post() { ApplicationUser = a3, Title = "How to create a new context per every async", Text = "And actually this test is green", PostDate = new DateTime(2019, 06, 18, 7, 0, 0), Tags = new List<Tag>() { tg2,tg4, tg6 } };
+            Post p3 = new Post() { ApplicationUser = a3, Title = "How to create a new context per every async", Text = "And actually this test is green", PostDate = new DateTime(2019, 06, 18, 7, 0, 0), Tags = new List<Tag>() { tg2, tg4, tg6 } };
             Reply r3_1 = new Reply() { ApplicationUser = a1, Post = p3, Text = "What do you mean by create a stack of scopes, per every new async operation? If you have methodA calls methodB, and both are async methods, do you mean you want to create two scopes one for each?", PostDate = new DateTime(2019, 06, 18, 7, 15, 0) };
             Reply r3_2 = new Reply() { ApplicationUser = a2, Post = p3, Text = "You can also use querySelector, for css selectors", PostDate = new DateTime(2019, 06, 18, 7, 30, 0) };
             Reply r3_3 = new Reply() { ApplicationUser = a5, Post = p3, Text = "There is querySelectorAll", PostDate = new DateTime(2019, 06, 18, 7, 35, 0) };
 
-            Post p4 = new Post() { ApplicationUser = a4, Title = "Top 52 C# Interview Questions & Answers", Text = "What is C#?", PostDate = new DateTime(2019, 01, 20, 16, 0, 0), Tags = new List<Tag>() { tg1,tg3 } };
+            Post p4 = new Post() { ApplicationUser = a4, Title = "Top 52 C# Interview Questions & Answers", Text = "What is C#?", PostDate = new DateTime(2019, 01, 20, 16, 0, 0), Tags = new List<Tag>() { tg1, tg3 } };
             Reply r4_1 = new Reply() { ApplicationUser = a2, Post = p4, Text = "C# is an object-oriented, type-safe, and managed language that is compiled by .Net framework to generate Microsoft Intermediate Language.", PostDate = new DateTime(2019, 01, 20, 16, 7, 0) };
             Reply r4_2 = new Reply() { ApplicationUser = a3, Post = p4, Text = "You may also use querySelector for css selectors", PostDate = new DateTime(2019, 01, 21, 16, 17, 0) };
             Reply r4_3 = new Reply() { ApplicationUser = a7, Post = p4, Text = "There is also querySelectorAll for multiple results", PostDate = new DateTime(2019, 01, 21, 17, 18, 0) };
 
-            Post p5 = new Post() { ApplicationUser = a5, Title = "Boxing and Unboxing", Text = "What is Boxing and Unboxing in C#", PostDate = new DateTime(2019, 02, 28, 16, 0, 0), Tags = new List<Tag>() { tg1,tg8 } };
+            Post p5 = new Post() { ApplicationUser = a5, Title = "Boxing and Unboxing", Text = "What is Boxing and Unboxing in C#", PostDate = new DateTime(2019, 02, 28, 16, 0, 0), Tags = new List<Tag>() { tg1, tg8 } };
             Reply r5_1 = new Reply() { ApplicationUser = a1, Post = p5, Text = "Boxing and Unboxing both are used for type conversions.", PostDate = new DateTime(2019, 02, 28, 19, 7, 0) };
             Reply r5_2 = new Reply() { ApplicationUser = a2, Post = p5, Text = "The process of converting from a value type to a reference type is called boxing.", PostDate = new DateTime(2019, 03, 27, 12, 14, 0) };
             Reply r5_3 = new Reply() { ApplicationUser = a3, Post = p5, Text = "The process of converting from a reference type to a value type is called unboxing. Here is an example of unboxing in C#.", PostDate = new DateTime(2019, 07, 30, 17, 18, 0) };
 
-            Post p6 = new Post() { ApplicationUser = a5, Title = "struct and class in C#", Text = "What is the difference between a struct and a class in C#?", PostDate = new DateTime(2019, 04, 28, 16, 0, 0), Tags = new List<Tag>() { tg10,tg11 } };
+            Post p6 = new Post() { ApplicationUser = a5, Title = "struct and class in C#", Text = "What is the difference between a struct and a class in C#?", PostDate = new DateTime(2019, 04, 28, 16, 0, 0), Tags = new List<Tag>() { tg10, tg11 } };
             Reply r6_1 = new Reply() { ApplicationUser = a3, Post = p6, Text = "The struct is a value type in C# and it inherits from System.Value Type.Struct is usually used for smaller amounts of data.The class is a reference type in C# and it inherits from the System.Object Type", PostDate = new DateTime(2019, 04, 28, 16, 7, 0) };
             Reply r6_2 = new Reply() { ApplicationUser = a1, Post = p6, Text = "Struct can’t be inherited from other types.A structure can't be abstract", PostDate = new DateTime(2019, 04, 28, 16, 14, 0) };
             Reply r6_3 = new Reply() { ApplicationUser = a15, Post = p6, Text = "A class can be an abstract type.Classes can be inherited from other classes", PostDate = new DateTime(2019, 04, 28, 17, 18, 0) };
 
-            Post p7 = new Post() { ApplicationUser = a9, Title = "Interface and Abstract Class in C#", Text = "What is the difference between Interface and Abstract Class in C#?", PostDate = new DateTime(2019, 11, 24, 16, 0, 0), Tags = new List<Tag>() { tg1,tg7 } };
+            Post p7 = new Post() { ApplicationUser = a9, Title = "Interface and Abstract Class in C#", Text = "What is the difference between Interface and Abstract Class in C#?", PostDate = new DateTime(2019, 11, 24, 16, 0, 0), Tags = new List<Tag>() { tg1, tg7 } };
             Reply r7_1 = new Reply() { ApplicationUser = a2, Post = p7, Text = "A class can implement any number of interfaces but a subclass can at most use only one abstract class.An abstract class can have non-abstract methods(concrete methods) while in case of interface, all the methods have to be abstract.", PostDate = new DateTime(2019, 11, 25, 16, 9, 0) };
             Reply r7_2 = new Reply() { ApplicationUser = a3, Post = p7, Text = "An abstract class can declare or use any variables while an interface is not allowed to do so.In an abstract class, all data members or functions are private by default while in an interface all are public, we can’t change them manually.", PostDate = new DateTime(2019, 11, 25, 16, 14, 0) };
             Reply r7_3 = new Reply() { ApplicationUser = a5, Post = p7, Text = "In an abstract class, we need to use abstract keywords to declare abstract methods, while in an interface we don’t need to use that.", PostDate = new DateTime(2019, 11, 26, 18, 18, 0) };
 
-            Post p8 = new Post() { ApplicationUser = a10, Title = "Enum in C#", Text = "What is enum in C#?", PostDate = new DateTime(2019, 07, 28, 16, 0, 0), Tags = new List<Tag>() { tg12,tg13 } };
+            Post p8 = new Post() { ApplicationUser = a10, Title = "Enum in C#", Text = "What is enum in C#?", PostDate = new DateTime(2019, 07, 28, 16, 0, 0), Tags = new List<Tag>() { tg12, tg13 } };
             Reply r8_1 = new Reply() { ApplicationUser = a1, Post = p8, Text = "An enum is a value type with a set of related named constants often referred to as an enumerator list. The enum keyword is used to declare an enumeration. It is a primitive data type that is user-defined.", PostDate = new DateTime(2019, 07, 28, 16, 7, 0) };
             Reply r8_2 = new Reply() { ApplicationUser = a4, Post = p8, Text = "An enum type can be an integer (float, int, byte, double, etc.). But if you use it beside int it has to be cast.", PostDate = new DateTime(2019, 07, 28, 16, 14, 0) };
             Reply r8_3 = new Reply() { ApplicationUser = a2, Post = p8, Text = "An enum is used to create numeric constants in the .NET framework. All the members of enum are enum type. There must be a numeric value for each enum type.", PostDate = new DateTime(2019, 07, 28, 17, 18, 0) };
+            Reply r8_4 = new Reply() { ApplicationUser = admin, Post = p8, Text = "An enum iqweqws used to create numeric constants in the .NET framework. All the members of enum are enum type. There must be a numeric value for each enum type.", PostDate = new DateTime(2019, 07, 28, 17, 18, 0) };
 
             Post p9 = new Post() { ApplicationUser = a11, Title = "Continue and Break statements", Text = "Whats the diffence of Continue and Break statements", PostDate = new DateTime(2019, 02, 15, 16, 0, 0), Tags = new List<Tag>() { tg1, tg4, tg5 } };
             Reply r9_1 = new Reply() { ApplicationUser = a1, Post = p9, Text = "Using break statement, you can 'jump out of a loop' whereas by using a continue statement, you can 'jump over one iteration' and then resume your loop execution", PostDate = new DateTime(2019, 02, 15, 16, 7, 0) };
             Reply r9_2 = new Reply() { ApplicationUser = a4, Post = p9, Text = "The continue statement passes control to the next iteration", PostDate = new DateTime(2019, 02, 15, 16, 14, 0) };
             Reply r9_3 = new Reply() { ApplicationUser = a3, Post = p9, Text = " you can 'jump over one iteration' and then resume your loop execution", PostDate = new DateTime(2019, 02, 15, 17, 18, 0) };
+            Reply r9_4 = new Reply() { ApplicationUser = admin, Post = p9, Text = " you can 'jump ovwqeqweer one iteration' and then resume your loop execution", PostDate = new DateTime(2019, 02, 15, 17, 18, 0) };
 
-            Post p10 = new Post() { ApplicationUser = a11, Title = "Constant and readonly in C#", Text = "What is the difference between constant and readonly in C#?", PostDate = new DateTime(2019, 12, 28, 16, 0, 0), Tags = new List<Tag>() { tg5,tg3,tg6} };
+            Post p10 = new Post() { ApplicationUser = a11, Title = "Constant and readonly in C#", Text = "What is the difference between constant and readonly in C#?", PostDate = new DateTime(2019, 12, 28, 16, 0, 0), Tags = new List<Tag>() { tg5, tg3, tg6 } };
             Reply r10_1 = new Reply() { ApplicationUser = a1, Post = p10, Text = "Const is nothing but constant, a variable of which the value is constant but at compile time.", PostDate = new DateTime(2019, 12, 18, 17, 7, 0) };
             Reply r10_2 = new Reply() { ApplicationUser = a4, Post = p10, Text = "By default, a const is static and we cannot change the value of a const variable throughout the entire program.", PostDate = new DateTime(2019, 12, 28, 18, 14, 0) };
             Reply r10_3 = new Reply() { ApplicationUser = a2, Post = p10, Text = "Readonly is the keyword whose value we can change during runtime or we can assign it at run time but only through the non-static constructor.", PostDate = new DateTime(2019, 12, 28, 20, 14, 0) };
 
-            Post p11 = new Post() { ApplicationUser = a12, Title = "Ref and out keywords", Text = "What is the difference between ref and out keywords?", PostDate = new DateTime(2019, 05, 29, 16, 0, 0), Tags = new List<Tag>() { tg15,tg16 } };
+            Post p11 = new Post() { ApplicationUser = a12, Title = "Ref and out keywords", Text = "What is the difference between ref and out keywords?", PostDate = new DateTime(2019, 05, 29, 16, 0, 0), Tags = new List<Tag>() { tg15, tg16 } };
             Reply r11_1 = new Reply() { ApplicationUser = a1, Post = p11, Text = "The ref keyword passes arguments by reference. It means any changes made to this argument in the method will be reflected in that variable when control returns to the calling method.", PostDate = new DateTime(2019, 05, 29, 16, 23, 0) };
             Reply r11_2 = new Reply() { ApplicationUser = a2, Post = p11, Text = "The out keyword passes arguments by reference. This is very similar to the ref keyword.", PostDate = new DateTime(2019, 05, 29, 18, 14, 0) };
             Reply r11_3 = new Reply() { ApplicationUser = a3, Post = p11, Text = "Both ref and out are treated differently at run time and they are treated the same at compile time, so methods cannot be overloaded if one method takes an argument as ref and the other takes an argument as an out.", PostDate = new DateTime(2019, 06, 30, 17, 18, 0) };
 
-            Post p12 = new Post() { ApplicationUser = a13, Title = "'This' keyword with static Methods C# ", Text = "Can 'this' be used within a static method?", PostDate = new DateTime(2019, 07, 12, 16, 0, 0), Tags = new List<Tag>() { tg17,tg19 } };
+            Post p12 = new Post() { ApplicationUser = a13, Title = "'This' keyword with static Methods C# ", Text = "Can 'this' be used within a static method?", PostDate = new DateTime(2019, 07, 12, 16, 0, 0), Tags = new List<Tag>() { tg17, tg19 } };
             Reply r12_1 = new Reply() { ApplicationUser = a4, Post = p12, Text = "We can't use 'this' in a static method because the keyword 'this' returns a reference to the current instance of the class containing it.", PostDate = new DateTime(2019, 07, 12, 16, 7, 0) };
             Reply r12_2 = new Reply() { ApplicationUser = a5, Post = p12, Text = "Static methods (or any static member) do not belong to a particular instance. They exist without creating an instance of the class and are called with the name of a class, not by instance, so we can’t use this keyword in the body of static Methods.", PostDate = new DateTime(2019, 12, 30, 16, 14, 0) };
             Reply r12_3 = new Reply() { ApplicationUser = a1, Post = p12, Text = "The 'this' keyword in C# is a special type of reference variable that is implicitly defined within each constructor and non-static method as a first parameter of the type class in which it is defined.", PostDate = new DateTime(2019, 12, 30, 17, 18, 0) };
 
-            Post p13 = new Post() { ApplicationUser = a14, Title = "Comments in HTML", Text = "How can I insert a comment in HTML?", PostDate = new DateTime(2019, 06, 30, 16, 0, 0), Tags = new List<Tag>() { tg19,tg20 } };
+            Post p13 = new Post() { ApplicationUser = a14, Title = "Comments in HTML", Text = "How can I insert a comment in HTML?", PostDate = new DateTime(2019, 06, 30, 16, 0, 0), Tags = new List<Tag>() { tg19, tg20 } };
             Reply r13_1 = new Reply() { ApplicationUser = a1, Post = p13, Text = "Comments in HTML begins with <!–ends with–>.", PostDate = new DateTime(2019, 06, 30, 16, 7, 0) };
             Reply r13_2 = new Reply() { ApplicationUser = a8, Post = p13, Text = "<!--/-->That is exactly!", PostDate = new DateTime(2019, 06, 30, 16, 14, 0) };
             Reply r13_3 = new Reply() { ApplicationUser = a5, Post = p13, Text = "<!-- A SAMPLE COMMENT -->", PostDate = new DateTime(2019, 06, 30, 17, 19, 0) };
@@ -428,45 +435,159 @@
             Post p51 = new Post() { ApplicationUser = a14, Title = "What SQL stands for?", Text = "Is it system quotation linear?", PostDate = DateTime.Now, Tags = new List<Tag>() { tg12, tg15 } };
             Post p52 = new Post() { ApplicationUser = a15, Title = "What can i achieve with seeding method?", Text = "How many hours i need for a seeding?", PostDate = DateTime.Now, Tags = new List<Tag>() { tg14 } };
 
+            // *** ~~~ ~~~ ~~~ *** Admin's Post Replies *** ~~~ ~~~ ~~~ ***
+            //This User is to test statistics view
+
+
+            Post p53 = new Post() { ApplicationUser = admin, Title = "dummy1dummy1", Text = "dummy1dummy1", PostDate = new DateTime(2020, 1, 1), Tags = new List<Tag>() { tg11 } };
+            Reply r53_1 = new Reply() { ApplicationUser = admin, Post = p53, Text = "This is a Dummy reply1", PostDate = new DateTime(2020, 2, 1) };
+            Reply r53_2 = new Reply() { ApplicationUser = admin, Post = p53, Text = "This is a Dummy reply2", PostDate = new DateTime(2020, 2, 1) };
+            Reply r53_3 = new Reply() { ApplicationUser = admin, Post = p53, Text = "This is a Dummy reply3", PostDate = new DateTime(2020, 3, 1) };
+            Reply r53_4 = new Reply() { ApplicationUser = admin, Post = p53, Text = "This is a Dummy reply4", PostDate = new DateTime(2020, 3, 1) };
+            Reply r53_5 = new Reply() { ApplicationUser = admin, Post = p53, Text = "This is a Dummy reply5", PostDate = new DateTime(2020, 3, 1) };
+            Reply r53_6 = new Reply() { ApplicationUser = admin, Post = p53, Text = "This is a Dummy reply6", PostDate = new DateTime(2020, 3, 1) };
+            Reply r53_7 = new Reply() { ApplicationUser = admin, Post = p53, Text = "This is a Dummy reply7", PostDate = new DateTime(2020, 4, 1) };
+            Reply r53_8 = new Reply() { ApplicationUser = admin, Post = p53, Text = "This is a Dummy reply8", PostDate = new DateTime(2020, 4, 1) };
+
+            Post p54 = new Post() { ApplicationUser = admin, Title = "dummy2dummy1", Text = "dummy2dummy1", PostDate = new DateTime(2020, 1, 1), Tags = new List<Tag>() { tg12 } };
+            Reply r54_1 = new Reply() { ApplicationUser = admin, Post = p54, Text = "This is a Dummy replyjkkj1", PostDate = new DateTime(2020, 7, 1) };
+            Reply r54_2 = new Reply() { ApplicationUser = admin, Post = p54, Text = "This is a Dummy replylkhlk2", PostDate = new DateTime(2020, 7, 1) };
+            Reply r54_3 = new Reply() { ApplicationUser = admin, Post = p54, Text = "This is a Dummy reply;lh;l;lh3", PostDate = new DateTime(2020, 7, 1) };
+            Reply r54_4 = new Reply() { ApplicationUser = admin, Post = p54, Text = "This is a Dummy repl'h;'hy4", PostDate = new DateTime(2020, 7, 1) };
+            Reply r54_5 = new Reply() { ApplicationUser = admin, Post = p54, Text = "This is a Dummy repl;hl;lhy5", PostDate = new DateTime(2020, 7, 1) };
+            Reply r54_6 = new Reply() { ApplicationUser = admin, Post = p54, Text = "This is a Dummy reph;l;hl;lly6", PostDate = new DateTime(2020, 12, 1) };
+            Reply r54_7 = new Reply() { ApplicationUser = admin, Post = p54, Text = "This is a Dummy replyh;l;l;hl;l7", PostDate = new DateTime(2020, 12, 1) };
+            Reply r54_8 = new Reply() { ApplicationUser = admin, Post = p54, Text = "This is a Dummy reh;l;lh;l;ply8", PostDate = new DateTime(2020, 12, 1) };
+
+            Post p55 = new Post() { ApplicationUser = admin, Title = "dummy3dummy1", Text = "dummy3dummy1", PostDate = new DateTime(2020, 2, 1), Tags = new List<Tag>() { tg1 } };
+            Reply r55_1 = new Reply() { ApplicationUser = admin, Post = p55, Text = "This is a Dummy reppply1", PostDate = new DateTime(2020, 9, 1) };
+            Reply r55_2 = new Reply() { ApplicationUser = admin, Post = p55, Text = "This is a Dummy replppy2", PostDate = new DateTime(2020, 9, 1) };
+            Reply r55_3 = new Reply() { ApplicationUser = admin, Post = p55, Text = "This is a Dummy replppy3", PostDate = new DateTime(2020, 9, 1) };
+            Reply r55_4 = new Reply() { ApplicationUser = admin, Post = p55, Text = "This is a Dummy replpppy4", PostDate = new DateTime(2020, 8, 1) };
+            Reply r55_5 = new Reply() { ApplicationUser = admin, Post = p55, Text = "This is a Dummy replppy5", PostDate = new DateTime(2020, 9, 1) };
+            Reply r55_6 = new Reply() { ApplicationUser = admin, Post = p55, Text = "This is a Dummy replpppy6", PostDate = new DateTime(2020, 9, 1) };
+            Reply r55_7 = new Reply() { ApplicationUser = admin, Post = p55, Text = "This is a Dummy replpppy7", PostDate = new DateTime(2020, 10, 1) };
+            Reply r55_8 = new Reply() { ApplicationUser = admin, Post = p55, Text = "This is a Dummy replpppy8", PostDate = new DateTime(2020, 12, 1) };
+
+
+            Post p56 = new Post() { ApplicationUser = admin, Title = "dummy4dummy1", Text = "dummy4dummy1", PostDate = new DateTime(2020, 2, 1), Tags = new List<Tag>() { tg2 } };
+            Reply r56_1 = new Reply() { ApplicationUser = admin, Post = p56, Text = "This is a Dummy reppply11", PostDate = new DateTime(2020, 8, 1) };
+            Reply r56_2 = new Reply() { ApplicationUser = admin, Post = p56, Text = "This is a Dummy replppy22", PostDate = new DateTime(2020, 8, 1) };
+            Reply r56_3 = new Reply() { ApplicationUser = admin, Post = p56, Text = "This is a Dummy replppy23", PostDate = new DateTime(2020, 8, 1) };
+            Reply r56_4 = new Reply() { ApplicationUser = admin, Post = p56, Text = "This is a Dummy replpppy25", PostDate = new DateTime(2020, 5, 1) };
+            Reply r56_5 = new Reply() { ApplicationUser = admin, Post = p56, Text = "This is a Dummy replppy12", PostDate = new DateTime(2020, 5, 1) };
+            Reply r56_6 = new Reply() { ApplicationUser = admin, Post = p56, Text = "This is a Dummy replpppy64", PostDate = new DateTime(2020, 5, 1) };
+            Reply r56_7 = new Reply() { ApplicationUser = admin, Post = p56, Text = "This is a Dummy replpppy72", PostDate = new DateTime(2020, 5, 1) };
+            Reply r56_8 = new Reply() { ApplicationUser = admin, Post = p56, Text = "This is a Dummy replpppy851", PostDate = new DateTime(2020, 5, 1) };
+
+            Post p57 = new Post() { ApplicationUser = admin, Title = "dummy5dummy1", Text = "dummy5dummy1", PostDate = new DateTime(2020, 3, 1), Tags = new List<Tag>() { tg3 } };
+            Reply r57_1 = new Reply() { ApplicationUser = admin, Post = p57, Text = "This is a Dummy reppply112", PostDate = new DateTime(2020, 7, 1) };
+            Reply r57_2 = new Reply() { ApplicationUser = admin, Post = p57, Text = "This is a Dummy replppy24", PostDate = new DateTime(2020, 7, 1) };
+            Reply r57_3 = new Reply() { ApplicationUser = admin, Post = p57, Text = "This is a Dummy replppy36", PostDate = new DateTime(2020, 7, 1) };
+            Reply r57_4 = new Reply() { ApplicationUser = admin, Post = p57, Text = "This is a Dummy replpppy74", PostDate = new DateTime(2020, 2, 1) };
+            Reply r57_5 = new Reply() { ApplicationUser = admin, Post = p57, Text = "This is a Dummy replppy85", PostDate = new DateTime(2020, 2, 1) };
+            Reply r57_6 = new Reply() { ApplicationUser = admin, Post = p57, Text = "This is a Dummy replppp23y6", PostDate = new DateTime(2020, 2, 1) };
+            Reply r57_7 = new Reply() { ApplicationUser = admin, Post = p57, Text = "This is a Dummy replppp23y7", PostDate = new DateTime(2020, 2, 1) };
+            Reply r57_8 = new Reply() { ApplicationUser = admin, Post = p57, Text = "This is a Dummy replp2ppy8", PostDate = new DateTime(2020, 2, 1) };
+
+            Post p58 = new Post() { ApplicationUser = admin, Title = "dummy6dummy1", Text = "dummy6dummy1", PostDate = new DateTime(2020, 4, 1), Tags = new List<Tag>() { tg9 } };
+            Reply r58_1 = new Reply() { ApplicationUser = admin, Post = p58, Text = "This is a Dummy reppp23ly1", PostDate = new DateTime(2020, 6, 1) };
+            Reply r58_2 = new Reply() { ApplicationUser = admin, Post = p58, Text = "This is a Dummy replpp42y2", PostDate = new DateTime(2020, 6, 1) };
+            Reply r58_3 = new Reply() { ApplicationUser = admin, Post = p58, Text = "This is a Dummy replpp52y3", PostDate = new DateTime(2020, 6, 1) };
+            Reply r58_4 = new Reply() { ApplicationUser = admin, Post = p58, Text = "This is a Dummy replpp2552py4", PostDate = new DateTime(2020, 6, 1) };
+            Reply r58_5 = new Reply() { ApplicationUser = admin, Post = p58, Text = "This is a Dummy replp223py5", PostDate = new DateTime(2020, 4, 1) };
+            Reply r58_6 = new Reply() { ApplicationUser = admin, Post = p58, Text = "This is a Dummy replppp232y6", PostDate = new DateTime(2020, 4, 1) };
+            Reply r58_7 = new Reply() { ApplicationUser = admin, Post = p58, Text = "This is a Dummy replpp23py7", PostDate = new DateTime(2020, 4, 1) };
+            Reply r58_8 = new Reply() { ApplicationUser = admin, Post = p58, Text = "This is a Dummy repl232pppy8", PostDate = new DateTime(2020, 4, 1) };
+
+            Post p59 = new Post() { ApplicationUser = admin, Title = "dummy7dummy1", Text = "dummy7dummy1", PostDate = new DateTime(2020, 5, 1), Tags = new List<Tag>() { tg7 } };
+            Reply r59_1 = new Reply() { ApplicationUser = admin, Post = p59, Text = "This is a Dummy reppp424ly1", PostDate = new DateTime(2020, 8, 1) };
+            Reply r59_2 = new Reply() { ApplicationUser = admin, Post = p59, Text = "This is a Dummy rep52lppy2", PostDate = new DateTime(2020, 8, 1) };
+            Reply r59_3 = new Reply() { ApplicationUser = admin, Post = p59, Text = "This is a Dummy repl3232ppy3", PostDate = new DateTime(2020, 8, 1) };
+            Reply r59_4 = new Reply() { ApplicationUser = admin, Post = p59, Text = "This is a Dummy replppp5252y4", PostDate = new DateTime(2020, 11, 1) };
+            Reply r59_5 = new Reply() { ApplicationUser = admin, Post = p59, Text = "This is a Dummy rep23232lppy5", PostDate = new DateTime(2020, 11, 1) };
+            Reply r59_6 = new Reply() { ApplicationUser = admin, Post = p59, Text = "This is a Dummy replp52542ppy6", PostDate = new DateTime(2020, 11, 1) };
+            Reply r59_7 = new Reply() { ApplicationUser = admin, Post = p59, Text = "This is a Dummy replppp32323y7", PostDate = new DateTime(2020, 10, 1) };
+            Reply r59_8 = new Reply() { ApplicationUser = admin, Post = p59, Text = "This is a Dummy replpp2323py8", PostDate = new DateTime(2020, 12, 1) };
+            Reply r59_9 = new Reply() { ApplicationUser = admin, Post = p59, Text = "This is a Dummy replpp1232323py8", PostDate = new DateTime(2020, 10, 1) };
+            Reply r59_10 = new Reply() { ApplicationUser = admin, Post = p59, Text = "This is a Dummy repl23pp2323py8", PostDate = new DateTime(2020, 10, 1) };
+            Reply r59_11 = new Reply() { ApplicationUser = admin, Post = p59, Text = "This is a Dummy replpqwep2323py8", PostDate = new DateTime(2020, 10, 1) };
+            Reply r59_12 = new Reply() { ApplicationUser = admin, Post = p59, Text = "This is a Dummy replpqweqwp2323py8", PostDate = new DateTime(2020, 10, 1) };
+            Reply r59_13 = new Reply() { ApplicationUser = admin, Post = p59, Text = "This is a Dummy repqwelpp2323py8", PostDate = new DateTime(2020, 10, 1) };
+            Reply r59_14 = new Reply() { ApplicationUser = admin, Post = p59, Text = "This is a Dummy repl12312pp2323py8", PostDate = new DateTime(2020, 10, 1) };
+            Reply r59_15 = new Reply() { ApplicationUser = admin, Post = p59, Text = "This is a Dummy replqweqwpp2323py8", PostDate = new DateTime(2020, 10, 1) };
+            Reply r59_16 = new Reply() { ApplicationUser = admin, Post = p59, Text = "This is a Dummy replqweqpp2323py8", PostDate = new DateTime(2020, 10, 1) };
+
+            Post p60 = new Post() { ApplicationUser = admin, Title = "dummy8dummy1", Text = "dummy8dummy1", PostDate = new DateTime(2020, 5, 1), Tags = new List<Tag>() { tg10 } };
+            Post p61 = new Post() { ApplicationUser = admin, Title = "dummy9dummy1", Text = "dummy9dummy1", PostDate = new DateTime(2020, 6, 1), Tags = new List<Tag>() { tg12 } };
+            Post p62 = new Post() { ApplicationUser = admin, Title = "dummy10dummy1", Text = "dummy10dummy1", PostDate = new DateTime(2020, 7, 1), Tags = new List<Tag>() { tg13 } };
+            Post p63 = new Post() { ApplicationUser = admin, Title = "dummy11dummy1", Text = "dummy11dummy1", PostDate = new DateTime(2020, 8, 1), Tags = new List<Tag>() { tg9 } };
+            Post p64 = new Post() { ApplicationUser = admin, Title = "dummy12dummy1", Text = "dummy12dummy1", PostDate = new DateTime(2020, 9, 1), Tags = new List<Tag>() { tg1 } };
+            Post p65 = new Post() { ApplicationUser = admin, Title = "dummy13dummy1", Text = "dummy13dummy1", PostDate = new DateTime(2020, 10, 1), Tags = new List<Tag>() { tg5 } };
+            Post p66 = new Post() { ApplicationUser = admin, Title = "dummy14dummy1", Text = "dummy14dummy1", PostDate = new DateTime(2020, 11, 1), Tags = new List<Tag>() { tg6 } };
+            Post p67 = new Post() { ApplicationUser = admin, Title = "dummy15dummy1", Text = "dummy15dummy1", PostDate = new DateTime(2020, 11, 1), Tags = new List<Tag>() { tg6 } };
+            Post p68 = new Post() { ApplicationUser = admin, Title = "dummy16dummy1", Text = "dummy16dummy1", PostDate = new DateTime(2020, 11, 1), Tags = new List<Tag>() { tg6 } };
+            Post p69 = new Post() { ApplicationUser = admin, Title = "dummy17dummy1", Text = "dummy17dummy1", PostDate = new DateTime(2020, 11, 1), Tags = new List<Tag>() { tg6 } };
+            Post p70 = new Post() { ApplicationUser = admin, Title = "dummy18dummy1", Text = "dummy18dummy1", PostDate = new DateTime(2020, 11, 1), Tags = new List<Tag>() { tg6 } };
+            Post p71 = new Post() { ApplicationUser = admin, Title = "dummy19dummy1", Text = "dummy19dummy1", PostDate = new DateTime(2020, 12, 1), Tags = new List<Tag>() { tg6 } };
+            Post p72 = new Post() { ApplicationUser = admin, Title = "dummy20dummy1", Text = "dummy20dummy1", PostDate = new DateTime(2020, 12, 1), Tags = new List<Tag>() { tg6 } };
+            Post p73 = new Post() { ApplicationUser = admin, Title = "dummy21dummy1", Text = "dummy21dummy1", PostDate = new DateTime(2020, 12, 1), Tags = new List<Tag>() { tg6 } };
+            Post p74 = new Post() { ApplicationUser = admin, Title = "dummy22dummy1", Text = "dummy22dummy1", PostDate = new DateTime(2020, 12, 1), Tags = new List<Tag>() { tg6 } };
+            Post p75 = new Post() { ApplicationUser = admin, Title = "dummy23dummy1", Text = "dummy23dummy1", PostDate = new DateTime(2020, 12, 1), Tags = new List<Tag>() { tg6 } };
+            Post p76 = new Post() { ApplicationUser = admin, Title = "dummy24dummy1", Text = "dummy24dummy1", PostDate = new DateTime(2020, 12, 1), Tags = new List<Tag>() { tg6 } };
+            Post p77 = new Post() { ApplicationUser = admin, Title = "dummy25dummy1", Text = "dummy25dummy1", PostDate = new DateTime(2020, 1, 1), Tags = new List<Tag>() { tg6 } };
+            Post p78 = new Post() { ApplicationUser = admin, Title = "dummy26dummy1", Text = "dummy26dummy1", PostDate = new DateTime(2020, 1, 1), Tags = new List<Tag>() { tg6 } };
+            Post p79 = new Post() { ApplicationUser = admin, Title = "dummy27dummy1", Text = "dummy27dummy1", PostDate = new DateTime(2020, 1, 1), Tags = new List<Tag>() { tg6 } };
+            Post p80 = new Post() { ApplicationUser = admin, Title = "dummy28dummy1", Text = "dummy28dummy1", PostDate = new DateTime(2020, 1, 1), Tags = new List<Tag>() { tg6 } };
+            Post p81 = new Post() { ApplicationUser = admin, Title = "dummy29dummy1", Text = "dummy29dummy1", PostDate = new DateTime(2020, 1, 1), Tags = new List<Tag>() { tg6 } };
+            Post p82 = new Post() { ApplicationUser = admin, Title = "dummy30dummy1", Text = "dummy30dummy1", PostDate = new DateTime(2020, 1, 1), Tags = new List<Tag>() { tg6 } };
+            Post p83 = new Post() { ApplicationUser = admin, Title = "dummy31dummy1", Text = "dummy31dummy1", PostDate = new DateTime(2020, 1, 1), Tags = new List<Tag>() { tg6 } };
+            Post p84 = new Post() { ApplicationUser = admin, Title = "dummy32dummy1", Text = "dummy32dummy1", PostDate = new DateTime(2020, 1, 1), Tags = new List<Tag>() { tg6 } };
+
+
+
+
+
+
             // *** ~~~ ~~~ ~~~ *** Books *** ~~~ ~~~ ~~~ ***
 
-            Book b1 = new Book() { BookAuthor = "Peter Rich", Title = "Programming with C", Description = "An whole new approach to the C programming", Publisher = "Random Books", Pages = 133, ProductionDate = new DateTime(2001, 04, 09) ,PhotoUrl= "https://rukminim1.flixcart.com/image/416/416/book/3/5/3/programming-with-c-original-imaead3ztcrpzshe.jpeg?q=70" };
-            Book b2 = new Book() { BookAuthor = "Olga Moskovskaya", Title = "The windows GUI", Description = "This is an introduction of the windows OS GUI", Publisher = "Little House", Pages = 300, ProductionDate = new DateTime(2008, 07, 25) ,PhotoUrl= "https://images-na.ssl-images-amazon.com/images/I/51Ph+W4DhrL._SX258_BO1,204,203,200_.jpg" };
-            Book b3 = new Book() { BookAuthor = "Anna Petersson", Title = "History of Computing", Description = "The events that marked the rise of computing era", Publisher = "Random Books", Pages = 500, ProductionDate = new DateTime(2017, 04, 18),PhotoUrl= "https://upload.wikimedia.org/wikipedia/commons/7/76/Visual_Smith_Chart.png" };
-            Book b4 = new Book() { BookAuthor = "John Stone", Title = "The Linux OS", Description = "A deep understanding of a popular OS", Publisher = "Bird House", Pages = 100, ProductionDate = new DateTime(2016, 01, 31) ,PhotoUrl= "https://image.shutterstock.com/image-illustration/linux-source-code-binary-background-600w-235908181.jpg" };
-            Book b5 = new Book() { BookAuthor = "Alice Booker", Title = "Basic Cryptography", Description = "An introduction to basic principles of cryptography", Publisher = "Hidden Books", Pages = 150, ProductionDate = new DateTime(2012, 02, 29),PhotoUrl= "https://oraclefrontovikcom.files.wordpress.com/2018/12/ng5-book.jpg" };
-            Book b6 = new Book() { BookAuthor = "David Thomas", Title = "The Pragmatic Programmer", Description = "Whether you’re new to the field or an experienced practitioner, you’ll come away with fresh insights each and every time. ", Publisher = "David Thomas", Pages = 352, ProductionDate = new DateTime(2019, 07, 30),PhotoUrl= "https://oraclefrontovikcom.files.wordpress.com/2018/12/RTLR.jpg" };
-            Book b7 = new Book() { BookAuthor = "Robert C.Uncle Bob Martin", Title = "Clean Code", Description = "Even bad code can function. But if code isn’t clean, it can bring a development organization to its knees.", Publisher = "Prentice Hall", Pages = 464, ProductionDate = new DateTime(2008, 08, 01),PhotoUrl= "https://oraclefrontovikcom.files.wordpress.com/2018/12/MoD.jpg" };
-            Book b8 = new Book() { BookAuthor = "Dr.Erich Gamma", Title = "Design Patterns", Description = "Capturing a wealth of experience about the design of object-oriented software, four top-notch designers present a catalog of simple and succinct solutions to commonly occurring design problems.", Publisher = "Addison-Wesley", Pages = 416, ProductionDate = new DateTime(1994, 10, 30),PhotoUrl= "https://www.packtpub.com/media/catalog/product/cache/e4d64343b1bc593f1c5348fe05efa4a6/m/o/mockup_b12577_mockupcover.png" };
-            Book b9 = new Book() { BookAuthor = "Eric Freeman", Title = "Head First Design Patterns", Description = "Design Patterns", Publisher = "O'Reilly Media", Pages = 694, ProductionDate = new DateTime(2004, 10, 01),PhotoUrl= "https://oraclefrontovikcom.files.wordpress.com/2018/12/SS3.jpg" };
-            Book b10 = new Book() { BookAuthor = "Kernighan and Dennis Ritchie", Title = "The C Programming Language ", Description = "The book was central to the development and popularization of the C programming language and is still widely read and used today.", Publisher = "Prentice Hall", Pages = 558, ProductionDate = new DateTime(1978, 02, 25) ,PhotoUrl= "https://web.webstorage.gr/MEDIA/books/bookdata/largeImages/9780321213358.jpg" };
-            Book b11 = new Book() { BookAuthor = "Refactoring", Title = "Refactoring", Description = "The guide to how to transform code with safe and rapid process", Publisher = "Kent Beck", Pages = 458, ProductionDate = new DateTime(2018, 01, 10),PhotoUrl= "https://d33wubrfki0l68.cloudfront.net/1cbc77a3d7a3a6980a0d76efdcb289e9b4057d8d/388cb/images/refactoring-ui-book.png" };
-            Book b12 = new Book() { BookAuthor = "Marijn Haverbeke", Title = "Eloquent JavaScript", Description = "This is a book about JavaScript, programming, and the wonders of the digital", Publisher = "Adam Stunley", Pages = 921, ProductionDate = new DateTime(2010, 02, 05),PhotoUrl= "https://oraclefrontovikcom.files.wordpress.com/2018/12/BPWA.jpg" };
-            Book b13 = new Book() { BookAuthor = "Joshua Bloch", Title = "Effective Java", Description = "The Definitive Guide to Java Platform Best Practices–Updated for Java 7, 8, and 9", Publisher = "Payton", Pages = 558, ProductionDate = new DateTime(2012, 01, 01),PhotoUrl= "https://oraclefrontovikcom.files.wordpress.com/2018/12/JSJQ.jpg" };
-            Book b14 = new Book() { BookAuthor = "Al Sweigart", Title = "Automate the Boring Stuff with Python", Description = "Learn how to become a master of using Python", Publisher = "Al Sweigart", Pages = 158, ProductionDate = new DateTime(2015, 06, 14),PhotoUrl= "https://www.packtpub.com/media/catalog/product/cache/e4d64343b1bc593f1c5348fe05efa4a6/b/0/b09734_0.png" };
-            Book b15 = new Book() { BookAuthor = "John Sonmez", Title = "Soft Skills: The software developer's life manual", Description = "Offering techniques and practices for a more satisfying life as a professional software developer", Publisher = "Manning Publications", Pages = 908, ProductionDate = new DateTime(2015, 01, 16),PhotoUrl= "https://www.packtpub.com/media/catalog/product/cache/e4d64343b1bc593f1c5348fe05efa4a6/b/1/b12437.png" };
-            Book b16 = new Book() { BookAuthor = "Michael Feathers", Title = "Working Effectively with Legacy Code", Description = "An introduction to basic principles of cryptography", Publisher = "Prentice Hall", Pages = 102, ProductionDate = new DateTime(2004, 11, 01),PhotoUrl= "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9780/8493/9780849385230.jpg" };
-            Book b17 = new Book() { BookAuthor = "Martin Fowler", Title = "Domain Driven Design", Description = "This is one of those anti-patterns that's been around for quite a long time.", Publisher = "April", Pages = 1621, ProductionDate = new DateTime(2000, 10, 11),PhotoUrl= "https://image.slidesharecdn.com/techtalk04hexagonalarchitectures-171015101748/95/domain-driven-design-and-hexagonal-architecture-1-638.jpg?cb=1508062759" };
+            Book b1 = new Book() { BookAuthor = "Peter Rich", Title = "Programming with C", Description = "An whole new approach to the C programming", Publisher = "Random Books", Pages = 133, ProductionDate = new DateTime(2001, 04, 09), PhotoUrl = "https://rukminim1.flixcart.com/image/416/416/book/3/5/3/programming-with-c-original-imaead3ztcrpzshe.jpeg?q=70" };
+            Book b2 = new Book() { BookAuthor = "Olga Moskovskaya", Title = "The windows GUI", Description = "This is an introduction of the windows OS GUI", Publisher = "Little House", Pages = 300, ProductionDate = new DateTime(2008, 07, 25), PhotoUrl = "https://images-na.ssl-images-amazon.com/images/I/51Ph+W4DhrL._SX258_BO1,204,203,200_.jpg" };
+            Book b3 = new Book() { BookAuthor = "Anna Petersson", Title = "History of Computing", Description = "The events that marked the rise of computing era", Publisher = "Random Books", Pages = 500, ProductionDate = new DateTime(2017, 04, 18), PhotoUrl = "https://upload.wikimedia.org/wikipedia/commons/7/76/Visual_Smith_Chart.png" };
+            Book b4 = new Book() { BookAuthor = "John Stone", Title = "The Linux OS", Description = "A deep understanding of a popular OS", Publisher = "Bird House", Pages = 100, ProductionDate = new DateTime(2016, 01, 31), PhotoUrl = "https://image.shutterstock.com/image-illustration/linux-source-code-binary-background-600w-235908181.jpg" };
+            Book b5 = new Book() { BookAuthor = "Alice Booker", Title = "Basic Cryptography", Description = "An introduction to basic principles of cryptography", Publisher = "Hidden Books", Pages = 150, ProductionDate = new DateTime(2012, 02, 29), PhotoUrl = "https://oraclefrontovikcom.files.wordpress.com/2018/12/ng5-book.jpg" };
+            Book b6 = new Book() { BookAuthor = "David Thomas", Title = "The Pragmatic Programmer", Description = "Whether you’re new to the field or an experienced practitioner, you’ll come away with fresh insights each and every time. ", Publisher = "David Thomas", Pages = 352, ProductionDate = new DateTime(2019, 07, 30), PhotoUrl = "https://oraclefrontovikcom.files.wordpress.com/2018/12/RTLR.jpg" };
+            Book b7 = new Book() { BookAuthor = "Robert C.Uncle Bob Martin", Title = "Clean Code", Description = "Even bad code can function. But if code isn’t clean, it can bring a development organization to its knees.", Publisher = "Prentice Hall", Pages = 464, ProductionDate = new DateTime(2008, 08, 01), PhotoUrl = "https://oraclefrontovikcom.files.wordpress.com/2018/12/MoD.jpg" };
+            Book b8 = new Book() { BookAuthor = "Dr.Erich Gamma", Title = "Design Patterns", Description = "Capturing a wealth of experience about the design of object-oriented software, four top-notch designers present a catalog of simple and succinct solutions to commonly occurring design problems.", Publisher = "Addison-Wesley", Pages = 416, ProductionDate = new DateTime(1994, 10, 30), PhotoUrl = "https://www.packtpub.com/media/catalog/product/cache/e4d64343b1bc593f1c5348fe05efa4a6/m/o/mockup_b12577_mockupcover.png" };
+            Book b9 = new Book() { BookAuthor = "Eric Freeman", Title = "Head First Design Patterns", Description = "Design Patterns", Publisher = "O'Reilly Media", Pages = 694, ProductionDate = new DateTime(2004, 10, 01), PhotoUrl = "https://oraclefrontovikcom.files.wordpress.com/2018/12/SS3.jpg" };
+            Book b10 = new Book() { BookAuthor = "Kernighan and Dennis Ritchie", Title = "The C Programming Language ", Description = "The book was central to the development and popularization of the C programming language and is still widely read and used today.", Publisher = "Prentice Hall", Pages = 558, ProductionDate = new DateTime(1978, 02, 25), PhotoUrl = "https://web.webstorage.gr/MEDIA/books/bookdata/largeImages/9780321213358.jpg" };
+            Book b11 = new Book() { BookAuthor = "Refactoring", Title = "Refactoring", Description = "The guide to how to transform code with safe and rapid process", Publisher = "Kent Beck", Pages = 458, ProductionDate = new DateTime(2018, 01, 10), PhotoUrl = "https://d33wubrfki0l68.cloudfront.net/1cbc77a3d7a3a6980a0d76efdcb289e9b4057d8d/388cb/images/refactoring-ui-book.png" };
+            Book b12 = new Book() { BookAuthor = "Marijn Haverbeke", Title = "Eloquent JavaScript", Description = "This is a book about JavaScript, programming, and the wonders of the digital", Publisher = "Adam Stunley", Pages = 921, ProductionDate = new DateTime(2010, 02, 05), PhotoUrl = "https://oraclefrontovikcom.files.wordpress.com/2018/12/BPWA.jpg" };
+            Book b13 = new Book() { BookAuthor = "Joshua Bloch", Title = "Effective Java", Description = "The Definitive Guide to Java Platform Best Practices–Updated for Java 7, 8, and 9", Publisher = "Payton", Pages = 558, ProductionDate = new DateTime(2012, 01, 01), PhotoUrl = "https://oraclefrontovikcom.files.wordpress.com/2018/12/JSJQ.jpg" };
+            Book b14 = new Book() { BookAuthor = "Al Sweigart", Title = "Automate the Boring Stuff with Python", Description = "Learn how to become a master of using Python", Publisher = "Al Sweigart", Pages = 158, ProductionDate = new DateTime(2015, 06, 14), PhotoUrl = "https://www.packtpub.com/media/catalog/product/cache/e4d64343b1bc593f1c5348fe05efa4a6/b/0/b09734_0.png" };
+            Book b15 = new Book() { BookAuthor = "John Sonmez", Title = "Soft Skills: The software developer's life manual", Description = "Offering techniques and practices for a more satisfying life as a professional software developer", Publisher = "Manning Publications", Pages = 908, ProductionDate = new DateTime(2015, 01, 16), PhotoUrl = "https://www.packtpub.com/media/catalog/product/cache/e4d64343b1bc593f1c5348fe05efa4a6/b/1/b12437.png" };
+            Book b16 = new Book() { BookAuthor = "Michael Feathers", Title = "Working Effectively with Legacy Code", Description = "An introduction to basic principles of cryptography", Publisher = "Prentice Hall", Pages = 102, ProductionDate = new DateTime(2004, 11, 01), PhotoUrl = "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9780/8493/9780849385230.jpg" };
+            Book b17 = new Book() { BookAuthor = "Martin Fowler", Title = "Domain Driven Design", Description = "This is one of those anti-patterns that's been around for quite a long time.", Publisher = "April", Pages = 1621, ProductionDate = new DateTime(2000, 10, 11), PhotoUrl = "https://image.slidesharecdn.com/techtalk04hexagonalarchitectures-171015101748/95/domain-driven-design-and-hexagonal-architecture-1-638.jpg?cb=1508062759" };
 
             // *** ~~~ ~~~ ~~~ *** Tutorials *** ~~~ ~~~ ~~~ ***
 
-            Tutorial tu1 = new Tutorial() { TutorialAuthor = "Dr. Hans Stroke", Title = "Learn C++", Description = "An all around approach to the C++ programming language.", Duration = TimeSpan.FromMinutes(120), ProductionDate = new DateTime(2004, 06, 02),PhotoUrl= "https://www.planet-source-code.com/upload_PSC/screenshots/PIC20021018205521436.jpg" };
+            Tutorial tu1 = new Tutorial() { TutorialAuthor = "Dr. Hans Stroke", Title = "Learn C++", Description = "An all around approach to the C++ programming language.", Duration = TimeSpan.FromMinutes(120), ProductionDate = new DateTime(2004, 06, 02), PhotoUrl = "https://www.planet-source-code.com/upload_PSC/screenshots/PIC20021018205521436.jpg" };
             Tutorial tu2 = new Tutorial() { TutorialAuthor = "John Fields", Title = "Advanced C#", Description = "Advanced topics of the C# programming, like delegates, generics and pointer handling.", Duration = TimeSpan.FromMinutes(140), ProductionDate = new DateTime(2017, 01, 23), PhotoUrl = "https://www.planet-source-code.com/upload_PSC/screenshots/PIC20021018205521436.jpg" };
-            Tutorial tu3 = new Tutorial() { TutorialAuthor = "Mary Green", Title = "Beginner\'s C#", Description = "An introduction to the C#, including variables, classes and methods.", Duration = TimeSpan.FromMinutes(110), ProductionDate = new DateTime(2013, 01, 12) ,PhotoUrl= "https://image.winudf.com/v2/image/dmlkZW8uTGVhcm5DU2hhcnBWaWRlb1R1dG9yaWFsX3NjcmVlbl8xXzE1MDcyNDY4MTlfMDM5/screen-1.jpg?fakeurl=1&type=.jpg" };
-            Tutorial tu4 = new Tutorial() { TutorialAuthor = "Steven Orange", Title = "Absolute C Tutorial", Description = "This is a tutorial of C programming, with emphasis on low level techniques.", Duration = TimeSpan.FromMinutes(90), ProductionDate = new DateTime(2009, 07, 17),PhotoUrl= "https://i.pinimg.com/236x/99/67/67/996767afa98576dc7e4ab0419984911f.jpg" };
-            Tutorial tu5 = new Tutorial() { TutorialAuthor = "Bill Windows", Title = "Python for Beginners", Description = "Learn Python, an exceptional choice for introduction to programming.", Duration = TimeSpan.FromMinutes(60), ProductionDate = new DateTime(2015, 03, 01),PhotoUrl= "https://i.pinimg.com/236x/10/11/c6/1011c6f3ffcdfa8c2f3f57a78d35fe1f.jpg" };
-            Tutorial tu6 = new Tutorial() { TutorialAuthor = "John Doe", Title = "JavaScript Essentials", Description = "Learn the Javascript essentials for web development or any type of programming.", Duration = TimeSpan.FromMinutes(160), ProductionDate = new DateTime(2018, 01, 01),PhotoUrl= "https://i.pinimg.com/236x/10/11/c6/1011c6f3ffcdfa8c2f3f57a78d35fe1f.jpg" };
-            Tutorial tu7 = new Tutorial() { TutorialAuthor = "Sahid Masour", Title = "HTML5 and CSS3 Fundamentals", Description = "Web Development for Dummies.", Duration = TimeSpan.FromMinutes(190), ProductionDate = new DateTime(2012, 12, 12) ,PhotoUrl= "https://i.pinimg.com/236x/99/67/67/996767afa98576dc7e4ab0419984911f.jpg" };
-            Tutorial tu8 = new Tutorial() { TutorialAuthor = "Sahid Aftar", Title = "Python Advanced", Description = "How to master Python language", Duration = TimeSpan.FromMinutes(460), ProductionDate = new DateTime(2018, 03, 01) ,PhotoUrl= "https://i.pinimg.com/236x/4c/57/c8/4c57c8b7fb33257c24af8993d96bb9bf--data-dashboard-mvc.jpg" };
-            Tutorial tu9 = new Tutorial() { TutorialAuthor = "KudvenKat", Title = "C# in nutshell", Description = "Become creative with C# language", Duration = TimeSpan.FromMinutes(260), ProductionDate = new DateTime(2019, 01, 21),PhotoUrl= "https://i.pinimg.com/236x/4c/57/c8/4c57c8b7fb33257c24af8993d96bb9bf--data-dashboard-mvc.jpg" };
-            Tutorial tu10 = new Tutorial() { TutorialAuthor = "Mosh Hamedani", Title = "C# Basic For Beginners", Description = "Master C# fundamentals in 6 hours - The most popular course with 50,000+ students, packed with tips and exercises!", Duration = TimeSpan.FromMinutes(560), ProductionDate = new DateTime(2016, 02, 25),PhotoUrl= "https://i.pinimg.com/236x/65/83/e1/6583e19e3f9b99a56b1c9cf39cb5ba23.jpg" };
-            Tutorial tu11 = new Tutorial() { TutorialAuthor = "Mosh Hamedani", Title = "C# Intermediate: Classes", Description = "An in-depth, step-by-step guide to classes, interfaces and object-oriented programming (OOP) with C#", Duration = TimeSpan.FromMinutes(660), ProductionDate = new DateTime(2017, 09, 11),PhotoUrl= "https://i.pinimg.com/236x/65/83/e1/6583e19e3f9b99a56b1c9cf39cb5ba23.jpg" };
-            Tutorial tu12 = new Tutorial() { TutorialAuthor = "Yohann Taieb", Title = "Unity Game Development", Description = "Introductionto Game Development with Unity", Duration = TimeSpan.FromMinutes(660), ProductionDate = new DateTime(2017, 10, 13),PhotoUrl = "https://www.planet-source-code.com/upload_PSC/screenshots/PIC20021018205521436.jpg" };
-            Tutorial tu13 = new Tutorial() { TutorialAuthor = "Van Dev", Title = "Unity Productivity in-depth", Description = "Optimise and Increase Game Performance in Unity3D.", Duration = TimeSpan.FromMinutes(160), ProductionDate = new DateTime(2020, 01, 19) ,PhotoUrl= "https://i.pinimg.com/236x/c8/ee/76/c8ee76d6e8d9741ad44767db67394056--web-api-jquery.jpg" };
-            Tutorial tu14 = new Tutorial() { TutorialAuthor = "Sadam Ajtir", Title = "Unity Game Development - Build a Basketball Game", Description = "Get started with Unity and game development.", Duration = TimeSpan.FromMinutes(260), ProductionDate = new DateTime(2018, 11, 20),PhotoUrl= "https://i.pinimg.com/236x/c8/ee/76/c8ee76d6e8d9741ad44767db67394056--web-api-jquery.jpg" };
-            Tutorial tu15 = new Tutorial() { TutorialAuthor = "KudvenKat", Title = "From noob to Developer", Description = "Video Series to increase your coding skills.", Duration = TimeSpan.FromMinutes(960), ProductionDate = new DateTime(2012, 06, 07),PhotoUrl= "https://image.winudf.com/v2/image/dmlkZW8uTGVhcm5DU2hhcnBWaWRlb1R1dG9yaWFsX3NjcmVlbl8xXzE1MDcyNDY4MTlfMDM5/screen-1.jpg?fakeurl=1&type=.jpg" };
-            Tutorial tu16 = new Tutorial() { TutorialAuthor = "Tim Corey", Title = "How to learn C#", Description = ".Net Framework hard training", Duration = TimeSpan.FromMinutes(460), ProductionDate = new DateTime(2017, 09, 16),PhotoUrl= "https://image.winudf.com/v2/image/dmlkZW8uTGVhcm5DU2hhcnBWaWRlb1R1dG9yaWFsX3NjcmVlbl8xXzE1MDcyNDY4MTlfMDM5/screen-1.jpg?fakeurl=1&type=.jpg" };
-            Tutorial tu17 = new Tutorial() { TutorialAuthor = "Ivan Lourenco Gomes", Title = "Learn to Code in Python 3", Description = "Python3 programming made easy with exercises, challenges and lots of real life examples. Learn to code today!.", Duration = TimeSpan.FromMinutes(760), ProductionDate = new DateTime(2020, 05, 29),PhotoUrl= "https://d2h0cx97tjks2p.cloudfront.net/blogs/wp-content/uploads/sites/2/2018/01/Java-Tutorial-01.jpg" };
+            Tutorial tu3 = new Tutorial() { TutorialAuthor = "Mary Green", Title = "Beginner\'s C#", Description = "An introduction to the C#, including variables, classes and methods.", Duration = TimeSpan.FromMinutes(110), ProductionDate = new DateTime(2013, 01, 12), PhotoUrl = "https://image.winudf.com/v2/image/dmlkZW8uTGVhcm5DU2hhcnBWaWRlb1R1dG9yaWFsX3NjcmVlbl8xXzE1MDcyNDY4MTlfMDM5/screen-1.jpg?fakeurl=1&type=.jpg" };
+            Tutorial tu4 = new Tutorial() { TutorialAuthor = "Steven Orange", Title = "Absolute C Tutorial", Description = "This is a tutorial of C programming, with emphasis on low level techniques.", Duration = TimeSpan.FromMinutes(90), ProductionDate = new DateTime(2009, 07, 17), PhotoUrl = "https://i.pinimg.com/236x/99/67/67/996767afa98576dc7e4ab0419984911f.jpg" };
+            Tutorial tu5 = new Tutorial() { TutorialAuthor = "Bill Windows", Title = "Python for Beginners", Description = "Learn Python, an exceptional choice for introduction to programming.", Duration = TimeSpan.FromMinutes(60), ProductionDate = new DateTime(2015, 03, 01), PhotoUrl = "https://i.pinimg.com/236x/10/11/c6/1011c6f3ffcdfa8c2f3f57a78d35fe1f.jpg" };
+            Tutorial tu6 = new Tutorial() { TutorialAuthor = "John Doe", Title = "JavaScript Essentials", Description = "Learn the Javascript essentials for web development or any type of programming.", Duration = TimeSpan.FromMinutes(160), ProductionDate = new DateTime(2018, 01, 01), PhotoUrl = "https://i.pinimg.com/236x/10/11/c6/1011c6f3ffcdfa8c2f3f57a78d35fe1f.jpg" };
+            Tutorial tu7 = new Tutorial() { TutorialAuthor = "Sahid Masour", Title = "HTML5 and CSS3 Fundamentals", Description = "Web Development for Dummies.", Duration = TimeSpan.FromMinutes(190), ProductionDate = new DateTime(2012, 12, 12), PhotoUrl = "https://i.pinimg.com/236x/99/67/67/996767afa98576dc7e4ab0419984911f.jpg" };
+            Tutorial tu8 = new Tutorial() { TutorialAuthor = "Sahid Aftar", Title = "Python Advanced", Description = "How to master Python language", Duration = TimeSpan.FromMinutes(460), ProductionDate = new DateTime(2018, 03, 01), PhotoUrl = "https://i.pinimg.com/236x/4c/57/c8/4c57c8b7fb33257c24af8993d96bb9bf--data-dashboard-mvc.jpg" };
+            Tutorial tu9 = new Tutorial() { TutorialAuthor = "KudvenKat", Title = "C# in nutshell", Description = "Become creative with C# language", Duration = TimeSpan.FromMinutes(260), ProductionDate = new DateTime(2019, 01, 21), PhotoUrl = "https://i.pinimg.com/236x/4c/57/c8/4c57c8b7fb33257c24af8993d96bb9bf--data-dashboard-mvc.jpg" };
+            Tutorial tu10 = new Tutorial() { TutorialAuthor = "Mosh Hamedani", Title = "C# Basic For Beginners", Description = "Master C# fundamentals in 6 hours - The most popular course with 50,000+ students, packed with tips and exercises!", Duration = TimeSpan.FromMinutes(560), ProductionDate = new DateTime(2016, 02, 25), PhotoUrl = "https://i.pinimg.com/236x/65/83/e1/6583e19e3f9b99a56b1c9cf39cb5ba23.jpg" };
+            Tutorial tu11 = new Tutorial() { TutorialAuthor = "Mosh Hamedani", Title = "C# Intermediate: Classes", Description = "An in-depth, step-by-step guide to classes, interfaces and object-oriented programming (OOP) with C#", Duration = TimeSpan.FromMinutes(660), ProductionDate = new DateTime(2017, 09, 11), PhotoUrl = "https://i.pinimg.com/236x/65/83/e1/6583e19e3f9b99a56b1c9cf39cb5ba23.jpg" };
+            Tutorial tu12 = new Tutorial() { TutorialAuthor = "Yohann Taieb", Title = "Unity Game Development", Description = "Introductionto Game Development with Unity", Duration = TimeSpan.FromMinutes(660), ProductionDate = new DateTime(2017, 10, 13), PhotoUrl = "https://www.planet-source-code.com/upload_PSC/screenshots/PIC20021018205521436.jpg" };
+            Tutorial tu13 = new Tutorial() { TutorialAuthor = "Van Dev", Title = "Unity Productivity in-depth", Description = "Optimise and Increase Game Performance in Unity3D.", Duration = TimeSpan.FromMinutes(160), ProductionDate = new DateTime(2020, 01, 19), PhotoUrl = "https://i.pinimg.com/236x/c8/ee/76/c8ee76d6e8d9741ad44767db67394056--web-api-jquery.jpg" };
+            Tutorial tu14 = new Tutorial() { TutorialAuthor = "Sadam Ajtir", Title = "Unity Game Development - Build a Basketball Game", Description = "Get started with Unity and game development.", Duration = TimeSpan.FromMinutes(260), ProductionDate = new DateTime(2018, 11, 20), PhotoUrl = "https://i.pinimg.com/236x/c8/ee/76/c8ee76d6e8d9741ad44767db67394056--web-api-jquery.jpg" };
+            Tutorial tu15 = new Tutorial() { TutorialAuthor = "KudvenKat", Title = "From noob to Developer", Description = "Video Series to increase your coding skills.", Duration = TimeSpan.FromMinutes(960), ProductionDate = new DateTime(2012, 06, 07), PhotoUrl = "https://image.winudf.com/v2/image/dmlkZW8uTGVhcm5DU2hhcnBWaWRlb1R1dG9yaWFsX3NjcmVlbl8xXzE1MDcyNDY4MTlfMDM5/screen-1.jpg?fakeurl=1&type=.jpg" };
+            Tutorial tu16 = new Tutorial() { TutorialAuthor = "Tim Corey", Title = "How to learn C#", Description = ".Net Framework hard training", Duration = TimeSpan.FromMinutes(460), ProductionDate = new DateTime(2017, 09, 16), PhotoUrl = "https://image.winudf.com/v2/image/dmlkZW8uTGVhcm5DU2hhcnBWaWRlb1R1dG9yaWFsX3NjcmVlbl8xXzE1MDcyNDY4MTlfMDM5/screen-1.jpg?fakeurl=1&type=.jpg" };
+            Tutorial tu17 = new Tutorial() { TutorialAuthor = "Ivan Lourenco Gomes", Title = "Learn to Code in Python 3", Description = "Python3 programming made easy with exercises, challenges and lots of real life examples. Learn to code today!.", Duration = TimeSpan.FromMinutes(760), ProductionDate = new DateTime(2020, 05, 29), PhotoUrl = "https://d2h0cx97tjks2p.cloudfront.net/blogs/wp-content/uploads/sites/2/2018/01/Java-Tutorial-01.jpg" };
 
 
             // *** ~~~ ~~~ ~~~ *** Customer's Orders *** ~~~ ~~~ ~~~ ***
@@ -594,7 +715,11 @@
                 p11, p12, p13, p14, p15, p16, p17, p18, p19, p20,
                 p21, p22, p23, p24, p25, p26, p27, p28, p29, p30,
                 p31, p32, p33, p34, p35, p36, p37, p38, p39, p40,
-                p41, p42, p43, p44, p45, p46, p47, p48, p49, p50
+                p41, p42, p43, p44, p45, p46, p47, p48, p49, p50,
+                p51, p52, p53, p54, p55, p56, p57, p58, p59, p60,
+                p61, p62, p63, p64, p65, p66, p67, p68, p69, p70,
+                p71, p72, p73, p74, p75, p76, p77, p78, p79, p80,
+                p81, p82, p83, p84
                 );
             context.Replies.AddOrUpdate(x => x.Text, r1_1, r1_2,
             r2_1, r2_2, r2_3,
@@ -603,8 +728,8 @@
             r5_1, r5_2, r5_3,
             r6_1, r6_2, r6_3,
             r7_1, r7_2, r7_3,
-            r8_1, r8_2, r8_3,
-            r9_1, r9_2, r9_3,
+            r8_1, r8_2, r8_3,r8_4,
+            r9_1, r9_2, r9_3,r9_4,
             r10_1, r10_2, r10_3,
             r11_1, r11_2, r11_3,
             r12_1, r12_2, r12_3,
@@ -640,7 +765,14 @@
             r42_1, r42_2, r42_3,
             r43_1, r43_2, r43_3,
             r44_1, r44_2, r44_3,
-            r45_1, r45_2, r45_3
+            r45_1, r45_2, r45_3,
+            r53_1, r53_2, r53_3, r53_4, r53_5, r53_6, r53_7, r53_8,
+            r54_1, r54_2, r54_3, r54_4, r54_5, r54_6, r54_7, r54_8,
+            r55_1, r55_2, r55_3, r55_4, r55_5, r55_6, r55_7, r55_8,
+            r56_1, r56_2, r56_3, r56_4, r56_5, r56_6, r56_7, r56_8,
+            r57_1, r57_2, r57_3, r57_4, r57_5, r57_6, r57_7, r57_8,
+            r58_1, r58_2, r58_3, r58_4, r58_5, r58_6, r58_7, r58_8,
+            r59_1, r59_2, r59_3, r59_4, r59_5, r59_6, r59_7, r59_8,r59_9,r59_10,r59_11, r59_12, r59_13, r59_14, r59_15, r59_16
             );
             context.Products.AddOrUpdate(x => x.Title, tu1, tu2, tu3, tu4, tu5, tu6, tu7, tu8, tu9, tu10, tu11, tu12, tu13, tu14, tu15, tu16, tu17,
                 b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11, b12, b13, b14, b15, b16, b17);
@@ -654,7 +786,25 @@
                 op41, op42, op43, op44, op45, op46, op47, op48, op49, op50,
                 op51, op52, op53, op54, op55, op56, op57
                 );
-            context.SaveChanges();
+            try
+            {
+                context.SaveChanges();
+            }
+            catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+            {
+                Exception raise = dbEx;
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        string message = string.Format("{0}:{1}",
+                            validationErrors.Entry.Entity.ToString(),
+                            validationError.ErrorMessage);
+                        raise = new InvalidOperationException(message, raise);
+                    }
+                }
+                throw raise;
+            }
 
             #endregion
         }

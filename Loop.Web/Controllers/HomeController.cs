@@ -31,10 +31,6 @@ namespace Loop.Web.Controllers
 
             return View();
         }
-        public ActionResult Chat()
-        {
-            return View();
-        }
 
         [NonAction]
         private IndexStatisticViewModel GetStatistics()
