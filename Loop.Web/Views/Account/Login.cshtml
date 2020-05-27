@@ -6,11 +6,13 @@
     ViewBag.Title = "Log in";
 }
 
-<link href="~/Content/css/main.min.css" rel="stylesheet" />
-<link href="~/Content/css/weather-icon.css" rel="stylesheet" />
-<link href="~/Content/css/style.css" rel="stylesheet" />
-<link href="~/Content/css/color.css" rel="stylesheet" />
-<link href="~/Content/css/responsive.css" rel="stylesheet" />
+
+<link href="~/Content/vendor/secondary/main.min.css" rel="stylesheet" />
+<link href="~/Content/vendor/secondary/style.css" rel="stylesheet" />
+<link href="~/content/vendor/secondary/color.css" rel="stylesheet" />
+<link href="~/content/vendor/secondary/responsive.css" rel="stylesheet" />
+
+
 
 <div class="www-layout">
     <section>
@@ -64,8 +66,9 @@
     </section>
 </div>
 
-<script src="~/Scripts/Custom/main.min.js"></script>
-<script src="~/Scripts/Custom/script.js"></script>
+<script src="~/Scripts/secondary/main.min.js"></script>
+<script src="~/Scripts/secondary/script.js"></script>
+
 @section scripts {
 
     @Scripts.Render("~/bundles/jqueryval")

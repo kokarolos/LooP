@@ -1,130 +1,76 @@
-﻿<head>
-    <link href="~/Content/css/main.min.css" rel="stylesheet" />
-    <link href="~/Content/css/style.css" rel="stylesheet" />
-    <link href="~/Content/css/color.css" rel="stylesheet" />
-    <link href="~/Content/css/responsive.css" rel="stylesheet" />
-</head>
+﻿    <!-- ======= Footer ======= -->
+<footer id="footer">
 
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4 col-md-4">
-                <div class="widget">
-                    <div class="foot-logo">
-                        <div class="logo">
-                            <a href="index.html" title=""><img id="logo-img-footer" src="~/Content/LoopFooter.png" alt=""></a>
-                        </div>
-                        <p>
-                            “Everybody should learn to program a computer, because it teaches you how to think" - Steve Jobs
-                        </p>
-                    </div>
-                    <ul class="location">
-                        <li>
-                            <i class="fa fa-map-marker"></i>
-                            <p>Panepistimiou 39. Athens Greece 104 31.</p>
-                        </li>
-                        <li>
-                            <i class="fa fa-phone"></i>
-                            <p> +30 210 3729 070</p>
-                        </li>
-                    </ul>
+    <div class="footer-newsletter">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <h4>Join Our Lopper Army</h4>
+                    <p>Become one of us. Become a LOOPER now..</p>
                 </div>
-            </div>
-            <div class="col-lg-2 col-md-4 col-sm-6">
-                <div class="widget">
-                    <div class="widget-title"><h4>follow</h4></div>
-                    <ul class="list-style">
-                        <li><i class="fa fa-facebook-square"></i> <a href="#" title=""> Facebook</a></li>
-                        <li><i class="fa fa-twitter-square"></i><a href="#" title=""> Twitter</a></li>
-                        <li><i class="fa fa-instagram"></i><a href="#" title=""> Instagram</a></li>
-                        <li><i class="fa fa-google-plus-square"></i> <a href="#" title=""> Google+</a></li>
-                        <li><i class="fa fa-pinterest-square"></i> <a href="#" title=""> Pintrest</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-2 col-md-4 col-sm-6">
-                <div class="widget">
-                    <div class="widget-title"><h4>Navigate</h4></div>
-                    <ul class="list-style">
-                        <li><a href="#about" title="">About us</a></li>
-                        <li><a href="#services" title="">Forum</a></li>
-                        <li><a href="#products" title="">Products</a></li>
-                        <li><a href="#team" title="">Meet the Team</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-2 col-sm-4">
-                <div class="widget">
-                    <div class="widget-title"><h4>Meetup</h4></div>
-                    <div id="goo-map">
-
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</footer><!-- footer -->
-<div class="bottombar">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <p class="copyright">© Loop Team 2020. All rights reserved.</p>
             </div>
         </div>
     </div>
-</div><!-- bottom bar -->
 
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
 
-@*SCRIPT FOR GOOGLE MAP*@
-<script>
-    function initMap() {
-        // Map Options
-        var options = {
-            zoom: 14,
-            center: { lat: 37.983810, lng: 23.727539 }
-        }
+                <div class="col-lg-3 col-md-6 footer-contact">
+                    <h3>Loop</h3>
+                    <p>
+                        Panepistimiou Street 52 <br>
+                        Athens 15124<br>
+                        Greece <br><br>
+                        <strong>Phone:</strong> +30 210 64 66 987<br>
+                        <strong>Email:</strong> info@loop.com<br>
+                    </p>
+                </div>
 
-        // New Map
-        var map = new google.maps.Map(document.getElementById('goo-map'), options);
-        var allMarkers = [
-            {
-                coords: { lat: 37.984410, lng: 23.728260 },
-                iconImage: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
-                content: '<h5>All meetups</h5> <p>Here is the place where all our meetups took place</p>'
-            }
-        ];
+                <div class="col-lg-3 col-md-6 footer-links">
+                    <h4>Useful Links</h4>
+                    <ul>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+                    </ul>
+                </div>
 
-        // Loop All Markers
-        for (var i = 0; i < allMarkers.length; i++) {
-            addMarker(allMarkers[i]);
-        }
+                <div class="col-lg-3 col-md-6 footer-links">
+                    <h4>Our Services</h4>
+                    <ul>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+                    </ul>
+                </div>
 
-        function addMarker(props) {
-            var marker = new google.maps.Marker({
-                position: props.coords,
-                map: map
-            });
+                <div class="col-lg-3 col-md-6 footer-links">
+                    <h4>Our Social Networks</h4>
+                    <p>Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies</p>
+                    <div class="social-links mt-3">
+                        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                    </div>
+                </div>
 
-            // Check For Custom Icon
-            if (props.iconImage) {
-                marker.setIcon(props.iconImage);
-            }
+            </div>
+        </div>
+    </div>
 
-            // Check For Content
-            if (props.content) {
-                var infoWindow = new google.maps.InfoWindow({
-                    content: props.content
-                });
-
-                marker.addListener('click', function () {
-                    infoWindow.open(map, marker);
-                });
-            }
-        }
-    }
-</script>
-
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBW84ZO3cLRAfmXWPTRC-xQvCelNSoTx08&callback=initMap"
-        async defer>
-</script>
+    <div class="container footer-bottom clearfix">
+        <div class="copyright">
+            &copy; Copyright <strong><span>Loop</span></strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+            Designed by <a href="#">Loop Team</a>
+        </div>
+    </div>
+</footer><!-- End Footer -->

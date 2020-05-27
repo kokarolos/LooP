@@ -9,27 +9,48 @@
     @*<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i' type='text/css' media='all' />
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">*@
 
+    <link href="~/Content/assets/img/favicon.png" rel="icon">
+    <link href="~/Content/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+
+    <link href="~/Content/vendor/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="~/Content/vendor/icofont.min.css" rel="stylesheet" />
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="~/Content/vendor/venobox.css" rel="stylesheet" />
+    <link href="~/Content/vendor/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/Content/vendor/aos.css" rel="stylesheet" />
+
+    <!-- Template Main CSS File -->
+    <link href="~/Content/vendor/style.css" rel="stylesheet" />
+
+
 
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    @*@Scripts.Render("~/bundles/jquery")*@
+    @Scripts.Render("~/bundles/jquery")
     <script src="~/Scripts/jquery.min.js"></script>
     @Scripts.Render("~/bundles/bootstrap")
 
 
 </head>
 <body>
-    <div>
-        @Html.Partial("_NavigationBar")
-    </div>
+    @Html.Partial("_NavigationBar")
     @RenderBody()
 
-        <div>
-            @Html.Partial("_Chat")
-        </div>
+    @Html.Partial("_Footer")
+    <div>
+        
+        @Html.Partial("_Chat")
+    </div>
 
 
-   
+
     <link href="~/Content/vendor/Chat.css" rel="stylesheet" />
     <script src="~/Scripts/jquery.signalR-2.4.1.min.js"></script>
     @Scripts.Render("~/bundles/signalr")
