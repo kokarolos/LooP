@@ -74,7 +74,6 @@
                                 <tr>
                                     <th id="post-title" scope="col">Posts</th>
                                     <th scope="col">Replies</th>
-                                    <th scope="col">Tags</th>
                                     <th scope="col">Posted By</th>
                                 </tr>
                             </thead>
@@ -89,23 +88,19 @@
                                             <i class="fa fa-comments"></i>
                                             @Html.ActionLink(post.Title, "Details", new { id = post.PostId })
                                             <p>@post.Text</p>
+
+                                            @foreach (var tag in post.Tags)
+                                            {
+
+                                                <span class="badge mt-5 font-weight-normal border border-light text-white tag-post">@tag.Title</span>
+                                            }
                                         </td>
                                         <td>
-                                            @RepliesCount
-                                            @Html.ActionLink("Reply", "Details", new { id = post.PostId }, new { @class = "btn btn-outline-secondary btn-sm" })
+                                            <i class="fa fa-comments"></i>
+                                            <span class="badge font-weight-normal border border-light text-white tag-post">@RepliesCount</span>
+                                            @Html.ActionLink("Reply", "Details", new { id = post.PostId }, new { @class = "btn btn-sm post-reply mt-5  " })
                                         </td>
-                                        <td>
-                                            <ul style="list-style-type:none">
-                                                @foreach (var tag in post.Tags)
-                                                {
-                                                    <li>
-                                                        <div id="tag-mini-photo" style="float: left;">
-                                                            <img src="@tag.ImageUrl" class="img-fluid" />
-                                                        </div>
-                                                    </li>
-                                                }
-                                            </ul>
-                                        </td>
+
                                         <td>
                                             @if (!(post.ApplicationUserId.Length < 0))
                                             {
@@ -125,8 +120,8 @@
                                                 }
                                             }
                                             <br />
-                                            <span>@post.ApplicationUser.UserName</span>
-                                            <span>Posted : @post.PostDate.ToShortDateString()</span>
+                                             <span class="badge  font-weight-normal border border-light text-white loopUser-name">@post.ApplicationUser.UserName</span><br />
+                                            <span class="post-date">Posted : @post.PostDate.ToShortDateString()</span>
                                         </td>
                                     </tr>
                                 }
