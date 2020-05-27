@@ -15,6 +15,9 @@
                 <canvas id="myChart" width="500" height="500"></canvas>
                 <canvas id="myChart2" width="500" height="500"></canvas>
                 <canvas id="myChart3" width="500" height="500"></canvas>
+                <canvas id="myChart4" width="500" height="500"></canvas>
+                <canvas id="myChart5" width="500" height="500"></canvas>
+                <canvas id="myChart6" width="500" height="500"></canvas>
             </div>
         </div>
 
@@ -136,8 +139,9 @@
         });
 
 
-    var ctx2 = document.getElementById('myChart3').getContext('2d');
+        var ctx2 = document.getElementById('myChart3').getContext('2d');
         var actionUrl = '@Url.Action("GetTagsPercentage", "Dashboard")';
+
         $.ajax({
             url: actionUrl,
             method: 'GET',
@@ -151,6 +155,197 @@
                 });
             }
         });
+
+
+
+
+        var ctx3 = document.getElementById('myChart4').getContext('2d');
+        var actionUrl = '@Url.Action("GetTop5Products", "Dashboard")';
+
+        $.ajax({
+            url: actionUrl,
+            method: 'GET',
+            dataType: 'json',
+            success: function (d) {
+
+                var count = [];
+                var mvpProducts = [];
+                for (var i in d) {
+                    mvpProducts.push(d[i].product);
+                    count.push(d[i].numberOfOrders);
+                }
+
+                var myBarChart = new Chart(ctx3, {
+                    type: 'bar',
+                    data: {
+                        labels: mvpProducts,
+                        datasets: [{
+                            label: '# MVP Products',
+                            data: count,
+                            backgroundColor: [
+                                'rgba(255,246,143,0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255,246,143,1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: false,
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                });
+            }
+        });
+
+        var ctx4 = document.getElementById('myChart5').getContext('2d');
+        var actionUrl = '@Url.Action("PostsPerMonth", "Dashboard")';
+
+        $.ajax({
+            url: actionUrl,
+            method: 'GET',
+            dataType: 'json',
+            success: function (d) {
+
+                var date = [];
+                var posts = [];
+                var months = ["January", "February", "March", "April", "May", "June", "July","August","September","October","November","December"];
+                for (var i in d) {
+                    date.push(months[d[i].date-1]);
+                    posts.push(d[i].count);
+                }
+                var myChart = new Chart(ctx1, {
+                    type: 'line',
+                    data: {
+                        labels: date,
+                        datasets: [{
+                            label: '# Posts Per Month',
+                            data: posts,
+                            backgroundColor: [
+                                'rgba(255,246,143,0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255,246,143,1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: false,
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                });
+            }
+        });
+
+         var ctx4 = document.getElementById('myChart6').getContext('2d');
+        var actionUrl = '@Url.Action("GetMostWantedTags", "Dashboard")';
+
+        $.ajax({
+            url: actionUrl,
+            method: 'GET',
+            dataType: 'json',
+            success: function (d) {
+
+                var title = [];
+                var counter = [];
+                for (var i in d) {
+                    title.push(d[i].title);
+                    counter.push(d[i].Value);
+                }
+                var myChart = new Chart(ctx4, {
+                    type: 'pie',
+                    data: {
+                        labels: title,
+                        datasets: [{
+                            label: '# MVP Tags',
+                            data: counter,
+                            backgroundColor: [
+                                'rgba(255,246,143,1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(252, 159, 62, 1)',
+                                'rgba(21, 129, 61, 1)',
+                                'rgba(25, 139, 69, 1)',
+                                'rgba(123, 119, 60, 1)',
+                                'rgba(100, 109, 67, 1)',
+                                'rgba(12, 34, 101, 1)',
+                                'rgba(11, 24, 11, 1)',
+                                'rgba(120, 64, 161, 1)',
+                                'rgba(120, 74, 201, 1)',
+                                'rgba(120, 84, 212, 1)',
+                                'rgba(120, 94, 120, 1)',
+                                'rgba(120, 124, 140, 1)',
+                                'rgba(120, 24, 100, 1)',
+                                'rgba(120, 34, 94, 1)',
+                            ],
+                            borderColor: [
+                                'rgba(255,246,143,1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(252, 159, 62, 1)',
+                                'rgba(21, 129, 61, 1)',
+                                'rgba(25, 139, 69, 1)',
+                                'rgba(123, 119, 60, 1)',
+                                'rgba(100, 109, 67, 1)',
+                                'rgba(12, 34, 101, 1)',
+                                'rgba(11, 24, 11, 1)',
+                                'rgba(120, 64, 161, 1)',
+                                'rgba(120, 74, 201, 1)',
+                                'rgba(120, 84, 212, 1)',
+                                'rgba(120, 94, 120, 1)',
+                                'rgba(120, 124, 140, 1)',
+                                'rgba(120, 24, 100, 1)',
+                                'rgba(120, 34, 94, 1)',
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: false,
+                    }
+                });
+            }
+        });
+
+
 
     </script>
 

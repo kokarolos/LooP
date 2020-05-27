@@ -236,6 +236,60 @@ namespace Loop.Desktop
             //      Console.WriteLine($"{item.Key} {item.Value}");
             //  }
             //
+
+            //var products = (from product in db.Products.GetAll()
+            //                from orderedProduct in db.OrderProducts.GetAll()
+            //                where orderedProduct.ProductId == product.ProductId
+            //                group orderedProduct by product into productGroups
+            //                select new
+            //                {
+            //                    product = productGroups.Key,
+            //                    numberOfOrders = productGroups.Count()
+            //                })
+            //               .OrderByDescending(x => x.numberOfOrders).Distinct().Take(5);
+            //
+            //foreach (var item in products)
+            //{
+            //    Console.WriteLine($"{item.product.Title} {item.numberOfOrders}");
+            //}
+
+
+            var tags = db.Posts.GetAll()
+                              .ToList()
+                              .SelectMany(g => g.Tags)
+                              .Select(e => new
+                              {
+                                  title = e.Title,
+                                  count = 1
+                              }).GroupBy(x => x.title).Select(q => new { title = q.First().title, Value = q.Sum(x => x.count) });
+
+
+
+            //Tags Per post
+
+            var userId = "765eb34d-2c50-4aed-a1d5-b81962dabe45";
+            var user = db.Users.GetUserById(userId);
+            var tagsPercentage = db.Posts.GetAll()
+                                          .ToList() //Posts that user replied
+                                          .Where(reply => reply.ApplicationUser == user)
+                                          .SelectMany(g=>g.Tags)
+                                          .Select(e => new
+                                          {
+                                              title = e.Title,
+                                              count = 1
+                                          }).GroupBy(x => x.title)
+                                            .Select(q => new 
+                                            { 
+                                                title = q.First().title,
+                                                Value = q.Sum(x => x.count)
+                                            });
+
+
+            foreach (var item in tagsPercentage)
+            {
+                Console.WriteLine($"{item.title} {item.Value}");
+            }
+
         }
     }
 }
