@@ -13,6 +13,8 @@ namespace Loop.Web.Models
         public IEnumerable<Post> RecentPosts { get; set; }
         public IEnumerable<Product> RecentProducts { get; set; }
         public IEnumerable<Reply> RecentReplies { get; set; }
+        public Dictionary<string,int> RecomendedProducts { get; set; }
+
 
     }
 }

@@ -288,6 +288,7 @@
     <Content Include="Content\assets\portfolio\typescript.jpg" />
     <Content Include="Content\assets\portfolio\vue.jpg" />
     <Content Include="Content\assets\skills.png" />
+    <Content Include="Content\assets\team\karol.jpg" />
     <Content Include="Content\assets\team\rizos.jpg" />
     <Content Include="Content\assets\team\team-1.jpg" />
     <Content Include="Content\assets\team\team-2.jpg" />
