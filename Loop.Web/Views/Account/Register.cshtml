@@ -5,70 +5,81 @@
     Layout = null;
     ViewBag.Title = "Register";
 }
-<link href="~/Content/css/main.min.css" rel="stylesheet" />
-<link href="~/Content/css/weather-icon.css" rel="stylesheet" />
-<link href="~/Content/css/style.css" rel="stylesheet" />
-<link href="~/Content/css/color.css" rel="stylesheet" />
-<link href="~/Content/css/responsive.css" rel="stylesheet" />
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+<!-- Vendor CSS Files -->
+
+<link href="~/Content/vendor/bootstrap.min.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+<link href="~/Content/vendor/icofont.min.css" rel="stylesheet" />
+<link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+
+<link href="~/Content/vendor/secondary/main.min.css" rel="stylesheet" />
+<link href="~/Content/vendor/secondary/style.css" rel="stylesheet" />
+<link href="~/content/vendor/secondary/color.css" rel="stylesheet" />
+<link href="~/content/vendor/secondary/responsive.css" rel="stylesheet" />
+
 
 <div class="www-layout">
-    <section>
-        <div class="gap no-gap signin whitish medium-opacity register">
-            <div class="bg-image" style="background-image:url(images/resources/theme-bg.jpg)"></div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8">
-                        <div class="big-ad">
-                            <figure><img src="images/logo2.png" alt=""></figure>
-                            <h1>Welcome to Loop</h1>
-                            <p>
-                                Pitnik is a social network  that can be used to connect people. use this template for multipurpose social activities like job, dating, posting, bloging and much more. Now join & Make Cool Friends around the world !!!
-                            </p>
-                            <div class="barcode">
-                                <figure><img src="images/resources/Barcode.jpg" alt=""></figure>
-                            </div>
+    <div class="gap no-gap signin whitish medium-opacity register">
+        <div class="bg-image" style="background-image:url(images/resources/theme-bg.jpg)"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="big-ad">
+                        <figure><img src="images/logo2.png" alt=""></figure>
+                        <h1>Welcome to Loop</h1>
+                        <p>
+                            Loop is a social network made by developers <strong>for</strong> developers.
+                            Our mission is to help developers write the script of the future. This means helping you
+                            find and hire skilled developers for your business and providing them the tools they need to share knowledge and work effectively.
+                        </p>
+                        <div class="barcode">
+                            <figure><img src="images/resources/Barcode.jpg" alt=""></figure>
                         </div>
                     </div>
-                    <div class="col-lg-4">
-                        <div class="we-login-register">
-                            <div class="form-title">
-                                <i class="fa fa-key"></i>Sign Up
-                                <span>Sign Up now and meet the awesome friends around the world.</span>
-                            </div>
-                            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form" }))
-                            {
-                                <div class="we-form">
-
-                                    @Html.AntiForgeryToken()
-                                    @Html.ValidationSummary("", new { @class = "text-danger " })
-                                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                                    @Html.TextBoxFor(m => m.Email, new { @class = "textbox", placeholder = "Type your Email" })
-                                    @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
-                                    @Html.TextBoxFor(m => m.UserName, new { @class = "textbox", placeholder = "Type your Username" })
-                                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                                    @Html.PasswordFor(m => m.Password, new { @class = "textbox", placeholder = "Type your Password" })
-                                    @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-                                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "textbox", placeholder = "Confirm your Password" })
-
-                                    <input type="submit" class="we-form " value="Register" />
-
-                                    @*<a class="with-smedia facebook" href="#" title="" data-ripple="">Register with facebook</a>
-                                        <a class="with-smedia twitter" href="#" title="" data-ripple="">Register with twitter</a>
-                                        <a class="with-smedia google" href="#" title="" data-ripple="">Register with Google</a>
-                                        <a class="with-smedia microsoft" href="#" title="" data-ripple="">Register with Microsoft</a>*@
-                                    <span>already have an account? <a class="we-account underline" href="#" title="">Sign in</a></span>
-                                </div>
-                            }
-                            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+                </div>
+                <div class="col-lg-4">
+                    <div class="we-login-register">
+                        <div class="form-title">
+                            <i class="fa fa-key"></i>Sign Up
+                            <span>Sign Up now and meet the awesome friends around the world.</span>
                         </div>
+                        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form" }))
+                        {
+                            <div class="we-form">
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary("", new { @class = "text-danger " })
+                                <h6 style="text-align:left;">Email</h6>
+                                @Html.TextBoxFor(m => m.Email, new { @class = "textbox", placeholder = "Type your Email" })
+                                <h6 style="text-align:left;">Username</h6>
+                                @Html.TextBoxFor(m => m.UserName, new { @class = "textbox", placeholder = "Type your Username" })
+                                <h6 style="text-align:left;">Password</h6>
+                                @Html.PasswordFor(m => m.Password, new { @class = "textbox", placeholder = "Type your Password" })
+                                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "textbox", placeholder = "Confirm your Password" })
+
+                                <input type="submit" class="we-form " value="Register" />
+                                <span>already have an account? <a class="we-account underline" href="#" title="">Sign in</a></span>
+                            </div>
+                        }
+
+                        @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 </div>
-<script src="~/Scripts/Custom/main.min.js"></script>
-<script src="~/Scripts/Custom/script.js"></script>
+
+@*<script src="~/Scripts/secondary/main.min.js"></script>
+    <script src="~/Scripts/secondary/script.js"></script>*@
+
 
 <div class="col-md-4">
     <section id="socialLoginForm">
