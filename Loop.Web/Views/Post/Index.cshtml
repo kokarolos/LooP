@@ -1,8 +1,6 @@
 ﻿@model PagedList.IPagedList<Loop.Entities.Post>
-@using PagedList;
 @using PagedList.Mvc;
 
-<link href="~/Content/PagedList.css" rel="stylesheet" />
 
 @{
     ViewBag.Title = "Index";
@@ -18,7 +16,17 @@
 }
 
 
-<div class="se-pre-con"></div>
+
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+<link href="~/Content/vendor/secondary/main.min.css" rel="stylesheet" />
+<link href="~/Content/vendor/secondary/style.css" rel="stylesheet" />
+<link href="~/content/vendor/secondary/color.css" rel="stylesheet" />
+<link href="~/content/vendor/secondary/responsive.css" rel="stylesheet" />
+
+
+
+
+<div class="se-pre-con" style="padding-top:100px;"></div>
 <div class="theme-layout">
 
     <div class="container">
@@ -135,13 +143,7 @@
     </div>
 </div>
 
+@*<script src="~/Scripts/secondary/bootstrap.min.js"></script>
+    <script src="~/Scripts/secondary/script.js"></script>
+    <script src="~/Scripts/secondary/main.min.js"></script>*@
 
-
-
-<script src="~/Scripts/Custom/main.min.js"></script>
-<script src="~/Scripts/Custom/script.js"></script>
-<script src="js/main.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI"></script>
-<script src="js/locationpicker.jquery.js"></script>
-<script src="js/map-init.js"></script>
-<script src="js/script.js"></script>
