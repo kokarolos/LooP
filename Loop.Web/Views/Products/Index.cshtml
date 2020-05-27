@@ -110,11 +110,7 @@
                                                     </div>
                                                     <h4><i class="fa fa-check-circle" title="verified"></i>Title: @product.Title</h4>
                                                     <div><p>Description: @product.Description</p></div>
-                                                    @{
-
-                                                        var str = product.GetType().Name.Split('_');
-
-                                                    }
+                                                    @{var str = product.GetType().Name.Split('_');}
                                                     <span>Product Type : @str[0]</span>
                                                     <div class="location-area">
                                                         <div>
@@ -122,13 +118,13 @@
                                                             <form id="form2" action="/OrderProducts/Add" method="get">
                                                                 <table class="table-borderless">
                                                                     <thead>
-                                                                        <tr>
+                                                                        @*<tr>
                                                                             <th>Quantity</th>
                                                                             <td>
 
                                                                                 <input type="number" id="quanity" name="quantity" style="width: 45px;" />
                                                                             </td>
-                                                                        </tr>
+                                                                        </tr>*@
                                                                         <tr>
                                                                             <th>Price</th>
                                                                             <td>

@@ -129,11 +129,11 @@
 
             // *** ~~~ ~~~ ~~~ *** Users *** ~~~ ~~~ ~~~ *** 
 
-            ApplicationUser a1 = new ApplicationUser() { FirstName = "Maria", LastName = "Kalimeri", DateOfBirth = new DateTime(1993, 05, 27), UserName = "mkalimeri93!" };
-            ApplicationUser a2 = new ApplicationUser() { FirstName = "Nikolaos", LastName = "Koromilakis", DateOfBirth = new DateTime(1980, 09, 18), UserName = "nkoromilakis80!" };
-            ApplicationUser a3 = new ApplicationUser() { FirstName = "Konstantinos", LastName = "Peponakis", DateOfBirth = new DateTime(2001, 07, 23), UserName = "kpeponakis01!" };
-            ApplicationUser a4 = new ApplicationUser() { FirstName = "Anna", LastName = "Karpouzaki", DateOfBirth = new DateTime(1999, 01, 31), UserName = "akarpouzaki96!" };
-            ApplicationUser a5 = new ApplicationUser() { FirstName = "Pinelopi", LastName = "Portokalaki", DateOfBirth = new DateTime(1994, 05, 16), UserName = "pportokalaki98!" };
+            ApplicationUser a1 = new ApplicationUser() { FirstName = "Maria", LastName = "Kara", DateOfBirth = new DateTime(1993, 05, 27), UserName = "KaMaryRa" };
+            ApplicationUser a2 = new ApplicationUser() { FirstName = "John", LastName = "Brown", DateOfBirth = new DateTime(1980, 09, 18), UserName = "JohnTheBrown" };
+            ApplicationUser a3 = new ApplicationUser() { FirstName = "Konstantinos", LastName = "Petrou", DateOfBirth = new DateTime(2001, 07, 23), UserName = "PetrouKo" };
+            ApplicationUser a4 = new ApplicationUser() { FirstName = "Anna", LastName = "Lamprou", DateOfBirth = new DateTime(1999, 01, 31), UserName = "annnLamp" };
+            ApplicationUser a5 = new ApplicationUser() { FirstName = "Pinelopi", LastName = "Ioannou", DateOfBirth = new DateTime(1994, 05, 16), UserName = "TheCoder" };
             ApplicationUser a6 = new ApplicationUser() { FirstName = "John", LastName = "Papadopoulos", DateOfBirth = new DateTime(1991, 04, 16), UserName = "pap19!" };
             ApplicationUser a7 = new ApplicationUser() { FirstName = "Costas", LastName = "Ioannou", DateOfBirth = new DateTime(1999, 03, 16), UserName = "Ioannou93!" };
             ApplicationUser a8 = new ApplicationUser() { FirstName = "Karol", LastName = "Koniewic", DateOfBirth = new DateTime(1994, 02, 16), UserName = "Kokarol94!" };
