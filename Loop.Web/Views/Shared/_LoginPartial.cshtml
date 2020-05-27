@@ -1,25 +1,29 @@
 ﻿@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "container d-flex align-items-center" }))
     {
         @Html.AntiForgeryToken()
+        <nav class="nav-menu d-none d-lg-block">
+            <ul>
+                <li>
+                    @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "get-started-btn scrollto" })
+                </li>
+                @*<li><a href="javascript:document.getElementById('logoutForm').submit()"> Log off </a></li>*@
+                <li>@Html.ActionLink("Logout", "Logout", "Home", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "get-started-btn scrollto" })</li>
+            </ul>
+        </nav>
 
-        <ul class="nav navbar-nav navbar-right">
-            <li>
-                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "btn btn-outline-light my-2 my-sm-0 mx-2 btn-sm" })
-            </li>
-            @*<li><a href="javascript:document.getElementById('logoutForm').submit()"> Log off </a></li>*@
-            <li>@Html.ActionLink("Logout", "Logout", "Home", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "btn btn-outline-danger my-2 my-sm-0 mx-2 btn-sm" })</li>
-        </ul>
     }
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Sign-In", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "btn btn-outline-light my-2 my-sm-0 mx-2 btn-sm" })</li>
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "btn btn-outline-light my-2 my-sm-0 mx-2 btn-sm" })</li>
+<nav class="nav-menu d-none d-lg-block">
+    <ul>
+        <li>@Html.ActionLink("Sign-In", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "get-started-btn scrollto" })</li>
+        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "get-started-btn scrollto" })</li>
     </ul>
+</nav>
 }
 
 

@@ -1,34 +1,26 @@
-﻿<script src="https://kit.fontawesome.com/0e62a71725.js" crossorigin="anonymous"></script>
+﻿<!-- ======= Header ======= -->
 
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #273746;">
-    <a href="/Home/Index"><img src="~/Content/loopLogo.png" alt="" class="img-fluid"></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/Post/Index">Posts<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="/Products/Index">Products</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="/Tags/Index" )">Tags</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="/Jobs/Index">Jobs</a>
-            </li>
-        </ul>
-
-        <div>
-            <span id="counter">0</span>
-            <a href=""><i style="width:20px; height:20px; padding-right:50px;" class="fas fa-shopping-cart"></i></a>
-        </div>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            @Html.Partial("_LoginPartial")
-        </form>
+<header id="header" class="fixed-top ">
+    <div class="container d-flex align-items-center">
+        <h1 class="logo mr-auto"><a href="/Home/Index"></a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <a href="/Home/Index" class="logo mr-auto"><img src="~/Content/newLogo.png" alt="" class="img-fluid"></a>
+        <nav class="nav-menu d-none d-lg-block">
+            <ul>
+                <li><a href="/Post/Index">Posts</a></li>
+                <li><a href="/Products/Index">Products</a></li>
+                <li><a href="/Jobs/Index">Jobs</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Tags</a></li>
+                <li><a href="#team">Team</a></li>
+                @if (User.Identity.AuthenticationType == "Admin")
+                {
+                    <li><a href="/User/Index">Admin</a></li>
+                }
+            </ul>
+        </nav><!-- .nav-menu -->
+        @*<a href="#about" class="get-started-btn scrollto">Get Started</a>*@
+        @Html.Partial("_LoginPartial")
     </div>
-</nav>
+</header><!-- End Header -->

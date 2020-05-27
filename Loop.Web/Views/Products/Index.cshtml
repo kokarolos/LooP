@@ -19,11 +19,11 @@
 
 <script src="https://kit.fontawesome.com/0e62a71725.js" crossorigin="anonymous"></script>
 
-<div class="container">
-    <!-- Modal -->
+@*<div class="container">
+     Modal 
     <div class="modal fade" id="modal" role="dialog">
         <div class="modal-dialog">
-            <!-- Modal content-->
+             Modal content
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Welcome To Shopping Section</h4>
@@ -37,7 +37,7 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@
 
 <div class="se-pre-con"></div>
 <div class="theme-layout">
@@ -110,11 +110,7 @@
                                                     </div>
                                                     <h4><i class="fa fa-check-circle" title="verified"></i>Title: @product.Title</h4>
                                                     <div><p>Description: @product.Description</p></div>
-                                                    @{
-
-                                                        var str = product.GetType().Name.Split('_');
-
-                                                    }
+                                                    @{var str = product.GetType().Name.Split('_');}
                                                     <span>Product Type : @str[0]</span>
                                                     <div class="location-area">
                                                         <div>
@@ -122,13 +118,13 @@
                                                             <form id="form2" action="/OrderProducts/Add" method="get">
                                                                 <table class="table-borderless">
                                                                     <thead>
-                                                                        <tr>
+                                                                        @*<tr>
                                                                             <th>Quantity</th>
                                                                             <td>
 
                                                                                 <input type="number" id="quanity" name="quantity" style="width: 45px;" />
                                                                             </td>
-                                                                        </tr>
+                                                                        </tr>*@
                                                                         <tr>
                                                                             <th>Price</th>
                                                                             <td>

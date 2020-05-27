@@ -6,34 +6,31 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - LooP</title>
-    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i' type='text/css' media='all' />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    @*<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i' type='text/css' media='all' />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">*@
 
 
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
-    <link href="~/Content/css/customStylesheet.css" rel="stylesheet" />
-
+    @*@Scripts.Render("~/bundles/jquery")*@
+    <script src="~/Scripts/jquery.min.js"></script>
+    @Scripts.Render("~/bundles/bootstrap")
 
 
 </head>
 <body>
-    <div class="container-fluid">
+    <div>
         @Html.Partial("_NavigationBar")
-        @RenderBody()
-        <hr />
+    </div>
+    @RenderBody()
 
         <div>
-            @Html.Partial("_Footer")
             @Html.Partial("_Chat")
         </div>
-    </div>
 
-    <link href="~/Content/css/Chat.css" rel="stylesheet" />
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+   
+    <link href="~/Content/vendor/Chat.css" rel="stylesheet" />
     <script src="~/Scripts/jquery.signalR-2.4.1.min.js"></script>
     @Scripts.Render("~/bundles/signalr")
     @Scripts.Render("/signalr/hubs")
