@@ -288,10 +288,12 @@
     <Content Include="Content\assets\portfolio\typescript.jpg" />
     <Content Include="Content\assets\portfolio\vue.jpg" />
     <Content Include="Content\assets\skills.png" />
+    <Content Include="Content\assets\team\rizos.jpg" />
     <Content Include="Content\assets\team\team-1.jpg" />
     <Content Include="Content\assets\team\team-2.jpg" />
     <Content Include="Content\assets\team\team-3.jpg" />
     <Content Include="Content\assets\team\team-4.jpg" />
+    <Content Include="Content\assets\team\viografikoRizos.jpg" />
     <Content Include="Content\assets\why-us.png" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
