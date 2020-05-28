@@ -29,6 +29,7 @@
 <div class="theme-layout">
 
     <div class="container">
+        <img src="~/Content/assets/productPhoto.jpg" />
         <div class="row merged20">
             <div class="col-lg-12">
                 <div class="forum-warper">
@@ -81,20 +82,20 @@
 
                                         <div class="central-meta item">
                                             <div class="classic-post">
+                                                <div class="more-post-optns">
+                                                    <i class="fas fa-ellipsis-v"></i>
+                                                    <ul>
+                                                        <li><i class="fa fa-pencil-square-o"></i>@Html.ActionLink("Edit", "Edit", new { id = product.ProductId }, new { onclick = "return confirm('Are you sure you wish to edit this product?');" })</li>
+                                                        <li>
+                                                            <i class="fa fa-trash-o"></i>@Html.ActionLink("Delete", "Delete", new { id = product.ProductId }, new { onclick = "return confirm('Are you sure you wish to delete this product?');" })
+                                                        </li>
+                                                    </ul>
+                                                </div>
                                                 <figure>
                                                     <img class="prod-image" id="product-img" src="@product.PhotoUrl" alt="Photo Missing">
                                                 </figure>
                                                 <div class="classic-pst-meta">
                                                     <div class="more">
-                                                        <div class="more-post-optns">
-                                                            <i class="fas fa-ellipsis-v"></i>
-                                                            <ul>
-                                                                <li><i class="fa fa-pencil-square-o"></i>@Html.ActionLink("Edit", "Edit", new { id = product.ProductId }, new { onclick = "return confirm('Are you sure you wish to edit this product?');" })</li>
-                                                                <li>
-                                                                    <i class="fa fa-trash-o"></i>@Html.ActionLink("Delete", "Delete", new { id = product.ProductId }, new { onclick = "return confirm('Are you sure you wish to delete this product?');" })
-                                                                </li>
-                                                            </ul>
-                                                        </div>
                                                     </div>
                                                     <h4><i class="fa fa-check-circle" title="verified"></i>Title: @product.Title</h4>
                                                     <div><p>Description: @product.Description</p></div>
@@ -110,12 +111,13 @@
                                                                             <th>Quantity</th>
                                                                             <td>
 
-                                                                                <input type="number" id="quanity" name="quantity" style="width: 50px;" />
+                                                                                <input type="number" id="quanity" name="quantity" placeholder="Qty:"/>
                                                                             </td>
-
+                                                                        </tr>
+                                                                        <tr>
                                                                             <th>Price</th>
                                                                             <td>
-                                                                                <input type="text" id="price" name="price" style="width: 50px;" />
+                                                                                <input type="text" id="price" name="price" placeholder="Euro"/>
                                                                             </td>
                                                                         </tr>
 

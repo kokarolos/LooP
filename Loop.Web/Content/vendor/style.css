@@ -110,6 +110,7 @@ h1, h2, h3, h4, h5, h6 {
 #header {
     transition: all 0.5s;
     z-index: 997;
+    height: 48px;
     background-color: #37517e;
 }
 
