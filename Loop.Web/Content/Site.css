@@ -15,3 +15,33 @@
 .post-date {
     font-size:x-small;
 }
+
+
+
+/***************************/
+/******#region PRODUCT******/
+#product-img {
+    width: 130px;
+    height: 193px;
+    object-fit: cover;
+}
+
+.classic-pst-meta h4 {
+    height: 50px;
+}
+
+.classic-pst-meta p {
+    height: 180px;
+}
+
+.location-area #btn {
+    background-color: #37517e;
+    color: #ffffff;
+}
+
+.title-block .btn {
+    background-color: #37517e;
+    color: #ffffff;
+}
+/******#endregion PRODUCT******/
+/******************************/
