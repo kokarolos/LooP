@@ -25,7 +25,6 @@
 
 
 
-
 <div class="se-pre-con" style="padding-top:100px;"></div>
 <div class="theme-layout">
     <div class="container">
@@ -63,7 +62,6 @@
                         </div>
                     </div><!-- title block -->
                     <h4>A new way to find help </h4>
-
                     <a class="addnewforum" href="~/Post/Create" title=""><i class="fa fa-plus"></i> Create Post</a>
                     @Html.PagedListPager(Model, x => @Url.Action("Index", "Post", new { page = x, sortOrder = ViewBag.TitleSortParam, pSize = ViewBag.CurrentpSize }))
                 </div>
@@ -94,11 +92,12 @@
 
                                                 <span class="badge mt-5 font-weight-normal border border-light text-white tag-post">@tag.Title</span>
                                             }
+
                                         </td>
                                         <td>
                                             <i class="fa fa-comments"></i>
                                             <span class="badge font-weight-normal border border-light text-white tag-post">@RepliesCount</span>
-                                            @Html.ActionLink("Reply", "Details", new { id = post.PostId }, new { @class = "post-reply btn btn-sm mt-4" })
+                                            @Html.ActionLink("Reply", "Create", "Reply", new { id = post.PostId }, new { @class = " btn btn-sm" })
                                         </td>
 
                                         <td>
@@ -118,6 +117,7 @@
                                                 {
                                                     <img src="~/Content/Avatars/chatbot.png" width="50" height="50" />
                                                 }
+
                                             }
                                             <br />
                                             <span class="badge  font-weight-normal border border-light text-white loopUser-name">@post.ApplicationUser.UserName</span><br />
@@ -134,6 +134,7 @@
         </div>
     </div>
 </div>
+
 
 
 

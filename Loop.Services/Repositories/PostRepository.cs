@@ -76,6 +76,14 @@ namespace Loop.Services.Repositories
             Database.SaveChanges();
         }
 
+        public override void Remove(Post post)
+        {
+
+            var q = Database.Posts.Include(x => x.Replies)
+                                  .FirstOrDefault(x => x.PostId == post.PostId);
+
+            Database.Posts.Remove(post);
+        }
 
     }
 }

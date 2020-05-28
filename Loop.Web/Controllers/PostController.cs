@@ -67,7 +67,7 @@ namespace Loop.Web.Controllers
             ViewBag.ApplicationUserId = userId;
 
             //here we make a Viewbag for Tags
-            ViewBag.SelectedTagsIds = db.Tags.GetAll().Select(x => new SelectListItem()
+            ViewBag.SelectedTagsIds = db.Tags.GetAll().ToList().Select(x => new SelectListItem()
             {
                 Value = x.TagId.ToString(),
                 Text = x.Title
@@ -81,7 +81,7 @@ namespace Loop.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PostId,Title,Text,DateTime,ApplicationUserId")] Post post, IEnumerable<int> SelectedTagsIds)
+        public ActionResult Create([Bind(Include = "PostId,Title,Text,PostDate,ApplicationUserId")] Post post, IEnumerable<int> SelectedTagsIds)
         {
             if (ModelState.IsValid)
             {

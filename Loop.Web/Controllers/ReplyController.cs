@@ -121,7 +121,7 @@ namespace Loop.Web.Controllers
         {
             var reply = db.Replies.GetById(model.ReplyId);
             reply.Text = model.Text;
-            reply.PostDate = model.PostDate;
+            reply.PostDate = DateTime.Now;
             reply.Post = db.Posts.GetById(model.PostId);
             reply.ApplicationUser = db.Users.GetUserById(User.Identity.GetUserId());
 

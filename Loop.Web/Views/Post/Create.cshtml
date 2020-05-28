@@ -12,169 +12,42 @@
 <!------ Include the above in your HEAD tag ---------->
 
 
-
-
-
-
-
 @using (Html.BeginForm("Create", "Post", FormMethod.Post, new { @class = "form", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
     <div class="container">
-     
+
         <div class="row">
 
             <div class="col-md-8 col-md-offset-2">
-
-                <h1>Create post</h1>
-
-
                 <div class="form-group has-error">
-
-                    <label for="title">Title <span class="require">*</span> <small>(You have to give the Title)</small></label>
+                    <br /><br /><br /><br /><br /><br />
+                    <label for="title">Title <small>(You have to give the Title)</small></label>
                     <input type="text" class="form-control" name="title" />
-                    <span class="help-block">Field not entered!</span>
+
                 </div>
-
-
                 <div class="form-group">
-                    <label for="description">Description</label>
-                    <textarea rows="5" class="form-control" name="description"></textarea>
-                </div>
-
-                <div class="form-group">
-                    @Html.HiddenFor(model => model.PostDate, new { @class = "form-control" })
+                    @Html.LabelFor(x => x.Text)
+                    @Html.TextAreaFor(model => model.Text, new { @class = "form-control" })
 
                 </div>
 
                 <div class="form-group">
-                    @Html.Label("Post Tags")
-                    @Html.ListBox("SelectedTagsIds", null, new { @class = "form-control" })
+                    @Html.Label("Post Thematology")
+                    @Html.ListBox("SelectedTagsIds", null, new { @class = "col-md form-control" })
                 </div>
-
                 <div class="form-group">
-                    <p><span class="require">*</span> - required fields</p>
-                </div>
 
-
-
-                <div class="form-group">
                     <button type="submit" class="btn btn-primary">
                         Create
                     </button>
-                    <button class="btn btn-default">
-                        Cancel
-                    </button>
-                </div>
 
+                    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+                </div>
+                <br /><br /><br /><br /><br /><br />
             </div>
 
         </div>
     </div>
-
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
-
-
-
-
-
-
-@using (Html.BeginForm("Create", "Post", FormMethod.Post, new { @class = "form", enctype = "multipart/form-data" }))
-{
-    @Html.AntiForgeryToken()
-
-    <h4 class="text-center">Create A New Post</h4>
-
-    <div class="container ">
-        <div class="row">
-
-            <div class="col-sm-9">
-                <div class="tab-content">
-                    <div class="tab-pane active" id="home">
-                        <hr>
-
-                        <div class="form-group">
-                            <div class="col-xs-6">
-                                @Html.LabelFor(model => model.Title)
-                                @Html.EditorFor(model => model.Title, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.Title)
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-xs-6">
-                                @Html.LabelFor(model => model.Text)
-                                @Html.EditorFor(model => model.Text, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.Text)
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-xs-6">
-                                @Html.LabelFor(model => model.PostDate)
-                                @Html.EditorFor(model => model.PostDate, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.PostDate)
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md">
-                                @Html.Label("Post Tags")
-                                @Html.ListBox("SelectedTagsIds", null, new { @class = "col-md form-control" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-xs-12">
-                                <br>
-                                <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                                <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
-                            </div>
-                        </div>
-
-                    </div>/tab-content
-
-                </div>/col-9
-            </div>/row
-        </div>
-    </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
-
-
-
-
-<script>
-
-    $(document).ready(function () {
-
-
-        var readURL = function (input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                    $('.avatar').attr('src', e.target.result);
-                }
-
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-
-        $(".file-upload").on('change', function () {
-            readURL(this);
-        });
-    });
-
-</script>
