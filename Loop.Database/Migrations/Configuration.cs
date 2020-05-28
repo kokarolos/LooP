@@ -59,7 +59,7 @@
             }
 
 
-            // *** ~~~ ~~~ ~~~ *** Admins  *** ~~~ ~~~ ~~~ *** 
+            // *** ~~~ ~~~ ~~~ *** User Customer Admins  *** ~~~ ~~~ ~~~ *** 
 
             if (!context.Users.Any(user => user.UserName == "admin1@gmail.com"))
             {
@@ -152,6 +152,25 @@
                 };
                 userManager.Create(user);
                 userManager.AddToRole(user.Id, "Customer");
+            }
+
+            if (!context.Users.Any(user => user.UserName == "user@gmail.com"))
+            {
+                var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+                var passwordHash = new PasswordHasher();
+
+                var user = new ApplicationUser
+                {
+                    UserName = "user",
+                    Email = "user@gmail.com",
+                    DateOfBirth = new DateTime(1994, 1, 1),
+                    PasswordHash = passwordHash.HashPassword("Admin123!"),
+                    FirstName = "Karolos",
+                    LastName = "Koniewicz",
+                };
+
+                userManager.Create(user);
+                userManager.AddToRole(user.Id, "User");
             }
 
             // *** ~~~ ~~~ ~~~ *** Users *** ~~~ ~~~ ~~~ *** 
@@ -724,12 +743,33 @@
             var op53 = new OrderProduct() { Price = 50m, Product = tu12, Dummy = 53, Order = o19, Quantity = 1 };
             a17.Orders = new List<Order> { o19 };
 
-            var o20 = new Order() { OrderDate = new DateTime(2020, 7, 26, 20, 16, 30) };
+            var o20 = new Order() { OrderDate = new DateTime(2020, 10, 26, 20, 16, 30) };
             var op54 = new OrderProduct() { Price = 11.59m, Product = b12, Dummy = 54, Order = o20, Quantity = 1 };
             var op55 = new OrderProduct() { Price = 12.59m, Product = tu12, Dummy = 55, Order = o20, Quantity = 1 };
             var op56 = new OrderProduct() { Price = 13.59m, Product = tu16, Dummy = 56, Order = o20, Quantity = 1 };
             var op57 = new OrderProduct() { Price = 20m, Product = tu17, Dummy = 57, Order = o20, Quantity = 1 };
             a18.Orders = new List<Order> { o20 };
+
+            var o21 = new Order() { OrderDate = new DateTime(2020, 11, 26, 20, 16, 30) };
+            var op58 = new OrderProduct() { Price = 11.59m, Product = b12, Dummy = 58, Order = o21, Quantity = 1 };
+            var op59 = new OrderProduct() { Price = 12.59m, Product = tu12, Dummy = 59, Order = o21, Quantity = 1 };
+            var op60 = new OrderProduct() { Price = 13.59m, Product = tu16, Dummy = 60, Order = o21, Quantity = 1 };
+            var op61 = new OrderProduct() { Price = 20m, Product = tu17, Dummy = 61, Order = o21, Quantity = 1 };
+            a19.Orders = new List<Order> { o21 };
+
+            var o22 = new Order() { OrderDate = new DateTime(2020, 12, 26, 20, 16, 30) };
+            var op62 = new OrderProduct() { Price = 11.59m, Product = b12, Dummy = 62, Order = o22, Quantity = 1 };
+            var op63 = new OrderProduct() { Price = 12.59m, Product = tu12, Dummy = 63, Order = o22, Quantity = 1 };
+            var op64 = new OrderProduct() { Price = 13.59m, Product = tu16, Dummy = 64, Order = o22, Quantity = 1 };
+            var op65 = new OrderProduct() { Price = 20m, Product = tu17, Dummy = 65, Order = o22, Quantity = 1 };
+            a20.Orders = new List<Order> { o22 };
+
+            var o23 = new Order() { OrderDate = new DateTime(2020, 9, 26, 20, 16, 30) };
+            var op66 = new OrderProduct() { Price = 11.59m, Product = b12, Dummy = 66, Order = o23, Quantity = 1 };
+            var op67 = new OrderProduct() { Price = 12.59m, Product = tu12, Dummy = 67, Order = o23, Quantity = 1 };
+            var op68 = new OrderProduct() { Price = 13.59m, Product = tu16, Dummy = 68, Order = o23, Quantity = 1 };
+            var op69 = new OrderProduct() { Price = 20m, Product = tu17, Dummy = 69, Order = o23, Quantity = 1 };
+            a21.Orders = new List<Order> { o23 };
 
 
 
@@ -754,8 +794,8 @@
             r5_1, r5_2, r5_3,
             r6_1, r6_2, r6_3,
             r7_1, r7_2, r7_3,
-            r8_1, r8_2, r8_3,r8_4,
-            r9_1, r9_2, r9_3,r9_4,
+            r8_1, r8_2, r8_3, r8_4,
+            r9_1, r9_2, r9_3, r9_4,
             r10_1, r10_2, r10_3,
             r11_1, r11_2, r11_3,
             r12_1, r12_2, r12_3,
@@ -798,19 +838,20 @@
             r56_1, r56_2, r56_3, r56_4, r56_5, r56_6, r56_7, r56_8,
             r57_1, r57_2, r57_3, r57_4, r57_5, r57_6, r57_7, r57_8,
             r58_1, r58_2, r58_3, r58_4, r58_5, r58_6, r58_7, r58_8,
-            r59_1, r59_2, r59_3, r59_4, r59_5, r59_6, r59_7, r59_8,r59_9,r59_10,r59_11, r59_12, r59_13, r59_14, r59_15, r59_16
+            r59_1, r59_2, r59_3, r59_4, r59_5, r59_6, r59_7, r59_8, r59_9, r59_10, r59_11, r59_12, r59_13, r59_14, r59_15, r59_16
             );
             context.Products.AddOrUpdate(x => x.Title, tu1, tu2, tu3, tu4, tu5, tu6, tu7, tu8, tu9, tu10, tu11, tu12, tu13, tu14, tu15, tu16, tu17,
                 b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11, b12, b13, b14, b15, b16, b17);
             context.Orders.AddOrUpdate(x => x.OrderDate, o1, o2, o3, o4, o5, o6, o7, o8, o9, o10,
-                o11, o12, o13, o14, o15, o16, o17, o18, o19, o20
+                o11, o12, o13, o14, o15, o16, o17, o18, o19, o20,o21,o22,o23
                 );
             context.OrderProducts.AddOrUpdate(x => x.Dummy, op1, op2, op5, op6, op7, op10,
                 op11, op12, op13, op14, op15, op16, op17, op18, op19, op20,
                 op21, op22, op23, op24, op25, op26, op27, op28, op29, op30,
                 op31, op32, op33, op34, op35, op36, op37, op38, op39, op40,
                 op41, op42, op43, op44, op45, op46, op47, op48, op49, op50,
-                op51, op52, op53, op54, op55, op56, op57
+                op51, op52, op53, op54, op55, op56, op57, op58, op59, op60,
+                op61, op62, op63, op64, op65, op66, op67, op68, op69
                 );
             try
             {
