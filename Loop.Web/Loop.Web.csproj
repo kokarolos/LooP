@@ -319,6 +319,7 @@
     <Content Include="Content\vendor\Chat.css" />
     <Content Include="Content\vendor\fonts\fonts\boxicons.svg" />
     <Content Include="Content\vendor\icofont.min.css" />
+    <Content Include="Content\vendor\Manage.css" />
     <Content Include="Content\vendor\owl.carousel.min.css" />
     <Content Include="Content\vendor\remixicon.css" />
     <Content Include="Content\vendor\secondary\color.css" />

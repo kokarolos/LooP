@@ -10,89 +10,58 @@
 <h2>@ViewBag.Title.</h2>
 
 <p class="text-success">@ViewBag.StatusMessage</p>
-<link href="~/Content/vendor/style.css" rel="stylesheet" />
-<div style="padding-top:15px;" class="row-cols-3">
-    <div class="col-3">
+
+<link href="~/Content/vendor/Manage.css" rel="stylesheet" />
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+
+
+<div class="container" style="padding-top:55px;">
+    <div class="col-12">
         <h4>Change your account settings</h4>
         <hr />
-        <dl class="dl-horizontal">
-            <dt>Password:</dt>
-            <dd>
 
-                @if (Model.HasPassword)
-                {
-                    @Html.ActionLink("Change password", "ChangePassword", null, new { @class = "get-started-btn scrollto" })
-                }
-                else
-                {
-                    @Html.ActionLink("Create", "SetPassword")
-                }
-
-            </dd>
-            <dt>External Logins:</dt>
-            <dd>
-                @Model.Logins.Count
-                @Html.ActionLink("Manage", "ManageLogins", null, new { @class = "get-started-btn scrollto" })
-            </dd>
-            <dt>Phone Number:</dt>
-            <dd>
-                @(Model.PhoneNumber ?? "None")
-                @if (Model.PhoneNumber != null)
-                {
-                    @Html.ActionLink("Change", "AddPhoneNumber", null, new { @class = "get-started-btn scrollto" })
-                    @: &nbsp;|&nbsp;
-                    @Html.ActionLink("Remove", "RemovePhoneNumber", null, new { @class = "get-started-btn scrollto" })
-                }
-                else
-                {
-                    @Html.ActionLink("Add", "AddPhoneNumber", null, new { @class = "get-started-btn scrollto" })
-                }
-
-            </dd>
-            <dt>Two-Factor Authentication:</dt>
-            <dd>
-                @if (Model.TwoFactor)
-                {
-                    using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>Enabled
-                            <input type="submit" value="Disable" class="get-started-btn scrollto" />
-                        </text>
-                    }
-                }
-                else
-                {
-                    using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>Disabled
-                            <input type="submit" value="Enable" class="get-started-btn scrollto" />
-                        </text>
-                    }
-                }
-            </dd>
-
+        <div class="share-button">
+            <span>Settings <i class="icofont-settings"></i></span>
+            <a href="/Manage/AddPhoneNumber"><i class="icofont-mobile-phone"></i></a>
+            <a href="/Manage/ChangePassword"><i class="icofont-ui-password"></i></a>
             @if (User.IsInRole("Admin"))
             {
-                <dt>All Users</dt>
-                <dd>
-                    @Html.ActionLink("Users", "Index", "User", null, new { @class = "get-started-btn scrollto" })
-                </dd>
+                <a href="/User/Index"><i class="icofont-ui-edit"></i></a>
             }
             else
             {
-                <dt>Edit Profil</dt>
-                <dd>
-                    @Html.ActionLink("Edit", "Edit", "User", new { id = User.Identity.GetUserId() }, new { @class = "get-started-btn scrollto" })
-                </dd>
+                <a href="/User/Edit/@User.Identity.GetUserId()"><i class="icofont-ui-edit"></i></a>
             }
+            <a href="/Manage/ChangePassword"> <i class="icofont-logout"></i></a>
+        </div>
+        <br />
+        <br />
 
-        </dl>
+
+        @if (Model.TwoFactor)
+        {
+            using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <input type="submit" value="Disable" class="get-started-btn scrollto" />
+            }
+        }
+        else
+        {
+            using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <input type="submit" value="Enable" class="get-started-btn scrollto" />
+            }
+        }
+
+
     </div>
-
+    @Html.Partial("~/Views/Dashboard/_Stats.cshtml")
+    <br />
+    <br />
 </div>
 
-@Html.Partial("~/Views/Dashboard/_Stats.cshtml")
 
 
