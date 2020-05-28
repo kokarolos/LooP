@@ -65,7 +65,7 @@ body {
 	letter-spacing: 0.2px;
 }
 p {
-    font-size: 14px;
+    font-size: 16px;
     letter-spacing: 0.1px;
     line-height: 26px;
     color: #959ab5;
@@ -14704,7 +14704,7 @@ a.circle-btn:hover {
 .classic-pst-meta > h4 {
     color: #535165;
     display: inline-block;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 500;
     margin-bottom: 5px;
     width: 80%;

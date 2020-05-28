@@ -28,11 +28,12 @@
 }
 
 .classic-pst-meta h4 {
+    margin: 5px;
     height: 50px;
 }
 
 .classic-pst-meta p {
-    height: 180px;
+    height: 120px;
 }
 
 .location-area #btn {
@@ -43,6 +44,17 @@
 .title-block .btn {
     background-color: #37517e;
     color: #ffffff;
+}
+
+.table-borderless input {
+    width: 50px;
+    height: 25px;
+    margin: 5px;
+    border-radius: 10px;
+}
+
+.more-post-optns {
+    float: right;
 }
 /******#endregion PRODUCT******/
 /******************************/
