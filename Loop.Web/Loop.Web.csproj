@@ -244,6 +244,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\assets\all_posts.jpg" />
     <Content Include="Content\assets\apple-touch-icon.png" />
     <Content Include="Content\assets\clients\client-1.png" />
     <Content Include="Content\assets\clients\client-2.png" />
@@ -296,6 +297,7 @@
     <Content Include="Content\assets\team\team-3.jpg" />
     <Content Include="Content\assets\team\team-4.jpg" />
     <Content Include="Content\assets\team\viografikoRizos.jpg" />
+    <Content Include="Content\assets\team\thanos.jpg" />
     <Content Include="Content\assets\why-us.png" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
