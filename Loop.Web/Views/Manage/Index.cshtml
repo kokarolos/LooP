@@ -1,4 +1,6 @@
 ﻿@model Loop.Web.Models.IndexViewModel
+@using Microsoft.AspNet.Identity
+
 @{
     ViewBag.Title = "Manage";
 }
@@ -65,6 +67,10 @@
                     </text>
                 }
             }
+        </dd>
+        <dt>Edit Profil</dt>
+        <dd>
+            @Html.ActionLink("Edit", "Edit", "User", new { id = User.Identity.GetUserId() },null)
         </dd>
     </dl>
 </div>

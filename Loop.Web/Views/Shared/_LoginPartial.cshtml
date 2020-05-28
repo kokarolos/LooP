@@ -10,7 +10,7 @@
                     @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "get-started-btn scrollto" })
                 </li>
                 @*<li><a href="javascript:document.getElementById('logoutForm').submit()"> Log off </a></li>*@
-                <li>@Html.ActionLink("Logout", "Logout", "Home", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "get-started-btn scrollto" })</li>
+                <li>@Html.ActionLink("Logout", "LogOut", "Home", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "get-started-btn scrollto" })</li>
             </ul>
         </nav>
 

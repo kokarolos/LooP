@@ -7,6 +7,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Loop.Web.Models;
 using Loop.Entities.Concrete;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Loop.Database;
 
 namespace Loop.Web.Controllers
 {
@@ -152,8 +154,13 @@ namespace Loop.Web.Controllers
             {
                 var user = new ApplicationUser { UserName = model.UserName, Email = model.Email};
                 var result = await UserManager.CreateAsync(user, model.Password); 
+
                 if (result.Succeeded)
                 {
+                    var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
+                    var roleMngr = new RoleManager<IdentityRole>(roleStore);
+                    await UserManager.AddToRoleAsync(user.Id, "User");
+
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771

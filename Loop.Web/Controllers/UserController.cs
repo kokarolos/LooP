@@ -85,8 +85,6 @@ namespace Loop.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(RegisterViewModel model, HttpPostedFileBase file, string SelectedRoleId)
         {
-            //TODO:Spaghetti cleanex
-
             if (ModelState.IsValid)
             {
                 var filename = Path.GetFileName(file.FileName);
@@ -98,7 +96,6 @@ namespace Loop.Web.Controllers
 
                 var applicationUser = CreateUser(model);
                 var result = await UserManager.CreateAsync(applicationUser, model.Password);
-                //TODO:REFACTOR THAT
 
                 if (result.Succeeded)
                 {
@@ -155,7 +152,6 @@ namespace Loop.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                //TODO: REFACTOR THIS SHIT V2
                 var filename = Path.GetFileName(file.FileName);
                 var path = Path.Combine(Server.MapPath("~/Content/Avatars/" + filename));
                 file.SaveAs(path);
