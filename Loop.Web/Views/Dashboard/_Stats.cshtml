@@ -11,18 +11,20 @@
 
 <body>
 
-    <div class="container">
+    <div class="container-fluid">
         <div class="col-12">
             <div class="row">
                 <canvas id="userPosts" width="500" height="500"></canvas>
                 <canvas id="userReplies" width="500" height="500"></canvas>
-                <canvas id="userTags" width="500" height="500"></canvas>
+                @*<canvas id="userTags" width="500" height="500"></canvas>*@
 
                 @if (User.IsInRole("Admin"))
                 {
                     <canvas id="adminMVPProducts" width="500" height="500"></canvas>
                     <canvas id="adminTotalPosts" width="500" height="500"></canvas>
                     <canvas id="admminMVPTags" width="500" height="500"></canvas>
+                    <canvas id="adminProfitPerMonth" width="500" height="500"></canvas>
+                    @*<canvas id="admminMVPTags" width="500" height="500"></canvas>*@
                 }
             </div>
         </div>
@@ -145,24 +147,24 @@
         });
 
 
-        var ctx2 = document.getElementById('userTags').getContext('2d');
-        var actionUrl = '@Url.Action("GetTagsPercentage", "Dashboard")';
-
-        $.ajax({
-            url: actionUrl,
-            method: 'GET',
-            dataType: 'json',
-            success: function (d) {
-
-                var myDoughnutChart = new Chart(ctx, {
-                    type: 'doughnut',
-                    data: data,
-                    options: options
-                });
-            }
-        });
-
-
+     // var ctx2 = document.getElementById('userTags').getContext('2d');
+     // var actionUrl = '@Url.Action("GetTagsPercentage", "Dashboard")';
+     //
+     // $.ajax({
+     //     url: actionUrl,
+     //     method: 'GET',
+     //     dataType: 'json',
+     //     success: function (d) {
+     //
+     //         var myDoughnutChart = new Chart(ctx, {
+     //             type: 'doughnut',
+     //             data: data,
+     //             options: options
+     //         });
+     //     }
+     // });
+     //
+     //
 
 
         var ctx3 = document.getElementById('adminMVPProducts').getContext('2d');
@@ -237,7 +239,7 @@
                     date.push(months[d[i].date-1]);
                     posts.push(d[i].count);
                 }
-                var myChart = new Chart(ctx1, {
+                var myChart = new Chart(ctx4, {
                     type: 'line',
                     data: {
                         labels: date,
@@ -277,7 +279,7 @@
             }
         });
 
-         var ctx4 = document.getElementById('admminMVPTags').getContext('2d');
+        var ctx5 = document.getElementById('admminMVPTags').getContext('2d');
         var actionUrl = '@Url.Action("GetMostWantedTags", "Dashboard")';
 
         $.ajax({
@@ -292,8 +294,8 @@
                     title.push(d[i].title);
                     counter.push(d[i].Value);
                 }
-                var myChart = new Chart(ctx4, {
-                    type: 'pie',
+                var myChart = new Chart(ctx5, {
+                    type: 'doughnut',
                     data: {
                         labels: title,
                         datasets: [{
@@ -351,7 +353,118 @@
             }
         });
 
+        var ctx6 = document.getElementById('adminProfitPerMonth').getContext('2d');
+        var actionUrl = '@Url.Action("ProfitPerMonth", "Dashboard")';
 
+        $.ajax({
+            url: actionUrl,
+            method: 'GET',
+            dataType: 'json',
+            success: function (d) {
+
+                var date = [];
+                var profit = [];
+                var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                for (var i in d) {
+                    date.push(months[d[i].month - 1]);
+                    profit.push(d[i].profit);
+                }
+                var myChart = new Chart(ctx6, {
+                    type: 'line',
+                    data: {
+                        labels: date,
+                        datasets: [{
+                            label: '# Profit Per Month',
+                            data: profit,
+                            fill : false,
+                            borderColor: [
+                                'rgba(75,192,192,1)',
+                            ],
+                            borderWidth: 1,
+                            lineTension: 0.1,
+                        }]
+                    },
+                    options: {
+                        responsive: false,
+                    }
+                });
+            }
+        });
+
+
+       //r ctx4 = document.getElementById('admminMVPTags').getContext('2d');
+       //r actionUrl = '@Url.Action("GetMostWantedTags", "Dashboard")';
+       //
+       //ajax({
+       //  url: actionUrl,
+       //  method: 'GET',
+       //  dataType: 'json',
+       //  success: function (d) {
+       //
+       //      var title = [];
+       //      var counter = [];
+       //      for (var i in d) {
+       //          title.push(d[i].title);
+       //          counter.push(d[i].Value);
+       //      }
+       //      var myChart = new Chart(ctx4, {
+       //          type: 'pie',
+       //          data: {
+       //              labels: title,
+       //              datasets: [{
+       //                  label: '# MVP Tags',
+       //                  data: counter,
+       //                  backgroundColor: [
+       //                      'rgba(255,246,143,1)',
+       //                      'rgba(54, 162, 235, 1)',
+       //                      'rgba(255, 206, 86, 1)',
+       //                      'rgba(75, 192, 192, 1)',
+       //                      'rgba(153, 102, 255, 1)',
+       //                      'rgba(252, 159, 62, 1)',
+       //                      'rgba(21, 129, 61, 1)',
+       //                      'rgba(25, 139, 69, 1)',
+       //                      'rgba(123, 119, 60, 1)',
+       //                      'rgba(100, 109, 67, 1)',
+       //                      'rgba(12, 34, 101, 1)',
+       //                      'rgba(11, 24, 11, 1)',
+       //                      'rgba(120, 64, 161, 1)',
+       //                      'rgba(120, 74, 201, 1)',
+       //                      'rgba(120, 84, 212, 1)',
+       //                      'rgba(120, 94, 120, 1)',
+       //                      'rgba(120, 124, 140, 1)',
+       //                      'rgba(120, 24, 100, 1)',
+       //                      'rgba(120, 34, 94, 1)',
+       //                  ],
+       //                  borderColor: [
+       //                      'rgba(255,246,143,1)',
+       //                      'rgba(54, 162, 235, 1)',
+       //                      'rgba(255, 206, 86, 1)',
+       //                      'rgba(75, 192, 192, 1)',
+       //                      'rgba(153, 102, 255, 1)',
+       //                      'rgba(252, 159, 62, 1)',
+       //                      'rgba(21, 129, 61, 1)',
+       //                      'rgba(25, 139, 69, 1)',
+       //                      'rgba(123, 119, 60, 1)',
+       //                      'rgba(100, 109, 67, 1)',
+       //                      'rgba(12, 34, 101, 1)',
+       //                      'rgba(11, 24, 11, 1)',
+       //                      'rgba(120, 64, 161, 1)',
+       //                      'rgba(120, 74, 201, 1)',
+       //                      'rgba(120, 84, 212, 1)',
+       //                      'rgba(120, 94, 120, 1)',
+       //                      'rgba(120, 124, 140, 1)',
+       //                      'rgba(120, 24, 100, 1)',
+       //                      'rgba(120, 34, 94, 1)',
+       //                  ],
+       //                  borderWidth: 1
+       //              }]
+       //          },
+       //          options: {
+       //              responsive: false,
+       //          }
+       //      });
+       //  }
+       //
 
     </script>
 

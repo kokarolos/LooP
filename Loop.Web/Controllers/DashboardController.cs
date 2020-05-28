@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Web.Mvc;
 
 namespace Loop.Web.Controllers
@@ -195,7 +196,7 @@ namespace Loop.Web.Controllers
         }
 
         //Total Profit Per Year //Admin
-        public JsonResult ProfitPerYear()
+        public JsonResult ProfitPerMonth()
         {
             var profit = db.Orders.GetAll()
                                   .Where(x => x.OrderDate.Year == DateTime.Now.Year)
@@ -208,7 +209,9 @@ namespace Loop.Web.Controllers
                                                         .SelectMany(x => x.OrderProducts)
                                                         .Select(x => x.Price)
                                                         .Sum(),
-                                  }).Distinct().ToList();
+                                  }).Distinct()
+                                                .ToList()
+                                                .OrderBy(x=>x.month);
 
             return Json(profit, JsonRequestBehavior.AllowGet);
 
