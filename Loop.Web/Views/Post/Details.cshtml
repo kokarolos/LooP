@@ -4,49 +4,82 @@
     ViewBag.Title = "Details";
 }
 
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+<link href="~/Content/vendor/secondary/main.min.css" rel="stylesheet" />
+<link href="~/Content/vendor/secondary/style.css" rel="stylesheet" />
+<link href="~/content/vendor/secondary/color.css" rel="stylesheet" />
+<link href="~/content/vendor/secondary/responsive.css" rel="stylesheet" />
+
 <h2>Details</h2>
-@* Redirection to Reply Controller *@
-@Html.ActionLink("Reply", "Create", "Reply", new { id = Model.PostId }, new { @class = "btn btn-primary" })
 
-<div class="central-meta">
-    <div class="forum-open">
-        <h5 class=""><i class="fa fa-star"></i> Asset for creating a beautiful website</h5>
-        <table class="table table-responsive">
-            <thead>
-                <tr>
-                    <th>@Html.DisplayFor(m => m.ApplicationUser.UserName)</th>
-                    <th>@Html.DisplayFor(m => m.Text)</th>
-                    <th>@Html.DisplayFor(m => m.PostDate)</th>
-                </tr>
+<div class="se-pre-con" style="padding-top:100px;"></div>
+<div class="container">
+    <img src="~/Content/assets/all_posts.jpg" />
+    <div class="row merged20">
+        <div class="col-lg-12">
+            <div class="forum-warper">
+                <div class="central-meta">
+                    <div class="forum-list">
+                        <table class="table table-responsive">
+                            <thead>
+                                <tr>
+                                    <th id="post-title" scope="col">Posts</th>
+                                    <th scope="col">Replies</th>
+                                    <th scope="col">Author</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    @{
+                                        int RepliesCount = Model.Replies.Count();
+                                    }
+                                    <td>
+                                        <i class="fa fa-comments"></i>
+                                        @Html.ActionLink(Model.Title, "Details", new { id = Model.PostId })
+                                        <p>@Model.Text</p>
 
-            </thead>
-            <tbody>
-                @foreach (var reply in Model.Replies)
-                {
-                    <tr>
-                        <td class="topic-data">
-                            @*@foreach (var image in reply.ApplicationUser.Images)
-                            {
-                                <img src="@Url.Content(image.ImgPath)" width="100" height="100" />
+                                        @foreach (var tag in Model.Tags)
+                                        {
 
-                            }*@
-                            <span>@reply.ApplicationUser.UserName</span>
-                            <em>Participant</em>
-                        </td>
-                        <td class="date-n-reply">
-                            <span>@reply.PostDate</span>
-                        </td>
+                                            <span class="badge mt-5 font-weight-normal border border-light text-white tag-post">@tag.Title</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-comments"></i>
+                                        <span class="badge font-weight-normal border border-light text-white tag-post">@RepliesCount</span>
+                                        @Html.ActionLink("Reply", "Create", "Reply", new { id = Model.PostId }, new { @class = "post-reply, btn btn-sm mt-4" })
+                                    </td>
 
-                        <td class="topic-detail">
-                            <p>@reply.Text</p>
-                        </td>
-                        <td>
-                            @Html.ActionLink("Delete", "Delete", "Reply", new { id = reply.ReplyId }, null)
-                            @Html.ActionLink("Edit", "Edit", "Reply", new { id = reply.ReplyId }, null)
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+                                    <td>
+                                        <span class="badge font-weight-normal border border-light text-white loopUser-name">@Model.ApplicationUser.UserName</span><br />
+                                        <span class="post-date">Posted : @Model.PostDate.ToShortDateString()</span>
+                                    </td>
+                                </tr>
+                                @*REPLIES*@
+
+                                @foreach (var reply in Model.Replies)
+                                {
+                                    <tr>
+                                        <td>
+                                            <i class="fa fa-comments"></i>
+                                            <p>@reply.Text</p>
+                                        </td>
+                                        <td>
+                                            <span class="badge font-weight-normal border border-light text-white loopUser-name">@reply.ApplicationUser.UserName</span><br />
+                                            <span class="post-date">Posted : @reply.PostDate.ToShortDateString()</span>
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Delete", "Delete", "Reply", new { id = reply.ReplyId }, new { @class = "post-reply, btn btn-sm " })
+                                            @Html.ActionLink("Edit", "Edit", "Reply", new { id = reply.ReplyId }, new { @class = "post-reply, btn btn-sm " })
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+

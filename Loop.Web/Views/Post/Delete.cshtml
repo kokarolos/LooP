@@ -4,48 +4,67 @@
     ViewBag.Title = "Delete";
 }
 
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+<link href="~/Content/vendor/secondary/main.min.css" rel="stylesheet" />
+<link href="~/Content/vendor/secondary/style.css" rel="stylesheet" />
+<link href="~/content/vendor/secondary/color.css" rel="stylesheet" />
+<link href="~/content/vendor/secondary/responsive.css" rel="stylesheet" />
+
+
 <h2>Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Post</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ApplicationUser.Email)
-        </dt>
+<div class="se-pre-con" style="padding-top:100px;"></div>
+<div class="container">
+    <h4>Are you sure you want to delete this Post?</h4>
+    <div class="row merged20">
+        <div class="col-lg-12">
+            <div class="forum-warper">
+                <div class="central-meta">
+                    <div class="forum-list">
+                        <table class="table table-responsive">
+                            <thead>
+                                <tr>
+                                    <th id="post-title" scope="col">Posts</th>
+                                    <th scope="col">Replies</th>
+                                    <th scope="col">Author</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    @{
+                                        int RepliesCount = Model.Replies.Count();
+                                    }
+                                    <td>
+                                        <i class="fa fa-comments"></i>
+                                        @Html.ActionLink(Model.Title, "Details", new { id = Model.PostId })
+                                        <p>@Model.Text</p>
 
-        <dd>
-            @Html.DisplayFor(model => model.ApplicationUser.Email)
-        </dd>
+                                        @foreach (var tag in Model.Tags)
+                                        {
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
+                                            <span class="badge mt-5 font-weight-normal border border-light text-white tag-post">@tag.Title</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-comments"></i>
+                                        <span class="badge font-weight-normal border border-light text-white tag-post">@RepliesCount</span>
+                                    </td>
 
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
+                                    <td>
+                                        <span class="badge font-weight-normal border border-light text-white loopUser-name">@Model.ApplicationUser.UserName</span><br />
+                                        <span class="post-date">Posted : @Model.PostDate.ToShortDateString()</span>
+                                    </td>
+                                </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Text)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Text)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PostDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PostDate)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
@@ -53,4 +72,12 @@
             @Html.ActionLink("Back to List", "Index")
         </div>
     }
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
 </div>
+
+
