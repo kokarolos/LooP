@@ -17,11 +17,12 @@
                 <canvas id="userPosts" width="500" height="500"></canvas>
                 <canvas id="userReplies" width="500" height="500"></canvas>
                 <canvas id="userTags" width="500" height="500"></canvas>
+
                 @if (User.IsInRole("Admin"))
                 {
+                    <canvas id="adminMVPProducts" width="500" height="500"></canvas>
                     <canvas id="adminTotalPosts" width="500" height="500"></canvas>
                     <canvas id="admminMVPTags" width="500" height="500"></canvas>
-                    @*<canvas id="myChart6" width="500" height="500"></canvas>*@
                 }
             </div>
         </div>
@@ -164,7 +165,7 @@
 
 
 
-        var ctx3 = document.getElementById('myChart4').getContext('2d');
+        var ctx3 = document.getElementById('adminMVPProducts').getContext('2d');
         var actionUrl = '@Url.Action("GetTop5Products", "Dashboard")';
 
         $.ajax({

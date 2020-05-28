@@ -322,7 +322,6 @@
     <Content Include="Content\vendor\owl.carousel.min.css" />
     <Content Include="Content\vendor\remixicon.css" />
     <Content Include="Content\vendor\secondary\color.css" />
-    <Content Include="Content\vendor\secondary\dashboard.css" />
     <Content Include="Content\vendor\secondary\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\vendor\secondary\fonts\themify.svg" />
     <Content Include="Content\vendor\secondary\fonts\videojs-icons.css" />

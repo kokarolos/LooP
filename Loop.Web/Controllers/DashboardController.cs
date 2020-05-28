@@ -1,6 +1,7 @@
 ﻿using Loop.Database;
 using Loop.Services;
 using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -98,7 +99,7 @@ namespace Loop.Web.Controllers
             var userId = User.Identity.GetUserId();
             var user = db.Users.GetUserById(userId);
             var tags = db.Posts.GetAll()
-                                          .ToList() 
+                                          .ToList()
                                           .Where(post => post.ApplicationUser == user)
                                           .SelectMany(g => g.Tags)
                                           .Select(e => new
@@ -153,7 +154,7 @@ namespace Loop.Web.Controllers
                                                  .Where(post => post.PostDate.Month == y.Key)
                                                  .ToList()
                                                  .Count.ToString()
-                                }).OrderBy(h=>h.date);
+                                }).OrderBy(h => h.date);
 
             return Json(posts, JsonRequestBehavior.AllowGet);
         }
@@ -169,14 +170,48 @@ namespace Loop.Web.Controllers
                                     title = e.Title,
                                     count = 1
                                 }).GroupBy(x => x.title)
-                                  .Select(q => new 
-                                  { 
-                                      title = q.First().title, 
-                                      Value = q.Sum(x => x.count) 
+                                  .Select(q => new
+                                  {
+                                      title = q.First().title,
+                                      Value = q.Sum(x => x.count)
                                   });
-                                
+
 
             return Json(tags, JsonRequestBehavior.AllowGet);
+        }
+
+
+        //Get Monthly Profit //Admin
+
+        public JsonResult GetMonthlyProfit()
+        {
+            var profitPerMonth = db.Orders.GetAll()
+                        .Where(x => x.OrderDate.Month == DateTime.Now.Month)
+                        .SelectMany(x => x.OrderProducts)
+                        .Select(x => x.Price)
+                        .Sum();
+
+            return Json(profitPerMonth, JsonRequestBehavior.AllowGet);
+        }
+
+        //Total Profit Per Year //Admin
+        public JsonResult ProfitPerYear()
+        {
+            var profit = db.Orders.GetAll()
+                                  .Where(x => x.OrderDate.Year == DateTime.Now.Year)
+                                  .GroupBy(x => x.OrderDate)
+                                  .Select(q => new
+                                  {
+                                      month = q.Key.Month,
+                                      profit = db.Orders.GetAll()
+                                                        .Where(x => x.OrderDate.Month == q.Key.Month)
+                                                        .SelectMany(x => x.OrderProducts)
+                                                        .Select(x => x.Price)
+                                                        .Sum(),
+                                  }).Distinct().ToList();
+
+            return Json(profit, JsonRequestBehavior.AllowGet);
+
         }
 
     }

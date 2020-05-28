@@ -3,6 +3,7 @@ using Loop.Entities;
 using Loop.Entities.Concrete;
 using Loop.Entities.Intermediate;
 using Loop.Services;
+using PayPal.Api;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace Loop.Desktop
     {
         static void Main(string[] args)
         {
+            UnitOfWork db = new UnitOfWork(new ApplicationDbContext());
             //ApplicationDbContext apcontext = new ApplicationDbContext();
             //var posts = apcontext.Posts.ToList();
             //foreach (var post in posts)
@@ -68,7 +70,6 @@ namespace Loop.Desktop
 
 
             //int rows = 0;
-            UnitOfWork db = new UnitOfWork(new ApplicationDbContext());
             //
             //foreach (var user in db.Users.GetAll().ToList())
             //{
@@ -254,41 +255,106 @@ namespace Loop.Desktop
             //}
 
 
-            var tags = db.Posts.GetAll()
-                              .ToList()
-                              .SelectMany(g => g.Tags)
-                              .Select(e => new
-                              {
-                                  title = e.Title,
-                                  count = 1
-                              }).GroupBy(x => x.title).Select(q => new { title = q.First().title, Value = q.Sum(x => x.count) });
-
-
+            //var tags = db.Posts.GetAll()
+            //                  .ToList()
+            //                  .SelectMany(g => g.Tags)
+            //                  .Select(e => new
+            //                  {
+            //                      title = e.Title,
+            //                      count = 1
+            //                  }).GroupBy(x => x.title).Select(q => new { title = q.First().title, Value = q.Sum(x => x.count) });
+            //
+            //
+            //
 
             //Tags Per post
+            //
+            // var userId = "360c66a2-cd83-4247-a9a0-25e466a2c5f3";
+            // var user = db.Users.GetUserById(userId);
+            // var tagsPercentage = db.Posts.GetAll()
+            //                               .ToList() //Posts that user replied
+            //                               .Where(reply => reply.ApplicationUser == user)
+            //                               .SelectMany(g=>g.Tags)
+            //                               .Select(e => new
+            //                               {
+            //                                   title = e.Title,
+            //                                   count = 1
+            //                               }).GroupBy(x => x.title)
+            //                                 .Select(q => new 
+            //                                 { 
+            //                                     title = q.First().title,
+            //                                     Value = q.Sum(x => x.count)
+            //                                 });
+            //
+            //
+            // foreach (var item in tagsPercentage)
+            // {
+            //     Console.WriteLine($"{item.title} {item.Value}");
+            // }
+            //
 
-            var userId = "765eb34d-2c50-4aed-a1d5-b81962dabe45";
-            var user = db.Users.GetUserById(userId);
-            var tagsPercentage = db.Posts.GetAll()
-                                          .ToList() //Posts that user replied
-                                          .Where(reply => reply.ApplicationUser == user)
-                                          .SelectMany(g=>g.Tags)
-                                          .Select(e => new
-                                          {
-                                              title = e.Title,
-                                              count = 1
-                                          }).GroupBy(x => x.title)
-                                            .Select(q => new 
-                                            { 
-                                                title = q.First().title,
-                                                Value = q.Sum(x => x.count)
-                                            });
+            //  var user1 = db.Users.GetUserById("360c66a2-cd83-4247-a9a0-25e466a2c5f3");
+            //  var Replies = db.Replies.GetAll().Where(x => x.ApplicationUser == user1);
+            //
+            //  var lista1 = Replies.GroupBy(x => x.Post)
+            //                      .Select(y => new
+            //                      {
+            //                          title = y.Key.Tags,
+            //                          ass = y.Key.Replies.Count()
+            //                      }).SelectMany(g => g.title)
+            //                      .GroupBy(w => w.Title)
+            //                      .Select(q => new
+            //                      {
+            //                          title = q.Key,
+            //                          count = q.GroupBy(x => x.Post)
+            //                      .Select(y => new
+            //                      {
+            //                          title = y.Key.Tags,
+            //                          ass = y.Key.Replies.Count()
+            //                      })
+            //                      });
+            //
+            //
+            //  foreach (var item in lista1)
+            //  {
+            //      foreach (var asx in item.title)
+            //      {
+            //          Console.WriteLine($"{asx.Key} {item.count}");
+            //      }
+            //  }
+            //
+
+            // //Monthly Profit
+            // var op = db.Orders.GetAll()
+            //                   .Where(x => x.OrderDate.Month == DateTime.Now.Month)
+            //                   .SelectMany(x => x.OrderProducts)
+            //                   .Select(x => x.Price)
+            //                   .Sum();
+            //
+            //
+            // Console.WriteLine($"{op}");
 
 
-            foreach (var item in tagsPercentage)
-            {
-                Console.WriteLine($"{item.title} {item.Value}");
-            }
+            //Profit Of Year
+           // var profitPerMonth = db.Orders.GetAll()
+           //                               .Where(x => x.OrderDate.Year == DateTime.Now.Year)
+           //                               //.SelectMany(x => x.OrderProducts)
+           //                               .GroupBy(x => x.OrderDate)
+           //                               .Select(q => new
+           //                               {
+           //                                   month = q.Key.Month,
+           //                                   profit = db.Orders.GetAll()
+           //                                                     .Where(x => x.OrderDate.Month == q.Key.Month)
+           //                                                     .SelectMany(x => x.OrderProducts)
+           //                                                     .Select(x => x.Price)
+           //                                                     .Sum(),
+           //                               }).Distinct().ToList();
+           //                               
+           //
+           // foreach (var item in profitPerMonth)
+           // {
+           //     Console.WriteLine($"{item.month} {item.profit} ");
+           // }
 
         }
     }

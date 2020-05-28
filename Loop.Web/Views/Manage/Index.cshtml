@@ -57,7 +57,7 @@
                     {
                         @Html.AntiForgeryToken()
                         <text>Enabled
-                            <input type="submit" value="Disable" class="btn btn-link" />
+                            <input type="submit" value="Disable" class="get-started-btn scrollto" />
                         </text>
                     }
                 }
@@ -67,7 +67,7 @@
                     {
                         @Html.AntiForgeryToken()
                         <text>Disabled
-                            <input type="submit" value="Enable" class="btn btn-link" />
+                            <input type="submit" value="Enable" class="get-started-btn scrollto" />
                         </text>
                     }
                 }
@@ -84,7 +84,7 @@
             {
                 <dt>Edit Profil</dt>
                 <dd>
-                    @Html.ActionLink("Edit", "Edit", "User", new { id = User.Identity.GetUserId() }, null)
+                    @Html.ActionLink("Edit", "Edit", "User", new { id = User.Identity.GetUserId() }, new { @class = "get-started-btn scrollto" })
                 </dd>
             }
 
