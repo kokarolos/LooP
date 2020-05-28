@@ -5,6 +5,7 @@ using Loop.Web.Models;
 using System.Linq;
 using System;
 using System.Collections.Generic;
+using System.Web.Security;
 
 namespace Loop.Web.Controllers
 {
@@ -32,6 +33,16 @@ namespace Loop.Web.Controllers
 
             return View();
         }
+
+        public ActionResult LogOut()
+        {
+            FormsAuthentication.SignOut();
+            Session.Abandon(); // it will clear the session at the end of request
+            Session.RemoveAll(); // it will clear the session at the end of request
+            Session.Clear(); // it will clear the session at the end of request
+            return RedirectToAction("Index", "Home");
+        }
+
 
         [NonAction]
         private IndexStatisticViewModel GetStatistics()

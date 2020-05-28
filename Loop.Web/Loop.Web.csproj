@@ -1364,6 +1364,7 @@
     <Content Include="Views\Jobs\Index.cshtml" />
     <Content Include="Scripts\version.json" />
     <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\Dashboard\_Stats.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

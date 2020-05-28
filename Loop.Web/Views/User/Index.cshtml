@@ -34,20 +34,19 @@
                             <h4>
                                 @if (user.Roles.Count > 0)
                                 {
-                                    if (user.Roles.First().RoleId == "87051edf-9529-4664-a617-387d09a2fdd6")
-                                    {
-                                        <em>@user.LastName @user.FirstName - User</em>
-
-                                    }
-
-                                    else
+                                    if (User.IsInRole("User"))
                                     {
                                         <em>@user.LastName @user.FirstName - Admin</em>
+
+                                    }
+                                    else
+                                    {
+                                        <em>@user.LastName @user.FirstName - User</em>
                                     }
                                 }
                                 else
                                 {
-                                    <em>@user.LastName @user.FirstName - User</em>
+                                    <em>@user.LastName @user.FirstName - Katit</em>
                                 }
 
                             </h4>

@@ -9,7 +9,6 @@
     using System.Collections.Generic;
     using System.Data.Entity.Migrations;
     using System.Linq;
-    using System.Security.Cryptography.X509Certificates;
 
     internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
     {
@@ -42,11 +41,20 @@
                 manager.Create(role);
 
             }
+
             if (!context.Roles.Any(r => r.Name == "User"))
             {
                 var store = new RoleStore<IdentityRole>(context);
                 var manager = new RoleManager<IdentityRole>(store);
                 var role = new IdentityRole { Name = "User" };
+                manager.Create(role);
+            }
+
+            if (!context.Roles.Any(r => r.Name == "Customer"))
+            {
+                var store = new RoleStore<IdentityRole>(context);
+                var manager = new RoleManager<IdentityRole>(store);
+                var role = new IdentityRole { Name = "Customer" };
                 manager.Create(role);
             }
 
@@ -125,6 +133,25 @@
                 };
                 userManager.Create(user);
                 userManager.AddToRole(user.Id, "Admin");
+            }
+
+            if (!context.Users.Any(user => user.UserName == "customergmail.com"))
+            {
+                var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+                var passwordHash = new PasswordHasher();
+
+                var user = new ApplicationUser
+                {
+                    UserName = "Customer",
+                    Email = "customer@gmail.com",
+                    DateOfBirth = new DateTime(1994, 1, 1),
+                    PasswordHash = passwordHash.HashPassword("Admin123!"),
+                    FirstName = "Customer",
+                    LastName = "Dear",
+
+                };
+                userManager.Create(user);
+                userManager.AddToRole(user.Id, "Customer");
             }
 
             // *** ~~~ ~~~ ~~~ *** Users *** ~~~ ~~~ ~~~ *** 
@@ -436,7 +463,8 @@
             Post p52 = new Post() { ApplicationUser = a15, Title = "What can i achieve with seeding method?", Text = "How many hours i need for a seeding?", PostDate = DateTime.Now, Tags = new List<Tag>() { tg14 } };
 
             // *** ~~~ ~~~ ~~~ *** Admin's Post Replies *** ~~~ ~~~ ~~~ ***
-            //This User is to test statistics view
+
+            //This User(admin) is to test statistics view
 
 
             Post p53 = new Post() { ApplicationUser = admin, Title = "dummy1dummy1", Text = "dummy1dummy1", PostDate = new DateTime(2020, 1, 1), Tags = new List<Tag>() { tg11 } };

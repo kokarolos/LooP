@@ -9,12 +9,15 @@
             <ul>
                 <li><a href="/Post/Index">Posts</a></li>
                 <li><a href="/Products/Index">Products</a></li>
-                <li><a href="/Jobs/Index">Jobs</a></li>
+                @if (User.IsInRole("Admin") || User.IsInRole("Customer"))
+                {
+                    <li><a href="/Jobs/Index">Jobs</a></li>
+                }
                 <li><a href="#about">About</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#portfolio">Tags</a></li>
                 <li><a href="#team">Team</a></li>
-                @if (User.Identity.AuthenticationType == "Admin")
+                @if (User.IsInRole("Admin"))
                 {
                     <li><a href="/User/Index">Admin</a></li>
                 }
