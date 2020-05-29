@@ -11,27 +11,27 @@
 
 <body>
 
-    <div class="container-fluid">
-        <div class="col-12">
-            <div class="row">
-                @if (User.IsInRole("Admin"))
-                {
-                    <canvas id="adminProfitPerMonth" width="500" height="500"></canvas>
-                    <canvas id="adminMVPProducts" width="500" height="500"></canvas>
-                    <canvas id="adminTotalPosts" width="500" height="500"></canvas>
-                    <canvas id="admminMVPTags" width="500" height="500"></canvas>
-                    @*<canvas id="admminMVPTags" width="500" height="500"></canvas>*@
-                }
+    @*<div class="container-fluid">
+        <div class="col-12">*@
 
-                <canvas id="userPosts" width="500" height="500"></canvas>
-                <canvas id="userReplies" width="500" height="500"></canvas>
-                @*<canvas id="userTags" width="500" height="500"></canvas>*@
+        @if (User.IsInRole("Admin"))
+        {
+            <canvas style="padding-top:50px;" id="adminProfitPerMonth" width="500" height="500"></canvas>
+            <canvas style="padding-top:50px;" id="adminMVPProducts" width="500" height="500"></canvas>
+            <canvas style="padding-top:50px;" id="adminTotalPosts" width="500" height="500"></canvas>
+            <canvas style="padding-top:50px;" id="admminMVPTags" width="500" height="500"></canvas>
+            @*<canvas id="admminMVPTags" width="500" height="500"></canvas>*@
+        }
+
+        <canvas style="padding-top:50px;" id="userPosts" width="500" height="500"></canvas>
+        <br />
+        <canvas style="padding-top:50px;" id="userReplies" width="500" height="500"></canvas>
+        <br />
+        @*<canvas id="userTags" width="500" height="500"></canvas>*@
 
 
-            </div>
-        </div>
-
-    </div>
+    @* </div>
+        </div>*@
     <script src="~/Scripts/jquery-3.5.0.js"></script>
     <script src="~/Scripts/Chart.js"></script>
     <script>
@@ -363,7 +363,7 @@
                             lineTension: 0.1,
                         }]
                     },
-                    
+
                     options: {
                         responsive: false,
                     }

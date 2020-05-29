@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
+using System.Security.Cryptography.X509Certificates;
 using System.Web.Mvc;
 using Loop.Database;
 using Loop.Entities;
@@ -18,9 +20,12 @@ namespace Loop.Web.Controllers
         //Goal here is to bind post id with the reply
         public ActionResult Create(int id)
         {
+
+            var post = db.Posts.GetAll().ToList().Where(x => x.PostId == id).FirstOrDefault();
             var model = new ReplyViewModel()
             {
-                PostId = id
+                PostId = id,
+                CurrentPost = post
             };
 
             return View(model);
