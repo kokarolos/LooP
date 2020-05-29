@@ -8,6 +8,30 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+.tag-post {
+    background-color: #47b2e4;
+}
+
+.post-reply {
+    background-color: #47b2e4;
+}
+
+.loopUser-name {
+    background-color: #37517e;
+}
+
+.post-date {
+    font-size: x-small;
+}
+
+
+
+
+
+
+
+
+
 body {
     font-family: "Open Sans", sans-serif;
     color: #444444;

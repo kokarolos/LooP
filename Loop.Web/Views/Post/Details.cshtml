@@ -33,7 +33,7 @@
                                         int RepliesCount = Model.Replies.Count();
                                     }
                                     <td>
-                                        <i class="fa fa-comments"></i>
+                                        <i class="fas fa-comments"></i>
                                         @Html.ActionLink(Model.Title, "Details", new { id = Model.PostId })
                                         <p>@Model.Text</p>
 
@@ -44,7 +44,7 @@
                                         }
                                     </td>
                                     <td>
-                                        <i class="fa fa-comments"></i>
+                                        <i class="fas fa-comments"></i>
                                         <span class="badge font-weight-normal border border-light text-white tag-post">@RepliesCount</span><br />
                                         @Html.ActionLink("Reply", "Create", "Reply", new { id = Model.PostId }, new { @class = "btn btn-sm mt-4" })
                                     </td>
@@ -77,29 +77,8 @@
                                         <td>
                                             <span class="badge font-weight-normal border border-light text-white loopUser-name">@reply.ApplicationUser.UserName</span><br />
                                             <span class="post-date">Posted : @reply.PostDate.ToShortDateString()</span>
-
-                                            @*<div>
-                                                @if (!(reply.ApplicationUser.Images.FirstOrDefault() is null))
-                                                {
-                                                    foreach (var image in reply.ApplicationUser.Images)
-                                                    {
-                                                        if (image.ImgPath.Length > 0)
-                                                        {
-                                                            <img src="@Url.Content(image.ImgPath) " width="50" height="50" />
-                                                        }
-                                                    }
-                                                }
-                                                else
-                                                {
-                                                    <img src="~/Content/Avatars/chatbot.png" width="50" height="50" />
-                                                }
-
-                                            </div>*@
                                         </td>
 
-
-                                        @*@Html.ActionLink("Delete", "Delete", "Reply", new { id = reply.ReplyId }, new { @class = "post-reply, btn btn-sm " })
-                                            @Html.ActionLink("Edit", "Edit", "Reply", new { id = reply.ReplyId }, new { @class = "post-reply, btn btn-sm " })*@
                                     </tr>
                                 }
                             </tbody>
@@ -109,6 +88,8 @@
             </div>
         </div>
     </div>
-    @Html.ActionLink("Back to Posts", "Index", null, new { @class = "btn btn-default" })
+    <div class="form-group" style="display:inline-block">
+        <div id="back-button">@Html.ActionLink("Back", "Index", "Post", null, new { @class = " btn btn-sm" })</div>
+    </div>
 </div>
 

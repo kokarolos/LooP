@@ -4,6 +4,12 @@
     ViewBag.Title = "Edit";
 }
 
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+<link href="~/Content/vendor/secondary/main.min.css" rel="stylesheet" />
+<link href="~/Content/vendor/secondary/style.css" rel="stylesheet" />
+<link href="~/content/vendor/secondary/responsive.css" rel="stylesheet" />
+
+
 <h2>Edit</h2>
 
 <div class="se-pre-con" style="padding-top:100px;"></div>
@@ -25,21 +31,19 @@
                                 @Html.HiddenFor(model => model.PostId)
 
                                 <div class="form-group">
-                                    <div class="col-md-10">
-                                        <i class="fa fa-comments"></i>
-                                        @Html.EditorFor(model => model.Text, new { htmlAttributes = new { @class = "form-control" } })
+                                    <i class="fa fa-comments"></i>
+                                    <div style="border:solid 1px"  class="col-md-offset-2 col-md-12">
+                                        @Html.TextAreaFor(model => model.Text, new { htmlAttributes = new { @class = "form-control" } })
                                         @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
-
                                 <div class="form-group">
-                                    <div class="col-md-offset-2 col-md-10">
-                                        <input type="submit" value="Edit" class="btn btn-default" />
+                                    <div class="form-group" style="display:inline-block">
+                                        <button type="submit" value="Edit" class="btn btn-sm btn-warning text-white"> Edit</button>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-offset-2 col-md-10">
-                                        @Html.ActionLink("Back to List", "Index", "Post")
+
+                                    <div class="form-group" style="display:inline-block">
+                                        <div id="back-button">@Html.ActionLink("Back", "Index", "Post", null, new { @class = " btn btn-sm" })</div>
                                     </div>
                                 </div>
                             </div>

@@ -73,3 +73,18 @@
 /******#endregion PRODUCT******/
 /******************************/
 
+.fas {
+    color: #37517e;
+}
+
+
+#back-button .btn{
+    color:#fff;
+    background-color: #37517e;
+}
+
+#back-button .btn:hover{
+    color:#fff;
+    background-color: #37517e;
+    opacity: 0.6;
+}
