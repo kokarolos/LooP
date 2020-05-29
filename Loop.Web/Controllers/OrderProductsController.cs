@@ -5,6 +5,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Web.Caching;
 using System.Web.DynamicData;
 using System.Web.Mvc;
+using Antlr.Runtime.Misc;
 using Loop.Database;
 using Loop.Entities.Concrete;
 using Loop.Entities.Intermediate;
@@ -49,10 +50,21 @@ namespace Loop.Web.Controllers
             {
 
                 var previousProduct = cart.OrderProducts.Where(x => x.ProductId == productId).First();
-                var currentProduct = cart.OrderProducts.Where(x => x.ProductId == productId).Last();
+                var currentProduct = new OrderProduct()
+                {
+                    Order = null,
+                    Price = price,
+                    Quantity = quantity,
+                    ProductId = productId,
+                    Product = db.Products.GetById(productId)
+                };
 
-                var avgPrice = (currentProduct.Price + previousProduct.Price) / 2;
-                var currentQuantity = currentProduct.Quantity + previousProduct.Quantity;
+                var list = new List<OrderProduct>();
+                list.Add(previousProduct);
+                list.Add(currentProduct);
+
+                var avgPrice = list.Average(x=>x.Price);
+                var currentQuantity = list.Sum(x => x.Quantity);
 
                 var query = cart.OrderProducts.Where(x => currentProduct.ProductId == previousProduct.ProductId)
                                               .Select(g => new OrderProduct()
@@ -64,6 +76,7 @@ namespace Loop.Web.Controllers
                                                   Product = db.Products.GetById(productId),
                                               }).FirstOrDefault();
 
+                list.Remove(previousProduct);
                 cart.OrderProducts.Remove(previousProduct);
                 cart.OrderProducts.Add(query);
 
