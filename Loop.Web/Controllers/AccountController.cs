@@ -397,6 +397,8 @@ namespace Loop.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
+            Session["UserInfo"] = null;
+            Session.Abandon();
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Index", "Home");
         }

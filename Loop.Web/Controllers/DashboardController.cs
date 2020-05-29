@@ -175,7 +175,7 @@ namespace Loop.Web.Controllers
                                   {
                                       title = q.First().title,
                                       Value = q.Sum(x => x.count)
-                                  });
+                                  }).OrderByDescending(x=>x.Value);
 
 
             return Json(tags, JsonRequestBehavior.AllowGet);

@@ -1,10 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
+using System.Web.Caching;
+using System.Web.DynamicData;
 using System.Web.Mvc;
+using Antlr.Runtime.Misc;
 using Loop.Database;
 using Loop.Entities.Concrete;
 using Loop.Entities.Intermediate;
 using Loop.Services;
+using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 
 namespace Loop.Web.Controllers
@@ -42,21 +48,56 @@ namespace Loop.Web.Controllers
 
             if (existingItem)
             {
-                // Product 1 , int ? 5
+
+                var previousProduct = cart.OrderProducts.Where(x => x.ProductId == productId).First();
+                var currentProduct = new OrderProduct()
+                {
+                    Order = null,
+                    Price = price,
+                    Quantity = quantity,
+                    ProductId = productId,
+                    Product = db.Products.GetById(productId)
+                };
+
+                var list = new List<OrderProduct>();
+                list.Add(previousProduct);
+                list.Add(currentProduct);
+
+                var avgPrice = list.Average(x=>x.Price);
+                var currentQuantity = list.Sum(x => x.Quantity);
+
+                var query = cart.OrderProducts.Where(x => currentProduct.ProductId == previousProduct.ProductId)
+                                              .Select(g => new OrderProduct()
+                                              {
+                                                  Order = null,
+                                                  Price = avgPrice,
+                                                  Quantity = currentQuantity,
+                                                  ProductId = productId,
+                                                  Product = db.Products.GetById(productId),
+                                              }).FirstOrDefault();
+
+                list.Remove(previousProduct);
+                cart.OrderProducts.Remove(previousProduct);
+                cart.OrderProducts.Add(query);
+
+
+            }
+            else
+            {
+
+                //TODO : If cart is Checkouted or Canceled we will Create new Order else we will keep the same
+                //Maybe Delegate?
+                cart.OrderProducts.Add(new OrderProduct()
+                {
+                    //We dont need to create an order -> we will create order at checkout proccess
+                    Order = null,
+                    ProductId = productId,
+                    Product = db.Products.GetById(productId),
+                    Price = price,
+                    Quantity = quantity
+                });
             }
 
-            //TODO : If cart is Checkouted or Canceled we will Create new Order else we will keep the same
-            //Maybe Delegate?
-
-            cart.OrderProducts.Add(new OrderProduct()
-            {
-                //We dont need to create an order -> we will create order at checkout proccess
-                Order = null,
-                ProductId = productId,
-                Product = db.Products.GetById(productId),
-                Price = price,
-                Quantity = quantity
-            });
 
 
             SaveCart(cart);

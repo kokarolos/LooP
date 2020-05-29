@@ -22,14 +22,6 @@
             #region Seeding 
             var userManager1 = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
-            // *** ~~~ ~~~ ~~~ *** Locations *** ~~~ ~~~ ~~~ ***
-
-            Location loc1 = new Location() { Latitude = 40.63342m, Longitude = 22.94188m };
-            Location loc2 = new Location() { Latitude = 35.51421m, Longitude = 24.02157m };
-            Location loc3 = new Location() { Latitude = 37.98406m, Longitude = 23.72602m };
-            Location loc4 = new Location() { Latitude = 35.50667m, Longitude = 27.21009m };
-            Location loc5 = new Location() { Latitude = 37.94477m, Longitude = 23.64358m };
-
             // *** ~~~ ~~~ ~~~ *** Roles  *** ~~~ ~~~ ~~~ *** 
 
             if (!context.Roles.Any(r => r.Name == "Admin"))
@@ -720,9 +712,9 @@
             a13.Orders = new List<Order> { o15 };
 
             var o16 = new Order() { OrderDate = new DateTime(2020, 6, 25, 14, 00, 15) };
-            var op42 = new OrderProduct() { Price = 15.00m, Product = b11, Dummy = 42, Order = o16, Quantity = 3 };
-            var op43 = new OrderProduct() { Price = 15.00m, Product = tu11, Dummy = 43, Order = o16, Quantity = 3 };
-            var op44 = new OrderProduct() { Price = 15.00m, Product = tu16, Dummy = 44, Order = o16, Quantity = 3 };
+            var op42 = new OrderProduct() { Price = 55.00m, Product = b11, Dummy = 42, Order = o16, Quantity = 3 };
+            var op43 = new OrderProduct() { Price = 105.00m, Product = tu11, Dummy = 43, Order = o16, Quantity = 3 };
+            var op44 = new OrderProduct() { Price = 45.00m, Product = tu16, Dummy = 44, Order = o16, Quantity = 3 };
             a14.Orders = new List<Order> { o16 };
 
             var o17 = new Order() { OrderDate = new DateTime(2020, 6, 26, 07, 05, 23) };
@@ -745,7 +737,7 @@
 
             var o20 = new Order() { OrderDate = new DateTime(2020, 10, 26, 20, 16, 30) };
             var op54 = new OrderProduct() { Price = 11.59m, Product = b12, Dummy = 54, Order = o20, Quantity = 1 };
-            var op55 = new OrderProduct() { Price = 12.59m, Product = tu12, Dummy = 55, Order = o20, Quantity = 1 };
+            var op55 = new OrderProduct() { Price = 120.59m, Product = tu12, Dummy = 55, Order = o20, Quantity = 1 };
             var op56 = new OrderProduct() { Price = 13.59m, Product = tu16, Dummy = 56, Order = o20, Quantity = 1 };
             var op57 = new OrderProduct() { Price = 20m, Product = tu17, Dummy = 57, Order = o20, Quantity = 1 };
             a18.Orders = new List<Order> { o20 };
@@ -753,23 +745,44 @@
             var o21 = new Order() { OrderDate = new DateTime(2020, 11, 26, 20, 16, 30) };
             var op58 = new OrderProduct() { Price = 11.59m, Product = b12, Dummy = 58, Order = o21, Quantity = 1 };
             var op59 = new OrderProduct() { Price = 12.59m, Product = tu12, Dummy = 59, Order = o21, Quantity = 1 };
-            var op60 = new OrderProduct() { Price = 13.59m, Product = tu16, Dummy = 60, Order = o21, Quantity = 1 };
+            var op60 = new OrderProduct() { Price = 180.59m, Product = tu16, Dummy = 60, Order = o21, Quantity = 1 };
             var op61 = new OrderProduct() { Price = 20m, Product = tu17, Dummy = 61, Order = o21, Quantity = 1 };
             a19.Orders = new List<Order> { o21 };
 
             var o22 = new Order() { OrderDate = new DateTime(2020, 12, 26, 20, 16, 30) };
             var op62 = new OrderProduct() { Price = 11.59m, Product = b12, Dummy = 62, Order = o22, Quantity = 1 };
-            var op63 = new OrderProduct() { Price = 12.59m, Product = tu12, Dummy = 63, Order = o22, Quantity = 1 };
+            var op63 = new OrderProduct() { Price = 65.59m, Product = tu12, Dummy = 63, Order = o22, Quantity = 1 };
             var op64 = new OrderProduct() { Price = 13.59m, Product = tu16, Dummy = 64, Order = o22, Quantity = 1 };
             var op65 = new OrderProduct() { Price = 20m, Product = tu17, Dummy = 65, Order = o22, Quantity = 1 };
-            a20.Orders = new List<Order> { o22 };
+            a22.Orders = new List<Order> { o22 };
 
-            var o23 = new Order() { OrderDate = new DateTime(2020, 9, 26, 20, 16, 30) };
-            var op66 = new OrderProduct() { Price = 11.59m, Product = b12, Dummy = 66, Order = o23, Quantity = 1 };
-            var op67 = new OrderProduct() { Price = 12.59m, Product = tu12, Dummy = 67, Order = o23, Quantity = 1 };
+            var o23 = new Order() { OrderDate = new DateTime(2020, 3, 26, 20, 16, 30) };
+            var op66 = new OrderProduct() { Price = 101.59m, Product = b12, Dummy = 66, Order = o23, Quantity = 1 };
+            var op67 = new OrderProduct() { Price = 112.59m, Product = tu12, Dummy = 67, Order = o23, Quantity = 1 };
             var op68 = new OrderProduct() { Price = 13.59m, Product = tu16, Dummy = 68, Order = o23, Quantity = 1 };
             var op69 = new OrderProduct() { Price = 20m, Product = tu17, Dummy = 69, Order = o23, Quantity = 1 };
             a21.Orders = new List<Order> { o23 };
+
+            var o24 = new Order() { OrderDate = new DateTime(2020, 1, 26, 20, 16, 30) };
+            var op70 = new OrderProduct() { Price = 101.59m, Product = b14, Dummy = 70, Order = o24, Quantity = 1 };
+            var op71 = new OrderProduct() { Price = 112.59m, Product = b9, Dummy = 71, Order = o24, Quantity = 1 };
+            var op72 = new OrderProduct() { Price = 13.59m, Product = b2, Dummy = 72, Order = o24, Quantity = 1 };
+            var op73 = new OrderProduct() { Price = 20m, Product = tu2, Dummy = 73, Order = o24, Quantity = 1 };
+            a22.Orders = new List<Order> { o24 };
+
+            var o25 = new Order() { OrderDate = new DateTime(2020, 8, 26, 20, 16, 30) };
+            var op74 = new OrderProduct() { Price = 101.59m, Product = b12, Dummy = 74, Order = o25, Quantity = 1 };
+            var op75 = new OrderProduct() { Price = 112.59m, Product = tu9, Dummy = 75, Order = o25, Quantity = 1 };
+            var op76 = new OrderProduct() { Price = 13.59m, Product = tu1, Dummy = 76, Order = o25, Quantity = 1 };
+            var op77 = new OrderProduct() { Price = 20m, Product = b15, Dummy = 77, Order = o25, Quantity = 1 };
+            a25.Orders = new List<Order> { o25 };
+
+            var o26 = new Order() { OrderDate = new DateTime(2020, 11, 26, 20, 16, 30) };
+            var op78 = new OrderProduct() { Price = 101.59m, Product = b5, Dummy = 78, Order = o26, Quantity = 1 };
+            var op79 = new OrderProduct() { Price = 12.59m, Product = tu5, Dummy = 79, Order = o26, Quantity = 1 };
+            var op80 = new OrderProduct() { Price = 13.59m, Product = tu6, Dummy = 80, Order = o26, Quantity = 1 };
+            var op81 = new OrderProduct() { Price = 20m, Product = tu7, Dummy = 81, Order = o26, Quantity = 1 };
+            a26.Orders = new List<Order> { o26 };
 
 
 
@@ -840,10 +853,13 @@
             r58_1, r58_2, r58_3, r58_4, r58_5, r58_6, r58_7, r58_8,
             r59_1, r59_2, r59_3, r59_4, r59_5, r59_6, r59_7, r59_8, r59_9, r59_10, r59_11, r59_12, r59_13, r59_14, r59_15, r59_16
             );
-            context.Products.AddOrUpdate(x => x.Title, tu1, tu2, tu3, tu4, tu5, tu6, tu7, tu8, tu9, tu10, tu11, tu12, tu13, tu14, tu15, tu16, tu17,
-                b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11, b12, b13, b14, b15, b16, b17);
+            context.Products.AddOrUpdate(x => x.Title, tu1, tu2, tu3, tu4, tu5, tu6, tu7, tu8, tu9, tu10,
+                tu11, tu12, tu13, tu14, tu15, tu16, tu17,
+                b1, b2, b3, b4, b5, b6, b7, b8, b9, b10,
+                b11, b12, b13, b14, b15, b16, b17);
             context.Orders.AddOrUpdate(x => x.OrderDate, o1, o2, o3, o4, o5, o6, o7, o8, o9, o10,
-                o11, o12, o13, o14, o15, o16, o17, o18, o19, o20,o21,o22,o23
+                o11, o12, o13, o14, o15, o16, o17, o18, o19, o20,
+                o21, o22, o23, o24, o25, o26
                 );
             context.OrderProducts.AddOrUpdate(x => x.Dummy, op1, op2, op5, op6, op7, op10,
                 op11, op12, op13, op14, op15, op16, op17, op18, op19, op20,
@@ -851,7 +867,9 @@
                 op31, op32, op33, op34, op35, op36, op37, op38, op39, op40,
                 op41, op42, op43, op44, op45, op46, op47, op48, op49, op50,
                 op51, op52, op53, op54, op55, op56, op57, op58, op59, op60,
-                op61, op62, op63, op64, op65, op66, op67, op68, op69
+                op61, op62, op63, op64, op65, op66, op67, op68, op69, op70,
+                op71, op72, op73, op74, op75, op76, op77, op78, op79, op80,
+                op81
                 );
             try
             {
