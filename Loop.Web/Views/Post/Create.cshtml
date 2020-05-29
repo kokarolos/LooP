@@ -15,22 +15,23 @@
 @using (Html.BeginForm("Create", "Post", FormMethod.Post, new { @class = "form", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="container">
 
         <div class="row">
 
             <div class="col-md-8 col-md-offset-2">
-                <div class="form-group has-error">
+                <div class="form-group">
                     <br /><br /><br /><br /><br /><br />
-                    <label for="title">Title <small>(You have to give the Title)</small></label>
-                    <input type="text" class="form-control" name="title" />
+                    @Html.LabelFor(x => x.Title)
+                    @Html.TextAreaFor(model => model.Title, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
 
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(x => x.Text)
                     @Html.TextAreaFor(model => model.Text, new { @class = "form-control" })
-
+                    @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="form-group">

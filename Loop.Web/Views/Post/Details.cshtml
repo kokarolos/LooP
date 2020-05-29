@@ -64,13 +64,24 @@
                                             <p>@reply.Text</p>
                                         </td>
                                         <td>
+
+                                            <a href="@Url.Action("Edit","Reply", new { id = reply.ReplyId })">
+                                                <i class="far fa-edit"></i>
+                                            </a>
+
+                                            <a href="@Url.Action("Delete","Reply", new { id = reply.ReplyId })">
+
+                                                <i class="far fa-trash-alt"></i>
+                                            </a>
+                                        </td>
+                                        <td>
                                             <span class="badge font-weight-normal border border-light text-white loopUser-name">@reply.ApplicationUser.UserName</span><br />
                                             <span class="post-date">Posted : @reply.PostDate.ToShortDateString()</span>
                                         </td>
-                                        <td>
-                                            @Html.ActionLink("Delete", "Delete", "Reply", new { id = reply.ReplyId }, new { @class = "post-reply, btn btn-sm " })
-                                            @Html.ActionLink("Edit", "Edit", "Reply", new { id = reply.ReplyId }, new { @class = "post-reply, btn btn-sm " })
-                                        </td>
+
+
+                                        @*@Html.ActionLink("Delete", "Delete", "Reply", new { id = reply.ReplyId }, new { @class = "post-reply, btn btn-sm " })
+                                            @Html.ActionLink("Edit", "Edit", "Reply", new { id = reply.ReplyId }, new { @class = "post-reply, btn btn-sm " })*@
                                     </tr>
                                 }
                             </tbody>
