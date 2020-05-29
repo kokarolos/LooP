@@ -6,6 +6,7 @@
 }
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/vendor/Cart.css" rel="stylesheet" />
 
 <div class="heads" style="background: url(/public/img/brewery-back1.jpg) 50% 27%;">
     <div class="container">
@@ -79,9 +80,12 @@
                 </div>
                 <div class="col-6"></div>
                 <div class="col-3">
-                    <p>
-                        <a href="@Url.Action("PaymentWithPaypal", "Payment")" class="btn btn-warning">Checkout</a>
-                    </p>
+                    <div class="block__cell">
+                        <a href="/Payment/PaymentWithPaypal" style="text-decoration:none;" class="btncustom btn--activate" id="btnActivation">
+                            <span class="btn__icon"></span>
+                            <span class="btn__text" data-wait="Waiting" data-after="Redirecting">Checkout</span>
+                        </a>
+                    </div>
                 </div>
             </div>
              
@@ -105,6 +109,26 @@
 
 
 <script>
+
+    $(document).ready(function () {
+        $('#btnActivation').click(function () {
+            if (!$('#btnActivation').hasClass(('btn--activated'))) {
+                $('#btnActivation').removeClass('btn--activate');
+                $('#btnActivation').addClass('btn--waiting');
+                setTimeout(function () {
+                    removeWaiting();
+                }, 3000);
+            }
+
+        });
+
+        function removeWaiting() {
+            $('#btnActivation').removeClass('btn--waiting');
+            $('#btnActivation').addClass('btn--activated');
+        }
+
+    });
+
     var nameValidationInput = document.getElementById('price');
     function useValue() {
         var NameValue = nameValidationInput.value;
@@ -117,5 +141,7 @@
     $('#deleteForm').on('click', function (event) {
         event.preventDefault();
     });
+
+
 
 </script>

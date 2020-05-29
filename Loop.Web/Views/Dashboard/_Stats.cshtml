@@ -14,18 +14,20 @@
     <div class="container-fluid">
         <div class="col-12">
             <div class="row">
+                @if (User.IsInRole("Admin"))
+                {
+                    <canvas id="adminProfitPerMonth" width="500" height="500"></canvas>
+                    <canvas id="adminMVPProducts" width="500" height="500"></canvas>
+                    <canvas id="adminTotalPosts" width="500" height="500"></canvas>
+                    <canvas id="admminMVPTags" width="500" height="500"></canvas>
+                    @*<canvas id="admminMVPTags" width="500" height="500"></canvas>*@
+                }
+
                 <canvas id="userPosts" width="500" height="500"></canvas>
                 <canvas id="userReplies" width="500" height="500"></canvas>
                 @*<canvas id="userTags" width="500" height="500"></canvas>*@
 
-                @if (User.IsInRole("Admin"))
-                {
-                    <canvas id="adminMVPProducts" width="500" height="500"></canvas>
-                    <canvas id="adminTotalPosts" width="500" height="500"></canvas>
-                    <canvas id="admminMVPTags" width="500" height="500"></canvas>
-                    <canvas id="adminProfitPerMonth" width="500" height="500"></canvas>
-                    @*<canvas id="admminMVPTags" width="500" height="500"></canvas>*@
-                }
+
             </div>
         </div>
 
@@ -145,27 +147,6 @@
                 });
             }
         });
-
-
-     // var ctx2 = document.getElementById('userTags').getContext('2d');
-     // var actionUrl = '@Url.Action("GetTagsPercentage", "Dashboard")';
-     //
-     // $.ajax({
-     //     url: actionUrl,
-     //     method: 'GET',
-     //     dataType: 'json',
-     //     success: function (d) {
-     //
-     //         var myDoughnutChart = new Chart(ctx, {
-     //             type: 'doughnut',
-     //             data: data,
-     //             options: options
-     //         });
-     //     }
-     // });
-     //
-     //
-
 
         var ctx3 = document.getElementById('adminMVPProducts').getContext('2d');
         var actionUrl = '@Url.Action("GetTop5Products", "Dashboard")';
@@ -302,47 +283,45 @@
                             label: '# MVP Tags',
                             data: counter,
                             backgroundColor: [
-                                'rgba(255,246,143,1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(252, 159, 62, 1)',
-                                'rgba(21, 129, 61, 1)',
-                                'rgba(25, 139, 69, 1)',
-                                'rgba(123, 119, 60, 1)',
-                                'rgba(100, 109, 67, 1)',
-                                'rgba(12, 34, 101, 1)',
-                                'rgba(11, 24, 11, 1)',
-                                'rgba(120, 64, 161, 1)',
-                                'rgba(120, 74, 201, 1)',
-                                'rgba(120, 84, 212, 1)',
-                                'rgba(120, 94, 120, 1)',
-                                'rgba(120, 124, 140, 1)',
-                                'rgba(120, 24, 100, 1)',
-                                'rgba(120, 34, 94, 1)',
+                                'rgba(71,178,228,1)',
+                                'rgba(154, 162, 235, 1)',
+                                'rgba(25,246,143,1)',
+                                'rgba(251, 53, 71, 1)',
+                                'rgba(238, 186, 212, 1)',
+                                'rgba(1, 0, 112, 1)',
+                                'rgba(128, 128,128, 1)',
+                                'rgba(160, 160,160, 1)',
+                                'rgba(192, 192, 192, 1)',
+                                'rgba(192, 192, 192, 1)',
+                                'rgba(192, 192, 192, 1)',
+                                'rgba(192, 192, 192, 1)',
+                                'rgba(192, 192, 192, 1)',
+                                'rgba(192, 192, 192, 1)',
+                                'rgba(192, 192, 192, 1)',
+                                'rgba(192, 192, 192, 1)',
+
                             ],
-                            borderColor: [
-                                'rgba(255,246,143,1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(252, 159, 62, 1)',
-                                'rgba(21, 129, 61, 1)',
-                                'rgba(25, 139, 69, 1)',
-                                'rgba(123, 119, 60, 1)',
-                                'rgba(100, 109, 67, 1)',
-                                'rgba(12, 34, 101, 1)',
-                                'rgba(11, 24, 11, 1)',
-                                'rgba(120, 64, 161, 1)',
-                                'rgba(120, 74, 201, 1)',
-                                'rgba(120, 84, 212, 1)',
-                                'rgba(120, 94, 120, 1)',
-                                'rgba(120, 124, 140, 1)',
-                                'rgba(120, 24, 100, 1)',
-                                'rgba(120, 34, 94, 1)',
-                            ],
+                           //borderColor: [
+                           //    'rgba(255,246,143,1)',
+                           //    'rgba(54, 162, 235, 1)',
+                           //    'rgba(255, 206, 86, 1)',
+                           //    'rgba(75, 192, 192, 1)',
+                           //    'rgba(153, 102, 255, 1)',
+                           //    'rgba(252, 159, 62, 1)',
+                           //    'rgba(21, 129, 61, 1)',
+                           //    'rgba(25, 139, 69, 1)',
+                           //    'rgba(123, 119, 60, 1)',
+                           //    'rgba(100, 109, 67, 1)',
+                           //    'rgba(12, 34, 101, 1)',
+                           //    'rgba(11, 24, 11, 1)',
+                           //    'rgba(120, 64, 161, 1)',
+                           //    'rgba(120, 74, 201, 1)',
+                           //    'rgba(120, 84, 212, 1)',
+                           //    'rgba(120, 94, 120, 1)',
+                           //    'rgba(120, 124, 140, 1)',
+                           //    'rgba(120, 24, 100, 1)',
+                           //    'rgba(120, 34, 94, 1)',
+                           //],
                             borderWidth: 1
                         }]
                     },
@@ -380,10 +359,11 @@
                             borderColor: [
                                 'rgba(75,192,192,1)',
                             ],
-                            borderWidth: 1,
+                            borderWidth: 3,
                             lineTension: 0.1,
                         }]
                     },
+                    
                     options: {
                         responsive: false,
                     }

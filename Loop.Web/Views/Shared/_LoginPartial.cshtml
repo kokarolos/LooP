@@ -5,8 +5,8 @@
     {
         @Html.AntiForgeryToken()
         @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "manage-btn" })
-        @*<li><a href="javascript:document.getElementById('logoutForm').submit()"> Log off </a></li>*@
-        @Html.ActionLink("Logout", "LogOut", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "manage-btn" })
+        <a href="javascript:document.getElementById('logoutForm').submit()" class="manage-btn"> Logout </a>
+        @*@Html.ActionLink("Logout", "LogOff", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "manage-btn" })*@
 
     }
 }

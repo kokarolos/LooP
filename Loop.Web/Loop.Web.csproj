@@ -319,6 +319,7 @@
     <Content Include="Content\vendor\aos.css" />
     <Content Include="Content\vendor\bootstrap.min.css" />
     <Content Include="Content\vendor\boxicons.min.css" />
+    <Content Include="Content\vendor\Cart.css" />
     <Content Include="Content\vendor\Chat.css" />
     <Content Include="Content\vendor\fonts\fonts\boxicons.svg" />
     <Content Include="Content\vendor\icofont.min.css" />
