@@ -4,57 +4,101 @@
     ViewBag.Title = "Create";
 }
 
-<div class="container" style="padding-top:100px;">
-    <div>@Model.CurrentPost.PostId</div>
-    <div>@Model.CurrentPost.Text</div>
-    <div>@Model.CurrentPost.Title</div>
-    <div>@Model.CurrentPost.ApplicationUser.FirstName</div>
-    <div>
-        @if (!(Model.CurrentPost.ApplicationUser.Images.FirstOrDefault() is null))
-        {
-            foreach (var image in Model.CurrentPost.ApplicationUser.Images)
-            {
-                if (image.ImgPath.Length > 0)
-                {
-                    <img src="@Url.Content(image.ImgPath) " width="50" height="50" />
-                }
-            }
-        }
-        else
-        {
-            <img src="~/Content/Avatars/chatbot.png" width="50" height="50" />
-        }
 
-    </div>
-</div>
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+<link href="~/Content/vendor/secondary/main.min.css" rel="stylesheet" />
+<link href="~/Content/vendor/secondary/style.css" rel="stylesheet" />
+<link href="~/content/vendor/secondary/responsive.css" rel="stylesheet" />
 
-<div class="se-pre-con"></div>
-<div class="theme-layout">
-    <div class="container">
-        <div class="row merged20">
-            <div class="col-lg-12">
-                <div class="forum-warper">
-                    <div class="central-meta">
+
+<script src="https://kit.fontawesome.com/0e62a71725.js" crossorigin="anonymous"></script>
+
+
+<div class="se-pre-con" style="padding-top:100px;"></div>
+<div class="container">
+    <div class="row merged20">
+        <div class="col-lg-12">
+            <div class="forum-warper">
+                <div class="central-meta">
+                    <div class="forum-list">
+                        <table class="table table-responsive">
+                            <thead>
+                                <tr>
+                                    <th id="post-title" scope="col">Post</th>
+                                    <th scope="col">Replies</th>
+                                    <th scope="col">Author</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    @{
+                                        int RepliesCount = Model.CurrentPost.Replies.Count();
+                                    }
+                                    <td>
+                                        <i class="fas fa-comments"></i>
+                                        @Model.CurrentPost.Title
+                                        <p>@Model.CurrentPost.Text</p>
+
+                                        @foreach (var tag in Model.CurrentPost.Tags)
+                                        {
+                                            <span class="badge mt-5 font-weight-normal border border-light text-white tag-post">@tag.Title</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        <i class="fas fa-comments"></i>
+                                        <span class="badge font-weight-normal border border-light text-white tag-post">@RepliesCount</span><br />
+                                    </td>
+
+                                    <td>
+                                        @if (!(Model.CurrentPost.ApplicationUser.Images.FirstOrDefault() is null))
+                                        {
+                                            foreach (var image in Model.CurrentPost.ApplicationUser.Images)
+                                            {
+                                                if (image.ImgPath.Length > 0)
+                                                {
+                                                    <img src="@Url.Content(image.ImgPath) " width="50" height="50" />
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <img src="~/Content/Avatars/chatbot.png" width="50" height="50" />
+                                        }
+                                        <span class="badge font-weight-normal border border-light text-white loopUser-name">@Model.CurrentPost.ApplicationUser.UserName</span><br />
+                                        <span class="post-date">Posted : @Model.CurrentPost.PostDate.ToShortDateString()</span>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                        <hr />
+
+
                         @using (Html.BeginForm())
                         {
                             @Html.AntiForgeryToken()
 
-                            <div class="form-horizontal">
-                                @*<h4>Reply</h4>*@
+                            <div class="form-group">
+                                <h5>Reply</h5>
                                 <hr />
                                 @Html.HiddenFor(model => model.PostId)
                                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                 <div class="form-group">
-                                    <i class="fa fa-comments"></i>
-                                    @Html.LabelFor(model => model.Text, htmlAttributes: new { @class = "control-label col-md-2" })
-                                    @Html.EditorFor(model => model.Text, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
-                                </div>
-                                <div class="form-group">
-                                    <input type="submit" value="Save" class="btn btn-default" />
-                                    @Html.ActionLink("Back to List", "Index", "Post")
+                                    <i class="fas fa-comments"></i>
+                                    @*@Html.LabelFor(model => model.Text, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                    <div style="border:solid 1px" class="col-md-offset-2 col-md-12">
+                                        @Html.TextAreaFor(model => model.Text)
+                                        @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
+                                    </div>
                                 </div>
                             </div>
+                            <div class="form-group" style="display:inline-block">
+                                <button type="submit" value="Save" class="btn btn-sm btn-warning text-white"> Save</button>
+                            </div>
+                            <div class="form-group" style="display:inline-block">
+                                <div id="back-button">@Html.ActionLink("Back", "Index", "Post", null, new { @class = " btn btn-sm" })</div>
+                            </div>
+
                         }
                     </div>
                 </div>
@@ -62,3 +106,4 @@
         </div>
     </div>
 </div>
+
