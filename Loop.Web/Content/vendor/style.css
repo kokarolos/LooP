@@ -167,7 +167,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
     .nav-menu a:hover, .nav-menu .active > a, .nav-menu li:hover > a {
-        /*color: #47b2e4;*/
+        color: #47b2e4;
     }
 
 .nav-menu .drop-down ul {
@@ -262,7 +262,6 @@ h1, h2, h3, h4, h5, h6 {
     display: inline-block;
     border: 2px solid #47b2e4;
     font-weight: 600;
-
 }
 
     .get-started-btn:hover {
@@ -289,11 +288,11 @@ h1, h2, h3, h4, h5, h6 {
     display: inline-block;
     border: 2px solid #47b2e4;
     font-weight: 600;
-    margin-top:5px;
-    margin-left:15px;
+    margin-top: 5px;
+    margin-left: 15px;
 }
 
-    .manage-btn:hover {
+    .manage-btn :hover {
         color: #fff;
         background-color: #31a9e1;
     }

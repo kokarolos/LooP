@@ -77,6 +77,24 @@
                                         <td>
                                             <span class="badge font-weight-normal border border-light text-white loopUser-name">@reply.ApplicationUser.UserName</span><br />
                                             <span class="post-date">Posted : @reply.PostDate.ToShortDateString()</span>
+
+                                            @*<div>
+                                                @if (!(reply.ApplicationUser.Images.FirstOrDefault() is null))
+                                                {
+                                                    foreach (var image in reply.ApplicationUser.Images)
+                                                    {
+                                                        if (image.ImgPath.Length > 0)
+                                                        {
+                                                            <img src="@Url.Content(image.ImgPath) " width="50" height="50" />
+                                                        }
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <img src="~/Content/Avatars/chatbot.png" width="50" height="50" />
+                                                }
+
+                                            </div>*@
                                         </td>
 
 

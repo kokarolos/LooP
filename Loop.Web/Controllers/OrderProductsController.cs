@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Web.Caching;
-using System.Web.DynamicData;
 using System.Web.Mvc;
-using Antlr.Runtime.Misc;
 using Loop.Database;
 using Loop.Entities.Concrete;
 using Loop.Entities.Intermediate;
 using Loop.Services;
-using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 
 namespace Loop.Web.Controllers
@@ -43,11 +38,14 @@ namespace Loop.Web.Controllers
         {
             var product = db.Products.GetAll().ToList().FirstOrDefault(x => x.ProductId == productId);
             var cart = CreateOrGetCart();
-            //TODO:: Counter ++
             var existingItem = cart.OrderProducts.Where(x => x.ProductId == productId).Any();
 
+            //If added product exists
             if (existingItem)
             {
+                //getting previous product -> creating new OrderPruct and add them to a temp list
+                //So i can calculate quantities and prices
+                //after using linq i replace current OrderProduct with the new one
 
                 var previousProduct = cart.OrderProducts.Where(x => x.ProductId == productId).First();
                 var currentProduct = new OrderProduct()
@@ -59,12 +57,12 @@ namespace Loop.Web.Controllers
                     Product = db.Products.GetById(productId)
                 };
 
-                var list = new List<OrderProduct>();
-                list.Add(previousProduct);
-                list.Add(currentProduct);
+                var tempList = new List<OrderProduct>();
+                tempList.Add(previousProduct);
+                tempList.Add(currentProduct);
 
-                var avgPrice = list.Average(x=>x.Price);
-                var currentQuantity = list.Sum(x => x.Quantity);
+                var avgPrice = tempList.Average(x=>x.Price);
+                var currentQuantity = tempList.Sum(x => x.Quantity);
 
                 var query = cart.OrderProducts.Where(x => currentProduct.ProductId == previousProduct.ProductId)
                                               .Select(g => new OrderProduct()
@@ -76,10 +74,9 @@ namespace Loop.Web.Controllers
                                                   Product = db.Products.GetById(productId),
                                               }).FirstOrDefault();
 
-                list.Remove(previousProduct);
+                tempList.Remove(previousProduct);
                 cart.OrderProducts.Remove(previousProduct);
                 cart.OrderProducts.Add(query);
-
 
             }
             else

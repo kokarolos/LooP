@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Loop.Entities;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Loop.Web.Models
@@ -15,6 +16,10 @@ namespace Loop.Web.Models
         [Required]
         [Display(Name = "Date and Time of Replying")]
         public DateTime PostDate { get; set; }
+
+        public Post CurrentPost { get; set; }
+
+
 
         //[Required]
         //public virtual ApplicationUser ApplicationUser { get; set; }

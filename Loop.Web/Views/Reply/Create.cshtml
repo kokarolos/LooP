@@ -4,8 +4,31 @@
     ViewBag.Title = "Create";
 }
 
+<div class="container" style="padding-top:100px;">
+    <div>@Model.CurrentPost.PostId</div>
+    <div>@Model.CurrentPost.Text</div>
+    <div>@Model.CurrentPost.Title</div>
+    <div>@Model.CurrentPost.ApplicationUser.FirstName</div>
+    <div>
+        @if (!(Model.CurrentPost.ApplicationUser.Images.FirstOrDefault() is null))
+        {
+            foreach (var image in Model.CurrentPost.ApplicationUser.Images)
+            {
+                if (image.ImgPath.Length > 0)
+                {
+                    <img src="@Url.Content(image.ImgPath) " width="50" height="50" />
+                }
+            }
+        }
+        else
+        {
+            <img src="~/Content/Avatars/chatbot.png" width="50" height="50" />
+        }
 
-<div class="se-pre-con" style="padding-top:100px;"></div>
+    </div>
+</div>
+
+<div class="se-pre-con"></div>
 <div class="theme-layout">
     <div class="container">
         <div class="row merged20">

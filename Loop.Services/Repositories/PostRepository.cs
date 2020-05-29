@@ -27,7 +27,8 @@ namespace Loop.Services.Repositories
         // .Replies.ApplicationUser.Images smth like this
         public override IEnumerable<Post> GetAll()
         {
-           return Database.Posts.Include(posts => posts.ApplicationUser.Images)
+           return Database.Posts.Include(post=>post.ApplicationUser)
+                                .Include(posts => posts.ApplicationUser.Images)
                                 .Include(post=>post.Replies)
                                 .AsEnumerable();
         }
