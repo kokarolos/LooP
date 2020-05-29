@@ -91,15 +91,13 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <button class="btn btn-sm btn-primary" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                <button class="btn btn-sm btn-success" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
-                @Html.ActionLink(" Back", "Index", null, new { @class = "btn btn-sm btn-danger glyphicon glyphicon-circle-arrow-left" })
+                <button type="submit"><i class="btn btn-sm btn-dark text-white"></i>Save</button>
+                <button type="reset"><i class="btn btn-sm btn-warning text-white"></i>Reset</button>
+                <div id="back-button">@Html.ActionLink(" Back", "Index", null, new { @class = "btn btn-sm" })</div>
             </div>
         </div>
-
     </div>
 }
-
 <script>
 
     $(document).ready(function () {
