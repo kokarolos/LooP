@@ -62,7 +62,7 @@
                     </div><!-- title block -->
 
                     <h4>Find Any Product You Need</h4>
-                    <a id="basket-button" class="addnewforum" href="/OrderProducts/Cart"><i class="fas fa-shopping-cart"></i>  Shopping Basket</a>
+                    <a style="margin-left: 5px" id="basket-button" class="addnewforum" href="/OrderProducts/Cart"><i class="fas fa-shopping-cart"></i>  Shopping Basket</a>
                     <a class="addnewforum" href="~/Products/Create" title=""><i class="fa fa-plus mx-2"></i> Create Product</a>
                     @Html.PagedListPager(Model, x => @Url.Action("Index", "Products", new { page = x, sortOrder = ViewBag.TitleSortParam, pSize = ViewBag.CurrentpSize }))
                 </div>

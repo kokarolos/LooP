@@ -95,8 +95,32 @@
             <div class="col-md-offset-2 col-md-10">
                 <button class="btn btn-sm btn-warning text-white" type="submit">Save</button>
                 <span id="back-button">@Html.ActionLink(" Back", "Index", null, new { @class = "btn btn-sm " })</span>
+                <button type="submit"><i class="btn btn-sm btn-dark text-white"></i>Save</button>
+                <button type="reset"><i class="btn btn-sm btn-warning text-white"></i>Reset</button>
+                <div id="back-button">@Html.ActionLink(" Back", "Index", null, new { @class = "btn btn-sm" })</div>
             </div>
         </div>
-
     </div>
-}
+<script>
+
+    $(document).ready(function () {
+
+        var readURL = function (input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('.avatar').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $(".file-upload").on('change', function () {
+            readURL(this);
+        });
+    });
+
+</script>
+
