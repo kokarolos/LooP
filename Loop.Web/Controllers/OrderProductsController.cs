@@ -1,10 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
+using System.Web.Caching;
+using System.Web.DynamicData;
 using System.Web.Mvc;
 using Loop.Database;
 using Loop.Entities.Concrete;
 using Loop.Entities.Intermediate;
 using Loop.Services;
+using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 
 namespace Loop.Web.Controllers
@@ -42,21 +47,44 @@ namespace Loop.Web.Controllers
 
             if (existingItem)
             {
-                // Product 1 , int ? 5
+
+                var previousProduct = cart.OrderProducts.Where(x => x.ProductId == productId).First();
+                var currentProduct = cart.OrderProducts.Where(x => x.ProductId == productId).Last();
+
+                var avgPrice = (currentProduct.Price + previousProduct.Price) / 2;
+                var currentQuantity = currentProduct.Quantity + previousProduct.Quantity;
+
+                var query = cart.OrderProducts.Where(x => currentProduct.ProductId == previousProduct.ProductId)
+                                              .Select(g => new OrderProduct()
+                                              {
+                                                  Order = null,
+                                                  Price = avgPrice,
+                                                  Quantity = currentQuantity,
+                                                  ProductId = productId,
+                                                  Product = db.Products.GetById(productId),
+                                              }).FirstOrDefault();
+
+                cart.OrderProducts.Remove(previousProduct);
+                cart.OrderProducts.Add(query);
+
+
+            }
+            else
+            {
+
+                //TODO : If cart is Checkouted or Canceled we will Create new Order else we will keep the same
+                //Maybe Delegate?
+                cart.OrderProducts.Add(new OrderProduct()
+                {
+                    //We dont need to create an order -> we will create order at checkout proccess
+                    Order = null,
+                    ProductId = productId,
+                    Product = db.Products.GetById(productId),
+                    Price = price,
+                    Quantity = quantity
+                });
             }
 
-            //TODO : If cart is Checkouted or Canceled we will Create new Order else we will keep the same
-            //Maybe Delegate?
-
-            cart.OrderProducts.Add(new OrderProduct()
-            {
-                //We dont need to create an order -> we will create order at checkout proccess
-                Order = null,
-                ProductId = productId,
-                Product = db.Products.GetById(productId),
-                Price = price,
-                Quantity = quantity
-            });
 
 
             SaveCart(cart);

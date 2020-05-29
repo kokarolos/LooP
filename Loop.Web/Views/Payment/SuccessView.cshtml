@@ -1,19 +1,19 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 
-    <img src="~/Content/assets/productPhoto.jpg" />
+<img src="~/Content/assets/productPhoto.jpg" />
 <!DOCTYPE html>
 
 <html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>SuccessView</title>
-</head>
 <body>
-    <div> 
-        <p>Success</p>
-    </div>
+    <h5>Thank you for your purchase</h5>
+    <h1>Redirecting in <span id="sec">5</span> seconds...</h1>
 </body>
 </html>
+
+<script>
+    window.setTimeout(function() {
+        window.location.href = 'https://localhost:44391/';
+    }, 4000);
+</script>
