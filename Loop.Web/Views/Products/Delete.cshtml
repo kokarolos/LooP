@@ -1,48 +1,60 @@
 ﻿@model Loop.Entities.Concrete.Product
 
 @{
-    Layout = null;
+    ViewBag.Title = "Delete";
 }
 
 <!DOCTYPE html>
 
 <html>
 <head>
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+    <link href="~/Content/vendor/secondary/main.min.css" rel="stylesheet" />
+    <link href="~/Content/vendor/secondary/style.css" rel="stylesheet" />
+    <link href="~/content/vendor/secondary/color.css" rel="stylesheet" />
+    <link href="~/content/vendor/secondary/responsive.css" rel="stylesheet" />
+
     <meta name="viewport" content="width=device-width" />
     <title>Delete</title>
 </head>
 <body>
-    <h3>Are you sure you want to delete this?</h3>
-    <div>
-        <h4>Product</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
+    <div class="delete-product">
+        <h2>Are you sure you want to delete this?</h2>
+        <div class="dl-horizontal">
+            <h4>Product</h4>
+            <h5>
                 @Html.DisplayNameFor(model => model.Title)
-            </dt>
-    
-            <dd>
+            </h5>
+            <br />
+            <p>
                 @Html.DisplayFor(model => model.Title)
-            </dd>
-    
-            <dt>
+            </p>
+            <br />
+            <h5>
                 @Html.DisplayNameFor(model => model.Description)
-            </dt>
-    
-            <dd>
+            </h5>
+            <br />
+            <p>
                 @Html.DisplayFor(model => model.Description)
-            </dd>
-    
-        </dl>
-    
-        @using (Html.BeginForm()) {
-            @Html.AntiForgeryToken()
-    
-            <div class="form-actions no-color">
-                <input type="submit" value="Delete" class="btn btn-default" /> |
-                @Html.ActionLink("Back to List", "Index")
-            </div>
-        }
+            </p>
+
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Delete" class="btn btn-sm btn-primary m-2" /> |
+                    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-sm btn-success" })
+                </div>
+            }
+        </div>
     </div>
 </body>
 </html>
+
+<script src="js/main.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI"></script>
+<script src="js/locationpicker.jquery.js"></script>
+<script src="js/map-init.js"></script>
+<script src="js/script.js"></script>

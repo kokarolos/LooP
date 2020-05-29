@@ -23,89 +23,74 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
-<hr>
-
 @using (Html.BeginForm("Create", "Products", FormMethod.Post, new { @class = "form", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
-    <h4 class="text-center">Create A New Tutorial</h4>
+    <div class="form-horizontal">
+        <h4 class="text-center">Create A New Video Tutorial</h4>
+        <hr />
+        @Html.ValidationSummary(true)
 
-    <div class="container ">
-        <div class="row">
 
-            <div class="col-sm-9">
-                <div class="tab-content">
-                    <div class="tab-pane active" id="home">
-                        <hr>
-
-                        <div class="form-group">
-                            <div class="col-xs-6">
-                                @Html.LabelFor(model => model.Title)
-                                @Html.EditorFor(model => model.Title, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.Title)
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-xs-6">
-                                @Html.LabelFor(model => model.Description)
-                                @Html.EditorFor(model => model.Description, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.Description)
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-xs-6">
-                                @Html.LabelFor(model => model.ProductionDate)
-                                @Html.EditorFor(model => model.ProductionDate, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.ProductionDate)
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-xs-6">
-                                @Html.LabelFor(model => model.TutorialAuthor)
-                                @Html.EditorFor(model => model.TutorialAuthor, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.TutorialAuthor)
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-xs-6">
-                                @Html.LabelFor(model => model.PhotoUrl)
-                                @Html.EditorFor(model => model.PhotoUrl, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.PhotoUrl)
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-xs-6">
-                                @Html.LabelFor(model => model.Duration)
-                                @Html.EditorFor(model => model.Duration, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.Duration)
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-xs-12">
-                                <br>
-                                <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                                <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
-                            </div>
-                        </div>
-
-                    </div><!--/tab-content-->
-
-                </div><!--/col-9-->
-            </div><!--/row-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.Title)
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+            </div>
         </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.Description)
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductionDate, new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.ProductionDate)
+                @Html.ValidationMessageFor(model => model.ProductionDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TutorialAuthor, new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.TutorialAuthor)
+                @Html.ValidationMessageFor(model => model.TutorialAuthor, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PhotoUrl, new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.PhotoUrl)
+                @Html.ValidationMessageFor(model => model.PhotoUrl, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Duration, new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.Duration)
+                @Html.ValidationMessageFor(model => model.Duration, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button class="btn btn-sm btn-primary" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                <button class="btn btn-sm btn-success" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
+                @Html.ActionLink(" Back", "Index", null, new { @class = "btn btn-sm btn-danger glyphicon glyphicon-circle-arrow-left" })
+            </div>
+        </div>
+
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 <script>
 
@@ -131,4 +116,5 @@
     });
 
 </script>
+
 

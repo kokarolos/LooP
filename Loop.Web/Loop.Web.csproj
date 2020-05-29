@@ -244,6 +244,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\assets\15255.jpg" />
     <Content Include="Content\assets\all_posts.jpg" />
     <Content Include="Content\assets\apple-touch-icon.png" />
     <Content Include="Content\assets\clients\client-1.png" />

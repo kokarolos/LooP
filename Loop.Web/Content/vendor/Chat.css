@@ -91,7 +91,7 @@ a:focus {
             }
 
 .popup-head {
-    background: #304445 none repeat scroll 0 0 !important;
+    background: #209dd8 none repeat scroll 0 0 !important;
     border-bottom: 3px solid #ccc;
     color: #fff;
     display: table;
@@ -117,7 +117,7 @@ a:focus {
     height: 342px;
     overflow-y: scroll;
     width: 316px;
-    background-color: #273746;
+    background-color: #fff;
 }
 
 .chat-btn {
@@ -149,7 +149,7 @@ aside {
 .chat_box {
     padding: 16px;
     /*background: #273746 repeat-y scroll 0 0;*/
-    background-color: #273746;
+    background-color: #fff;
 }
 
     .chat_box .chat_message_wrapper::after {
@@ -211,13 +211,13 @@ img {
 
 /*Chat pm style */
 .chat_box.chat_box_colors_a .chat_message_wrapper ul.chat_message > li {
-    background: #FCFBF6 none repeat scroll 0 0;
-    color: #000000;
+    background: #bae3f8 none repeat scroll 0 0;
+    color: rgba(0,0,0,0.95);
 }
 
 .open-btn {
-    background-color: #273746;
-    border: 2px solid #273746;
+    background-color: #47b2e4;
+    border: 3px solid #47b2e4;
     border-radius: 32px;
     color: white !important;
     display: inline-block;
@@ -254,7 +254,7 @@ img {
         }
 
 .chat_box.chat_box_colors_a .chat_message_wrapper ul.chat_message > li .chat_message_time {
-    color: rgba(185, 186, 180, 0.9);
+    color: rgba(0,0,0,0.95);
 }
 
 .chat_box .chat_message_wrapper ul.chat_message > li .chat_message_time {
@@ -280,7 +280,7 @@ img {
 }
 
 .chat_box.chat_box_colors_a .chat_message_wrapper ul.chat_message > li:first-child::before {
-    border-right-color: #FCFBF6;
+    border-right-color: #bae3f8;
 }
 
 .chat_box .chat_message_wrapper.chat_message_right ul.chat_message > li:first-child::before {
