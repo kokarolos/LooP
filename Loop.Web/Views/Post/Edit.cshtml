@@ -7,64 +7,46 @@
 <h2>Edit</h2>
 
 
-@using (Html.BeginForm())
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
+
+@using (Html.BeginForm("Edit", "Post", FormMethod.Post, new { @class = "form", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-
-<div class="form-horizontal">
-    <h4>Post</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.PostId)
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="form-group ">
+                    <br /><br /><br /><br /><br /><br />
+                    @Html.LabelFor(x => x.Title)
+                    @Html.TextAreaFor(model => model.Title, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-        </div>
-    </div>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Text)
+                    @Html.TextAreaFor(model => model.Text, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
+                </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Text, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Text, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
-        </div>
-    </div>
-  
-    <div class="form-group">
-        <div class="col-md-10">
-            @Html.HiddenFor(model => model.PostDate,new { @Value = DateTime.Now })
-            @Html.ValidationMessageFor(model => model.PostDate, "", new { @class = "text-danger" })
-        </div>
-    </div>
+                <div class="form-group">
+                    @Html.Label("Post Thematology")
+                    @Html.ListBox("SelectedTagsIds", null, new { @class = "col-md form-control" })
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">
+                        Save
+                    </button>
+                    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+                </div>
+                <br /><br /><br /><br /><br /><br />
+            </div>
 
-    <div class="form-group">
-        <div class="col-md">
-            @Html.Label("Post Tags")
-            @Html.ListBox("SelectedTagsIds")
-        </div>
-    </div>
-</div>
-
-    <div class="form-group">
-        <div class="col-md-10">
-            <input id="loginId" type="hidden" value="@ViewBag.ApplicationUserId" />
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default" />
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
