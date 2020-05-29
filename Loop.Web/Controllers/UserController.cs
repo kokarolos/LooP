@@ -13,7 +13,6 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using System.Collections.Generic;
-using Twilio.Rest.Autopilot.V1.Assistant;
 
 namespace Loop.Web.Controllers
 {
