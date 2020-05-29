@@ -56,5 +56,20 @@
 .more-post-optns {
     float: right;
 }
+
+.form-horizontal {
+    padding-top: 5%;
+}
+
+.delete-product {
+    text-align: center;
+    padding-top: 5%;
+}
+
+.dl-horizontal {
+    display: block;
+    text-align: center;
+}
 /******#endregion PRODUCT******/
 /******************************/
+

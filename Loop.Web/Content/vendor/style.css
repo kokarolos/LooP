@@ -81,8 +81,8 @@ h1, h2, h3, h4, h5, h6 {
 .back-to-top {
     position: fixed;
     display: none;
-    right: 15px;
-    bottom: 15px;
+    left: 10px;
+    bottom: 0;
     z-index: 99999;
 }
 
@@ -157,7 +157,6 @@ h1, h2, h3, h4, h5, h6 {
     }
 
 .nav-menu a {
-    display: block;
     position: relative;
     color: #fff;
     transition: 0.3s;
