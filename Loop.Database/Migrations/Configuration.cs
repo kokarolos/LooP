@@ -475,6 +475,24 @@
             Reply r45_2 = new Reply() { ApplicationUser = a5, Post = p45, Text = "Microsoft FlexGrid (MSFlexGrid) control displays and operates on tabular data. It allows programmatically sort, merge, and format tables containing strings and pictures.", PostDate = new DateTime(2019, 12, 30, 16, 14, 0) };
             Reply r45_3 = new Reply() { ApplicationUser = a1, Post = p45, Text = "DBgrid is A spreadsheet-like bound control that displays a series of rows and columns representing records and fields from a ADO Recordset object.", PostDate = new DateTime(2019, 12, 30, 17, 18, 0) };
 
+            // EDWWWWWWWWWWWWWW
+            Post p86 = new Post() { ApplicationUser = a8, Title = "Angular", Text = "Hello from me , I would like to make a question.If anybody could help me please and explain me What is Angular??", PostDate = new DateTime(2019, 07, 12, 16, 0, 0), Tags = new List<Tag>() { tg13,tg20 } };
+            Reply r86_1 = new Reply() { ApplicationUser = a4, Post = p86, Text = "Angular is a TypeScript-based open-source web application framework.", PostDate = new DateTime(2019, 07, 12, 16, 7, 0) };
+            Reply r86_2 = new Reply() { ApplicationUser = a5, Post = p86, Text = "It offers an easy and powerful way of building front end web-based applications.", PostDate = new DateTime(2019, 12, 30, 16, 14, 0) };
+            Reply r86_3 = new Reply() { ApplicationUser = a1, Post = p86, Text = "Angular is a framework and integrates a range of features like declarative templates, dependency injection, end-to-end tooling, etc. that facilitates web application development.", PostDate = new DateTime(2019, 12, 30, 17, 18, 0) };
+              
+            Post p87 = new Post() { ApplicationUser = a9, Title = "Angular, Animation Support", Text = "Hi,please somenone to explain me some things.Does Angular support Animation???", PostDate = new DateTime(2019, 03, 11, 16, 0, 0), Tags = new List<Tag>() { tg20 } };
+            Reply r87_1 = new Reply() { ApplicationUser = a5, Post = p87, Text = "Angular’s intuitive API allows the creation of high-performance, complex animation timelines with very little code..", PostDate = new DateTime(2019, 05, 12, 16, 7, 0) };
+            Reply r87_2 = new Reply() { ApplicationUser = a8, Post = p87, Text = "Exactly what you said!!", PostDate = new DateTime(2019, 05, 12, 16, 7, 0) };
+
+
+
+
+
+
+
+
+
             Post p46 = new Post() { ApplicationUser = a9, Title = "Flexgrid and dbgrid control- Basic", Text = "Heeelllppp!Maybe my question , is a cap of tea for the most of you here.What is the differences between flexgrid and dbgrid control?", PostDate = DateTime.Now, Tags = new List<Tag>() { tg5, tg1 } };
             Post p47 = new Post() { ApplicationUser = a10, Title = "How Mvc works", Text = "What is Asp.Net MVC?", PostDate = DateTime.Now, Tags = new List<Tag>() { tg5 } };
             Post p48 = new Post() { ApplicationUser = a11, Title = "What is Library?", Text = "How can i import an library?", PostDate = DateTime.Now, Tags = new List<Tag>() { tg10 } };
@@ -807,7 +825,7 @@
                 p51, p52, p53, p54, p55, p56, p57, p58, p59, p60,
                 p61, p62, p63, p64, p65, p66, p67, p68, p69, p70,
                 p71, p72, p73, p74, p75, p76, p77, p78, p79, p80,
-                p81, p82, p83, p84
+                p81, p82, p83, p84,p86,p87
                 );
             context.Replies.AddOrUpdate(x => x.Text, r1_1, r1_2,
             r2_1, r2_2, r2_3,
@@ -860,7 +878,7 @@
             r56_1, r56_2, r56_3, r56_4, r56_5, r56_6, r56_7, r56_8,
             r57_1, r57_2, r57_3, r57_4, r57_5, r57_6, r57_7, r57_8,
             r58_1, r58_2, r58_3, r58_4, r58_5, r58_6, r58_7, r58_8,
-            r59_1, r59_2, r59_3, r59_4, r59_5, r59_6, r59_7, r59_8, r59_9, r59_10, r59_11, r59_12, r59_13, r59_14, r59_15, r59_16
+            r59_1, r59_2, r59_3, r59_4, r59_5, r59_6, r59_7, r59_8, r59_9, r59_10, r59_11, r59_12, r59_13, r59_14, r59_15, r59_16,r86_1,r86_2,r86_3,r87_1,r87_2
             );
             context.Products.AddOrUpdate(x => x.Title, tu1, tu2, tu3, tu4, tu5, tu6, tu7, tu8, tu9, tu10,
                 tu11, tu12, tu13, tu14, tu15, tu16, tu17,
