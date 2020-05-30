@@ -108,3 +108,13 @@
 }
 /******#endregion USER******/
 /******************************/
+
+/***************************/
+/******#region CONTACT INDEX******/
+#contact-photo {
+    background-image: url(../Content/assets/2534050.jpg);
+    background-size: cover;
+    box-shadow: inset 0 0 3px 0 #47b2e4;
+}
+/******#endregion CONTAXT INDEX******/
+/******************************/
