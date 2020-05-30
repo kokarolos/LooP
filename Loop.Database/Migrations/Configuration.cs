@@ -487,7 +487,6 @@
 
             //This User(admin) is to test statistics view
 
-
             Post p53 = new Post() { ApplicationUser = admin, Title = "dummy1dummy1", Text = "dummy1dummy1", PostDate = new DateTime(2020, 1, 1), Tags = new List<Tag>() { tg11 } };
             Reply r53_1 = new Reply() { ApplicationUser = admin, Post = p53, Text = "This is a Dummy reply1", PostDate = new DateTime(2020, 2, 1) };
             Reply r53_2 = new Reply() { ApplicationUser = admin, Post = p53, Text = "This is a Dummy reply2", PostDate = new DateTime(2020, 2, 1) };
