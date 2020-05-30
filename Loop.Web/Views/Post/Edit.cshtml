@@ -38,10 +38,13 @@
                     @Html.ListBox("SelectedTagsIds", null, new { @class = "col-md form-control" })
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary">
-                        Save
-                    </button>
-                    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+                    <div class="form-group" style="display:inline-block">
+                        <button type="submit" value="Edit" class="btn btn-sm btn-warning text-white"> Save</button>
+                    </div>
+                    <div class="form-group" style="display:inline-block">
+                        <div id="back-button">@Html.ActionLink("Back", "Index", "Post", null, new { @class = " btn btn-sm" })</div>
+                    </div>
+                  
                 </div>
                 <br /><br /><br /><br /><br /><br />
             </div>

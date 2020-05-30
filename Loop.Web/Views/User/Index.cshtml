@@ -1,20 +1,47 @@
 ﻿@model IEnumerable<Loop.Entities.Concrete.ApplicationUser>
 
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
+<title>LooP</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script src="https://kit.fontawesome.com/0e62a71725.js" crossorigin="anonymous"></script>
+
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+<link href="~/Content/vendor/secondary/main.min.css" rel="stylesheet" />
+<link href="~/Content/vendor/secondary/style.css" rel="stylesheet" />
+<link href="~/content/vendor/secondary/color.css" rel="stylesheet" />
+<link href="~/content/vendor/secondary/responsive.css" rel="stylesheet" />
 
 
 @{
     ViewBag.Title = "Index";
 }
 
-<div class="container">
+<div id="edit-user" class="container">
+
+    <h2>All Users</h2>
+
     <div class="row">
         @foreach (var user in Model)
         {
             <div class="col-xs-12 col-sm-6 col-md-6">
                 <div class="well well-sm">
+
+                    <div class="more-post-optns">
+                        <i class="fas fa-ellipsis-v"></i>
+                        <ul>
+                            <li><i class="fa fa-pencil-square-o"></i>@Html.ActionLink("Edit", "Edit", new { id = user.Id })</li>
+                            <li>
+                                <i class="fa fa-trash-o"></i>@Html.ActionLink("Delete", "Delete", new { id = user.Id })
+                            </li>
+                        </ul>
+                    </div>
+
                     <div class="row">
                         <div class="col-sm-6 col-md-4">
                             @if (user.Images.Count > 0)
@@ -30,6 +57,7 @@
                                 <img src="@Url.Content("~/Content/Avatars/chatbot.png")" alt="" class="user-Image" />
                             }
                         </div>
+
                         <div class="col-sm-6 col-md-8">
                             <h4>
                                 @if (user.Roles.Count > 0)
@@ -50,17 +78,6 @@
                                 }
 
                             </h4>
-                            <div class="more" style="display:inline-block">
-                                <div class="more-post-optns">
-                                    <i class="ti-more-alt"></i>
-                                    <ul>
-                                        <li><i class="fa fa-pencil-square-o"></i>@Html.ActionLink("Edit", "Edit", new { id = user.Id})</li>
-                                        <li>
-                                            <i class="fa fa-trash-o"></i>@Html.ActionLink("Delete", "Delete", new { id = user.Id }, new { onclick = "return confirm('Are you sure you wish to delete this product?');" })
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
                             <p>
                                 @if (!(user.Email == null))
                                 {
