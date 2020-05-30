@@ -14,17 +14,13 @@
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-
-
     <link href="~/Content/assets/img/favicon.png" rel="icon">
     <link href="~/Content/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-
     <link href="~/Content/vendor/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <link href="~/Content/vendor/icofont.min.css" rel="stylesheet" />
@@ -57,7 +53,6 @@
     </section><!-- End Hero -->
 
     <main id="main">
-
         <!-- ======= Cliens Section ======= -->
         <section id="cliens" class="cliens section-bg">
             <div class="container">
@@ -118,7 +113,7 @@
                             Our mission is to <b>help</b> developers write the script of the future.
                             This means helping you find and hire skilled developers for your business and providing them the tools they need to <b>share knowledge</b> and work effectively.
                         </p>
-                        <a href="#" class="btn-learn-more">Learn More</a>
+                        <a href="#team" class="btn-learn-more">Learn More</a>
                     </div>
                 </div>
             </div>
@@ -371,7 +366,7 @@
                         </div>
                     </div>
 
-            
+
                     <div class="col-lg-4 col-md-6 portfolio-item filter-back">
                         <div class="portfolio-img"><img src="~/Content/assets/portfolio/cotlyn.jpg" class="img-fluid" alt=""></div>
                         <div class="portfolio-info">
@@ -614,51 +609,35 @@
 
                     <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
                         <div class="box">
-                            <h3>@Model.RecomendedProducts.Keys.ElementAt(1)</h3>
-                            <h4><sup>#</sup>2<span>MVProduct</span></h4>
-                            <ul>
-                                <li><i class="bx bx-check"></i> Quam adipiscing vitae proin</li>
-                                <li><i class="bx bx-check"></i> Nec feugiat nisl pretium</li>
-                                <li><i class="bx bx-check"></i> Nulla at volutpat diam uteera</li>
-                                <li class="na"><i class="bx bx-x"></i> <span>Pharetra massa massa ultricies</span></li>
-                                <li class="na"><i class="bx bx-x"></i> <span>Massa ultricies mi quis hendrerit</span></li>
-                            </ul>
+                            <h1 style="height:165px">@Model.RecomendedProducts.Keys.ElementAt(1)</h1>
+                            <h5>Second Best Seller</h5>
+                            <h5>Purchases: @Model.RecomendedProducts.Values.ElementAt(1)</h5>
+                            <p style="height:150px"><i class="fas fa-check-circle"></i> @Model.RecentProducts.ElementAt(1).Description</p>
                             <a href="#" class="buy-btn">Buy Now</a>
                         </div>
                     </div>
 
                     <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="200">
                         <div class="box featured">
-                            <h3>@Model.RecomendedProducts.Keys.FirstOrDefault().ToString()</h3>
-                            <h4>Purchased:@Model.RecomendedProducts.Values.ElementAt(0)<span style="padding:10px; text-align:center">Best Seller</span></h4>
-                            <ul>
-                                <li><i class="bx bx-check"></i> Quam adipiscing vitae proin</li>
-                                <li><i class="bx bx-check"></i> Nec feugiat nisl pretium</li>
-                                <li><i class="bx bx-check"></i> Nulla at volutpat diam uteera</li>
-                                <li><i class="bx bx-check"></i> Pharetra massa massa ultricies</li>
-                                <li><i class="bx bx-check"></i> Massa ultricies mi quis hendrerit</li>
-                            </ul>
+                            <h1 style="height:165px">@Model.RecomendedProducts.Keys.ElementAt(0)</h1>
+                            <h5>First Best Seller</h5>
+                            <h5>Purchases: @Model.RecomendedProducts.Values.ElementAt(0)</h5>
+                            <p style="height:150px"><i class="fas fa-check-circle"></i> @Model.RecentProducts.ElementAt(0).Description</p>
                             <a href="#" class="buy-btn">Buy Now</a>
                         </div>
                     </div>
 
                     <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="300">
                         <div class="box">
-                            <h3>@Model.RecomendedProducts.Keys.ElementAt(2)</h3>
-                            <h4><sup>#</sup>3<span>MVProduct</span></h4>
-                            <ul>
-                                <li><i class="bx bx-check"></i> Quam adipiscing vitae proin</li>
-                                <li><i class="bx bx-check"></i> Nec feugiat nisl pretium</li>
-                                <li><i class="bx bx-check"></i> Nulla at volutpat diam uteera</li>
-                                <li><i class="bx bx-check"></i> Pharetra massa massa ultricies</li>
-                                <li><i class="bx bx-check"></i> Massa ultricies mi quis hendrerit</li>
-                            </ul>
+                            <h1 style="height:165px">@Model.RecomendedProducts.Keys.ElementAt(2)</h1>
+                            <h5>Third Best Seller</h5>
+                            <h5>Purchases: @Model.RecomendedProducts.Values.ElementAt(2)</h5>
+                            <p style="height:150px"><i class="fas fa-check-circle"></i> @Model.RecentProducts.ElementAt(2).Description</p>
                             <a href="#" class="buy-btn">Buy Now</a>
                         </div>
                     </div>
 
                 </div>
-
             </div>
         </section><!-- End Pricing Section -->
         <!-- ======= Frequently Asked Questions Section ======= -->
@@ -710,7 +689,6 @@
 
                     </ul>
                 </div>
-
             </div>
         </section><!-- End Frequently Asked Questions Section -->
         <!-- ======= Contact Section ======= -->
@@ -743,7 +721,7 @@
                                 <h4>Call:</h4>
                                 <p>+30 210 64 66 987</p>
                             </div>
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
+                            <div id="map"></div>
                         </div>
                     </div>
 
@@ -771,3 +749,52 @@
 </body>
 
 </html>
+
+<script>
+    function initMap() {
+        // Map Options
+        var options = {
+            zoom: 14,
+            center: { lat: 37.983810, lng: 23.727539 }
+        }
+
+        // New Map
+        var map = new google.maps.Map(document.getElementById('map'), options);
+        var allMarkers = [
+            {
+                coords: { lat: 37.984410, lng: 23.728260 }
+            }
+        ];
+
+        // Loop All Markers
+        for (var i = 0; i < allMarkers.length; i++) {
+            addMarker(allMarkers[i]);
+        }
+
+        function addMarker(props) {
+            var marker = new google.maps.Marker({
+                position: props.coords,
+                map: map
+            });
+
+            // Check For Custom Icon
+            if (props.iconImage) {
+                marker.setIcon(props.iconImage);
+            }
+
+            // Check For Content
+            if (props.content) {
+                var infoWindow = new google.maps.InfoWindow({
+                    content: props.content
+                });
+
+                marker.addListener('click', function () {
+                    infoWindow.open(map, marker);
+                });
+            }
+        }
+    }
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBW84ZO3cLRAfmXWPTRC-xQvCelNSoTx08&callback=initMap"
+        async defer></script>
