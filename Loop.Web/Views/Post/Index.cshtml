@@ -62,7 +62,10 @@
                         </div>
                     </div><!-- title block -->
                     <h4>A new way to find help </h4>
-                    <a class="addnewforum " href="~/Post/Create" title=""><i class="fa fa-plus"></i> Create Post</a>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a class="addnewforum " href="~/Post/Create" title=""><i class="fa fa-plus"></i> Create Post</a>
+                    }
                     @Html.PagedListPager(Model, x => @Url.Action("Index", "Post", new { page = x, sortOrder = ViewBag.TitleSortParam, pSize = ViewBag.CurrentpSize }))
                 </div>
                 <div class="central-meta">
@@ -99,8 +102,10 @@
                                         <td>
                                             <i class="fas fa-comments"></i>
                                             <span class="badge font-weight-normal border border-light text-white tag-post">@RepliesCount</span>
-                                            @Html.ActionLink("Reply", "Create", "Reply", new { id = post.PostId }, new { @class = " btn post-reply" })
-
+                                            @if (User.Identity.IsAuthenticated)
+                                            {
+                                                @Html.ActionLink("Reply", "Create", "Reply", new { id = post.PostId }, new { @class = " btn post-reply" })
+                                            }
                                         <td>
                                             @if (!(post.ApplicationUserId.Length < 0))
                                             {
@@ -129,7 +134,7 @@
                                                 var userId = User.Identity.GetUserId();
 
                                             }
-                                            @if (User.Identity.IsAuthenticated )
+                                            @if (User.Identity.IsAuthenticated)
                                             {
                                                 if (post.ApplicationUserId == userId || User.IsInRole("Admin"))
                                                 {
