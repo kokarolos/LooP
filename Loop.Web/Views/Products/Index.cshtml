@@ -85,9 +85,9 @@
                                                 <div class="more-post-optns">
                                                     <i class="fas fa-ellipsis-v"></i>
                                                     <ul>
-                                                        <li><i class="fa fa-pencil-square-o"></i>@Html.ActionLink("Edit", "Edit", new { id = product.ProductId }, new { onclick = "return confirm('Are you sure you wish to edit this product?');" })</li>
+                                                        <li><i class="fa fa-pencil-square-o"></i>@Html.ActionLink("Edit", "Edit", new { id = product.ProductId })</li>
                                                         <li>
-                                                            <i class="fa fa-trash-o"></i>@Html.ActionLink("Delete", "Delete", new { id = product.ProductId }, new { onclick = "return confirm('Are you sure you wish to delete this product?');" })
+                                                            <i class="fa fa-trash-o"></i>@Html.ActionLink("Delete", "Delete", new { id = product.ProductId })
                                                         </li>
                                                     </ul>
                                                 </div>

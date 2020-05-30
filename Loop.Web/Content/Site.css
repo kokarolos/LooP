@@ -6,7 +6,6 @@
 
 .post-reply {
     background-color: #47b2e4;
-  
 }
 
 .loopUser-name {
@@ -14,7 +13,7 @@
 }
 
 .post-date {
-    font-size:x-small;
+    font-size: x-small;
 }
 
 
@@ -78,13 +77,34 @@
 }
 
 
-#back-button .btn{
-    color:#fff;
+#back-button .btn {
+    color: #fff;
     background-color: #37517e;
 }
 
-#back-button .btn:hover{
-    color:#fff;
-    background-color: #37517e;
-    opacity: 0.6;
+    #back-button .btn:hover {
+        color: #fff;
+        background-color: #37517e;
+        opacity: 0.6;
+    }
+
+
+/***************************/
+/******#region USER******/
+#edit-user {
+    padding-top: 5%;
+    padding-bottom: 5%;
 }
+
+    #edit-user h2 {
+        text-align: center;
+    }
+
+#user-avatar {
+    max-height: 200px;
+    max-width: 200px;
+    min-height: 200px;
+    min-width: 200px;
+}
+/******#endregion USER******/
+/******************************/

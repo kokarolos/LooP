@@ -6,6 +6,11 @@
 
 
 
+
+@{
+    ViewBag.Title = "Edit";
+}
+
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -32,121 +37,115 @@
 {
     @Html.AntiForgeryToken()
 
-    <h4 class="text-center">Create A New User</h4>
+    <div id="edit-user" class="container ">
 
-    <div class="container ">
-        <div class="row">
-            <div class="col-sm-3">
-                <!--left col-->
+        <div class="col-sm-8 float-lg-right">
+            <div class="tab-content">
+                <div class="tab-pane active" id="home">
 
-                <div class="text-center">
-                    <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
-                    <h6>Upload a different photo...</h6><br />
-                    <div class="col-xs-6">
-                        <input type="file" class="text-center center-block file-upload" name="file" value="Upload Image" accept=".png,.jpg,.jpeg,.gif,.tif">
+                    <div class="form-group">
+                        <div class="col-xs-9">
+                            @Html.LabelFor(model => model.UserName)<br />
+                            @Html.EditorFor(model => model.UserName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.UserName)
+                        </div>
                     </div>
-                </div>
-                <br />
-                <br />
 
-                <h3>Assign To Role</h3>
-                <div class="text-center">
-                    <div class="col-xs-6">
-                        @Html.ListBox("SelectedRoleId", null, new { @class = "text-center center-block file-upload" })
+                    <div class="form-group">
+                        <div class="col-xs-9">
+                            @Html.LabelFor(model => model.Email)<br />
+                            @Html.EditorFor(model => model.Email, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Email)
+                        </div>
                     </div>
+
+
+                    <div class="form-group">
+                        <div class="col-xs-9">
+                            @Html.LabelFor(model => model.PhoneNumber)<br />
+                            @Html.EditorFor(model => model.PhoneNumber, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.PhoneNumber)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-9">
+                            @Html.LabelFor(model => model.Password)<br />
+                            @Html.EditorFor(model => model.Password, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Password)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-9">
+                            @Html.LabelFor(model => model.ConfirmPassword)<br />
+                            @Html.EditorFor(model => model.ConfirmPassword, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ConfirmPassword)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-9">
+                            @Html.LabelFor(model => model.DateOfBirth)<br />
+                            @Html.EditorFor(model => model.DateOfBirth, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.DateOfBirth)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-9">
+                            @Html.LabelFor(model => model.FirstName)<br />
+                            @Html.EditorFor(model => model.FirstName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.FirstName)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-9">
+                            @Html.LabelFor(model => model.LastName)<br />
+                            @Html.EditorFor(model => model.LastName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.LastName)
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-xs-9">
+                            <b>Assign To Role</b>
+                            <div style="width:35%">@Html.ListBox("SelectedRoleId", null, new { @class = "text-center center-block file-upload form-control" })</div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <div class="form-group" style="display:inline-block">
+                                <button type="submit" value="Create" class="btn btn-sm btn-warning text-white">Create</button>
+                            </div>
+                            <div class="form-group" style="display:inline-block">
+                                <div id="back-button">@Html.ActionLink("Back", "Index", null, new { @class = " btn btn-sm" })</div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-            </div><!--/col-3-->
-
-            <div class="col-sm-9">
-                <div class="tab-content">
-                    <div class="tab-pane active" id="home">
-                        <hr>
-
-                        <div class="form-group">
-                            <div class="col-xs-6">
-                                @Html.LabelFor(model => model.UserName)
-                                @Html.EditorFor(model => model.UserName, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.UserName)
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-xs-6">
-                                @Html.LabelFor(model => model.Email)
-                                @Html.EditorFor(model => model.Email, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.Email)
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-xs-6">
-                                @Html.LabelFor(model => model.Password)
-                                @Html.EditorFor(model => model.Password, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.Password)
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-xs-6">
-                                @Html.LabelFor(model => model.ConfirmPassword)
-                                @Html.EditorFor(model => model.ConfirmPassword, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.ConfirmPassword)
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-xs-6">
-                                @Html.LabelFor(model => model.PhoneNumber)
-                                @Html.EditorFor(model => model.PhoneNumber, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.PhoneNumber)
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-xs-6">
-                                @Html.LabelFor(model => model.DateOfBirth)
-                                @Html.EditorFor(model => model.DateOfBirth, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.DateOfBirth)
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-xs-6">
-                                @Html.LabelFor(model => model.FirstName)
-                                @Html.EditorFor(model => model.FirstName, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.FirstName)
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-xs-6">
-                                @Html.LabelFor(model => model.LastName)
-                                @Html.EditorFor(model => model.LastName, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.LastName)
-                            </div>
-                        </div>
-
-
-
-                        <div class="form-group">
-                            <div class="col-xs-12">
-                                <br>
-                                <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                                <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
-                            </div>
-                        </div>
-
-                    </div><!--/tab-content-->
-
-                </div><!--/col-9-->
-            </div><!--/row-->
+            </div>
         </div>
+
+        <div class=" col-sm-4 float-left">
+            <div class="text-center">
+                <img id="user-avatar" src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
+                <h6>Upload a different photo...</h6><br />
+                <div class="col-xs-3">
+                    <input type="file" class="text-center center-block file-upload" name="file" value="Upload Image" accept=".png,.jpg,.jpeg,.gif,.tif">
+                </div>
+            </div>
+        </div>
+
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
 
 <script>
 
@@ -172,3 +171,4 @@
     });
 
 </script>
+
