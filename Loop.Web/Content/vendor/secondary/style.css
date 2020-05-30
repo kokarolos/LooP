@@ -1620,7 +1620,7 @@ form button {
     border: medium none;
     border-radius: 30px;
     color: #fff;
-    float: right;
+    float: left;
     font-size: 13px;
     font-weight: 500;
     padding: 10px 30px;
