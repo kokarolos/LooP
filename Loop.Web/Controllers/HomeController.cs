@@ -4,7 +4,6 @@ using Loop.Database;
 using Loop.Web.Models;
 using System.Linq;
 using System;
-using System.Collections.Generic;
 using System.Web.Security;
 
 namespace Loop.Web.Controllers
