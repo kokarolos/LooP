@@ -109,6 +109,11 @@
 /******#endregion USER******/
 /******************************/
 
+#map {
+    height: 290px;
+    width: 385px;
+}
+
 /***************************/
 /******#region CONTACT INDEX******/
 #contact-photo {
@@ -118,3 +123,7 @@
 }
 /******#endregion CONTAXT INDEX******/
 /******************************/
+
+.manage-btn:hover {
+    color: #ffffff !important;
+}
