@@ -34,29 +34,10 @@
                 {
                     <a href="/User/Edit/@User.Identity.GetUserId()"><i class="icofont-ui-edit"></i></a>
                 }
-                <a href="/Manage/ChangePassword"> <i class="icofont-logout"></i></a>
+                <a href="javascript:document.getElementById('logoutForm').submit()"><i class="icofont-logout"></i></a>
             </div>
             <br />
             <br />
-
-
-            @*@if (Model.TwoFactor)
-                {
-                    using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <input type="submit" value="Disable" class="get-started-btn scrollto" />
-                    }
-                }
-                else
-                {
-                    using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <input type="submit" value="Enable" class="get-started-btn scrollto" />
-                    }
-                }*@
-
         </div>
         <br />
         <br />
