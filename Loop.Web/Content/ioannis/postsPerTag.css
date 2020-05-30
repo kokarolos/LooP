@@ -1,0 +1,166 @@
+﻿.myPostsPerTagContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 97vw;
+}
+
+.myPostsPerTagContainer > main{
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    background-color: white;
+    color: rgb(40, 55, 70);
+}
+
+.myPostsPerTagContainer .filtering {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: rgb(128, 128, 192);
+    background-color: rgb(245, 245, 245);
+    border-radius: 10px;
+    border-style: solid;
+    border-color: rgb(230, 230, 230);
+    border-width: 1px;
+    padding: 24px;
+    margin: 4px 24px;
+}
+
+.myPostsPerTagContainer .filtering-caption {
+    margin: 0px;
+    padding: 8px;
+}
+
+.myPostsPerTagContainer .filtering-input {
+    width: 240px;
+    border-radius: 4px;
+    margin: 0px;
+    padding: 8px;
+}
+
+
+.myPostsPerTagContainer .main-header{
+    display: flex;
+    flex-direction: row;
+    padding: 2px 8px;
+    margin: 2px 8px;
+}
+
+.myPostsPerTagContainer .header-text{
+    display: flex;
+    flex-direction: column;
+    flex: 2 0 0;
+    padding: 2px 4px;
+    margin: 2px 4px;
+}
+
+.myPostsPerTagContainer .header-img{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 0 0;
+    padding: 2px 4px;
+    margin: 2px 4px;
+}
+
+.myPostsPerTagContainer .header-img > img{
+    max-height: 150px;
+}
+
+.myPostsPerTagContainer .posts-container{
+    padding: 2px 8px;
+    margin: 2px 8px;
+    display: flex;
+    flex-direction: column;
+}
+ 
+.myPostsPerTagContainer .post{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(245, 245, 245);
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(230, 230, 230);
+    padding: 8px;
+    margin: 8px;
+}
+
+.myPostsPerTagContainer .post-info{
+    display: flex;
+    flex-direction: row;
+    padding: 2px 4px;
+    margin: 2px 4px;
+}
+
+.myPostsPerTagContainer .post-the-title{
+    padding: 2px 4px;
+    margin: 2px 4px;
+}
+
+.myPostsPerTagContainer .post-text{
+    padding: 2px 4px;
+    margin: 2px 4px;
+}
+
+.myPostsPerTagContainer .post-tags-replies{
+    display: flex;
+    flex-direction: column;
+    flex: 2 0 0;
+    padding: 2px 4px;
+    margin: 2px 4px;
+}
+
+.myPostsPerTagContainer .post-tags{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 2px 4px;
+    margin: 2px 4px;
+}
+
+.myPostsPerTagContainer .post-tag{
+    background-color: rgb(200, 200, 255);
+    color: rgb(0, 0, 255);
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(180, 180, 235);
+    padding: 5px 10px;
+    margin: 2px 4px;
+}
+
+.myPostsPerTagContainer .post-num-replies{
+    padding: 2px 8px;
+    margin: 2px 8px;
+}
+
+.myPostsPerTagContainer .post-user{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 0 0;
+    padding: 2px 4px;
+    margin: 2px 4px;
+}
+
+.myPostsPerTagContainer .user-img{
+    padding: 2px 4px;
+    margin: 2px 4px;
+}
+
+.myPostsPerTagContainer .user-img > img{
+    height: 40px;
+}
+
+.myPostsPerTagContainer .user-name{
+    padding: 2px 4px;
+    margin: 2px 4px;
+}
+
+.myPostsPerTagContainer .posted{
+    padding: 2px 4px;
+    margin: 2px 4px;
+}
+

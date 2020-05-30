@@ -1,0 +1,61 @@
+﻿@model Loop.Entities.Tag
+
+@{
+    ViewBag.Title = "Posts per Tag";
+}
+
+@Styles.Render("~/Content/ioannis/postsPerTag.css")
+@Scripts.Render("https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js")
+@Scripts.Render("~/Scripts/ioannis/postsPerTag.js")
+
+<div class="myPostsPerTagContainer" ng-app="PostsPerTagApp" ng-controller="PostsPerTagController" data-tag-id="@(ViewContext.RouteData.Values["id"])">
+    <main>
+        <div class="filtering">
+            <h4 class="filtering-caption">Posts search</h4>
+            <input class="filtering-input" type="search" ng-model="model_search" ng-change="postFilter()" placeholder="Enter text to search" />
+        </div>
+        <header class="main-header">
+            <div class="header-text">
+                <h1>Posts with tag {{postsPerTag.Title}}</h1>
+                <h4>{{postsPerTag.Description}}</h4>
+            </div>
+            <div class="header-img">
+                <img src="{{postsPerTag.ImageUrl}}" alt="tag logo">
+            </div>
+        </header>
+        <div class="posts-container">
+            <div class="post" ng-repeat="post in postsPerTag.Posts | filter: postFilter">
+                <h4 class="post-the-title">
+                    {{post.Title}}
+                </h4>
+                <div class="post-text">
+                    {{post.Text}}
+                </div>
+                <div class="post-info">
+                    <div class="post-tags-replies">
+                        <div class="post-tags">
+                            <a class="post-tag" ng-repeat="tag in post.Tags" href="/Tags/Details/{{tag.TagId}}">
+                                {{tag.Title}}
+                            </a>
+                        </div>
+                        <div class="post-num-replies">
+                            {{post.NumReplies}} replies
+                        </div>
+                    </div>
+                    <div class="post-user">
+                        <div class="user-img">
+                            <img src="@Url.Content("~/Content/ioannis/user.svg")" alt="no img">
+                        </div>
+                        <div class="user-name">
+                            {{post.PostedBy}}
+                        </div>
+                        <div class="posted">
+                            {{post.PostDate | formatDate | date: "yyyy-MM-dd HH:mm:ss"}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
