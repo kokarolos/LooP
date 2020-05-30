@@ -2,18 +2,44 @@
     Layout = null;
 }
 
-<img src="~/Content/assets/productPhoto.jpg" />
-<!DOCTYPE html>
 
 <html>
+<head>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
 <body>
-    <h5>Thank you for your purchase</h5>
-    <h1>Redirecting in <span id="sec">5</span> seconds...</h1>
+    <div class="container">
+        <img src="~/Content/assets/productPhoto.jpg" />
+        <h5>Thank you for your purchase</h5>
+        <h1>Redirecting in <span id="sec">5</span> seconds...</h1>
+    </div>
+
 </body>
 </html>
 
 <script>
-    window.setTimeout(function() {
-        window.location.href = 'https://localhost:44391/';
-    }, 4000);
+
+    window.onload = function () {
+        window.setTimeout(function () {
+            window.location.href = 'https://localhost:44391/';
+        }, 5000);
+
+        (function () {
+            var counter = 5;
+            setInterval(function () {
+                counter--;
+                if (counter >= 0) {
+                    span = document.getElementById("sec");
+                    span.innerHTML = counter;
+                }
+                // Display 'counter' wherever you want to display it.
+                if (counter === 0) {
+                    //    alert('this is where it happens');
+                    clearInterval(counter);
+                }
+            }, 1000);
+        })();
+    };
+
+
 </script>

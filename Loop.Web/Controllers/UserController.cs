@@ -158,12 +158,16 @@ namespace Loop.Web.Controllers
                 byte[] imageSize = new byte[file.ContentLength];
                 file.InputStream.Read(imageSize, 0, file.ContentLength);
 
-                var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
-                var roleMngr = new RoleManager<IdentityRole>(roleStore);
-                var roles = roleMngr.Roles.ToList();
-                var role = roles.SingleOrDefault(x => x.Id == SelectedRoleId).Name;
-                UserManager.RemoveFromRoles(applicationUser.Id, "Admin", "User");
-                UserManager.AddToRole(applicationUser.Id, role);
+                if (User.IsInRole("Admin"))
+                {
+                    var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
+                    var roleMngr = new RoleManager<IdentityRole>(roleStore);
+                    var roles = roleMngr.Roles.ToList();
+                    var role = roles.SingleOrDefault(x => x.Id == SelectedRoleId).Name;
+                    UserManager.RemoveFromRoles(applicationUser.Id, "Admin", "User");
+                    UserManager.AddToRole(applicationUser.Id, role);
+                }
+
                 var img = new Image() { User = applicationUser, Data = imageSize, ImgName = filename, ImgPath = "~/Content/Avatars/" + filename };
                 db.Users.UpdateUserWithImage(applicationUser, img);
                 db.Save();

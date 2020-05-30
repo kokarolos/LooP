@@ -1,4 +1,5 @@
 ﻿@model Loop.Entities.Post
+@using Microsoft.AspNet.Identity
 
 @{
     ViewBag.Title = "Details";
@@ -64,15 +65,24 @@
                                             <p>@reply.Text</p>
                                         </td>
                                         <td>
+                                            @{
+                                                var userId = User.Identity.GetUserId();
 
-                                            <a href="@Url.Action("Edit","Reply", new { id = reply.ReplyId })">
-                                                <i class="far fa-edit"></i>
-                                            </a>
+                                            }
+                                            @if (User.Identity.IsAuthenticated)
+                                            {
+                                                if (reply.ApplicationUser.Id == userId || User.IsInRole("Admin"))
+                                                {
+                                                    <a href="@Url.Action("Edit","Reply", new { id = reply.ReplyId })">
+                                                        <i class="far fa-edit"></i>
+                                                    </a>
 
-                                            <a href="@Url.Action("Delete","Reply", new { id = reply.ReplyId })">
+                                                    <a href="@Url.Action("Delete","Reply", new { id = reply.ReplyId })">
 
-                                                <i class="far fa-trash-alt"></i>
-                                            </a>
+                                                        <i class="far fa-trash-alt"></i>
+                                                    </a>
+                                                }
+                                            }
                                         </td>
                                         <td>
                                             <span class="badge font-weight-normal border border-light text-white loopUser-name">@reply.ApplicationUser.UserName</span><br />
