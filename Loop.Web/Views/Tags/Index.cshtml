@@ -1,35 +1,34 @@
 ﻿@{
-    ViewBag.Title = "TagsPage";
+    ViewBag.Title = "Tags Page";
 }
 
-<head>
-    <link href="@Url.Content("~/Content/ioannis/TagsStyleSheet.css")" rel="stylesheet" type="text/css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
-    <script src="@Url.Content("~/Scripts/ioannis/tags.js")"></script>
-</head>
+@Styles.Render("~/Content/ioannis/TagsStyleSheet.css")
+@Scripts.Render("https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js")
+@Scripts.Render("~/Scripts/ioannis/tags.js")
 
-<body ng-app="TagsApp">
-    <div class="myCustomContainer" ng-controller="TagsController">
-        <main>
-            <div class="search-container">
-                <h4>Tag search</h4>
-                <input type="search" ng-model="model_search" ng-change="tagFilter()" placeholder="Enter search text" />
-            </div>
-            <header>
-                <h2>Tags page</h2>
-                <h3>Use tags to categorize your questions.</h3>
-            </header>
-            <div class="tags-container">
-                <div class="tag" ng-repeat="tag in tags | filter: tagFilter">
-                    <div class="tag-header">
-                        <button>{{tag.Title}}</button>
-                        <img src="{{tag.ImageUrl}}" alt="Image of the {{tag.Title}} tag.">
-                    </div>
-                    <div>
-                        {{tag.Description}}
-                    </div>
+<div class="myCustomContainer" ng-app="TagsApp" ng-controller="TagsController">
+    <main>
+        <div class="filtering">
+            <h4 class="filtering-caption">Tag search</h4>
+            <input class="filtering-input" type="search" ng-model="model_search" ng-change="tagFilter()" placeholder="Enter text to search" />
+        </div>
+        <header class="main-header">
+            <h1>Tags page</h1>
+            <h4>Use tags to categorize your questions.</h4>
+        </header>
+        <div class="tags-container">
+            <div class="tag" ng-repeat="tag in tags | filter: tagFilter">
+                <div class="tag-header">
+                    <a href="/Tags/Details/{{tag.TagId}}">
+                        {{tag.Title}}
+                    </a>
+                    <img src="{{tag.ImageUrl}}" alt="Image of the {{tag.Title}} tag.">
+                </div>
+                <div>
+                    {{tag.Description}}
                 </div>
             </div>
-        </main>
-    </div>
-</body>
+        </div>
+    </main>
+</div>
+

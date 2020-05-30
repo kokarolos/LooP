@@ -1,29 +1,19 @@
-﻿﻿.myCustomContainer {
+﻿.myCustomContainer {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    background-color: rgb(255, 230, 200);
-    color: rgb(39, 55, 70);
+    width: 97vw;
 }
 
-.myCustomContainer main {
+.myCustomContainer > main {
     display: flex;
     flex-direction: column;
     width: 80%;
     background-color: white;
+    color: rgb(40, 55, 70);
 }
 
-.myCustomContainer > main > * {
-    padding: 8px;
-    margin: 8px;
-}
-
-.myCustomContainer > main > div > input {
-    padding: 8px;
-    margin: 4px;
-}
-
-.myCustomContainer .search-container {
+.myCustomContainer .filtering {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -31,28 +21,35 @@
     background-color: rgb(240, 240, 240);
     border-radius: 10px;
     border-style: solid;
-    border-color: rgb(160, 160, 160);
+    border-color: rgb(230, 230, 230);
     border-width: 1px;
     padding: 24px;
-    margin: 8px 20px 8px 20px;
+    margin: 8px 24px;
 }
 
-    .myCustomContainer .search-container > h4 {
-        margin: 0px;
-        padding: 8px;
-    }
+.myCustomContainer .filtering-caption {
+    margin: 0px;
+    padding: 8px;
+}
 
-    .myCustomContainer .search-container > input {
-        width: 240px;
-        border-radius: 4px;
-        margin: 0px;
-        padding: 8px;
-    }
+.myCustomContainer .filtering-input {
+    width: 240px;
+    border-radius: 4px;
+    margin: 0px;
+    padding: 8px;
+}
+
+.myCustomContainer .main-header {
+    padding: 4px 12px;
+    margin: 4px 12px;
+}
 
 .myCustomContainer .tags-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    padding: 4px 8px;
+    margin: 4px 8px;
 }
 
 .myCustomContainer .tag {
@@ -60,10 +57,10 @@
     flex-direction: column;
     width: 240px;
     height: 150px;
-    background-color: rgb(255, 230, 200);
+    background-color: rgb(245, 245, 245);
     border-radius: 10px;
     border-style: solid;
-    border-color: rgb(160, 160, 160);
+    border-color: rgb(230, 230, 230);
     border-width: 1px;
     padding: 8px;
     margin: 8px;
@@ -73,21 +70,25 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
 }
 
-    .myCustomContainer .tag-header > button {
-        background-color: rgb(200, 200, 255);
-        color: rgb(0, 0, 255);
-        border-radius: 5px;
-        padding: 4px;
-        margin: 4px;
-    }
+.myCustomContainer .tag-header > a {
+    background-color: rgb(200, 200, 255);
+    color: rgb(0, 0, 255);
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(180, 180, 235);
+    padding: 5px 10px;
+    margin: 2px 4px;
+}
 
-    .myCustomContainer .tag-header > img {
-        max-width: 120px;
-        max-height: 48px;
-        border-radius: 4px;
-        padding: 4px;
-        margin: 0px;
-        align-self: center;
-    }
+.myCustomContainer .tag-header > img {
+    max-width: 120px;
+    max-height: 48px;
+    border-radius: 4px;
+    padding: 4px;
+    margin: 0px;
+    align-self: center;
+}
