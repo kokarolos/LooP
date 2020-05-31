@@ -67,5 +67,10 @@ namespace Loop.Web.Controllers
                            .ToDictionary(g=> g.product, g=>g.numberOfOrders);
             return model;
         }
+
+        public ActionResult Quiz()
+        {
+            return View();
+        }
     }
 }

@@ -1372,6 +1372,7 @@
     <Content Include="Scripts\version.json" />
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\Dashboard\_Stats.cshtml" />
+    <Content Include="Views\Home\Quiz.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
