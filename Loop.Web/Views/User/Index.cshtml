@@ -62,10 +62,9 @@
                             <h4>
                                 @if (user.Roles.Count > 0)
                                 {
-                                    if (User.IsInRole("User"))
+                                    if (User.IsInRole("Admin"))
                                     {
                                         <em>@user.LastName @user.FirstName - Admin</em>
-
                                     }
                                     else
                                     {
@@ -74,7 +73,7 @@
                                 }
                                 else
                                 {
-                                    <em>@user.LastName @user.FirstName - Katit</em>
+                                    <em>@user.LastName @user.FirstName - User</em>
                                 }
 
                             </h4>

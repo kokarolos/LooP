@@ -171,11 +171,20 @@ namespace Loop.Web.Controllers
                 var img = new Image() { User = applicationUser, Data = imageSize, ImgName = filename, ImgPath = "~/Content/Avatars/" + filename };
                 db.Users.UpdateUserWithImage(applicationUser, img);
                 db.Save();
-                return RedirectToAction("Index");
+
+                if (User.IsInRole("User"))
+                {
+                    return RedirectToAction("Index", "Manage");
+
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
             }
             return View(applicationUser);
         }
-        
+
 
 
         // GET: User/Delete/5
