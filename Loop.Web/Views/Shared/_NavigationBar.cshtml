@@ -18,6 +18,10 @@
                 {
                     <li><a href="/User/Index">Admin</a></li>
                 }
+                @if (User.IsInRole("Admin") || User.IsInRole("Customer"))
+                {
+                    <li><a href="/Home/Quiz">Quiz</a></li>
+                }
                 @*<a href="#about" class="get-started-btn scrollto">Get Started</a>*@
                 @Html.Partial("_LoginPartial")
             </ul>
