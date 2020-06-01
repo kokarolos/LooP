@@ -294,6 +294,7 @@
     <Content Include="Content\assets\post_details.jpg" />
     <Content Include="Content\assets\productPhoto.jpg" />
     <Content Include="Content\assets\skills.png" />
+    <Content Include="Content\assets\team\giannis.jpg" />
     <Content Include="Content\assets\team\karol.jpg" />
     <Content Include="Content\assets\team\karolosLoop.jpg" />
     <Content Include="Content\assets\team\rizos.jpg" />
