@@ -13,7 +13,7 @@ namespace Loop.Web.Controllers
 {
     public class PostController : Controller
     {
-        private UnitOfWork db = new UnitOfWork(new ApplicationDbContext());
+        private readonly UnitOfWork db = new UnitOfWork(new ApplicationDbContext());
 
         // GET: Post
         public ActionResult Index(string sortOrder, string searchTitle, int? page, int? pSize)

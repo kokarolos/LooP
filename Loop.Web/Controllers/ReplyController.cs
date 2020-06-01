@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Net;
-using System.Security.Cryptography.X509Certificates;
 using System.Web.Mvc;
 using Loop.Database;
 using Loop.Entities;
@@ -13,7 +12,7 @@ namespace Loop.Web.Controllers
 {
     public class ReplyController : Controller
     {
-        private UnitOfWork db = new UnitOfWork(new ApplicationDbContext());
+        private readonly UnitOfWork db = new UnitOfWork(new ApplicationDbContext());
 
         //GET: Reply/Create
         //Getting from Post Controller Details View the id of post

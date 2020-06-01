@@ -4,7 +4,6 @@ using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Web.Mvc;
 
 namespace Loop.Web.Controllers
@@ -20,6 +19,9 @@ namespace Loop.Web.Controllers
         }
 
         //Get Post Per User By Month
+        //Getting all posts distinguish them by the user who created the post , group them by PostDate and with anonoymus type
+        //Calculating the Sum
+
         public JsonResult GetPosts()
         {
             var userId = User.Identity.GetUserId();
@@ -31,10 +33,10 @@ namespace Loop.Web.Controllers
                                 {
                                     date = y.Key,
                                     count = db.Posts.GetAll()
-                                                 .ToList()
-                                                 .Where(post => post.ApplicationUserId == userId && post.PostDate.Month == y.Key)
-                                                 .ToList()
-                                                 .Count.ToString()
+                                                    .ToList()
+                                                    .Where(post => post.ApplicationUserId == userId && post.PostDate.Month == y.Key)
+                                                    .ToList()
+                                                    .Count.ToString()
                                 });
 
             return Json(posts, JsonRequestBehavior.AllowGet);
@@ -42,6 +44,8 @@ namespace Loop.Web.Controllers
 
 
         //Get Replies Per User
+        //Getting all replies distinguish them by the user whreplied , group them by PostDate and with anonoymus type
+        //Calculating the Sum
         public JsonResult GetReplies()
         {
             var userId = User.Identity.GetUserId();
@@ -54,10 +58,10 @@ namespace Loop.Web.Controllers
                                     {
                                         date = y.Key,
                                         count = db.Posts.GetAll()
-                                                     .ToList()
-                                                     .Where(reply => reply.ApplicationUser == user && reply.PostDate.Month == y.Key)
-                                                     .ToList()
-                                                     .Count.ToString()
+                                                        .ToList()
+                                                        .Where(reply => reply.ApplicationUser == user && reply.PostDate.Month == y.Key)
+                                                        .ToList()
+                                                        .Count.ToString()
                                     }).OrderBy(x => x.date);
 
 
@@ -65,7 +69,7 @@ namespace Loop.Web.Controllers
         }
 
         //Get Replies Count from Posts and Group them By Tags Img.
-        //TODO:
+
         public JsonResult GetTagsPercentage()
         {
             var userId = User.Identity.GetUserId();
@@ -94,7 +98,10 @@ namespace Loop.Web.Controllers
         }
 
 
-        //Getting tags of all posts that user created
+        //Getting all posts that user created -> Selecting their tags 
+        //With anonymous types add them value of 1 to each post
+        //Grouping them by title and counting the value with Sum
+
         public JsonResult GetTagsFromPostOfUser()
         {
             var userId = User.Identity.GetUserId();
@@ -121,10 +128,11 @@ namespace Loop.Web.Controllers
 
 
         //Query to get 5 most wanted products 
+        //taking all products and all orderproducts 
+        //for all products we calculate the count of products in all orders -> we take 5 mvp
+
         public JsonResult GetTop5Products()
         {
-            //taking all products and all orderproducts 
-            //for all products we calculate the count of products in all orders -> we take 5 mvp
 
             var products = (from product in db.Products.GetAll()
                             from orderedProduct in db.OrderProducts.GetAll()
@@ -196,6 +204,9 @@ namespace Loop.Web.Controllers
         }
 
         //Total Profit Per Year //Admin
+        //Grouping all Orders per Date with the help of anonymous i create an Json file that looks like
+        //date[1,2,3,4]
+        //value[500,1200,600,200]
         public JsonResult ProfitPerMonth()
         {
             var profit = db.Orders.GetAll()
@@ -210,8 +221,8 @@ namespace Loop.Web.Controllers
                                                         .Select(x => x.Price)
                                                         .Sum(),
                                   }).Distinct()
-                                                .ToList()
-                                                .OrderBy(x=>x.month);
+                                    .ToList()
+                                    .OrderBy(x=>x.month);
 
             return Json(profit, JsonRequestBehavior.AllowGet);
 

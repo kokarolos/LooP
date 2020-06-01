@@ -9,7 +9,6 @@ using Microsoft.AspNet.Identity;
 using System.Web.UI.WebControls;
 using System.Collections.Generic;
 using Loop.Entities.Intermediate;
-using Microsoft.AspNet.Identity.EntityFramework;
 using System.Web;
 using Microsoft.AspNet.Identity.Owin;
 using System.Globalization;

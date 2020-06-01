@@ -86,6 +86,11 @@ namespace Loop.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                //Getting file -> we store it
+                //We get the path -> convertin the file to byte[] and reeading its content
+                //finally we create an user from model with dto
+                //Creating Async his password and assign him to selected role
+
                 var filename = Path.GetFileName(file.FileName);
                 var path = Path.Combine(Server.MapPath("~/Content/Avatars/" + filename));
                 file.SaveAs(path);
@@ -151,6 +156,12 @@ namespace Loop.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                //Getting file -> we store it
+                //We get the path -> convertin the file to byte[] and reeading its content
+                //if User is Admin he can change user's role
+                //If User is user he cant change his role , dropdown wont be displayed
+
+
                 var filename = Path.GetFileName(file.FileName);
                 var path = Path.Combine(Server.MapPath("~/Content/Avatars/" + filename));
                 file.SaveAs(path);

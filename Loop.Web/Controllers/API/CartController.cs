@@ -11,6 +11,7 @@ namespace Loop.Web.Controllers.API
         private readonly UnitOfWork db = new UnitOfWork(new ApplicationDbContext());
 
         // GET: api/cart/getfive?id=25&price=12&prodid=12
+        //Not used
 
         [HttpGet]
         [Route("getfive")]

@@ -15,6 +15,7 @@ namespace Loop.Web.Controllers
         private readonly UnitOfWork db = new UnitOfWork(new ApplicationDbContext());
 
         //this is the index page of our cart
+        //
         public ActionResult Cart()
         {
             var cart = CreateOrGetCart();
@@ -40,7 +41,7 @@ namespace Loop.Web.Controllers
             var cart = CreateOrGetCart();
             var existingItem = cart.OrderProducts.Where(x => x.ProductId == productId).Any();
 
-            //If added product exists
+            //If added product that exists
             if (existingItem)
             {
                 //getting previous product -> creating new OrderPruct and add them to a temp list
@@ -82,8 +83,6 @@ namespace Loop.Web.Controllers
             else
             {
 
-                //TODO : If cart is Checkouted or Canceled we will Create new Order else we will keep the same
-                //Maybe Delegate?
                 cart.OrderProducts.Add(new OrderProduct()
                 {
                     //We dont need to create an order -> we will create order at checkout proccess
@@ -116,6 +115,7 @@ namespace Loop.Web.Controllers
         // Quantity : 2
         // price : 50
 
+        //TODO: Add ClearCart btn
         private void ClearCart()
         {
             var cart = new Cart();
